@@ -21,16 +21,16 @@
         body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- 2. HEADER --- */
+        /* --- 2. HEADER (Navigasi) --- */
         header {
             background: white;
-            padding: 15px 5%;
+            padding: 10px 5%; /* Padding dikurangi biar lebih tipis */
             position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary-blue); display: flex; align-items: center; gap: 10px; }
-        .logo small { font-size: 0.8rem; font-weight: normal; color: #666; display: block; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); display: flex; align-items: center; gap: 10px; }
+        .logo small { font-size: 0.75rem; font-weight: normal; color: #666; display: block; }
         
         nav ul { list-style: none; display: flex; gap: 20px; }
         nav a { font-weight: 600; color: #555; font-size: 0.9rem; }
@@ -38,149 +38,148 @@
         
         .btn-header {
             background: var(--deep-green); color: white; padding: 8px 20px;
-            border-radius: 30px; font-weight: bold; border: 2px solid var(--deep-green); font-size: 0.9rem;
+            border-radius: 30px; font-weight: bold; border: 2px solid var(--deep-green); font-size: 0.85rem;
         }
         .btn-header:hover { background: white; color: var(--deep-green); }
 
-        /* --- 3. HERO (REVISI: LEBIH PENDEK & STYLE SS2) --- */
+        /* --- 3. HERO (REVISI: LEBIH RAMPING/PENDEK) --- */
         .hero {
             position: relative; 
-            height: 65vh; /* DIKURANGI: Agar tidak terlalu lebar */
+            height: 50vh; /* DIKURANGI LAGI: Jadi setengah layar saja */
+            min-height: 400px; /* Jaga-jaga agar tidak kekecilan di layar besar */
             background: linear-gradient(rgba(0, 50, 40, 0.7), rgba(0, 30, 60, 0.6)), url('https://source.unsplash.com/1600x900/?river,forest,mountain');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px;
         }
-        .hero-content { max-width: 1000px; animation: slideUp 1s ease-out; }
+        .hero-content { max-width: 900px; animation: slideUp 1s ease-out; }
         
-        /* Judul Besar */
+        /* Judul diperkecil sedikit agar proporsional */
         .hero h1 { 
-            font-size: 3rem; 
-            margin-bottom: 20px; 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
             font-weight: 700; 
             line-height: 1.2; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6); 
         }
         
-        /* Narasi Baru (SS2) */
+        /* Paragraf diperkecil dan margin dikurangi */
         .hero p { 
-            font-size: 1.25rem; 
-            margin-bottom: 40px; 
+            font-size: 1.1rem; 
+            margin-bottom: 25px; 
             opacity: 0.95; 
             font-weight: 400; 
-            max-width: 900px; 
+            max-width: 800px; 
             margin-left: auto; 
             margin-right: auto;
         }
 
-        /* Badge Container (SS2 Style) */
+        /* Badge Container */
         .hero-badges {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        /* Kotak Badge Transparan dengan Border Putih */
+        /* Badge Box diperkecil paddingnya */
         .badge-box {
-            border: 2px solid white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.6);
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
             color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
-            background-color: rgba(255, 255, 255, 0.1); /* Sedikit transparan */
+            gap: 8px;
+            background-color: rgba(0, 0, 0, 0.2); 
             transition: 0.3s;
         }
         .badge-box:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: white;
         }
-        .badge-box i { font-size: 1.2rem; }
+        .badge-box i { font-size: 1rem; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 4. NARASI (STORY) --- */
+        /* --- 4. NARASI (STORY) - CSS Tetap, Margin menyesuaikan Hero baru --- */
         .story-section { 
-            padding: 60px 5%; 
+            padding: 50px 5%; 
             background: white; 
-            margin-top: -50px; /* Overlap ke Hero */
-            position: relative; z-index: 10;
-            border-radius: 20px 20px 0 0; 
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            margin-top: 0; /* Menghilangkan overlap agar lebih rapi dengan hero pendek */
+            border-bottom: 1px solid #eee;
             display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; 
         }
-        .story-content h2 { font-size: 2.2rem; color: var(--deep-green); margin-bottom: 20px; }
-        .story-content p { margin-bottom: 15px; text-align: justify; color: #444; }
+        .story-content h2 { font-size: 2rem; color: var(--deep-green); margin-bottom: 15px; }
+        .story-content p { margin-bottom: 15px; text-align: justify; color: #444; font-size: 1rem; }
         .quote-box {
-            border-left: 5px solid var(--gold); padding-left: 20px; margin: 20px 0;
-            font-style: italic; color: #555; background: #fffbe6; padding: 15px; border-radius: 0 10px 10px 0;
+            border-left: 4px solid var(--gold); padding-left: 15px; margin: 15px 0;
+            font-style: italic; color: #555; background: #fffbe6; padding: 12px; border-radius: 0 8px 8px 0; font-size: 0.95rem;
         }
 
         /* --- 5. KPI UTAMA --- */
         .kpi-section {
-            padding: 80px 5%; 
-            background: #fcfcfc; 
+            padding: 60px 5%; 
+            background: #f8fcfc; 
         }
-        .section-title { text-align: center; margin-bottom: 40px; }
-        .section-title h2 { color: var(--primary-blue); font-size: 2rem; margin-bottom: 10px; }
+        .section-title { text-align: center; margin-bottom: 30px; }
+        .section-title h2 { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 5px; }
         
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .kpi-card {
-            background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 30px;
-            text-align: center; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); cursor: pointer;
+            background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 25px;
+            text-align: center; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer;
         }
-        .kpi-card:hover { transform: translateY(-10px); border-color: var(--primary-blue); }
-        .kpi-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--deep-green); }
-        .kpi-val { font-size: 2.5rem; font-weight: 800; color: var(--text-main); display: block; margin: 10px 0; }
-        .kpi-desc { font-size: 0.9rem; color: #666; margin-top: 10px; }
+        .kpi-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
+        .kpi-icon { font-size: 2.2rem; margin-bottom: 10px; color: var(--deep-green); }
+        .kpi-val { font-size: 2.2rem; font-weight: 800; color: var(--text-main); display: block; margin: 5px 0; }
+        .kpi-desc { font-size: 0.9rem; color: #666; margin-top: 5px; }
 
         /* --- 6. PENJELASAN 3 PILAR & BENCANA --- */
-        .pillar-section { background: var(--primary-blue); color: white; padding: 80px 5%; text-align: center; }
-        .pillar-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
+        .pillar-section { background: var(--primary-blue); color: white; padding: 60px 5%; text-align: center; }
+        .pillar-grid { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 30px; }
         .pillar-box {
-            background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; width: 300px;
+            background: rgba(255,255,255,0.1); padding: 25px; border-radius: 12px; width: 300px;
             border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
         }
         .pillar-box:hover { background: rgba(255,255,255,0.2); }
-        .pillar-box h3 { margin-bottom: 15px; color: var(--soft-green); }
+        .pillar-box h3 { margin-bottom: 10px; color: var(--soft-green); font-size: 1.3rem; }
         .pillar-box p { font-size: 0.9rem; opacity: 0.9; }
 
         /* --- 7. ALUR PARTISIPASI --- */
-        .flow-section { padding: 80px 5%; background: white; text-align: center; }
+        .flow-section { padding: 60px 5%; background: white; text-align: center; }
         .flow-wrapper {
-            display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap;
             position: relative;
         }
         .flow-step { width: 220px; position: relative; z-index: 2; }
         .step-circle {
-            width: 70px; height: 70px; background: var(--deep-green); color: white;
-            border-radius: 50%; font-size: 1.5rem; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
-            box-shadow: 0 5px 15px rgba(45, 106, 79, 0.3);
+            width: 60px; height: 60px; background: var(--deep-green); color: white;
+            border-radius: 50%; font-size: 1.3rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(45, 106, 79, 0.3);
         }
-        .flow-step h4 { margin-bottom: 10px; color: var(--text-main); }
-        .flow-step p { font-size: 0.9rem; color: #666; }
+        .flow-step h4 { margin-bottom: 8px; color: var(--text-main); font-size: 1.1rem; }
+        .flow-step p { font-size: 0.85rem; color: #666; }
 
         /* --- 8. AWARD & SDGs --- */
-        .impact-footer { padding: 60px 5%; background: #f0f4f8; text-align: center; }
+        .impact-footer { padding: 50px 5%; background: #f0f4f8; text-align: center; }
         .sdg-icons { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
         .sdg-icon { width: 80px; height: 80px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; text-align: center; padding: 5px; }
         
         .award-banner {
             background: linear-gradient(135deg, #111, #333); color: var(--gold);
-            padding: 30px; border-radius: 15px; margin-top: 40px; display: inline-block; width: 100%; max-width: 900px;
+            padding: 25px; border-radius: 12px; margin-top: 30px; display: inline-block; width: 100%; max-width: 800px;
         }
 
         /* --- 9. GALLERY GRID --- */
-        .gallery-section { padding: 60px 5%; background: white; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item { height: 200px; border-radius: 10px; overflow: hidden; position: relative; }
+        .gallery-section { padding: 50px 5%; background: white; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .gallery-item { height: 180px; border-radius: 8px; overflow: hidden; position: relative; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
         
         /* FOOTER */
-        footer { background: #222; color: #ccc; padding: 50px 5%; font-size: 0.9rem; }
+        footer { background: #222; color: #ccc; padding: 40px 5%; font-size: 0.85rem; }
         
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto; }
@@ -193,11 +192,11 @@
 
         /* Responsive Mobile */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; }
+            header { flex-direction: column; gap: 15px; padding: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
             .story-section { grid-template-columns: 1fr; }
-            .hero { height: auto; padding: 100px 20px; }
-            .hero h1 { font-size: 2rem; }
+            .hero { height: auto; padding: 80px 20px; }
+            .hero h1 { font-size: 1.8rem; }
         }
 
     </style>
@@ -220,7 +219,6 @@
                 <li><a href="#impact">Dampak Lingkungan</a></li>
                 <li><a href="#flow">Cara Berkontribusi</a></li>
                 <li><a href="#gallery">Galeri</a></li>
-                <!-- Menu Baru -->
                 <li><a href="#data">Data & SIH3</a></li>
                 <li><a href="#modal-land" onclick="openModal('modal-land')">Peta Sebaran</a></li>
             </ul>
@@ -228,7 +226,7 @@
         <a href="#flow" class="btn-header">Gabung Sekarang</a>
     </header>
 
-    <!-- HERO SECTION (UPDATED: SS2 Content & Reduced Height) -->
+    <!-- HERO SECTION (REVISI: LEBIH PENDEK & COMPACT) -->
     <section class="hero">
         <div class="hero-content">
             <!-- Judul -->
@@ -254,7 +252,7 @@
         </div>
     </section>
 
-    <!-- STORY SECTION: TUJUAN BERSAMA (DI ATAS) -->
+    <!-- STORY SECTION: TUJUAN BERSAMA (URUTAN PERTAMA SETELAH HERO) -->
     <section id="story" class="story-section">
         <div class="story-content">
             <h2>Satu Panggung untuk Aksi Nyata</h2>
@@ -273,7 +271,7 @@
         </div>
     </section>
 
-    <!-- KPI DASHBOARD (DI BAWAH STORY) -->
+    <!-- KPI DASHBOARD (URUTAN KEDUA) -->
     <section id="kpi" class="kpi-section">
         <div class="section-title">
             <h2>Capaian Konservasi Kolektif</h2>
