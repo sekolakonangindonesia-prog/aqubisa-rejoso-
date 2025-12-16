@@ -208,16 +208,39 @@
         .pillar-box p { font-size: 0.9rem; }
 
         /* --- 8. FLOW --- */
-        .flow-section { padding: 50px 5%; background: white; text-align: center; }
-        .flow-wrapper { display: flex; justify-content: center; gap: 25px; margin-top: 30px; flex-wrap: wrap; }
-        .flow-step { width: 220px; position: relative; }
-        .step-circle {
-            width: 55px; height: 55px; background: var(--nav-green); color: white;
-            border-radius: 50%; font-size: 1.2rem; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+       .process-section {
+            padding: 60px 5%;
+            background-color: #f1f4f6;
+            text-align: center;
         }
-        .flow-step h4 { font-size: 1rem; margin-bottom: 5px; }
-        .flow-step p { font-size: 0.85rem; color: #666; }
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 250px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .step-card:hover { transform: translateY(-10px); border-bottom: 5px solid var(--nature-green); }
+        .step-icon {
+            width: 60px; height: 60px;
+            background: var(--lpdp-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+        .arrow-next { font-size: 2rem; color: #ccc; align-self: center; }
+
 
         /* --- GALLERY & FOOTER --- */
         .gallery-section { padding: 40px 5%; background: #f9f9f9; }
@@ -405,35 +428,88 @@
     </section>
 
     <!-- 7. ALUR PARTISIPASI -->
-    <section id="flow" class="flow-section">
-        <h2 style="color:#004d40;">Mari Berkontribusi & Dapatkan Apresiasi</h2>
-        <p>Bagaimana cara pemangku kepentingan terlibat dalam ekosistem ini?</p>
-        <div class="flow-wrapper">
-            <div class="flow-step">
-                <div class="step-circle">1</div>
-                <h4>Registrasi Anggota</h4>
-                <p>Daftarkan instansi/komunitas Anda sebagai mitra konservasi AQUBisa.</p>
+   <section class="process-section">
+        <h3 class="section-title" style="text-align:center; border:none;">Alur Partisipasi & Pendanaan</h3>
+        <p style="text-align:center; color:#666;">Bagaimana sistem ini menghubungkan inisiatif masyarakat dengan pendanaan strategis.</p>
+        
+        <div class="process-steps">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-hand-holding-seedling"></i></div>
+                <h4>1. Inisiatif & Proposal</h4>
+                <p style="font-size:0.9rem; color:#555;">Masyarakat/Komunitas mengajukan area konservasi (Client & Case Story) melalui sistem.</p>
             </div>
-            <div class="flow-step">
-                <div class="step-circle">2</div>
-                <h4>Lakukan Aksi</h4>
-                <p>Lakukan kegiatan konservasi (Tanam pohon, bersih sungai, dll) sesuai target LFA.</p>
+            
+            <div class="arrow-next"><i class="fas fa-chevron-right"></i></div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+                <h4>2. Verifikasi & Seleksi</h4>
+                <p style="font-size:0.9rem; color:#555;">Tim ahli melakukan survei kelayakan lahan, hidrologi, dan sosial.</p>
             </div>
-            <div class="flow-step">
-                <div class="step-circle">3</div>
-                <h4>Publikasi Data</h4>
-                <p>Laporkan capaian Anda. Data akan diverifikasi dan ditampilkan di dashboard publik.</p>
+
+            <div class="arrow-next"><i class="fas fa-chevron-right"></i></div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-coins"></i></div>
+                <h4>3. Co-Investment</h4>
+                <p style="font-size:0.9rem; color:#555;">Dana dari mitra (CSR/Donatur) disalurkan berdasarkan kontrak kinerja (Performance-based).</p>
             </div>
-            <div class="flow-step">
-                <div class="step-circle"><i class="fas fa-medal"></i></div>
-                <h4>Sustainable Award</h4>
-                <p>Dapatkan <strong>Rejoso Sustainable Award</strong> sebagai pengakuan atas kontribusi nyata Anda.</p>
+
+            <div class="arrow-next"><i class="fas fa-chevron-right"></i></div>
+
+            <!-- Step 4 -->
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-chart-pie"></i></div>
+                <h4>4. Impact & Reward</h4>
+                <p style="font-size:0.9rem; color:#555;">Monitoring berkala (SIH3) dan pemberian Insentif/Awards bagi Local Heroes.</p>
             </div>
-        </div>
-        <div style="margin-top:50px;">
-            <button class="btn-header" style="padding:15px 40px; font-size:1.1rem; cursor:pointer;">Daftarkan Kontribusi Anda</button>
         </div>
     </section>
+
+    <!-- IMPACT DASHBOARD (3 PILLARS + SIH3) -->
+    <section class="impact-section">
+        <h3 class="section-title">Indikator Kinerja Utama (KPI)</h3>
+        <p>Data real-time dampak investasi terhadap lingkungan.</p>
+
+        <div class="dashboard-grid">
+            <!-- Bio -->
+            <div class="dash-card bio">
+                <h3 style="color:var(--nature-green)"><i class="fas fa-leaf"></i> Biodiversity Impact</h3>
+                <div class="data">3.6</div>
+                <p>Target Indeks Keanekaragaman Hayati</p>
+                <small>4 Situs Strategis Terpantau</small>
+            </div>
+
+            <!-- Water & SIH3 -->
+            <div class="dash-card water">
+                <h3 style="color:var(--lpdp-blue)"><i class="fas fa-tint"></i> Water Retention</h3>
+                <div class="data">1.2 Juta</div>
+                <p>m³ Air Terserap per Tahun</p>
+                <div class="sih3-preview">
+                    <strong>Data SIH3 (Live):</strong> Debit Sungai Rejoso
+                    <div class="bar-chart">
+                        <div class="bar" style="height:40%"></div>
+                        <div class="bar" style="height:70%"></div>
+                        <div class="bar" style="height:50%"></div>
+                        <div class="bar" style="height:90%"></div>
+                        <div class="bar" style="height:60%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Land -->
+            <div class="dash-card land">
+                <h3 style="color:#8b4513"><i class="fas fa-map"></i> Land Cover</h3>
+                <div class="data">55 Ha</div>
+                <p>Lahan Kritis Tervegetasi</p>
+                <small>14.000 Pohon Tertanam</small>
+            </div>
+        </div>
+    </section>
+
 
     <!-- 8. GALLERY -->
     <section id="gallery" class="gallery-section">
@@ -504,4 +580,5 @@
 
 </body>
 </html>
+
 
