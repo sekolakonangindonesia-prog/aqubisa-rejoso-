@@ -54,10 +54,27 @@
         .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95; font-weight: 300; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 4. KPI UTAMA (IMPACT) --- */
+        /* --- 4. NARASI (POSISI BARU: DI ATAS - OVERLAP HERO) --- */
+        .story-section { 
+            padding: 60px 5%; 
+            background: white; 
+            margin-top: -60px; /* Efek Overlap ke Hero */
+            position: relative; z-index: 10;
+            border-radius: 20px 20px 0 0; 
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; 
+        }
+        .story-content h2 { font-size: 2.2rem; color: var(--deep-green); margin-bottom: 20px; }
+        .story-content p { margin-bottom: 15px; text-align: justify; color: #444; }
+        .quote-box {
+            border-left: 5px solid var(--gold); padding-left: 20px; margin: 20px 0;
+            font-style: italic; color: #555; background: #fffbe6; padding: 15px; border-radius: 0 10px 10px 0;
+        }
+
+        /* --- 5. KPI UTAMA (POSISI BARU: DI BAWAH NARASI) --- */
         .kpi-section {
-            padding: 60px 5%; background: white; margin-top: -60px; position: relative; z-index: 10;
-            border-radius: 20px 20px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            padding: 80px 5%; 
+            background: #fcfcfc; /* Warna sedikit beda agar terpisah dari Story */
         }
         .section-title { text-align: center; margin-bottom: 40px; }
         .section-title h2 { color: var(--primary-blue); font-size: 2rem; margin-bottom: 10px; }
@@ -71,15 +88,6 @@
         .kpi-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--deep-green); }
         .kpi-val { font-size: 2.5rem; font-weight: 800; color: var(--text-main); display: block; margin: 10px 0; }
         .kpi-desc { font-size: 0.9rem; color: #666; margin-top: 10px; }
-
-        /* --- 5. NARASI & TUJUAN BERSAMA --- */
-        .story-section { padding: 80px 5%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
-        .story-content h2 { font-size: 2.2rem; color: var(--deep-green); margin-bottom: 20px; }
-        .story-content p { margin-bottom: 15px; text-align: justify; color: #444; }
-        .quote-box {
-            border-left: 5px solid var(--gold); padding-left: 20px; margin: 20px 0;
-            font-style: italic; color: #555; background: #fffbe6; padding: 15px; border-radius: 0 10px 10px 0;
-        }
 
         /* --- 6. PENJELASAN 3 PILAR & BENCANA --- */
         .pillar-section { background: var(--primary-blue); color: white; padding: 80px 5%; text-align: center; }
@@ -151,8 +159,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#kpi">Capaian</a></li>
                 <li><a href="#story">Tujuan Kami</a></li>
+                <li><a href="#kpi">Capaian</a></li>
                 <li><a href="#impact">Dampak Lingkungan</a></li>
                 <li><a href="#flow">Cara Berkontribusi</a></li>
                 <li><a href="#gallery">Galeri</a></li>
@@ -172,7 +180,26 @@
         </div>
     </section>
 
-    <!-- KPI DASHBOARD (3 PILAR UTAMA) -->
+    <!-- STORY SECTION: TUJUAN BERSAMA (PINDAH KE ATAS) -->
+    <section id="story" class="story-section">
+        <div class="story-content">
+            <h2>Satu Panggung untuk Aksi Nyata</h2>
+            <p>
+                Rejoso Co-Investment Initiative bukan sekadar proyek, melainkan wadah bagi semua pemangku kepentingan (Pemerintah, Perusahaan, Komunitas, Akademisi) untuk menyatukan visi.
+            </p>
+            <p>
+                Kami memahami bahwa menjaga alam tidak bisa dilakukan sendiri. Melalui website AQUBisa, setiap kontribusi Anda—sekecil apapun—akan <strong>tercatat, terukur, dan terpublikasi</strong> sebagai bagian dari upaya besar menyelamatkan DAS Rejoso.
+            </p>
+            <div class="quote-box">
+                "Capaian Anda adalah kebanggaan kita. Kami mengintegrasikan aksi lokal Anda menjadi kontribusi global (SDGs) yang diakui."
+            </div>
+        </div>
+        <div class="story-image">
+            <img src="https://source.unsplash.com/600x400/?group,teamwork,nature" style="width:100%; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.1);" alt="Kolaborasi">
+        </div>
+    </section>
+
+    <!-- KPI DASHBOARD (PINDAH KE BAWAH STORY) -->
     <section id="kpi" class="kpi-section">
         <div class="section-title">
             <h2>Capaian Konservasi Kolektif</h2>
@@ -206,25 +233,6 @@
                 <p class="kpi-desc">Luas lahan kritis yang dipulihkan melalui pola agroforestri & konservasi.</p>
                 <div style="margin-top:10px; font-size:0.8rem; color:var(--primary-blue); font-weight:bold;">Lihat Peta Sebaran &rarr;</div>
             </div>
-        </div>
-    </section>
-
-    <!-- STORY SECTION: TUJUAN BERSAMA -->
-    <section id="story" class="story-section">
-        <div class="story-content">
-            <h2>Satu Panggung untuk Aksi Nyata</h2>
-            <p>
-                Rejoso Co-Investment Initiative bukan sekadar proyek, melainkan wadah bagi semua pemangku kepentingan (Pemerintah, Perusahaan, Komunitas, Akademisi) untuk menyatukan visi.
-            </p>
-            <p>
-                Kami memahami bahwa menjaga alam tidak bisa dilakukan sendiri. Melalui website AQUBisa, setiap kontribusi Anda—sekecil apapun—akan <strong>tercatat, terukur, dan terpublikasi</strong> sebagai bagian dari upaya besar menyelamatkan DAS Rejoso.
-            </p>
-            <div class="quote-box">
-                "Capaian Anda adalah kebanggaan kita. Kami mengintegrasikan aksi lokal Anda menjadi kontribusi global (SDGs) yang diakui."
-            </div>
-        </div>
-        <div class="story-image">
-            <img src="https://source.unsplash.com/600x400/?group,teamwork,nature" style="width:100%; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.1);" alt="Kolaborasi">
         </div>
     </section>
 
