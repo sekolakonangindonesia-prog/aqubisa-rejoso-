@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUBisa - Rejoso Strategic Action Plan</title>
+    <!-- Link Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- 1. SETTING VISUAL --- */
+        :root {
+            --primary-blue: #006d77; /* Biru Laut/Air */
+            --soft-green: #83c5be;    /* Hijau Muda */
+            --deep-green: #2d6a4f;    /* Hijau Hutan */
+            --gold: #d4af37;          /* Warna Award */
+            --text-main: #333;
+            --bg-light: #f4f9f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- 2. HEADER --- */
+        header {
+            background: white;
+            padding: 15px 5%;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary-blue); display: flex; align-items: center; gap: 10px; }
+        .logo small { font-size: 0.8rem; font-weight: normal; color: #666; display: block; }
+        
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav a { font-weight: 600; color: #555; font-size: 0.95rem; }
+        nav a:hover { color: var(--deep-green); }
+        
+        .btn-header {
+            background: var(--deep-green); color: white; padding: 10px 25px;
+            border-radius: 30px; font-weight: bold; border: 2px solid var(--deep-green);
+        }
+        .btn-header:hover { background: white; color: var(--deep-green); }
+
+        /* --- 3. HERO (GAMBAR & NARASI GOAL) --- */
+        .hero {
+            position: relative; height: 85vh;
+            background: linear-gradient(rgba(0, 50, 40, 0.6), rgba(0, 30, 60, 0.5)), url('https://source.unsplash.com/1600x900/?nature,river,mountain');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px;
+        }
+        .hero-content { max-width: 900px; animation: slideUp 1s ease-out; }
+        .hero h1 { font-size: 2.9rem; margin-bottom: 10px; font-weight: 600; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95; font-weight: 300; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 4. KPI UTAMA (IMPACT) --- */
+        .kpi-section {
+            padding: 60px 5%; background: white; margin-top: -60px; position: relative; z-index: 10;
+            border-radius: 20px 20px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { color: var(--primary-blue); font-size: 2rem; margin-bottom: 10px; }
+        
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .kpi-card {
+            background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 30px;
+            text-align: center; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); cursor: pointer;
+        }
+        .kpi-card:hover { transform: translateY(-10px); border-color: var(--primary-blue); }
+        .kpi-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--deep-green); }
+        .kpi-val { font-size: 2.5rem; font-weight: 800; color: var(--text-main); display: block; margin: 10px 0; }
+        .kpi-desc { font-size: 0.9rem; color: #666; margin-top: 10px; }
+
+        /* --- 5. NARASI & TUJUAN BERSAMA --- */
+        .story-section { padding: 80px 5%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
+        .story-content h2 { font-size: 2.2rem; color: var(--deep-green); margin-bottom: 20px; }
+        .story-content p { margin-bottom: 15px; text-align: justify; color: #444; }
+        .quote-box {
+            border-left: 5px solid var(--gold); padding-left: 20px; margin: 20px 0;
+            font-style: italic; color: #555; background: #fffbe6; padding: 15px; border-radius: 0 10px 10px 0;
+        }
+
+        /* --- 6. PENJELASAN 3 PILAR & BENCANA --- */
+        .pillar-section { background: var(--primary-blue); color: white; padding: 80px 5%; text-align: center; }
+        .pillar-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
+        .pillar-box {
+            background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; width: 300px;
+            border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
+        }
+        .pillar-box:hover { background: rgba(255,255,255,0.2); }
+        .pillar-box h3 { margin-bottom: 15px; color: var(--soft-green); }
+        .pillar-box p { font-size: 0.9rem; opacity: 0.9; }
+
+        /* --- 7. ALUR PARTISIPASI (KONTRIBUSI) --- */
+        .flow-section { padding: 80px 5%; background: white; text-align: center; }
+        .flow-wrapper {
+            display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap;
+            position: relative;
+        }
+        .flow-step { width: 220px; position: relative; z-index: 2; }
+        .step-circle {
+            width: 70px; height: 70px; background: var(--deep-green); color: white;
+            border-radius: 50%; font-size: 1.5rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(45, 106, 79, 0.3);
+        }
+        .flow-step h4 { margin-bottom: 10px; color: var(--text-main); }
+        .flow-step p { font-size: 0.9rem; color: #666; }
+
+        /* --- 8. AWARD & SDGs --- */
+        .impact-footer { padding: 60px 5%; background: #f0f4f8; text-align: center; }
+        .sdg-icons { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
+        .sdg-icon { width: 80px; height: 80px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; text-align: center; padding: 5px; }
+        
+        .award-banner {
+            background: linear-gradient(135deg, #111, #333); color: var(--gold);
+            padding: 30px; border-radius: 15px; margin-top: 40px; display: inline-block; width: 100%; max-width: 900px;
+        }
+
+        /* --- 9. GALLERY GRID --- */
+        .gallery-section { padding: 60px 5%; background: white; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { height: 200px; border-radius: 10px; overflow: hidden; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* FOOTER */
+        footer { background: #222; color: #ccc; padding: 50px 5%; font-size: 0.9rem; }
+        
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto; }
+        .modal-content { background-color: #fff; margin: 8% auto; padding: 30px; border-radius: 10px; width: 80%; max-width: 700px; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from {opacity:0; top:-50px;} to {opacity:1; top:0;} }
+        .close { float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: var(--primary-blue); color: white; }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-hand-holding-water"></i>
+            <div>
+                AQUBisa
+                <small>Rejoso Strategic Action Plan</small>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#kpi">Capaian</a></li>
+                <li><a href="#story">Tujuan Kami</a></li>
+                <li><a href="#impact">Dampak Lingkungan</a></li>
+                <li><a href="#flow">Cara Berkontribusi</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+            </ul>
+        </nav>
+        <a href="#flow" class="btn-header">Gabung Sekarang</a>
+    </header>
+
+    <!-- HERO SECTION: GOAL ORIENTED -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Rejoso Co-Investment Initiative Consevation Funds Strategic & Action Plan</h1>
+            <p>
+                Inisiatif kolaboratif untuk mencapai akses air bersih berkelanjutan, produktivitas pertanian, dan keseimbangan ekosistem. 
+                Mari satukan langkah untuk mencegah bencana dan mewariskan mata air bagi generasi mendatang.
+            </p>
+        </div>
+    </section>
+
+    <!-- KPI DASHBOARD (3 PILAR UTAMA) -->
+    <section id="kpi" class="kpi-section">
+        <div class="section-title">
+            <h2>Capaian Konservasi Kolektif</h2>
+            <p>Hasil nyata dari kontribusi para mitra dalam menjaga keseimbangan alam Rejoso.</p>
+        </div>
+
+        <div class="kpi-grid">
+            <!-- 1. Bio -->
+            <div class="kpi-card" onclick="openModal('modal-bio')">
+                <div class="kpi-icon"><i class="fas fa-seedling"></i></div>
+                <span class="kpi-val">3.6</span>
+                <strong>Indeks Kehati (Biodiversity)</strong>
+                <p class="kpi-desc">Kesehatan ekosistem di 4 situs strategis (Hutan, Mata Air, RTH, Mangrove).</p>
+                <div style="margin-top:10px; font-size:0.8rem; color:var(--primary-blue); font-weight:bold;">Lihat Detail Spesies &rarr;</div>
+            </div>
+
+            <!-- 2. Water -->
+            <div class="kpi-card" onclick="openModal('modal-water')">
+                <div class="kpi-icon"><i class="fas fa-tint"></i></div>
+                <span class="kpi-val">1.2 Juta m³</span>
+                <strong>Water Retention (Resapan Air)</strong>
+                <p class="kpi-desc">Air yang berhasil dikembalikan ke tanah melalui sumur resapan & rorak.</p>
+                <div style="margin-top:10px; font-size:0.8rem; color:var(--primary-blue); font-weight:bold;">Lihat Infrastruktur &rarr;</div>
+            </div>
+
+            <!-- 3. Land -->
+            <div class="kpi-card" onclick="openModal('modal-land')">
+                <div class="kpi-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <span class="kpi-val">55 Ha</span>
+                <strong>Rehabilitasi Lahan (Land Cover)</strong>
+                <p class="kpi-desc">Luas lahan kritis yang dipulihkan melalui pola agroforestri & konservasi.</p>
+                <div style="margin-top:10px; font-size:0.8rem; color:var(--primary-blue); font-weight:bold;">Lihat Peta Sebaran &rarr;</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORY SECTION: TUJUAN BERSAMA -->
+    <section id="story" class="story-section">
+        <div class="story-content">
+            <h2>Satu Panggung untuk Aksi Nyata</h2>
+            <p>
+                Rejoso Co-Investment Initiative bukan sekadar proyek, melainkan wadah bagi semua pemangku kepentingan (Pemerintah, Perusahaan, Komunitas, Akademisi) untuk menyatukan visi.
+            </p>
+            <p>
+                Kami memahami bahwa menjaga alam tidak bisa dilakukan sendiri. Melalui website AQUBisa, setiap kontribusi Anda—sekecil apapun—akan <strong>tercatat, terukur, dan terpublikasi</strong> sebagai bagian dari upaya besar menyelamatkan DAS Rejoso.
+            </p>
+            <div class="quote-box">
+                "Capaian Anda adalah kebanggaan kita. Kami mengintegrasikan aksi lokal Anda menjadi kontribusi global (SDGs) yang diakui."
+            </div>
+        </div>
+        <div class="story-image">
+            <img src="https://source.unsplash.com/600x400/?group,teamwork,nature" style="width:100%; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.1);" alt="Kolaborasi">
+        </div>
+    </section>
+
+    <!-- IMPACT EXPLANATION (MENGURANGI BENCANA) -->
+    <section id="impact" class="pillar-section">
+        <h2 style="color:white;">Mengapa Tiga Hal Ini Penting?</h2>
+        <p>Kontribusi Anda pada 3 pilar ini berdampak langsung pada mitigasi bencana alam.</p>
+        
+        <div class="pillar-grid">
+            <div class="pillar-box">
+                <i class="fas fa-tree" style="font-size:3rem; margin-bottom:20px;"></i>
+                <h3>Tutupan Lahan</h3>
+                <p>Menanam pohon di hulu bukan hanya soal hijau, tapi memperkuat tanah untuk <strong>mencegah longsor</strong> dan mengurangi sedimentasi sungai.</p>
+            </div>
+            <div class="pillar-box">
+                <i class="fas fa-water" style="font-size:3rem; margin-bottom:20px;"></i>
+                <h3>Retensi Air</h3>
+                <p>Membangun sumur resapan berarti "menabung air" saat hujan untuk <strong>mencegah banjir</strong>, sekaligus cadangan saat <strong>kekeringan</strong>.</p>
+            </div>
+            <div class="pillar-box">
+                <i class="fas fa-paw" style="font-size:3rem; margin-bottom:20px;"></i>
+                <h3>Biodiversitas</h3>
+                <p>Menjaga ragam hayati berarti menjaga keseimbangan ekosistem (rantai makanan), yang menjamin <strong>kualitas air & udara</strong> tetap sehat.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALUR PARTISIPASI (KONTRIBUSI) -->
+    <section id="flow" class="flow-section">
+        <h2 style="color:var(--deep-green);">Mari Berkontribusi & Dapatkan Apresiasi</h2>
+        <p>Bagaimana cara pemangku kepentingan terlibat dalam ekosistem ini?</p>
+
+        <div class="flow-wrapper">
+            <!-- Step 1 -->
+            <div class="flow-step">
+                <div class="step-circle">1</div>
+                <h4>Registrasi Anggota</h4>
+                <p>Daftarkan instansi/komunitas Anda sebagai mitra konservasi AQUBisa.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="flow-step">
+                <div class="step-circle">2</div>
+                <h4>Lakukan Aksi</h4>
+                <p>Lakukan kegiatan konservasi (Tanam pohon, bersih sungai, dll) sesuai target LFA.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="flow-step">
+                <div class="step-circle">3</div>
+                <h4>Publikasi Data</h4>
+                <p>Laporkan capaian Anda. Data akan diverifikasi dan ditampilkan di dashboard publik.</p>
+            </div>
+            <!-- Step 4 -->
+            <div class="flow-step">
+                <div class="step-circle"><i class="fas fa-medal"></i></div>
+                <h4>Sustainable Award</h4>
+                <p>Dapatkan <strong>Rejoso Sustainable Award</strong> sebagai pengakuan atas kontribusi nyata Anda.</p>
+            </div>
+        </div>
+
+        <div style="margin-top:50px;">
+            <button class="btn-header" style="padding:15px 40px; font-size:1.1rem;">Daftarkan Kontribusi Anda</button>
+        </div>
+    </section>
+
+    <!-- AWARD, GALLERY & SDGs -->
+    <section class="impact-footer">
+        <!-- Gallery -->
+        <h3 style="margin-bottom:20px;">Galeri Aksi Kita</h3>
+        <div id="gallery" class="gallery-grid">
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?planting" alt="Aksi"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?river,cleanup" alt="Aksi"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?forest,meeting" alt="Aksi"></div>
+            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?award,ceremony" alt="Award"></div>
+        </div>
+
+        <!-- Award Banner -->
+        <div class="award-banner">
+            <i class="fas fa-trophy" style="font-size:3rem; margin-bottom:15px;"></i>
+            <h2>Rejoso Sustainable Award 2025</h2>
+            <p>Penghargaan tertinggi bagi "Local Heroes" dan "Corporate Water Stewards" yang konsisten menjaga alam.</p>
+        </div>
+
+        <!-- SDGs -->
+        <div style="margin-top:50px;">
+            <p>Setiap aksi yang terdata di sini berkontribusi pada Tujuan Pembangunan Berkelanjutan (SDGs):</p>
+            <div class="sdg-icons">
+                <div class="sdg-icon" style="background:#26bde2;">GOAL 6<br>Air</div>
+                <div class="sdg-icon" style="background:#3f7e44;">GOAL 13<br>Iklim</div>
+                <div class="sdg-icon" style="background:#56c02b;">GOAL 15<br>Darat</div>
+                <div class="sdg-icon" style="background:#19486a;">GOAL 17<br>Mitra</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p style="text-align:center;">&copy; 2026-2031 Rejoso Co-Investment Initiative. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MODAL POPUPS (DETAIL DATA) -->
+    
+    <!-- Modal Bio -->
+    <div id="modal-bio" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-bio')">&times;</span>
+            <h3 style="color:var(--deep-green)">Detail Capaian Biodiversitas</h3>
+            <p>Data pemantauan keanekaragaman hayati yang dilakukan oleh mitra dan komunitas.</p>
+            <table>
+                <tr><th>Lokasi</th><th>Indeks</th><th>Spesies Kunci</th></tr>
+                <tr><td>Hutan Lindung Tosari</td><td>3.8</td><td>Elang Jawa</td></tr>
+                <tr><td>Sumber Umbulan</td><td>3.4</td><td>Ikan Sengkaring</td></tr>
+                <tr><td>Muara Rejoso</td><td>3.2</td><td>Bangau Bluwok</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Water -->
+    <div id="modal-water" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-water')">&times;</span>
+            <h3 style="color:var(--primary-blue)">Detail Infrastruktur Konservasi Air</h3>
+            <p>Kontribusi sipil teknis untuk mengurangi risiko banjir dan menjaga cadangan air.</p>
+            <table>
+                <tr><th>Jenis</th><th>Target</th><th>Terbangun</th></tr>
+                <tr><td>Sumur Resapan</td><td>300 Unit</td><td>70 Unit</td></tr>
+                <tr><td>Rorak</td><td>6.000 m</td><td>3.000 m</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Land -->
+    <div id="modal-land" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-land')">&times;</span>
+            <h3 style="color:#8b4513">Detail Tutupan Lahan</h3>
+            <p>Sebaran penanaman pohon di lahan kritis.</p>
+            <div style="height:200px; background:#eee; display:flex; align-items:center; justify-content:center; margin-top:10px;">
+                [PETA GIS SEBARAN LAHAN]
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) { document.getElementById(id).style.display = "block"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) { event.target.style.display = "none"; }
+        }
+    </script>
+
+</body>
+</html>
