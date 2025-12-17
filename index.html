@@ -13,16 +13,19 @@
             --hero-bg-1: #547485; 
             --hero-bg-2: #3E5463;
             
-            /* Warna Hijau Utama */
+            /* Hijau Tombol */
             --ss-green: #28a745;
             --ss-green-hover: #218838;
 
-            /* Warna Kartu KPI (Spesifik) */
+            /* Biru Baru (Flow Section) */
+            --flow-blue: #003366; /* Biru Tua Elegan */
+
+            /* Warna Kartu KPI */
             --color-bio: #20c997;
             --color-water: #007bff;
             --color-land: #8B4513;
 
-            /* Warna Tombol Baru (SS5) */
+            /* Warna Tombol SS5 */
             --btn-dark: #333333;
             --btn-teal: #005f73;
 
@@ -52,9 +55,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center;
         }
         .brand-wrapper { display: flex; align-items: center; gap: 12px; }
-        
-        /* TEMPAT LOGO */
-        .brand-logo-img { height: 45px; width: auto; display: block; } /* Ganti src img di HTML */
+        .brand-logo-img { height: 45px; width: auto; display: block; } 
         
         .logo-text h1 { font-size: 1.5rem; color: #155740; margin: 0; line-height: 1; font-weight: 800; }
         .logo-text p { font-size: 0.75rem; color: #666; margin: 0; }
@@ -99,28 +100,15 @@
         .strategy-text strong { display: block; color: #333; }
         .strategy-text span { font-size: 0.9rem; color: #666; }
 
-        /* --- 6. KPI (Capaian) - UKURAN RAMPING --- */
-        .kpi-section { 
-            padding: 40px 5%; /* Padding dikurangi */
-            background: #fff; 
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
+        /* --- 6. KPI & IMPACT --- */
+        .kpi-section { padding: 40px 5%; background: #fff; text-align: center; border-top: 1px solid #eee; }
         .section-title { color: #155740; font-size: 1.8rem; margin-bottom: 30px; font-weight: 700; }
         
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        
-        /* Kartu Dibuat Ramping (Sama dengan Pilar di bawah) */
         .kpi-card { 
-            background: #fff; 
-            border: 1px solid #e0e0e0; 
-            border-radius: 10px; 
-            padding: 25px; /* Padding dalam dikurangi */
-            transition: 0.3s; 
-            cursor: pointer;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 25px; 
+            transition: 0.3s; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.05);
         }
-        /* Hover Effect KPI */
         .card-bio:hover { transform: translateY(-5px); border-color: var(--color-bio); box-shadow: 0 10px 15px rgba(32, 201, 151, 0.15); }
         .card-water:hover { transform: translateY(-5px); border-color: var(--color-water); box-shadow: 0 10px 15px rgba(0, 123, 255, 0.15); }
         .card-land:hover { transform: translateY(-5px); border-color: var(--color-land); box-shadow: 0 10px 15px rgba(139, 69, 19, 0.15); }
@@ -129,48 +117,42 @@
         .card-bio .kpi-icon { color: var(--color-bio); }
         .card-water .kpi-icon { color: var(--color-water); }
         .card-land .kpi-icon { color: var(--color-land); }
+        
+        .kpi-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
+        .kpi-val { font-size: 2.2rem; font-weight: 800; color: #333; margin: 10px 0; display: block; }
+        .kpi-desc { font-size: 0.85rem; color: #666; margin-bottom: 15px; }
+        .kpi-link { font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
 
-        .kpi-val { font-size: 2rem; font-weight: 800; color: #333; display: block; margin: 5px 0; }
-        .kpi-desc { font-size: 0.85rem; color: #666; }
-        .kpi-link { font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: block; }
-
-        /* --- 7. IMPACT (Pilar) - DENGAN HOVER --- */
+        /* Pillar Hover */
         .pillar-section { background: #1a4a38; color: white; padding: 60px 5%; text-align: center; }
         .pillar-grid { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
-        
         .pillar-box { 
-            background: rgba(255,255,255,0.1); 
-            padding: 25px; 
-            border-radius: 10px; 
-            width: 300px; 
-            border: 1px solid rgba(255,255,255,0.2); 
-            transition: all 0.3s ease; /* Transisi Halus */
+            background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px; width: 300px; 
+            border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
         }
-        
-        /* HOVER EFFECT PILAR (Revisi 2) */
-        .pillar-box:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.2);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.5);
-        }
-
+        .pillar-box:hover { transform: translateY(-5px); background: rgba(255,255,255,0.2); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         .pillar-box h3 { margin-bottom: 10px; color: #a7f3d0; font-size: 1.1rem; }
         .pillar-box p { font-size: 0.9rem; line-height: 1.4; opacity: 0.9; }
 
-        /* --- 8. FLOW SECTION (STYLE SS2/SS3 - 6 LANGKAH) --- */
+        /* --- 7. FLOW SECTION (REVISI: BIRU & PANAH) --- */
         .flow-section { padding: 80px 5%; background: white; text-align: center; }
-        .flow-header h2 { color: #155740; font-size: 2rem; margin-bottom: 10px; }
+        .flow-header h2 { color: var(--flow-blue); font-size: 2rem; margin-bottom: 10px; }
         
-        /* Grid 6 Langkah */
-        .flow-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 Kolom */
-            gap: 30px;
-            margin-top: 50px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+        /* Flex dengan Arrow */
+        .flow-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start; /* Agar panah sejajar atas */
+            gap: 15px; 
+            flex-wrap: wrap; 
+            margin-top: 50px; 
+            max-width: 1200px;
+            margin-left: auto; margin-right: auto;
+        }
+        
+        .flow-card-container {
+            display: flex;
+            align-items: center;
         }
 
         .flow-card {
@@ -181,67 +163,73 @@
             border: 1px solid #eee;
             transition: 0.3s;
             position: relative;
-            overflow: hidden;
+            width: 280px; /* Lebar tetap */
+            height: 320px; /* Tinggi disamakan */
         }
-        .flow-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-bottom: 4px solid var(--ss-green); }
+        .flow-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-bottom: 4px solid var(--flow-blue); }
 
+        /* Lingkaran Biru & Ikon */
         .step-circle {
-            width: 50px; height: 50px; 
-            background: var(--ss-green); 
+            width: 70px; height: 70px; 
+            background: var(--flow-blue); /* Warna Biru */
             color: white;
             border-radius: 50%; 
-            font-size: 1.2rem; font-weight: bold;
+            font-size: 1.5rem; 
             display: flex; align-items: center; justify-content: center; 
             margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
         }
         
-        .flow-card h4 { margin-bottom: 10px; color: #333; font-size: 1.1rem; }
+        .flow-card h4 { margin-bottom: 10px; color: #333; font-size: 1.1rem; height: 30px; }
         .flow-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
 
-        /* BUTTONS (SS5) */
+        /* Panah Abu-abu */
+        .flow-arrow {
+            font-size: 2rem;
+            color: #ccc;
+            margin: 0 10px;
+            align-self: center;
+            display: block;
+        }
+        
+        /* Hilangkan panah di mobile */
+        @media (max-width: 900px) {
+            .flow-arrow { display: none; }
+            .flow-wrapper { flex-direction: column; align-items: center; }
+        }
+
+        /* 2 Tombol SS5 */
         .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 50px;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 20px; margin-top: 50px; flex-wrap: wrap;
         }
         .btn-ss5 {
-            display: inline-block;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: 0.3s;
+            display: inline-block; padding: 15px 30px; border-radius: 50px;
+            font-size: 1rem; font-weight: bold; color: white; text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; min-width: 250px;
         }
         .btn-ss5-dark { background-color: var(--btn-dark); border: 2px solid var(--btn-dark); }
-        .btn-ss5-dark:hover { background-color: #000; }
+        .btn-ss5-dark:hover { background-color: #000; transform: translateY(-2px); }
         
         .btn-ss5-teal { background-color: var(--btn-teal); border: 2px solid var(--btn-teal); }
-        .btn-ss5-teal:hover { background-color: #004555; }
+        .btn-ss5-teal:hover { background-color: #004555; transform: translateY(-2px); }
 
-        /* --- 9. AWARDS SECTION --- */
+
+        /* --- 8. AWARDS & GALLERY --- */
         .awards-section { padding: 60px 5%; background: #0b253a; text-align: center; color: white; }
         .awards-grid { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
         
         .award-card {
-            background: var(--card-blue);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: var(--card-blue); border: 1px solid rgba(255,255,255,0.2);
             padding: 30px; border-radius: 12px; width: 280px; transition: 0.3s;
         }
         .award-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         .award-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
-        .award-card h4 { margin-bottom: 10px; font-size: 1.2rem; font-weight: bold; }
-        .award-card p { font-size: 0.9rem; opacity: 0.9; }
 
-        /* --- 10. GALLERY & DATA --- */
         .gallery-section { padding: 60px 5%; background: #f4f4f4; text-align: center; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 30px; }
         .gallery-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
 
+        /* --- DATA SECTION --- */
         .data-section { padding: 80px 5%; background-color: #222; text-align: center; color: #ccc; }
         .data-section h2 { color: white; margin-bottom: 10px; font-size: 2rem; }
         
@@ -256,11 +244,10 @@
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background: #155740; color: white; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; }
             .story-section { grid-template-columns: 1fr; }
-            .flow-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -280,10 +267,10 @@
     <!-- 2. HEADER -->
     <header>
         <div class="brand-wrapper">
-            <!-- TEMPAT LOGO: Masukkan link gambar Anda disini -->
+            <!-- TEMPAT LOGO -->
             <!-- <img src="logo.png" class="brand-logo-img" alt="Logo"> -->
-            
             <div style="background:#155740; color:white; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">AB</div>
+            
             <div class="logo-text">
                 <h1>AqruBiSA</h1>
                 <p>Rejoso Co-Investment</p>
@@ -344,28 +331,31 @@
             <!-- Bio (Tosca) -->
             <div class="kpi-card card-bio" onclick="openModal('modal-bio')">
                 <div class="kpi-icon"><i class="fas fa-leaf"></i></div>
-                <div class="kpi-val">3.6</div>
-                <div class="kpi-desc">Indeks Kehati (Biodiversity)</div>
+                <h4 class="kpi-title">Biodiversity Impact</h4>
+                <span class="kpi-val">3.6</span>
+                <p class="kpi-desc">Indeks Kehati (Target)</p>
                 <div class="kpi-link" style="color:var(--color-bio);">Lihat Detail &rarr;</div>
             </div>
             <!-- Water (Blue) -->
             <div class="kpi-card card-water" onclick="openModal('modal-water')">
                 <div class="kpi-icon"><i class="fas fa-tint"></i></div>
-                <div class="kpi-val">1.2 Juta m³</div>
-                <div class="kpi-desc">Water Retention (Resapan Air)</div>
+                <h4 class="kpi-title">Water Retention</h4>
+                <span class="kpi-val">1.2 Juta m³</span>
+                <p class="kpi-desc">Volume Air Terserap</p>
                 <div class="kpi-link" style="color:var(--color-water);">Lihat Infrastruktur &rarr;</div>
             </div>
             <!-- Land (Brown) -->
             <div class="kpi-card card-land" onclick="openModal('modal-land')">
                 <div class="kpi-icon"><i class="fas fa-map-marked-alt"></i></div>
-                <div class="kpi-val">55 Ha</div>
-                <div class="kpi-desc">Rehabilitasi Lahan (Land Cover)</div>
+                <h4 class="kpi-title">Land Cover</h4>
+                <span class="kpi-val">55 Ha</span>
+                <p class="kpi-desc">Lahan Tervegetasi</p>
                 <div class="kpi-link" style="color:var(--color-land);">Lihat Peta &rarr;</div>
             </div>
         </div>
     </section>
 
-    <!-- 6. IMPACT EXPLANATION (Dengan Hover) -->
+    <!-- 6. IMPACT EXPLANATION (Hover Effect) -->
     <section id="impact" class="pillar-section">
         <h2>Mengapa Tiga Hal Ini Penting?</h2>
         <p>Kontribusi Anda pada 3 pilar ini berdampak langsung pada mitigasi bencana alam.</p>
@@ -388,60 +378,84 @@
         </div>
     </section>
 
-    <!-- 7. ALUR PARTISIPASI (Revisi: 6 Langkah & Tombol Baru) -->
+    <!-- 7. ALUR PARTISIPASI (REVISI TOTAL: 6 KARTU + PANAH + IKON) -->
     <section id="flow" class="flow-section">
         <div class="flow-header">
-            <h2>Mari Berkontribusi & Dapatkan Apresiasi</h2>
+            <h2 style="color:var(--flow-blue)">Mari Berkontribusi & Dapatkan Apresiasi</h2>
             <p>Bagaimana cara pemangku kepentingan terlibat dalam ekosistem ini?</p>
         </div>
         
-        <div class="flow-grid">
+        <div class="flow-wrapper">
             <!-- 1 -->
-            <div class="flow-card">
-                <div class="step-circle">1</div>
-                <h4>Registrasi Anggota</h4>
-                <p>Daftarkan instansi/komunitas Anda sebagai mitra konservasi AqruBiSA.</p>
+            <div class="flow-card-container">
+                <div class="flow-card">
+                    <div class="step-circle"><i class="fas fa-user-plus"></i></div>
+                    <h4>Registrasi Anggota</h4>
+                    <p>Daftarkan instansi/komunitas Anda sebagai mitra konservasi AqruBiSA.</p>
+                </div>
             </div>
+            <i class="fas fa-chevron-right flow-arrow"></i>
+
             <!-- 2 -->
-            <div class="flow-card">
-                <div class="step-circle">2</div>
-                <h4>Inisiatif & Proposal</h4>
-                <p>Masyarakat/Komunitas mengajukan area konservasi melalui sistem.</p>
+            <div class="flow-card-container">
+                <div class="flow-card">
+                    <div class="step-circle"><i class="fas fa-lightbulb"></i></div>
+                    <h4>Inisiatif & Proposal</h4>
+                    <p>Masyarakat/Komunitas mengajukan area konservasi melalui sistem.</p>
+                </div>
             </div>
+            <i class="fas fa-chevron-right flow-arrow"></i>
+
             <!-- 3 -->
-            <div class="flow-card">
-                <div class="step-circle">3</div>
-                <h4>Verifikasi & Seleksi</h4>
-                <p>Tim ahli melakukan survei kelayakan lahan, hidrologi, dan sosial.</p>
+            <div class="flow-card-container">
+                <div class="flow-card">
+                    <div class="step-circle"><i class="fas fa-clipboard-check"></i></div>
+                    <h4>Verifikasi & Seleksi</h4>
+                    <p>Tim ahli melakukan survei kelayakan lahan, hidrologi, dan sosial.</p>
+                </div>
             </div>
+            
+            <!-- Break Row if needed for responsiveness handled by flex-wrap, 
+                 but adding arrows logically -->
+            
             <!-- 4 -->
-            <div class="flow-card">
-                <div class="step-circle">4</div>
-                <h4>Co-Investment</h4>
-                <p>Dana dari mitra (CSR/Donatur) disalurkan berdasarkan kontrak kinerja (Performance-based).</p>
+            <div class="flow-card-container">
+                <div class="flow-card">
+                    <div class="step-circle"><i class="fas fa-handshake"></i></div>
+                    <h4>Co-Investment</h4>
+                    <p>Dana dari mitra (CSR/Donatur) disalurkan berdasarkan kontrak kinerja (Performance-based).</p>
+                </div>
             </div>
+            <i class="fas fa-chevron-right flow-arrow"></i>
+
             <!-- 5 -->
-            <div class="flow-card">
-                <div class="step-circle">5</div>
-                <h4>Publikasi Data</h4>
-                <p>Laporkan capaian Anda. Data akan diverifikasi dan ditampilkan di dashboard publik.</p>
+            <div class="flow-card-container">
+                <div class="flow-card">
+                    <div class="step-circle"><i class="fas fa-chart-bar"></i></div>
+                    <h4>Publikasi Data</h4>
+                    <p>Laporkan capaian Anda. Data akan diverifikasi dan ditampilkan di dashboard publik.</p>
+                </div>
             </div>
+            <i class="fas fa-chevron-right flow-arrow"></i>
+
             <!-- 6 -->
-            <div class="flow-card">
-                <div class="step-circle"><i class="fas fa-medal"></i></div>
-                <h4>Impact & Reward</h4>
-                <p>Monitoring berkala dan pemberian Insentif/Awards bagi Local Heroes dan Perusahaan.</p>
+            <div class="flow-card-container">
+                <div class="flow-card">
+                    <div class="step-circle"><i class="fas fa-medal"></i></div>
+                    <h4>Impact & Reward</h4>
+                    <p>Monitoring berkala dan pemberian Insentif/Awards bagi Local Heroes dan Perusahaan.</p>
+                </div>
             </div>
         </div>
 
-        <!-- Dua Tombol SS5 -->
+        <!-- 2 TOMBOL SS5 -->
         <div class="cta-buttons">
             <a href="#" class="btn-ss5 btn-ss5-dark">Daftar Sebagai Komunitas</a>
             <a href="#" class="btn-ss5 btn-ss5-teal">Daftar Sebagai Mitra/CSR</a>
         </div>
     </section>
 
-    <!-- 8. AWARDS SECTION (SS Terakhir) -->
+    <!-- 8. AWARDS SECTION -->
     <section class="awards-section">
         <i class="fas fa-medal" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
         <h2>Rejoso Sustainable Award</h2>
@@ -495,6 +509,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-bio')">&times;</span>
             <h3 style="color:#155740">Detail Capaian Biodiversitas</h3>
+            <p>Data pemantauan keanekaragaman hayati yang dilakukan oleh mitra dan komunitas.</p>
             <table>
                 <tr><th>Lokasi</th><th>Indeks</th><th>Spesies Kunci</th></tr>
                 <tr><td>Hutan Lindung Tosari</td><td>3.8</td><td>Elang Jawa</td></tr>
@@ -507,6 +522,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-water')">&times;</span>
             <h3 style="color:#155740">Detail Infrastruktur</h3>
+            <p>Kontribusi sipil teknis untuk mengurangi risiko banjir dan menjaga cadangan air.</p>
             <table>
                 <tr><th>Jenis</th><th>Target</th><th>Terbangun</th></tr>
                 <tr><td>Sumur Resapan</td><td>300 Unit</td><td>70 Unit</td></tr>
@@ -518,7 +534,10 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-land')">&times;</span>
             <h3 style="color:#155740">Detail Tutupan Lahan</h3>
-            <div style="height:200px; background:#eee; display:flex; align-items:center; justify-content:center; margin-top:10px;">[PETA GIS SEBARAN LAHAN]</div>
+            <p>Sebaran penanaman pohon di lahan kritis.</p>
+            <div style="height:200px; background:#eee; display:flex; align-items:center; justify-content:center; margin-top:10px;">
+                [PETA GIS SEBARAN LAHAN]
+            </div>
         </div>
     </div>
 
