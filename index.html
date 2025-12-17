@@ -7,44 +7,45 @@
     <!-- Link Icon FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- 1. SETTING VISUAL (SESUAI SCREENSHOT) --- */
+        /* --- 1. SETTING VISUAL --- */
         :root {
-            /* Hero Gradient (Blue-Grey SS2) */
+            /* Warna Hero */
             --hero-bg-1: #547485; 
             --hero-bg-2: #3E5463;
             
-            /* Hijau Tombol & Alur (SS3) */
-            --ss-green: #28a745;
-            --ss-green-hover: #218838;
-
-            /* Biru Award (SS Terakhir) */
-            --card-blue: #1c4668;
+            /* Warna Spesifik Kartu (Revisi) */
+            --color-bio: #20c997;  /* Hijau Tosca */
+            --color-water: #007bff; /* Biru Air */
+            --color-land: #8B4513;  /* Coklat Tanah */
 
             /* Warna Teks & Layout */
             --portal-dark: #002b50;
+            --nav-green: #28a745;
             --text-main: #333;
             --text-light: #666;
             --bg-light: #f9f9f9;
+            --gold: #d4af37;
+            --card-blue: #1c4668;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.5; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* --- 2. TOP BAR --- */
         .top-bar {
             background-color: var(--portal-dark);
             color: white;
-            padding: 6px 5%;
+            padding: 5px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.8rem; font-weight: 500;
+            font-size: 0.75rem; font-weight: 500;
         }
         .top-right a { color: white; margin-left: 15px; display: inline-flex; align-items: center; gap: 5px; }
 
         /* --- 3. HEADER & NAVIGASI --- */
         header {
             background: white;
-            padding: 10px 5%;
+            padding: 8px 5%; /* Lebih ramping */
             position: sticky; top: 0; z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             display: flex; justify-content: space-between; align-items: center;
@@ -52,152 +53,193 @@
         
         .brand-wrapper { display: flex; align-items: center; gap: 12px; }
         
-        /* TEMPAT LOGO GAMBAR */
+        /* CSS UNTUK LOGO */
         .brand-logo-img {
-            height: 45px; /* Atur tinggi logo disini */
-            width: auto;
+            height: 45px; /* Sesuaikan tinggi logo disini */
+            width: auto;  /* Lebar otomatis mengikuti tinggi */
+            display: block;
         }
         
-        .logo-text h1 { font-size: 1.5rem; color: #155740; margin: 0; line-height: 1; font-weight: 800; }
-        .logo-text p { font-size: 0.75rem; color: #666; margin: 0; }
+        .logo-text h1 { font-size: 1.4rem; color: #155740; margin: 0; line-height: 1; font-weight: 800; }
+        .logo-text p { font-size: 0.7rem; color: #666; margin: 0; }
 
-        /* Menu Navigasi dengan Hover */
+        /* Menu */
         nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { 
-            font-weight: 600; color: #444; font-size: 0.9rem; position: relative; 
-        }
-        /* Efek Hover: Warna Hijau & Garis Bawah */
-        nav a:hover { color: var(--ss-green); }
-        nav a::after {
-            content: ''; display: block; width: 0; height: 2px; background: var(--ss-green); transition: width .3s;
-        }
+        nav a { font-weight: 600; color: #444; font-size: 0.85rem; position: relative; }
+        nav a:hover { color: var(--nav-green); }
+        nav a::after { content: ''; display: block; width: 0; height: 2px; background: var(--nav-green); transition: width .3s; }
         nav a:hover::after { width: 100%; }
 
-        /* Tombol Header Hijau */
         .btn-header {
-            background: var(--ss-green); color: white; 
-            padding: 8px 25px; border-radius: 25px; 
-            font-weight: bold; font-size: 0.9rem;
+            background: var(--nav-green); color: white; padding: 6px 20px;
+            border-radius: 25px; font-weight: bold; font-size: 0.85rem;
         }
-        .btn-header:hover { background: var(--ss-green-hover); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .btn-header:hover { background: #218838; transform: translateY(-2px); }
 
-        /* --- 4. HERO SECTION (SS2 STYLE) --- */
+        /* --- 4. HERO SECTION --- */
         .hero {
-            position: relative; padding: 60px 5%;
+            position: relative; padding: 50px 5%; /* Padding dikurangi */
             background: linear-gradient(135deg, var(--hero-bg-1), var(--hero-bg-2));
             color: white; text-align: center;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 700; line-height: 1.2; }
-        .hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.95; max-width: 900px; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 700; line-height: 1.2; }
+        .hero p { font-size: 1rem; margin-bottom: 25px; opacity: 0.95; max-width: 900px; }
         
         .hero-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .badge-box {
-            border: 1px solid rgba(255,255,255,0.7); padding: 8px 20px; border-radius: 5px;
-            font-size: 0.9rem; color: white; display: flex; align-items: center; gap: 8px;
+            border: 1px solid rgba(255,255,255,0.7); padding: 6px 15px; border-radius: 5px;
+            font-size: 0.85rem; color: white; display: flex; align-items: center; gap: 8px;
         }
 
-        /* --- 5. STORY SECTION --- */
+        /* --- 5. STORY SECTION (RAMPING) --- */
         .story-section { 
-            padding: 60px 5%; background: white; 
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: start; 
+            padding: 40px 5%; /* Space dikurangi */
+            background: white; 
+            display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 40px; align-items: start; 
         }
-        .story-content h2 { font-size: 2rem; color: #155740; margin-bottom: 20px; border-left: 5px solid var(--ss-green); padding-left: 15px; }
-        .story-content p { margin-bottom: 15px; text-align: justify; color: #444; font-size: 1rem; }
+        .story-content h2 { font-size: 1.8rem; color: #155740; margin-bottom: 15px; border-left: 4px solid var(--nav-green); padding-left: 10px; }
+        .story-content p { margin-bottom: 10px; text-align: justify; color: #444; font-size: 0.95rem; }
 
-        .strategy-box { background: #fdfdfd; border: 1px solid #eee; border-radius: 10px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .strategy-box { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
         .strategy-list { list-style: none; padding: 0; }
-        .strategy-list li { display: flex; gap: 15px; margin-bottom: 15px; }
-        .strategy-list i { color: var(--ss-green); margin-top: 5px; }
-        .strategy-text strong { display: block; color: #333; }
-        .strategy-text span { font-size: 0.9rem; color: #666; }
+        .strategy-list li { display: flex; gap: 10px; margin-bottom: 12px; }
+        .strategy-list i { color: var(--nav-green); margin-top: 4px; font-size: 0.9rem; }
+        .strategy-text strong { display: block; color: #333; font-size: 0.9rem; }
+        .strategy-text span { font-size: 0.85rem; color: #666; }
 
-        /* --- 6. KPI & IMPACT --- */
-        .kpi-section { padding: 60px 5%; background: #fff; text-align: center; }
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
-        .kpi-card { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
-        .kpi-card:hover { transform: translateY(-5px); border-color: var(--ss-green); }
-        .kpi-icon { font-size: 2.5rem; color: var(--ss-green); margin-bottom: 15px; }
-        .kpi-val { font-size: 2.5rem; font-weight: 800; color: #333; display: block; }
-        
-        .pillar-section { background: #1a4a38; color: white; padding: 60px 5%; text-align: center; }
-        .pillar-grid { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
-        .pillar-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; width: 300px; border: 1px solid rgba(255,255,255,0.2); }
-
-        /* --- 7. FLOW SECTION (STYLE SS3 - LINGKARAN) --- */
-        .flow-section { padding: 80px 5%; background: white; text-align: center; }
-        .flow-header h2 { color: #155740; font-size: 2rem; margin-bottom: 10px; }
-        .flow-header p { color: #666; margin-bottom: 50px; }
-        
-        .flow-wrapper { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .flow-step { width: 220px; }
-        
-        /* Lingkaran Hijau */
-        .step-circle {
-            width: 70px; height: 70px; 
-            background: var(--ss-green); 
-            color: white;
-            border-radius: 50%; 
-            font-size: 1.8rem; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; 
-            margin: 0 auto 20px;
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        /* --- 6. KPI & IMPACT (REVISI WARNA & GARIS PEMISAH) --- */
+        .kpi-section { 
+            padding: 40px 5%; /* Lebih ramping */
+            background: #fff; 
+            text-align: center;
+            border-top: 1px solid #e0e0e0; /* Garis tipis pemisah */
         }
+        .section-title { color: #155740; font-size: 1.8rem; margin-bottom: 30px; font-weight: 700; }
         
-        .flow-step h4 { margin-bottom: 10px; color: #333; font-size: 1.1rem; }
-        .flow-step p { font-size: 0.9rem; color: #666; line-height: 1.5; }
-
-        /* Tombol Besar SS3 */
-        .btn-cta-big {
-            display: inline-block; margin-top: 50px;
-            background: var(--ss-green); color: white;
-            padding: 15px 50px; border-radius: 50px;
-            font-size: 1.1rem; font-weight: bold;
-            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        /* CARD UMUM */
+        .kpi-card { 
+            background: #fff; 
+            border: 1px solid #ddd; 
+            border-radius: 12px; 
+            padding: 25px; 
+            transition: all 0.3s ease; 
             cursor: pointer;
+            position: relative;
+            top: 0;
         }
-        .btn-cta-big:hover { background: var(--ss-green-hover); transform: translateY(-3px); }
+        
+        /* FONT SIZE DALAM KARTU */
+        .kpi-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
+        .kpi-val { font-size: 2.2rem; font-weight: 800; color: #333; margin: 10px 0; }
+        .kpi-desc { font-size: 0.85rem; color: #666; margin-bottom: 15px; }
+        .kpi-link { font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- 8. AWARDS SECTION (STYLE SS TERAKHIR - BLUE CARDS) --- */
-        .awards-section { padding: 60px 5%; background: #0b253a; text-align: center; color: white; }
-        .awards-grid { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+        /* --- SPESIFIK WARNA KARTU & HOVER --- */
+        
+        /* 1. Biodiversity (Tosca) */
+        .card-bio .kpi-icon, .card-bio .kpi-title, .card-bio .kpi-link { color: var(--color-bio); }
+        .card-bio { border-top: 4px solid var(--color-bio); }
+        .card-bio:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 0 var(--color-bio); /* Bayangan Tebal Tosca */
+            border-color: var(--color-bio);
+        }
+
+        /* 2. Water (Biru) */
+        .card-water .kpi-icon, .card-water .kpi-title, .card-water .kpi-link { color: var(--color-water); }
+        .card-water { border-top: 4px solid var(--color-water); }
+        .card-water:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 0 var(--color-water); /* Bayangan Tebal Biru */
+            border-color: var(--color-water);
+        }
+
+        /* 3. Land (Coklat) */
+        .card-land .kpi-icon, .card-land .kpi-title, .card-land .kpi-link { color: var(--color-land); }
+        .card-land { border-top: 4px solid var(--color-land); }
+        .card-land:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 0 var(--color-land); /* Bayangan Tebal Coklat */
+            border-color: var(--color-land);
+        }
+
+        /* ICON SIZE */
+        .kpi-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+
+        /* --- 7. IMPACT EXPLANATION (Pillar) --- */
+        .pillar-section { background: #1a4a38; color: white; padding: 50px 5%; text-align: center; }
+        .pillar-grid { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
+        .pillar-box { 
+            background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; width: 300px; 
+            border: 1px solid rgba(255,255,255,0.2); 
+        }
+        .pillar-box h3 { margin-bottom: 8px; color: #a7f3d0; font-size: 1.1rem; }
+        .pillar-box p { font-size: 0.9rem; line-height: 1.4; }
+
+        /* --- 8. FLOW SECTION --- */
+        .flow-section { padding: 60px 5%; background: white; text-align: center; }
+        .flow-header h2 { color: #155740; font-size: 1.8rem; margin-bottom: 10px; }
+        
+        .flow-wrapper { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+        .flow-step { width: 200px; }
+        
+        .step-circle {
+            width: 60px; height: 60px; 
+            background: var(--nav-green); color: white;
+            border-radius: 50%; 
+            font-size: 1.5rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+        .flow-step h4 { margin-bottom: 8px; color: #333; font-size: 1rem; }
+        .flow-step p { font-size: 0.85rem; color: #666; }
+
+        .btn-cta-big {
+            display: inline-block; margin-top: 40px;
+            background: var(--nav-green); color: white;
+            padding: 12px 40px; border-radius: 50px;
+            font-size: 1rem; font-weight: bold;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+        .btn-cta-big:hover { background: #218838; transform: translateY(-2px); }
+
+        /* --- 9. AWARDS SECTION --- */
+        .awards-section { padding: 50px 5%; background: #0b253a; text-align: center; color: white; }
+        .awards-grid { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
         
         .award-card {
             background: var(--card-blue);
             border: 1px solid rgba(255,255,255,0.2);
-            padding: 30px;
-            border-radius: 12px;
-            width: 280px;
-            transition: 0.3s;
+            padding: 25px; border-radius: 10px; width: 260px; transition: 0.3s;
         }
         .award-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .award-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
-        .award-card h4 { margin-bottom: 10px; font-size: 1.2rem; font-weight: bold; }
-        .award-card p { font-size: 0.9rem; opacity: 0.9; }
+        .award-card i { font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
+        .award-card h4 { margin-bottom: 8px; font-size: 1.1rem; }
+        .award-card p { font-size: 0.85rem; opacity: 0.9; }
 
-        /* --- 9. GALLERY & DATA --- */
-        .gallery-section { padding: 60px 5%; background: #f4f4f4; text-align: center; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 30px; }
-        .gallery-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+        /* --- 10. GALLERY & DATA --- */
+        .gallery-section { padding: 50px 5%; background: #f4f4f4; text-align: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 20px; }
+        .gallery-item img { width: 100%; height: 150px; object-fit: cover; border-radius: 6px; }
 
-        /* Data Section (Dark SS4) */
         .data-section {
-            padding: 80px 5%;
-            background-color: #222; /* Gelap */
-            text-align: center;
-            color: #ccc;
+            padding: 60px 5%; background-color: #222; text-align: center; color: #ccc;
         }
-        .data-section h2 { color: white; margin-bottom: 10px; font-size: 2rem; }
         
-        footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; border-top: 1px solid #333; }
+        footer { background: #111; color: #777; padding: 25px 5%; font-size: 0.8rem; text-align: center; border-top: 1px solid #333; }
 
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto; }
-        .modal-content { background-color: #fff; margin: 8% auto; padding: 30px; border-radius: 10px; width: 80%; max-width: 700px; animation: fadeIn 0.4s; }
+        .modal-content { background-color: #fff; margin: 10% auto; padding: 30px; border-radius: 10px; width: 80%; max-width: 600px; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from {opacity:0; top:-50px;} to {opacity:1; top:0;} }
         .close { float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background: #155740; color: white; }
 
         @media (max-width: 768px) {
@@ -223,9 +265,12 @@
     <!-- 2. HEADER -->
     <header>
         <div class="brand-wrapper">
-            <!-- GANTI SRC DENGAN LINK/FILE LOGO ANDA -->
-            <!-- Jika belum ada gambar, bisa pakai placeholder text -->
-            <div style="background:#155740; color:white; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">AB</div>
+            <!-- TEMPAT LOGO DISINI -->
+            <!-- Ganti 'logo.png' dengan nama file gambar Anda -->
+            <!-- Jika belum ada gambar, biarkan kode div logo-circle di bawah ini -->
+             
+            <!-- <img src="logo.png" class="brand-logo-img" alt="Logo"> -->
+            <div style="background:#155740; color:white; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">AB</div>
             
             <div class="logo-text">
                 <h1>AqruBiSA</h1>
@@ -249,7 +294,7 @@
     <!-- 3. HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Water Conservation Funds Strategic & Action Plan</h1>
+            <h1>Rejoso Co-Investment Initiative<br>Conservation Funds Strategic & Action Plan</h1>
             <p>
                 Platform terintegrasi untuk mengelola investasi konservasi air, menghubungkan partisipasi komunitas hulu dengan kepedulian sektor industri hilir secara transparan, terukur, dan berdampak.
             </p>
@@ -267,7 +312,7 @@
             <h2>Apa itu Rejoso Co-Investment Initiative?</h2>
             <p><strong>Rejoso Co-Investment Initiative</strong> adalah platform multi-pihak yang menyatukan Pemerintah, Sektor Swasta, Akademisi, dan Masyarakat dalam satu misi penyelamatan DAS Rejoso. Kami memfasilitasi skema Imbal Jasa Lingkungan (PES) yang menempatkan pelestarian alam sebagai investasi strategis, bukan sekadar donasi amal.</p>
             <p>Mekanisme ini menghubungkan kepentingan pengguna air di wilayah hilir dengan masyarakat di wilayah hulu. Kami menjembatani para pengguna air di hilir untuk berinvestasi langsung kepada para <strong>Local Heroes</strong>—petani dan masyarakat di hulu—yang menjaga tangkapan air lewat penanaman pohon dan pembangunan infrastruktur sipil teknis.</p>
-            <p>Segala bentuk kontribusi ini dikelola melalui <strong>AQUBisa</strong>, sistem manajemen dimana seluruh kontribusi Anda dimonitor secara terukur, tercatat, dan dipublikasikan secara transparan.</p>
+            <p>Segala bentuk kontribusi ini dikelola melalui <strong>AQUBisa</strong>, sistem manajemen dimana seluruh kontribusi Anda dimonitor secara terukur, tercatat, dan dipublikasikan secara transparan. Bersama kami, aksi lokal Anda dikonversi menjadi dampak nyata yang berkontribusi langsung pada Tujuan Pembangunan Berkelanjutan (SDGs).</p>
         </div>
         <div class="strategy-box">
             <h3 style="color:#155740;"><i class="fas fa-bullseye"></i> Tujuan Strategis</h3>
@@ -280,28 +325,38 @@
         </div>
     </section>
 
-    <!-- 5. KPI DASHBOARD -->
+    <!-- 5. KPI DASHBOARD (WARNA SPESIFIK & HOVER BAYANGAN) -->
     <section id="kpi" class="kpi-section">
-        <h2 style="color:#155740; margin-bottom:30px;">Capaian Konservasi Kolektif</h2>
+        <h2 class="section-title">Capaian Konservasi Kolektif</h2>
         <div class="kpi-grid">
-            <div class="kpi-card" onclick="openModal('modal-bio')">
-                <div class="kpi-icon"><i class="fas fa-seedling"></i></div>
+            
+            <!-- Card Bio (Tosca) -->
+            <div class="kpi-card card-bio" onclick="openModal('modal-bio')">
+                <div class="kpi-icon"><i class="fas fa-leaf"></i></div>
+                <h4 class="kpi-title">Biodiversity Impact</h4>
                 <span class="kpi-val">3.6</span>
-                <p class="kpi-desc">Indeks Kehati (Biodiversity)</p>
-                <small style="color:#155740; font-weight:bold;">Lihat Detail &rarr;</small>
+                <p class="kpi-desc">Indeks Kehati (Target)</p>
+                <div class="kpi-link">Lihat Detail &rarr;</div>
             </div>
-            <div class="kpi-card" onclick="openModal('modal-water')">
+
+            <!-- Card Water (Blue) -->
+            <div class="kpi-card card-water" onclick="openModal('modal-water')">
                 <div class="kpi-icon"><i class="fas fa-tint"></i></div>
+                <h4 class="kpi-title">Water Retention</h4>
                 <span class="kpi-val">1.2 Juta m³</span>
-                <p class="kpi-desc">Water Retention (Resapan Air)</p>
-                <small style="color:#155740; font-weight:bold;">Lihat Infrastruktur &rarr;</small>
+                <p class="kpi-desc">Volume Air Terserap</p>
+                <div class="kpi-link">Lihat Infrastruktur &rarr;</div>
             </div>
-            <div class="kpi-card" onclick="openModal('modal-land')">
+
+            <!-- Card Land (Brown) -->
+            <div class="kpi-card card-land" onclick="openModal('modal-land')">
                 <div class="kpi-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h4 class="kpi-title">Land Cover</h4>
                 <span class="kpi-val">55 Ha</span>
-                <p class="kpi-desc">Rehabilitasi Lahan (Land Cover)</p>
-                <small style="color:#155740; font-weight:bold;">Lihat Peta &rarr;</small>
+                <p class="kpi-desc">Lahan Tervegetasi</p>
+                <div class="kpi-link">Lihat Peta &rarr;</div>
             </div>
+
         </div>
     </section>
 
@@ -313,28 +368,27 @@
             <div class="pillar-box">
                 <i class="fas fa-tree" style="font-size:2.5rem; margin-bottom:15px;"></i>
                 <h3>Tutupan Lahan</h3>
-                <p>Menanam pohon di hulu untuk mencegah longsor dan sedimentasi.</p>
+                <p>Menanam pohon di hulu bukan hanya soal hijau, tapi memperkuat tanah untuk <strong>mencegah longsor</strong> dan mengurangi sedimentasi sungai.</p>
             </div>
             <div class="pillar-box">
                 <i class="fas fa-water" style="font-size:2.5rem; margin-bottom:15px;"></i>
                 <h3>Retensi Air</h3>
-                <p>Mencegah banjir saat hujan dan menabung air untuk kemarau.</p>
+                <p>Membangun sumur resapan berarti "menabung air" saat hujan untuk <strong>mencegah banjir</strong>, sekaligus cadangan saat <strong>kekeringan</strong>.</p>
             </div>
             <div class="pillar-box">
                 <i class="fas fa-paw" style="font-size:2.5rem; margin-bottom:15px;"></i>
                 <h3>Biodiversitas</h3>
-                <p>Menjaga keseimbangan ekosistem dan kualitas air.</p>
+                <p>Menjaga ragam hayati berarti menjaga keseimbangan ekosistem (rantai makanan), yang menjamin <strong>kualitas air & udara</strong> tetap sehat.</p>
             </div>
         </div>
     </section>
 
-    <!-- 7. ALUR PARTISIPASI (SS3 STYLE) -->
+    <!-- 7. ALUR PARTISIPASI -->
     <section id="flow" class="flow-section">
         <div class="flow-header">
             <h2>Mari Berkontribusi & Dapatkan Apresiasi</h2>
             <p>Bagaimana cara pemangku kepentingan terlibat dalam ekosistem ini?</p>
         </div>
-        
         <div class="flow-wrapper">
             <div class="flow-step">
                 <div class="step-circle">1</div>
@@ -357,11 +411,10 @@
                 <p>Dapatkan <strong>Rejoso Sustainable Award</strong> sebagai pengakuan atas kontribusi nyata Anda.</p>
             </div>
         </div>
-
         <a href="#" class="btn-cta-big">Daftarkan Kontribusi Anda</a>
     </section>
 
-    <!-- 8. AWARDS SECTION (SS TERAKHIR - BLUE) -->
+    <!-- 8. AWARDS SECTION -->
     <section class="awards-section">
         <i class="fas fa-medal" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
         <h2>Rejoso Sustainable Award</h2>
@@ -397,7 +450,7 @@
         </div>
     </section>
 
-    <!-- 10. DATA SIH3 (SS4 - DARK) -->
+    <!-- 10. DATA SIH3 -->
     <section id="data" class="data-section">
         <h2>Data & SIH3</h2>
         <p>Integrasi data Hidrologi Real-time (Coming Soon)</p>
@@ -414,7 +467,8 @@
     <div id="modal-bio" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-bio')">&times;</span>
-            <h3 style="color:#155740">Detail Capaian Biodiversitas</h3>
+            <h3 style="color:#004d40">Detail Capaian Biodiversitas</h3>
+            <p>Data pemantauan keanekaragaman hayati yang dilakukan oleh mitra dan komunitas.</p>
             <table>
                 <tr><th>Lokasi</th><th>Indeks</th><th>Spesies Kunci</th></tr>
                 <tr><td>Hutan Lindung Tosari</td><td>3.8</td><td>Elang Jawa</td></tr>
@@ -426,7 +480,8 @@
     <div id="modal-water" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-water')">&times;</span>
-            <h3 style="color:#155740">Detail Infrastruktur</h3>
+            <h3 style="color:#004d40">Detail Infrastruktur Konservasi Air</h3>
+            <p>Kontribusi sipil teknis untuk mengurangi risiko banjir dan menjaga cadangan air.</p>
             <table>
                 <tr><th>Jenis</th><th>Target</th><th>Terbangun</th></tr>
                 <tr><td>Sumur Resapan</td><td>300 Unit</td><td>70 Unit</td></tr>
@@ -437,8 +492,11 @@
     <div id="modal-land" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-land')">&times;</span>
-            <h3 style="color:#155740">Detail Tutupan Lahan</h3>
-            <div style="height:200px; background:#eee; display:flex; align-items:center; justify-content:center; margin-top:10px;">[PETA GIS SEBARAN LAHAN]</div>
+            <h3 style="color:#004d40">Detail Tutupan Lahan</h3>
+            <p>Sebaran penanaman pohon di lahan kritis.</p>
+            <div style="height:200px; background:#eee; display:flex; align-items:center; justify-content:center; margin-top:10px;">
+                [PETA GIS SEBARAN LAHAN]
+            </div>
         </div>
     </div>
 
