@@ -23,13 +23,7 @@
             --bg-light: #f9f9f9;
             --gold: #d4af37;
             --card-blue: #1c4668;
-            
-            /* Warna SDGs */
-            --sdg-cyan: #26bde2;
-            --sdg-red: #a21942;
-            --sdg-darkgreen: #3f7e44;
-            --sdg-lightgreen: #56c02b;
-            --sdg-navy: #19486a;
+            --gallery-dark: #2c3e50; /* Warna SS4 */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
@@ -99,37 +93,6 @@
         .btn-ss5-teal { background-color: var(--btn-teal); border: 2px solid var(--btn-teal); }
         .btn-ss5-teal:hover { background-color: #004555; transform: translateY(-2px); }
 
-        /* --- BARU: SECTION SIH3 (SS1) --- */
-        .sih3-section { padding: 60px 5%; background: #f0f8ff; border-top: 5px solid #007bff; border-radius: 10px; margin: 50px 5%; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
-        .sih3-header { margin-bottom: 30px; }
-        .sih3-header h3 { color: #0056b3; font-size: 1.5rem; margin-bottom: 5px; }
-        .sih3-header p { color: #666; font-size: 0.95rem; }
-        
-        .sih3-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .sih3-card { background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
-        .sih3-card h4 { font-size: 1rem; margin-bottom: 15px; color: #333; }
-        .chart-box { height: 150px; background: #fafafa; border: 1px dashed #ccc; display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding-bottom: 10px; }
-        .c-bar { width: 15px; background: #007bff; border-radius: 3px 3px 0 0; }
-        .sih3-val { font-size: 2rem; font-weight: bold; color: #0056b3; margin-top: 30px; display: block; }
-        .sih3-sub { font-size: 0.8rem; color: #888; }
-
-        /* --- BARU: SECTION SDGs (SS3) --- */
-        .sdg-section { padding: 50px 5%; background: white; text-align: center; }
-        .sdg-section h2 { color: #333; margin-bottom: 10px; font-size: 1.8rem; }
-        .sdg-section p { color: #666; margin-bottom: 40px; }
-        
-        .sdg-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .sdg-box { width: 140px; height: 140px; border-radius: 10px; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
-        .sdg-box img { max-width: 80%; max-height: 80%; z-index: 2; }
-        .sdg-label { font-size: 0.8rem; font-weight: bold; margin-top: 5px; z-index: 2; line-height: 1.2; }
-        
-        /* Warna Background SDG */
-        .sdg-6 { background-color: var(--sdg-cyan); }
-        .sdg-8 { background-color: var(--sdg-red); }
-        .sdg-13 { background-color: var(--sdg-darkgreen); }
-        .sdg-15 { background-color: var(--sdg-lightgreen); }
-        .sdg-17 { background-color: var(--sdg-navy); }
-
         /* --- AWARDS --- */
         .awards-section { padding: 60px 5%; background: #0b253a; text-align: center; color: white; }
         .awards-grid { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
@@ -137,10 +100,68 @@
         .award-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         .award-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* --- GALLERY --- */
-        .gallery-section { padding: 60px 5%; background: #f4f4f4; text-align: center; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 30px; }
-        .gallery-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+        /* --- GALERI 1 (Aksi Kita - 6 Foto) --- */
+        .gallery-white { padding: 60px 5%; background: #fff; text-align: center; }
+        .gallery-white h2 { color: #155740; font-size: 2rem; margin-bottom: 30px; }
+        .grid-6 { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            max-width: 1200px; margin: 0 auto; 
+        }
+        
+        /* --- GALERI 2 (Jejak Langkah - 8 Foto) --- */
+        .gallery-blue { padding: 60px 5%; background: var(--portal-dark); text-align: center; color: white; }
+        .gallery-blue h2 { font-size: 2rem; margin-bottom: 30px; }
+        
+        /* --- GALERI 3 (Aktivitas - 8 Foto) --- */
+        .gallery-dark { padding: 60px 5%; background: var(--gallery-dark); text-align: center; color: white; }
+        .gallery-dark h2 { font-size: 2rem; margin-bottom: 30px; }
+
+        /* GRID UMUM GALERI */
+        .grid-8 { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            max-width: 1200px; margin: 0 auto; 
+        }
+        
+        /* ITEM GALERI */
+        .gal-item { 
+            height: 200px; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .gal-item img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            transition: 0.3s; 
+        }
+        .gal-item:hover img { transform: scale(1.1); }
+        .gal-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.6); color: white;
+            padding: 8px; font-size: 0.8rem;
+            text-align: left;
+        }
+
+        /* --- SIH3 & SDGs --- */
+        .sih3-section { padding: 60px 5%; background: #f0f8ff; border-top: 5px solid #007bff; border-radius: 10px; margin: 50px 5%; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
+        .sih3-header { margin-bottom: 30px; text-align: center; }
+        .sih3-header h3 { color: #0056b3; font-size: 1.5rem; margin-bottom: 5px; }
+        .sih3-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .sih3-card { background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
+        .chart-box { height: 150px; background: #fafafa; border: 1px dashed #ccc; display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding-bottom: 10px; }
+        .c-bar { width: 15px; background: #007bff; border-radius: 3px 3px 0 0; }
+        .sih3-val { font-size: 2rem; font-weight: bold; color: #0056b3; margin-top: 30px; display: block; }
+        
+        .sdg-section { padding: 50px 5%; background: white; text-align: center; }
+        .sdg-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .sdg-box { width: 140px; height: 140px; border-radius: 10px; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .sdg-label { font-size: 0.9rem; font-weight: bold; line-height: 1.2; }
+        .sdg-6 { background-color: #26bde2; } .sdg-8 { background-color: #a21942; } .sdg-13 { background-color: #3f7e44; } .sdg-15 { background-color: #56c02b; } .sdg-17 { background-color: #19486a; }
 
         footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; border-top: 1px solid #333; }
 
@@ -153,11 +174,13 @@
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background: #155740; color: white; }
 
+        /* RESPONSIVE */
         @media (max-width: 900px) {
             header { flex-direction: column; gap: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; }
             .story-section { grid-template-columns: 1fr; }
             .flow-arrow { display: none; }
+            .grid-6, .grid-8 { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -291,68 +314,6 @@
         </div>
     </section>
 
-    <!-- SECTION BARU: SIH3 (SS1) -->
-    <section id="sih3" class="sih3-section">
-        <div class="sih3-header">
-            <h3>Informasi SIH3 (Sistem Informasi Hidrologi, Hidrometeorologi, dan Hidrogeologi)</h3>
-            <p>Pemantauan *Real-time* kondisi DAS Rejoso untuk mendukung pengambilan keputusan berbasis data.</p>
-        </div>
-        <div class="sih3-grid">
-            <div class="sih3-card">
-                <h4>Curah Hujan (mm)</h4>
-                <div class="chart-box">
-                    <!-- Simulasi Bar Chart -->
-                    <div class="c-bar" style="height:30%"></div>
-                    <div class="c-bar" style="height:60%"></div>
-                    <div class="c-bar" style="height:40%"></div>
-                    <div class="c-bar" style="height:80%"></div>
-                    <div class="c-bar" style="height:20%"></div>
-                </div>
-                <div class="sih3-sub">Update: Hujan Ringan di Tosari</div>
-            </div>
-            <div class="sih3-card">
-                <h4>Debit Sungai (m³/detik)</h4>
-                <div class="chart-box">
-                    <div class="c-bar" style="height:50%; width:30px; background:#1c4668;"></div>
-                    <div class="c-bar" style="height:70%; width:30px; background:#1c4668;"></div>
-                    <div class="c-bar" style="height:60%; width:30px; background:#1c4668;"></div>
-                </div>
-                <div class="sih3-sub">Status: Normal</div>
-            </div>
-            <div class="sih3-card">
-                <h4>Tinggi Muka Air Tanah</h4>
-                <span class="sih3-val">-15.4 m</span>
-                <div class="sih3-sub">Zona Pemanfaatan Industri</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION BARU: SDGs (SS3) -->
-    <section class="sdg-section">
-        <h2>Dampak Sosio-Ekonomi & Kontribusi SDGs</h2>
-        <p>Inisiatif ini berkontribusi langsung pada Tujuan Pembangunan Berkelanjutan:</p>
-        <div class="sdg-container">
-            <!-- Box SDGs dengan Placeholder Gambar -->
-            <div class="sdg-box sdg-6">
-                <!-- Ganti '#' dengan link gambar logo SDG jika ada -->
-                <!-- <img src="sdg6-logo.png" alt="SDG 6"> -->
-                <div class="sdg-label">GOAL 6<br>Air Bersih</div>
-            </div>
-            <div class="sdg-box sdg-8">
-                <div class="sdg-label">GOAL 8<br>Ekonomi</div>
-            </div>
-            <div class="sdg-box sdg-13">
-                <div class="sdg-label">GOAL 13<br>Iklim</div>
-            </div>
-            <div class="sdg-box sdg-15">
-                <div class="sdg-label">GOAL 15<br>Darat</div>
-            </div>
-            <div class="sdg-box sdg-17">
-                <div class="sdg-label">GOAL 17<br>Kemitraan</div>
-            </div>
-        </div>
-    </section>
-
     <!-- AWARDS -->
     <section class="awards-section">
         <i class="fas fa-medal" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
@@ -365,14 +326,88 @@
         </div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="gallery" class="gallery-section">
-        <h2 style="color:#155740; margin-bottom:20px;">Galeri Aksi Kita</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?planting" alt="Aksi"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?river,cleanup" alt="Aksi"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?forest,meeting" alt="Aksi"></div>
-            <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?award,ceremony" alt="Award"></div>
+    <!-- GALERI 1: AKSI KITA (6 FOTO) -->
+    <section id="gallery" class="gallery-white">
+        <h2>Galeri Aksi Kita</h2>
+        <div class="grid-6">
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?planting" alt="Aksi 1"><div class="gal-caption">Penanaman di Hulu</div></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?river" alt="Aksi 2"><div class="gal-caption">Monitoring Sungai</div></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?forest" alt="Aksi 3"><div class="gal-caption">Patroli Hutan</div></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?farmers" alt="Aksi 4"><div class="gal-caption">Pemberdayaan Tani</div></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?meeting" alt="Aksi 5"><div class="gal-caption">Diskusi Warga</div></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?nature" alt="Aksi 6"><div class="gal-caption">Lanskap Rejoso</div></div>
+        </div>
+    </section>
+
+    <!-- GALERI 2: JEJAK LANGKAH (8 FOTO) -->
+    <section class="gallery-blue">
+        <h2>Jejak Langkah Konservasi</h2>
+        <div class="grid-8">
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?tree" alt="Jejak 1"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?water" alt="Jejak 2"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?leaf" alt="Jejak 3"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?bird" alt="Jejak 4"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?fish" alt="Jejak 5"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?green" alt="Jejak 6"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?eco" alt="Jejak 7"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?earth" alt="Jejak 8"></div>
+        </div>
+    </section>
+
+    <!-- GALERI 3: AKTIVITAS & PENGHARGAAN (8 FOTO) -->
+    <section class="gallery-dark">
+        <h2>Galeri Aktivitas & Penghargaan</h2>
+        <div class="grid-8">
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?award" alt="Act 1"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?team" alt="Act 2"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?ceremony" alt="Act 3"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?trophy" alt="Act 4"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?handshake" alt="Act 5"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?presentation" alt="Act 6"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?workshop" alt="Act 7"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?seminar" alt="Act 8"></div>
+        </div>
+    </section>
+
+    <!-- DATA SIH3 -->
+    <section id="sih3" class="sih3-section">
+        <div class="sih3-header">
+            <h3>Informasi SIH3 (Sistem Informasi Hidrologi, Hidrometeorologi, dan Hidrogeologi)</h3>
+            <p>Pemantauan *Real-time* kondisi DAS Rejoso untuk mendukung pengambilan keputusan berbasis data.</p>
+        </div>
+        <div class="sih3-grid">
+            <div class="sih3-card">
+                <h4>Curah Hujan (mm)</h4>
+                <div class="chart-box">
+                    <div class="c-bar" style="height:30%"></div><div class="c-bar" style="height:60%"></div><div class="c-bar" style="height:40%"></div><div class="c-bar" style="height:80%"></div><div class="c-bar" style="height:20%"></div>
+                </div>
+                <div class="sih3-sub">Update: Hujan Ringan di Tosari</div>
+            </div>
+            <div class="sih3-card">
+                <h4>Debit Sungai (m³/detik)</h4>
+                <div class="chart-box">
+                    <div class="c-bar" style="height:50%; width:30px; background:#1c4668;"></div><div class="c-bar" style="height:70%; width:30px; background:#1c4668;"></div><div class="c-bar" style="height:60%; width:30px; background:#1c4668;"></div>
+                </div>
+                <div class="sih3-sub">Status: Normal</div>
+            </div>
+            <div class="sih3-card">
+                <h4>Tinggi Muka Air Tanah</h4>
+                <span class="sih3-val">-15.4 m</span>
+                <div class="sih3-sub">Zona Pemanfaatan Industri</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDGs -->
+    <section class="sdg-section">
+        <h2>Dampak Sosio-Ekonomi & Kontribusi SDGs</h2>
+        <p>Inisiatif ini berkontribusi langsung pada Tujuan Pembangunan Berkelanjutan:</p>
+        <div class="sdg-container">
+            <div class="sdg-box sdg-6"><div class="sdg-label">GOAL 6<br>Air Bersih</div></div>
+            <div class="sdg-box sdg-8"><div class="sdg-label">GOAL 8<br>Ekonomi</div></div>
+            <div class="sdg-box sdg-13"><div class="sdg-label">GOAL 13<br>Iklim</div></div>
+            <div class="sdg-box sdg-15"><div class="sdg-label">GOAL 15<br>Darat</div></div>
+            <div class="sdg-box sdg-17"><div class="sdg-label">GOAL 17<br>Kemitraan</div></div>
         </div>
     </section>
 
@@ -382,7 +417,7 @@
         <p style="margin-top:5px; font-size:0.7rem;">Didukung Oleh: Pemerintah Provinsi Jatim, Forum Koordinasi Rejoso, Danone, Universitas Brawijaya.</p>
     </footer>
 
-    <!-- MODAL POPUPS (DATA DETAIL) -->
+    <!-- MODAL POPUPS -->
     <div id="modal-bio" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('modal-bio')">&times;</span><h3 style="color:#155740">Detail Capaian Biodiversitas</h3><table><tr><th>Lokasi</th><th>Indeks</th><th>Spesies Kunci</th></tr><tr><td>Hutan Lindung Tosari</td><td>3.8</td><td>Elang Jawa</td></tr><tr><td>Sumber Umbulan</td><td>3.4</td><td>Ikan Sengkaring</td></tr><tr><td>Muara Rejoso</td><td>3.2</td><td>Bangau Bluwok</td></tr></table></div></div>
     <div id="modal-water" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('modal-water')">&times;</span><h3 style="color:#155740">Detail Infrastruktur</h3><table><tr><th>Jenis</th><th>Target</th><th>Terbangun</th></tr><tr><td>Sumur Resapan</td><td>300 Unit</td><td>70 Unit</td></tr><tr><td>Rorak</td><td>6.000 m</td><td>3.000 m</td></tr></table></div></div>
     <div id="modal-land" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('modal-land')">&times;</span><h3 style="color:#155740">Detail Tutupan Lahan</h3><div style="height:200px; background:#eee; display:flex; align-items:center; justify-content:center; margin-top:10px;">[PETA GIS SEBARAN LAHAN]</div></div></div>
