@@ -21,23 +21,18 @@
             --portal-dark: #002b50;
             --text-main: #333;
             --bg-light: #f9f9f9;
-            --gold: #d4af37;
-            --card-blue: #1c4668;
-            --gallery-dark: #2c3e50;
             
-            /* Warna SDGs */
-            --sdg-6: #26bde2;
-            --sdg-8: #a21942;
-            --sdg-13: #3f7e44;
-            --sdg-15: #56c02b;
-            --sdg-17: #19486a;
+            /* Warna Emas & Gallery */
+            --gold: #d4af37;
+            --gallery-bg: #0b253a; /* Biru Gelap Elegan untuk Galeri */
+            --card-hero-bg: #fdfdfd;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- HEADER --- */
+        /* --- HEADER & NAV --- */
         .top-bar { background-color: var(--portal-dark); color: white; padding: 6px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; font-weight: 500; }
         .top-right a { color: white; margin-left: 15px; display: inline-flex; align-items: center; gap: 5px; }
         
@@ -79,6 +74,12 @@
         .kpi-val { font-size: 2.2rem; font-weight: 800; color: #333; margin: 10px 0; display: block; }
         .kpi-link { font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
 
+        /* --- IMPACT --- */
+        .pillar-section { background: #1a4a38; color: white; padding: 60px 5%; text-align: center; }
+        .pillar-grid { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
+        .pillar-box { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px; width: 300px; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
+        .pillar-box:hover { transform: translateY(-5px); background: rgba(255,255,255,0.2); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
         /* --- FLOW --- */
         .flow-section { padding: 80px 5%; background: white; text-align: center; }
         .flow-header h2 { color: var(--portal-dark); font-size: 2rem; margin-bottom: 10px; }
@@ -94,68 +95,62 @@
         .btn-ss5-teal { background-color: var(--btn-teal); border: 2px solid var(--btn-teal); }
         .btn-ss5-teal:hover { background-color: #004555; transform: translateY(-2px); }
 
-        /* --- IMPACT (Pindah ke Bawah Flow) --- */
-        .pillar-section { background: #1a4a38; color: white; padding: 60px 5%; text-align: center; }
-        .pillar-grid { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
-        .pillar-box { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px; width: 300px; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
-        .pillar-box:hover { transform: translateY(-5px); background: rgba(255,255,255,0.2); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        /* --- AWARDS HEADER --- */
+        .awards-header-section { padding: 60px 5% 20px 5%; background: var(--gallery-bg); text-align: center; color: white; }
+        
+        /* --- LOCAL HEROES (SS4 - STYLE KOTAK EMAS) --- */
+        .heroes-section { padding: 20px 5% 60px 5%; background: var(--gallery-bg); text-align: center; }
+        .heroes-grid { display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap; }
+        .hero-card {
+            background: var(--card-hero-bg); 
+            border: 1px solid var(--gold); /* Garis Tipis Emas */
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            color: #333;
+            transition: 0.3s;
+        }
+        .hero-card:hover { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); transform: translateY(-5px); }
+        .hero-img-box {
+            height: 180px; background: #ddd; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #777; border-radius: 4px;
+        }
+        .hero-card h4 { color: #000; margin-bottom: 5px; font-size: 1.1rem; }
+        .hero-card small { color: #555; font-size: 0.85rem; }
 
-        /* --- SIH3 --- */
+        /* --- GALLERY GRID SYSTEMS (SS1, SS2, SS3) --- */
+        .gallery-container { padding: 40px 5%; background: var(--gallery-bg); text-align: center; color: white; border-top: 1px solid rgba(255,255,255,0.1); }
+        .gal-title { font-size: 1.8rem; margin-bottom: 5px; color: #fff; }
+        .gal-sub { font-size: 0.9rem; margin-bottom: 30px; opacity: 0.8; }
+
+        /* Grid 4 Kolom (8 Foto) */
+        .grid-8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        /* Grid 3 Kolom (6 Foto) */
+        .grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+
+        /* Item Foto Umum */
+        .gal-item { 
+            height: 200px; border-radius: 8px; overflow: hidden; position: relative; 
+            border: 1px solid rgba(255,255,255,0.2); /* Default Border */
+        }
+        .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gal-item:hover img { transform: scale(1.1); }
+        
+        /* Spesifik SS1 (Aksi Kita) - Border Emas */
+        .gal-item-gold { border: 1px solid var(--gold); }
+
+        /* --- SIH3 & SDGs --- */
         .sih3-section { padding: 60px 5%; background: #f0f8ff; border-top: 5px solid #007bff; border-radius: 10px; margin: 50px 5%; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         .sih3-header { margin-bottom: 30px; text-align: center; }
-        .sih3-header h3 { color: #0056b3; font-size: 1.5rem; margin-bottom: 5px; }
         .sih3-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .sih3-card { background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
         .chart-box { height: 150px; background: #fafafa; border: 1px dashed #ccc; display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding-bottom: 10px; }
         .c-bar { width: 15px; background: #007bff; border-radius: 3px 3px 0 0; }
         .sih3-val { font-size: 2rem; font-weight: bold; color: #0056b3; margin-top: 30px; display: block; }
         
-        /* --- SDGs (DENGAN HOVER & LINK) --- */
         .sdg-section { padding: 50px 5%; background: white; text-align: center; }
-        .sdg-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        
-        /* Kotak SDG Individu */
-        .sdg-box { 
-            width: 150px; height: 150px; 
-            border-radius: 12px; 
-            color: white; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            padding: 15px; 
-            text-align: center; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        
-        /* Hover Effect SDGs */
-        .sdg-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .sdg-label { font-size: 0.9rem; font-weight: bold; line-height: 1.2; }
-        
-        /* Warna Background SDG */
-        .sdg-6 { background-color: var(--sdg-6); }
-        .sdg-8 { background-color: var(--sdg-8); }
-        .sdg-13 { background-color: var(--sdg-13); }
-        .sdg-15 { background-color: var(--sdg-15); }
-        .sdg-17 { background-color: var(--sdg-17); }
-
-        /* --- AWARDS --- */
-        .awards-section { padding: 60px 5%; background: #0b253a; text-align: center; color: white; }
-        .awards-grid { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-        .award-card { background: var(--card-blue); border: 1px solid rgba(255,255,255,0.2); padding: 30px; border-radius: 12px; width: 280px; transition: 0.3s; }
-        .award-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-
-        /* --- GALERI --- */
-        .gallery-dark { padding: 60px 5%; background: var(--gallery-dark); text-align: center; color: white; }
-        .gallery-blue { padding: 60px 5%; background: var(--portal-dark); text-align: center; color: white; }
-        .grid-8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
-        .gal-item { height: 200px; border-radius: 8px; overflow: hidden; position: relative; }
-        .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-        .gal-item:hover img { transform: scale(1.1); }
+        .sdg-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .sdg-box { width: 140px; height: 140px; border-radius: 10px; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .sdg-6 { background-color: #26bde2; } .sdg-8 { background-color: #a21942; } .sdg-13 { background-color: #3f7e44; } .sdg-15 { background-color: #56c02b; } .sdg-17 { background-color: #19486a; }
 
         footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; border-top: 1px solid #333; }
 
@@ -172,7 +167,7 @@
             nav ul { flex-wrap: wrap; justify-content: center; }
             .story-section { grid-template-columns: 1fr; }
             .flow-arrow { display: none; }
-            .grid-8 { grid-template-columns: repeat(2, 1fr); }
+            .grid-8, .grid-6 { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -263,27 +258,7 @@
         </div>
     </section>
 
-    <!-- FLOW -->
-    <section id="flow" class="flow-section">
-        <div class="flow-header">
-            <h2 style="color:var(--portal-dark)">Mari Berkontribusi & Dapatkan Apresiasi</h2>
-            <p>Bagaimana cara pemangku kepentingan terlibat dalam ekosistem ini?</p>
-        </div>
-        <div class="flow-wrapper">
-            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-user-plus"></i></div><h4>Registrasi Anggota</h4><p>Daftarkan instansi/komunitas Anda sebagai mitra konservasi AqruBiSA.</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
-            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-lightbulb"></i></div><h4>Inisiatif & Proposal</h4><p>Masyarakat/Komunitas mengajukan area konservasi melalui sistem.</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
-            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-clipboard-check"></i></div><h4>Verifikasi & Seleksi</h4><p>Tim ahli melakukan survei kelayakan lahan, hidrologi, dan sosial.</p></div></div>
-            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-handshake"></i></div><h4>Co-Investment</h4><p>Dana dari mitra (CSR/Donatur) disalurkan berdasarkan kontrak kinerja (Performance-based).</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
-            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-chart-bar"></i></div><h4>Publikasi Data</h4><p>Laporkan capaian Anda. Data akan diverifikasi dan ditampilkan di dashboard publik.</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
-            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-medal"></i></div><h4>Impact & Reward</h4><p>Monitoring berkala dan pemberian Insentif/Awards bagi Local Heroes.</p></div></div>
-        </div>
-        <div class="cta-buttons">
-            <a href="#" class="btn-ss5 btn-ss5-dark">Daftar Sebagai Komunitas</a>
-            <a href="#" class="btn-ss5 btn-ss5-teal">Daftar Sebagai Mitra/CSR</a>
-        </div>
-    </section>
-
-    <!-- IMPACT (3 HAL PENTING) -->
+    <!-- IMPACT -->
     <section id="impact" class="pillar-section">
         <h2>Mengapa Tiga Hal Ini Penting?</h2>
         <p>Kontribusi Anda pada 3 pilar ini berdampak langsung pada mitigasi bencana alam.</p>
@@ -306,7 +281,103 @@
         </div>
     </section>
 
-    <!-- SIH3 -->
+    <!-- FLOW -->
+    <section id="flow" class="flow-section">
+        <div class="flow-header">
+            <h2 style="color:var(--portal-dark)">Mari Berkontribusi & Dapatkan Apresiasi</h2>
+            <p>Bagaimana cara pemangku kepentingan terlibat dalam ekosistem ini?</p>
+        </div>
+        <div class="flow-wrapper">
+            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-user-plus"></i></div><h4>Registrasi Anggota</h4><p>Daftarkan instansi/komunitas Anda sebagai mitra konservasi AqruBiSA.</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
+            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-lightbulb"></i></div><h4>Inisiatif & Proposal</h4><p>Masyarakat/Komunitas mengajukan area konservasi melalui sistem.</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
+            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-clipboard-check"></i></div><h4>Verifikasi & Seleksi</h4><p>Tim ahli melakukan survei kelayakan lahan, hidrologi, dan sosial.</p></div></div>
+            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-handshake"></i></div><h4>Co-Investment</h4><p>Dana dari mitra (CSR/Donatur) disalurkan berdasarkan kontrak kinerja (Performance-based).</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
+            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-chart-bar"></i></div><h4>Publikasi Data</h4><p>Laporkan capaian Anda. Data akan diverifikasi dan ditampilkan di dashboard publik.</p></div></div><i class="fas fa-chevron-right flow-arrow"></i>
+            <div class="flow-card-container"><div class="flow-card"><div class="step-circle"><i class="fas fa-medal"></i></div><h4>Impact & Reward</h4><p>Monitoring berkala dan pemberian Insentif/Awards bagi Local Heroes.</p></div></div>
+        </div>
+        <div class="cta-buttons">
+            <a href="#" class="btn-ss5 btn-ss5-dark">Daftar Sebagai Komunitas</a>
+            <a href="#" class="btn-ss5 btn-ss5-teal">Daftar Sebagai Mitra/CSR</a>
+        </div>
+    </section>
+
+    <!-- SECTION AWARD HEADER -->
+    <section class="awards-header-section" id="gallery">
+        <i class="fas fa-medal" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
+        <h2>Rejoso Sustainable Award</h2>
+        <p>Mengapresiasi kontribusi nyata dalam menjaga keberlanjutan alam.</p>
+    </section>
+
+    <!-- SECTION LOCAL HEROES (SS4) -->
+    <section class="heroes-section">
+        <h3 style="color:#fff; margin-bottom:10px;">Rejoso Sustainable Awards & Local Heroes</h3>
+        <p style="color:#ccc; margin-bottom:30px;">Apresiasi bagi para pejuang konservasi dan mitra perusahaan.</p>
+        
+        <div class="heroes-grid">
+            <div class="hero-card">
+                <div class="hero-img-box"><i class="fas fa-user-circle" style="font-size:3rem;"></i></div>
+                <h4>Pak Budi (Tosari)</h4>
+                <small>Penjaga Mata Air - Local Hero 2025</small>
+            </div>
+            <div class="hero-card">
+                <div class="hero-img-box"><i class="fas fa-building" style="font-size:3rem;"></i></div>
+                <h4>PT. Danone Indonesia</h4>
+                <small>Platinum Water Stewardship 2025</small>
+            </div>
+            <div class="hero-card">
+                <div class="hero-img-box"><i class="fas fa-users" style="font-size:3rem;"></i></div>
+                <h4>Kelompok Tani "Subur"</h4>
+                <small>Inovator Pertanian Ramah Air</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION GALERI 1: AKSI KITA (SS1 - 6 Foto) -->
+    <section class="gallery-container" style="background:#0b253a;">
+        <h2 class="gal-title">Galeri Aksi Kita</h2>
+        <div class="grid-6" style="margin-top:30px;">
+            <div class="gal-item gal-item-gold"><img src="https://source.unsplash.com/400x300/?planting" alt="Aksi 1"></div>
+            <div class="gal-item gal-item-gold"><img src="https://source.unsplash.com/400x300/?river" alt="Aksi 2"></div>
+            <div class="gal-item gal-item-gold"><img src="https://source.unsplash.com/400x300/?forest" alt="Aksi 3"></div>
+            <div class="gal-item gal-item-gold"><img src="https://source.unsplash.com/400x300/?farmers" alt="Aksi 4"></div>
+            <div class="gal-item gal-item-gold"><img src="https://source.unsplash.com/400x300/?meeting" alt="Aksi 5"></div>
+            <div class="gal-item gal-item-gold"><img src="https://source.unsplash.com/400x300/?nature" alt="Aksi 6"></div>
+        </div>
+    </section>
+
+    <!-- SECTION GALERI 2: AKTIVITAS (SS3 - 8 Foto) -->
+    <section class="gallery-container">
+        <h2 class="gal-title">Galeri Aktivitas & Penghargaan</h2>
+        <p class="gal-sub">Dokumentasi jejak langkah para pejuang konservasi di lapangan.</p>
+        <div class="grid-8">
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?award" alt="Act 1"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?team" alt="Act 2"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?ceremony" alt="Act 3"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?trophy" alt="Act 4"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?handshake" alt="Act 5"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?presentation" alt="Act 6"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?workshop" alt="Act 7"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?seminar" alt="Act 8"></div>
+        </div>
+    </section>
+
+    <!-- SECTION GALERI 3: JEJAK LANGKAH (SS2 - 8 Foto) -->
+    <section class="gallery-container">
+        <h2 class="gal-title">Jejak Langkah Konservasi</h2>
+        <p class="gal-sub">Dokumentasi aksi lapangan, penghargaan komunitas, dan kondisi alam Rejoso.</p>
+        <div class="grid-8">
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?tree" alt="Jejak 1"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?water" alt="Jejak 2"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?leaf" alt="Jejak 3"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?bird" alt="Jejak 4"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?fish" alt="Jejak 5"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?green" alt="Jejak 6"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?eco" alt="Jejak 7"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?earth" alt="Jejak 8"></div>
+        </div>
+    </section>
+
+    <!-- DATA SIH3 -->
     <section id="sih3" class="sih3-section">
         <div class="sih3-header">
             <h3>Informasi SIH3 (Sistem Informasi Hidrologi, Hidrometeorologi, dan Hidrogeologi)</h3>
@@ -335,70 +406,16 @@
         </div>
     </section>
 
-    <!-- SDGs (KOTAK BERWARNA + LINK HOVER) -->
+    <!-- SDGs -->
     <section class="sdg-section">
         <h2>Dampak Sosio-Ekonomi & Kontribusi SDGs</h2>
         <p>Inisiatif ini berkontribusi langsung pada Tujuan Pembangunan Berkelanjutan:</p>
         <div class="sdg-container">
-            <!-- Gunakan Tag 'a' agar bisa diklik -->
-            <a href="#" class="sdg-box sdg-6">
-                <!-- <img src="logo-sdg-6.png" alt="SDG 6"> -->
-                <div class="sdg-label">GOAL 6<br>Air Bersih</div>
-            </a>
-            <a href="#" class="sdg-box sdg-8">
-                <div class="sdg-label">GOAL 8<br>Ekonomi</div>
-            </a>
-            <a href="#" class="sdg-box sdg-13">
-                <div class="sdg-label">GOAL 13<br>Iklim</div>
-            </a>
-            <a href="#" class="sdg-box sdg-15">
-                <div class="sdg-label">GOAL 15<br>Darat</div>
-            </a>
-            <a href="#" class="sdg-box sdg-17">
-                <div class="sdg-label">GOAL 17<br>Kemitraan</div>
-            </a>
-        </div>
-    </section>
-
-    <!-- AWARDS -->
-    <section class="awards-section">
-        <i class="fas fa-medal" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
-        <h2>Rejoso Sustainable Award</h2>
-        <p>Mengapresiasi kontribusi nyata dalam menjaga keberlanjutan alam.</p>
-        <div class="awards-grid">
-            <div class="award-card"><i class="fas fa-user-shield"></i><h4>Local Hero</h4><p>Penghargaan bagi petani penggerak konservasi.</p></div>
-            <div class="award-card"><i class="fas fa-building"></i><h4>Water Steward</h4><p>Sertifikasi bagi perusahaan berinvestasi air.</p></div>
-            <div class="award-card"><i class="fas fa-globe-asia"></i><h4>SDGs Contributor</h4><p>Kontribusi terhadap Goal 6, 13, & 15.</p></div>
-        </div>
-    </section>
-
-    <!-- GALERI AKTIVITAS -->
-    <section class="gallery-dark">
-        <h2>Galeri Aktivitas & Penghargaan</h2>
-        <div class="grid-8">
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?award" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?team" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?ceremony" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?trophy" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?handshake" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?presentation" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?workshop" alt="Act"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?seminar" alt="Act"></div>
-        </div>
-    </section>
-
-    <!-- GALERI JEJAK -->
-    <section class="gallery-blue">
-        <h2>Jejak Langkah Konservasi</h2>
-        <div class="grid-8">
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?tree" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?water" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?leaf" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?bird" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?fish" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?green" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?eco" alt="Jejak"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?earth" alt="Jejak"></div>
+            <div class="sdg-box sdg-6"><div class="sdg-label">GOAL 6<br>Air Bersih</div></div>
+            <div class="sdg-box sdg-8"><div class="sdg-label">GOAL 8<br>Ekonomi</div></div>
+            <div class="sdg-box sdg-13"><div class="sdg-label">GOAL 13<br>Iklim</div></div>
+            <div class="sdg-box sdg-15"><div class="sdg-label">GOAL 15<br>Darat</div></div>
+            <div class="sdg-box sdg-17"><div class="sdg-label">GOAL 17<br>Kemitraan</div></div>
         </div>
     </section>
 
