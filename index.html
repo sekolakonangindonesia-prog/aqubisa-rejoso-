@@ -23,14 +23,14 @@
             --bg-light: #f9f9f9;
             --gold: #d4af37;
             --card-blue: #1c4668;
-            --gallery-dark: #2c3e50; /* Warna SS4 */
+            --gallery-dark: #2c3e50;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- HEADER & NAV --- */
+        /* --- HEADER --- */
         .top-bar { background-color: var(--portal-dark); color: white; padding: 6px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; font-weight: 500; }
         .top-right a { color: white; margin-left: 15px; display: inline-flex; align-items: center; gap: 5px; }
         
@@ -100,52 +100,17 @@
         .award-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         .award-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* --- GALERI 1 (Aksi Kita - 6 Foto) --- */
-        .gallery-white { padding: 60px 5%; background: #fff; text-align: center; }
-        .gallery-white h2 { color: #155740; font-size: 2rem; margin-bottom: 30px; }
-        .grid-6 { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-            max-width: 1200px; margin: 0 auto; 
-        }
-        
-        /* --- GALERI 2 (Jejak Langkah - 8 Foto) --- */
+        /* --- GALERI --- */
         .gallery-blue { padding: 60px 5%; background: var(--portal-dark); text-align: center; color: white; }
         .gallery-blue h2 { font-size: 2rem; margin-bottom: 30px; }
         
-        /* --- GALERI 3 (Aktivitas - 8 Foto) --- */
         .gallery-dark { padding: 60px 5%; background: var(--gallery-dark); text-align: center; color: white; }
         .gallery-dark h2 { font-size: 2rem; margin-bottom: 30px; }
 
-        /* GRID UMUM GALERI */
-        .grid-8 { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px; 
-            max-width: 1200px; margin: 0 auto; 
-        }
-        
-        /* ITEM GALERI */
-        .gal-item { 
-            height: 200px; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            position: relative; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .gal-item img { 
-            width: 100%; height: 100%; 
-            object-fit: cover; 
-            transition: 0.3s; 
-        }
+        .grid-8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        .gal-item { height: 200px; border-radius: 8px; overflow: hidden; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
         .gal-item:hover img { transform: scale(1.1); }
-        .gal-caption {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.6); color: white;
-            padding: 8px; font-size: 0.8rem;
-            text-align: left;
-        }
 
         /* --- SIH3 & SDGs --- */
         .sih3-section { padding: 60px 5%; background: #f0f8ff; border-top: 5px solid #007bff; border-radius: 10px; margin: 50px 5%; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
@@ -168,19 +133,17 @@
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto; }
         .modal-content { background-color: #fff; margin: 8% auto; padding: 30px; border-radius: 10px; width: 80%; max-width: 700px; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from {opacity:0; top:-50px;} to {opacity:1; top:0;} }
         .close { float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background: #155740; color: white; }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
             header { flex-direction: column; gap: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; }
             .story-section { grid-template-columns: 1fr; }
             .flow-arrow { display: none; }
-            .grid-6, .grid-8 { grid-template-columns: repeat(2, 1fr); }
+            .grid-8 { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -326,35 +289,7 @@
         </div>
     </section>
 
-    <!-- GALERI 1: AKSI KITA (6 FOTO) -->
-    <section id="gallery" class="gallery-white">
-        <h2>Galeri Aksi Kita</h2>
-        <div class="grid-6">
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?planting" alt="Aksi 1"><div class="gal-caption">Penanaman di Hulu</div></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?river" alt="Aksi 2"><div class="gal-caption">Monitoring Sungai</div></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?forest" alt="Aksi 3"><div class="gal-caption">Patroli Hutan</div></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?farmers" alt="Aksi 4"><div class="gal-caption">Pemberdayaan Tani</div></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?meeting" alt="Aksi 5"><div class="gal-caption">Diskusi Warga</div></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?nature" alt="Aksi 6"><div class="gal-caption">Lanskap Rejoso</div></div>
-        </div>
-    </section>
-
-    <!-- GALERI 2: JEJAK LANGKAH (8 FOTO) -->
-    <section class="gallery-blue">
-        <h2>Jejak Langkah Konservasi</h2>
-        <div class="grid-8">
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?tree" alt="Jejak 1"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?water" alt="Jejak 2"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?leaf" alt="Jejak 3"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?bird" alt="Jejak 4"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?fish" alt="Jejak 5"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?green" alt="Jejak 6"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?eco" alt="Jejak 7"></div>
-            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?earth" alt="Jejak 8"></div>
-        </div>
-    </section>
-
-    <!-- GALERI 3: AKTIVITAS & PENGHARGAAN (8 FOTO) -->
+    <!-- GALERI 2: AKTIVITAS (SS4) -->
     <section class="gallery-dark">
         <h2>Galeri Aktivitas & Penghargaan</h2>
         <div class="grid-8">
@@ -366,6 +301,21 @@
             <div class="gal-item"><img src="https://source.unsplash.com/400x300/?presentation" alt="Act 6"></div>
             <div class="gal-item"><img src="https://source.unsplash.com/400x300/?workshop" alt="Act 7"></div>
             <div class="gal-item"><img src="https://source.unsplash.com/400x300/?seminar" alt="Act 8"></div>
+        </div>
+    </section>
+
+    <!-- GALERI 3: JEJAK LANGKAH (SS3) - DI BAWAH -->
+    <section class="gallery-blue">
+        <h2>Jejak Langkah Konservasi</h2>
+        <div class="grid-8">
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?tree" alt="Jejak 1"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?water" alt="Jejak 2"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?leaf" alt="Jejak 3"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?bird" alt="Jejak 4"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?fish" alt="Jejak 5"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?green" alt="Jejak 6"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?eco" alt="Jejak 7"></div>
+            <div class="gal-item"><img src="https://source.unsplash.com/400x300/?earth" alt="Jejak 8"></div>
         </div>
     </section>
 
