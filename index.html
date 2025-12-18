@@ -68,19 +68,119 @@
         .strategy-list i { color: var(--ss-green); margin-top: 5px; }
 
         /* --- KPI --- */
-        .kpi-section { padding: 40px 5%; background: #fff; text-align: center; border-top: 1px solid #eee; }
-        .section-title { color: #003366; font-size: 2rem; margin-bottom: 30px; font-weight: 700; }
-        .kpi-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px; width: 100%; margin: 0 auto; flex-direction: row; }
-        .kpi-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 25px 15px; transition: 0.3s; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.05); width: 260px; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center;}
-        .card-bio:hover { transform: translateY(-5px); border-color: var(--color-bio); box-shadow: 0 8px 20px rgba(32, 201, 151, 0.15); }
-        .card-water:hover { transform: translateY(-5px); border-color: var(--color-water); box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15); }
-        .card-land:hover { transform: translateY(-5px); border-color: var(--color-land); box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15); }
-        .kpi-icon { font-size: 2rem; margin-bottom: 10px; }
-        .kpi-title { font-size: 1rem; margin-bottom: 5px; font-weight: 600; color: #444; }
-        .card-bio .kpi-icon { color: var(--color-bio); } .card-water .kpi-icon { color: var(--color-water); } .card-land .kpi-icon { color: var(--color-land); }
-        .kpi-val { font-size: 1.8rem; font-weight: 800; color: #333; margin: 5px 0; display: block; }
-        .kpi-desc { font-size: 0.8rem; color: #777; margin-bottom: 15px; }
-        .kpi-link { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }
+        /* --- KPI SECTION (NEON DARK STYLE) --- */
+.kpi-section { 
+    padding: 60px 5%; 
+    background: #0b1f30; /* Background Biru Gelap (Strong) */
+    text-align: center; 
+    border-top: 1px solid #1c3d52;
+}
+
+.section-title { 
+    color: #ffffff; /* Judul jadi Putih agar kontras */
+    font-size: 2rem; 
+    margin-bottom: 40px; 
+    font-weight: 700; 
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+}
+
+/* GRID SYSTEM (Tetap Ramping & Jejer) */
+.kpi-grid { 
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 30px; 
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* CARD STYLE (Dark Theme) */
+.kpi-card { 
+    background: #111; /* Background Kartu Hitam */
+    border: 2px solid #333; /* Border default abu gelap */
+    border-radius: 15px; 
+    padding: 30px 20px; 
+    transition: all 0.4s ease; 
+    cursor: pointer; 
+    
+    /* Ukuran Tetap Ramping */
+    flex: 0 0 auto; 
+    width: 280px;   
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* WARNA KHUSUS PER KARTU (Neon Variables) */
+.card-bio { --neon-color: #ccff00; }   /* Hijau Lime Neon */
+.card-water { --neon-color: #00ffff; } /* Biru Cyan Neon */
+.card-land { --neon-color: #ffaa00; }  /* Oranye Neon */
+
+/* HOVER EFFECT (Menyala seperti SS4) */
+.kpi-card:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--neon-color); /* Border berubah jadi warna neon */
+    box-shadow: 0 0 20px var(--neon-color); /* Efek Glowing */
+}
+
+/* ISI KARTU */
+.kpi-icon { 
+    font-size: 3rem; 
+    margin-bottom: 15px; 
+    color: var(--neon-color); /* Icon mengikuti warna neon */
+    transition: 0.3s;
+}
+
+.kpi-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #fff; /* Tulisan putih */
+}
+
+.kpi-val { 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    color: #fff; /* Angka putih */
+    margin: 5px 0 10px; 
+    display: block; 
+}
+
+.kpi-desc {
+    font-size: 0.85rem;
+    color: #aaa; /* Deskripsi abu-abu terang */
+    margin-bottom: 25px;
+}
+
+/* TOMBOL "BUKA DATA" (Style Kapsul) */
+.btn-data {
+    padding: 10px 25px;
+    border-radius: 50px; /* Bentuk Kapsul */
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+    
+    /* Style Default (Outline) */
+    background: transparent;
+    color: var(--neon-color);
+    border: 2px solid var(--neon-color);
+    margin-top: auto;
+}
+
+/* Hover pada Tombol (Jadi Fill Color) */
+.kpi-card:hover .btn-data {
+    background: var(--neon-color);
+    color: #000; /* Teks jadi hitam saat hover */
+    box-shadow: 0 0 15px var(--neon-color);
+}
 
         /* --- FLOW --- */
         .flow-section { padding: 80px 5%; background: white; text-align: center; }
@@ -280,30 +380,38 @@
     </section>
 
     <!-- KPI -->
+   <!-- KPI (Tampilan Baru: Dark Neon) -->
     <section id="kpi" class="kpi-section">
         <h2 class="section-title">Capaian Konservasi Kolektif</h2>
         <div class="kpi-grid">
+            
+            <!-- KARTU 1: BIODIVERSITY (Neon Hijau) -->
             <div class="kpi-card card-bio" onclick="openModal('modal-bio')">
                 <div class="kpi-icon"><i class="fas fa-leaf"></i></div>
-                <h4 class="kpi-title">Biodiversity Impact</h4>
+                <h4 class="kpi-title">Monitoring Kehati</h4>
                 <span class="kpi-val">3.6</span>
-                <p class="kpi-desc">Indeks Kehati (Target)</p>
-                <div class="kpi-link" style="color:var(--color-bio);">Lihat Detail &rarr;</div>
+                <p class="kpi-desc">Indeks Keanekaragaman Hayati</p>
+                <a href="javascript:void(0)" class="btn-data">Buka Data</a>
             </div>
+
+            <!-- KARTU 2: WATER (Neon Biru) -->
             <div class="kpi-card card-water" onclick="openModal('modal-water')">
                 <div class="kpi-icon"><i class="fas fa-tint"></i></div>
-                <h4 class="kpi-title">Water Retention</h4>
+                <h4 class="kpi-title">Retensi Air</h4>
                 <span class="kpi-val">1.2 Juta m³</span>
-                <p class="kpi-desc">Volume Air Terserap</p>
-                <div class="kpi-link" style="color:var(--color-water);">Lihat Infrastruktur &rarr;</div>
+                <p class="kpi-desc">Total Volume Air Terserap</p>
+                <a href="javascript:void(0)" class="btn-data">Buka Data</a>
             </div>
+
+            <!-- KARTU 3: LAND (Neon Oranye) -->
             <div class="kpi-card card-land" onclick="openModal('modal-land')">
-                <div class="kpi-icon"><i class="fas fa-map-marked-alt"></i></div>
-                <h4 class="kpi-title">Land Cover</h4>
+                <div class="kpi-icon"><i class="fas fa-tree"></i></div>
+                <h4 class="kpi-title">Sebaran Penanaman</h4>
                 <span class="kpi-val">55 Ha</span>
-                <p class="kpi-desc">Lahan Tervegetasi</p>
-                <div class="kpi-link" style="color:var(--color-land);">Lihat Peta &rarr;</div>
+                <p class="kpi-desc">Total Lahan Tervegetasi</p>
+                <a href="javascript:void(0)" class="btn-data">Buka Data</a>
             </div>
+
         </div>
     </section>
 
@@ -556,6 +664,7 @@
     </script>
 </body>
 </html>
+
 
 
 
