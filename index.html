@@ -70,12 +70,12 @@
         /* --- KPI --- */
         .kpi-section { padding: 40px 5%; background: #fff; text-align: center; border-top: 1px solid #eee; }
         .section-title { color: #003366; font-size: 2rem; margin-bottom: 30px; font-weight: 700; }
-        .kpi-grid { display: grid; justify-content: center; gap: 25px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
-        .kpi-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 25px 15px; transition: 0.3s; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.05); width: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        .kpi-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px; width: 100%; margin: 0 auto; flex-direction: row; }
+        .kpi-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 25px 15px; transition: 0.3s; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.05); width: 260px; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center;}
         .card-bio:hover { transform: translateY(-5px); border-color: var(--color-bio); box-shadow: 0 8px 20px rgba(32, 201, 151, 0.15); }
         .card-water:hover { transform: translateY(-5px); border-color: var(--color-water); box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15); }
         .card-land:hover { transform: translateY(-5px); border-color: var(--color-land); box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15); }
-        .kpi-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .kpi-icon { font-size: 2rem; margin-bottom: 10px; }
         .kpi-title { font-size: 1rem; margin-bottom: 5px; font-weight: 600; color: #444; }
         .card-bio .kpi-icon { color: var(--color-bio); } .card-water .kpi-icon { color: var(--color-water); } .card-land .kpi-icon { color: var(--color-land); }
         .kpi-val { font-size: 1.8rem; font-weight: 800; color: #333; margin: 5px 0; display: block; }
@@ -556,6 +556,7 @@
     </script>
 </body>
 </html>
+
 
 
 
