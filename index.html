@@ -112,12 +112,45 @@
         .sih3-val { font-size: 2rem; font-weight: bold; color: #0056b3; margin-top: 30px; display: block; }
         
         /* --- SDGs --- */
-        .sdg-section { padding: 50px 5%; background: white; text-align: center; }
-        .sdg-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .sdg-box { width: 150px; height: 150px; border-radius: 12px; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; text-decoration: none; }
-        .sdg-box:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .sdg-label { font-size: 0.9rem; font-weight: bold; line-height: 1.2; }
-        .sdg-6 { background-color: var(--sdg-6); } .sdg-8 { background-color: var(--sdg-8); } .sdg-13 { background-color: var(--sdg-13); } .sdg-15 { background-color: var(--sdg-15); } .sdg-17 { background-color: var(--sdg-17); }
+        /* --- SDGs DENGAN LOGO GAMBAR --- */
+.sdg-section { 
+    padding: 50px 5%; 
+    background: white; 
+    text-align: center; 
+}
+
+.sdg-container { 
+    display: flex; 
+    justify-content: center; /* Posisi di tengah */
+    align-items: center;
+    gap: 25px; /* Jarak antar logo */
+    flex-wrap: wrap; /* Agar rapi turun ke bawah jika dibuka di HP */
+    margin-top: 30px; 
+}
+
+/* Kotak Pembungkus Gambar */
+.sdg-img-wrapper {
+    width: 140px;       /* KUNCI: Lebar dibatasi 140px (Kecil) */
+    height: 140px;      /* KUNCI: Tinggi dibatasi 140px */
+    transition: 0.3s;
+    display: inline-block;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Efek Hover (Gerak dikit pas ditunjuk) */
+.sdg-img-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Pengaturan Gambarnya */
+.sdg-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* PENTING: Agar gambar logo utuh masuk kotak, tidak terpotong */
+    display: block;
+}
 
         /* --- AWARDS & GALLERIES (UPDATED) --- */
         .awards-section { padding: 60px 5% 40px; background: #0b253a; text-align: center; color: white; }
@@ -520,6 +553,7 @@
     </script>
 </body>
 </html>
+
 
 
 
