@@ -350,6 +350,67 @@
             opacity: 0.9;
             font-weight: normal;
         }
+        /* --- STYLE BARU MODAL (HEADER & FOOTER) --- */
+        
+        /* Header Bagian Atas (Ikon Orang + AqruBiSA) */
+        .modal-header-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee; /* Garis pemisah tipis */
+            background-color: #fff;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Jarak ikon ke tulisan */
+            color: #483d8b; /* Warna Ungu/Biru tua (Senada tombol) */
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Tombol X (Silang) Kustom */
+        .close-custom {
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close-custom:hover { color: #000; }
+
+        /* Body (Tempat Tombol Pilihan) */
+        .modal-body-custom {
+            padding: 30px;
+            background-color: #f9f9f9; /* Background agak abu sedikit biar beda */
+        }
+
+        /* Footer (Tempat Tombol Close Bawah) */
+        .modal-footer-custom {
+            padding: 15px 30px;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+            text-align: right; /* Posisi tombol di kanan */
+        }
+
+        /* Desain Tombol Close (Mirip SS2) */
+        .btn-close-ss2 {
+            background-color: #e3f2fd; /* Biru muda sekali */
+            color: #0d47a1; /* Biru tua teksnya */
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-close-ss2:hover {
+            background-color: #bbdefb; /* Sedikit lebih gelap saat hover */
+        }
     </style>
 </head>
 <body>
@@ -703,9 +764,18 @@
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } }
     </script>
     <!-- MODAL PILIH PERAN (GABUNG SEKARANG) -->
-    <div id="modal-join" class="modal">
-        <div class="modal-content" style="max-width: 500px; text-align: left; padding: 30px;">
-            <span class="close" onclick="closeModal('modal-join')">&times;</span>
+    <div class="modal-header-custom">
+                <div class="header-left">
+                    <!-- Ikon User/Orang -->
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #483d8b;"></i>
+                    
+                    <!-- Gambar Logo AqruBiSA (Menggantikan Teks) -->
+                    <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" 
+                         alt="Logo AqruBiSA" 
+                         style="height: 40px; width: auto; margin-top: 5px;">
+                </div>
+            <span class="close-custom" onclick="closeModal('modal-join')">&times;</span>
+            </div>
             
             <h3 style="color:#003366; margin-bottom: 20px; font-size: 1.5rem;">Pilih Peran Anda</h3>
             <p style="margin-bottom: 25px; color:#666;">Silakan pilih jenis akun untuk melanjutkan registrasi:</p>
@@ -725,6 +795,7 @@
     </div>
 </body>
 </html>
+
 
 
 
