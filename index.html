@@ -317,6 +317,39 @@
             /* Penyesuaian header di mobile */
             .brand-wrapper { align-items: center; }
         }
+        /* --- STYLE KHUSUS MODAL PILIH PERAN --- */
+        .role-btn {
+            display: block;
+            width: 100%;
+            background-color: #483d8b; /* Warna Ungu mirip referensi (DarkSlateBlue) */
+            color: white;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 5px solid #2e266f; /* Garis aksen di kiri */
+        }
+
+        .role-btn:hover {
+            background-color: #382f6e;
+            transform: translateX(5px); /* Efek geser sedikit saat di-hover */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .role-title {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .role-desc {
+            display: block;
+            font-size: 0.85rem;
+            opacity: 0.9;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -347,7 +380,9 @@
                 <li><a href="#project">Project</a></li>
             </ul>
         </nav>
-        <a href="#flow" class="btn-header"><i class="fas fa-user-plus"></i> Gabung Sekarang</a>
+        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header">
+            <i class="fas fa-user-plus"></i> Gabung Sekarang
+        </a>
     </header>
 
     <!-- HERO -->
@@ -667,8 +702,30 @@
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } }
     </script>
+    <!-- MODAL PILIH PERAN (GABUNG SEKARANG) -->
+    <div id="modal-join" class="modal">
+        <div class="modal-content" style="max-width: 500px; text-align: left; padding: 30px;">
+            <span class="close" onclick="closeModal('modal-join')">&times;</span>
+            
+            <h3 style="color:#003366; margin-bottom: 20px; font-size: 1.5rem;">Pilih Peran Anda</h3>
+            <p style="margin-bottom: 25px; color:#666;">Silakan pilih jenis akun untuk melanjutkan registrasi:</p>
+            
+            <!-- Pilihan 1: ES Seller -->
+            <a href="#" class="role-btn">
+                <span class="role-title">ES Seller</span>
+                <span class="role-desc">Penyedia Jasa Lingkungan / Komunitas Hulu</span>
+            </a>
+
+            <!-- Pilihan 2: ES Buyer -->
+            <a href="#" class="role-btn">
+                <span class="role-title">ES Buyer</span>
+                <span class="role-desc">Mitra Pembeli Jasa / Investor Hilir</span>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
+
 
 
 
