@@ -763,38 +763,55 @@
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } }
     </script>
+    
     <!-- MODAL PILIH PERAN (GABUNG SEKARANG) -->
-    <div class="modal-header-custom">
+    <!-- PENTING: Baris ini adalah "Rumah" modalnya dengan ID modal-join -->
+    <div id="modal-join" class="modal">
+        <div class="modal-content" style="max-width: 600px; padding: 0; overflow: hidden; border-radius: 12px;">
+            
+            <!-- 1. HEADER MODAL (Logo User + Gambar Logo AqruBiSA) -->
+            <div class="modal-header-custom">
                 <div class="header-left">
                     <!-- Ikon User/Orang -->
                     <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #483d8b;"></i>
                     
-                    <!-- Gambar Logo AqruBiSA (Menggantikan Teks) -->
+                    <!-- Gambar Logo AqruBiSA -->
                     <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" 
                          alt="Logo AqruBiSA" 
                          style="height: 40px; width: auto; margin-top: 5px;">
                 </div>
-            <span class="close-custom" onclick="closeModal('modal-join')">&times;</span>
+                
+                <!-- Tombol X Close -->
+                <span class="close-custom" onclick="closeModal('modal-join')">&times;</span>
             </div>
-            
-            <h3 style="color:#003366; margin-bottom: 20px; font-size: 1.5rem;">Pilih Peran Anda</h3>
-            <p style="margin-bottom: 25px; color:#666;">Silakan pilih jenis akun untuk melanjutkan registrasi:</p>
-            
-            <!-- Pilihan 1: ES Seller -->
-            <a href="#" class="role-btn">
-                <span class="role-title">ES Seller</span>
-                <span class="role-desc">Penyedia Jasa Lingkungan</span>
-            </a>
 
-            <!-- Pilihan 2: ES Buyer -->
-            <a href="#" class="role-btn">
-                <span class="role-title">ES Buyer</span>
-                <span class="role-desc">Mitra Pemanfaat Jasa Lingkungan</span>
-            </a>
+            <!-- 2. BODY MODAL (Pilihan Tombol Ungu) -->
+            <div class="modal-body-custom">
+                <p style="margin-bottom: 20px; color:#555;">Silakan pilih jenis akun untuk melanjutkan registrasi:</p>
+                
+                <!-- Pilihan 1: ES Seller -->
+                <a href="#" class="role-btn">
+                    <span class="role-title">ES Seller</span>
+                    <span class="role-desc">Penyedia Jasa Lingkungan / Komunitas Hulu</span>
+                </a>
+
+                <!-- Pilihan 2: ES Buyer -->
+                <a href="#" class="role-btn">
+                    <span class="role-title">ES Buyer</span>
+                    <span class="role-desc">Mitra Pembeli Jasa / Investor Hilir</span>
+                </a>
+            </div>
+
+            <!-- 3. FOOTER MODAL (Tombol Close Biru Muda) -->
+            <div class="modal-footer-custom">
+                <button onclick="closeModal('modal-join')" class="btn-close-ss2">Close</button>
+            </div>
+
         </div>
     </div>
 </body>
 </html>
+
 
 
 
