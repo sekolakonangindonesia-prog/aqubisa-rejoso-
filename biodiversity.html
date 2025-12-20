@@ -160,6 +160,106 @@
             font-size: 0.65rem;
             margin-top: 2px;
         }
+        /* --- CSS BARU: TABEL STATUS SPESIES --- */
+        .status-table-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+            border: 1px solid #eee;
+        }
+
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .status-table th {
+            background-color: #0b1f30; /* Biru Gelap Aqru */
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .status-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+            color: #333;
+        }
+
+        .status-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* --- CSS BARU: GALERI SPESIES (GAMBAR BESAR) --- */
+        .species-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .species-card-box {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .species-card-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .species-img-large {
+            width: 100%;
+            height: 250px; /* Gambar Besar */
+            object-fit: cover;
+        }
+
+        .species-info {
+            padding: 20px;
+        }
+
+        .species-name-main {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b1f30;
+            margin-bottom: 5px;
+        }
+
+        .species-name-sci {
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Badge Status untuk Tabel & Card */
+        .status-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .bg-iucn-vu { background-color: #e67e22; } /* Rentan - Orange */
+        .bg-iucn-nt { background-color: #f1c40f; color: black; } /* Hampir Terancam - Kuning */
+        .bg-iucn-lc { background-color: #27ae60; } /* Resiko Rendah - Hijau */
+        .bg-iucn-en { background-color: #c0392b; } /* Genting - Merah */
+        .bg-p106 { background-color: #2980b9; }    /* Dilindungi UU - Biru */
+        .bg-cites { background-color: #8e44ad; }   /* CITES - Ungu */
     </style>
 </head>
 <body>
@@ -215,129 +315,158 @@
         </div>
     </section>
 
-    <!-- 3. STATUS KEHATI (DATA NYATA DARI LAPORAN) -->
+   <!-- 3. STATUS KEHATI (TABEL DATA & GALERI) -->
     <section class="status-section">
         <div class="container">
-           <div class="status-text">
-                    <h3>Status Kekayaan Hayati Rejoso</h3>
-                    <p>Berdasarkan hasil monitoring 2024-2025, kami menginventarisasi spesies kunci dengan status konservasi tinggi yang wajib dilindungi:</p>
-                    <ul style="margin-left:20px; color:#555; margin-bottom:20px; line-height:1.6;">
-                        
-                        <!-- FLORA -->
-                        <li style="margin-bottom:10px;">
-                            <strong>Flora Kunci:</strong> <em>Rhizophora mucronata</em> (Dominan di Mangrove) dan <em>Metroxylon sagu</em> (Khas Umbulan). 
-                            <br><span style="font-size:0.85rem; color:#d35400;">*Mahoni Daun Lebar berstatus IUCN: Endangered (Genting).</span>
-                        </li>
+            
+            <div class="section-header">
+                <h2>Status Konservasi Flora & Fauna</h2>
+                <p>Inventarisasi spesies kunci berdasarkan pemantauan 2024-2025 di kawasan Taman Kehati, Umbulan, Galih, dan Mangrove.</p>
+            </div>
 
-                        <!-- BURUNG -->
-                        <li style="margin-bottom:10px;">
-                            <strong>Avifauna (Burung):</strong> 
-                            <br>- <strong>Bubut Jawa</strong> (<em>Centropus nigrorufus</em>): <span style="color:#e63946; font-weight:bold;">IUCN Vulnerable (Rentan)</span> & Dilindungi UU.
-                            <br>- <strong>Gajahan Penggala</strong>: Satwa Migran & Dilindungi UU.
-                        </li>
+            <!-- BAGIAN 1: TABEL DATA LENGKAP -->
+            <div class="status-table-container">
+                <h3 style="margin-bottom: 20px; color: var(--primary-dark);">Daftar Spesies Prioritas</h3>
+                <table class="status-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="25%">Nama Spesies</th>
+                            <th width="25%">Nama Ilmiah</th>
+                            <th width="15%">Famili</th>
+                            <th width="30%">Status Konservasi (IUCN / CITES / P.106)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Bubut Jawa</td>
+                            <td><em>Centropus nigrorufus</em></td>
+                            <td>Cuculidae</td>
+                            <td>
+                                <span class="status-tag bg-iucn-vu">IUCN: VU</span>
+                                <span class="status-tag bg-p106">P.106: Dilindungi</span>
+                                <span class="status-tag bg-cites">Endemik Jawa</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Cemara Norfolk</td>
+                            <td><em>Araucaria heterophylla</em></td>
+                            <td>Araucariaceae</td>
+                            <td>
+                                <span class="status-tag bg-iucn-vu">IUCN: VU</span>
+                                <span class="status-tag bg-p106">P.106: Dilindungi</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Kupu-kupu Raja</td>
+                            <td><em>Troides cuneifera</em></td>
+                            <td>Papilionidae</td>
+                            <td>
+                                <span class="status-tag bg-cites">CITES: App II</span>
+                                <span class="status-tag bg-p106">P.106: Dilindungi</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Palem Kuning</td>
+                            <td><em>Dypsis lutescens</em></td>
+                            <td>Arecaceae</td>
+                            <td>
+                                <span class="status-tag bg-iucn-nt">IUCN: NT</span>
+                                <span class="status-tag bg-cites">CITES: App II</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Biawak Air Asia</td>
+                            <td><em>Varanus salvator</em></td>
+                            <td>Varanidae</td>
+                            <td>
+                                <span class="status-tag bg-iucn-lc">IUCN: LC</span>
+                                <span class="status-tag bg-cites">CITES: App II</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Mahoni Daun Lebar</td>
+                            <td><em>Swietenia macrophylla</em></td>
+                            <td>Meliaceae</td>
+                            <td>
+                                <span class="status-tag bg-iucn-en">IUCN: EN</span>
+                                <span class="status-tag bg-cites">CITES: App II</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                        <!-- MAMALIA -->
-                        <li style="margin-bottom:10px;">
-                            <strong>Mamalia:</strong> <strong>Tupai Kekes</strong> (<em>Tupaia javanica</em>) 
-                            <span style="background:#0077b6; color:white; padding:1px 6px; border-radius:4px; font-size:0.7rem;">CITES App II</span>
-                        </li>
-
-                        <!-- HERPETOFAUNA -->
-                        <li style="margin-bottom:10px;">
-                            <strong>Herpetofauna:</strong> <strong>Biawak Air Asia</strong> (<em>Varanus salvator</em>) 
-                            <span style="background:#0077b6; color:white; padding:1px 6px; border-radius:4px; font-size:0.7rem;">CITES App II</span>
-                        </li>
-
-                        <!-- SERANGGA -->
-                        <li style="margin-bottom:10px;">
-                            <strong>Serangga Flagship:</strong> <strong>Kupu-kupu Raja</strong> (<em>Troides cuneifera</em>). 
-                            <br>Status: <span style="color:#2a9d8f; font-weight:bold;">Dilindungi UU</span> & <span style="color:#0077b6; font-weight:bold;">CITES App II</span>.
-                        </li>
-                    </ul>
-                    <a href="#" style="color:var(--primary-dark); font-weight:bold; text-decoration:underline;">Lihat Database Inventarisasi Lengkap &rarr;</a>
+            <!-- BAGIAN 2: GALERI VISUALISASI (GAMBAR BESAR KOTAK) -->
+            <h3 style="color: var(--primary-dark); margin-top: 50px;">Visualisasi Spesies Kunci</h3>
+            <div class="species-gallery-grid">
+                
+                <!-- Card 1 -->
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?black,bird" class="species-img-large" alt="Bubut Jawa">
+                    <div class="species-info">
+                        <div class="species-name-main">Bubut Jawa</div>
+                        <span class="species-name-sci">Centropus nigrorufus</span>
+                        <div class="badges">
+                            <span class="status-tag bg-iucn-vu">Vulnerable</span>
+                            <span class="status-tag bg-p106">Dilindungi</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="species-grid">
-                    
-                    <!-- 1. MAHONI (Endangered) -->
-                    <div class="species-item">
-                        <img src="https://source.unsplash.com/300x300/?mahogany,tree" alt="Mahoni">
-                        <div class="status-badges">
-                            <span class="badge-info bg-red">IUCN: Endangered (EN)</span>
-                            <span class="badge-info bg-blue">CITES: App II</span>
-                        </div>
-                        <div class="species-overlay">
-                            Mahoni Daun Lebar<br>
-                            <small>Swietenia macrophylla</small>
+
+                <!-- Card 2 -->
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?pine,tree" class="species-img-large" alt="Cemara">
+                    <div class="species-info">
+                        <div class="species-name-main">Cemara Norfolk</div>
+                        <span class="species-name-sci">Araucaria heterophylla</span>
+                        <div class="badges">
+                            <span class="status-tag bg-iucn-vu">Vulnerable</span>
+                            <span class="status-tag bg-p106">Dilindungi</span>
                         </div>
                     </div>
-
-                    <!-- 2. BUBUT JAWA (Vulnerable + Dilindungi) -->
-                    <div class="species-item">
-                        <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/bubut_jawa.jpg" alt="Bubut Jawa">
-                        <div class="status-badges">
-                            <span class="badge-info bg-orange">IUCN: Vulnerable (VU)</span>
-                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
-                        </div>
-                        <div class="species-overlay">
-                            Bubut Jawa<br>
-                            <small>Centropus nigrorufus</small>
-                        </div>
-                    </div>
-
-                    <!-- 3. KUPU RAJA (Dilindungi) -->
-                    <div class="species-item">
-                        <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/kupu-troides.jpg" alt="Troides">
-                        <div class="status-badges">
-                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
-                            <span class="badge-info bg-blue">CITES: App II</span>
-                        </div>
-                        <div class="species-overlay">
-                            Kupu-kupu Raja<br>
-                            <small>Troides cuneifera</small>
-                        </div>
-                    </div>
-
-                    <!-- 4. RAJA UDANG (Dilindungi) -->
-                    <div class="species-item">
-                        <img src="https://source.unsplash.com/300x300/?kingfisher" alt="Raja Udang">
-                        <div class="status-badges">
-                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
-                            <span class="badge-info bg-grey">IUCN: LC</span>
-                        </div>
-                        <div class="species-overlay">
-                            Raja Udang Meninting<br>
-                            <small>Alcedo meninting</small>
-                        </div>
-                    </div>
-
-                    <!-- 5. GAJAHAN PENGGALA (Migran/Dilindungi) -->
-                    <div class="species-item">
-                        <img src="https://source.unsplash.com/300x300/?wader,bird" alt="Gajahan">
-                        <div class="status-badges">
-                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
-                            <span class="badge-info bg-blue">Satwa Migran</span>
-                        </div>
-                        <div class="species-overlay">
-                            Gajahan Penggala<br>
-                            <small>Numenius phaeopus</small>
-                        </div>
-                    </div>
-
-                    <!-- 6. SAGU (Khas Umbulan) -->
-                    <div class="species-item">
-                        <img src="https://source.unsplash.com/300x300/?sago,palm" alt="Sagu">
-                        <div class="status-badges">
-                            <span class="badge-info bg-grey">Spesies Kunci</span>
-                            <span class="badge-info bg-blue">Khas Umbulan</span>
-                        </div>
-                        <div class="species-overlay">
-                            Pohon Sagu<br>
-                            <small>Metroxylon sagu</small>
-                        </div>
-                    </div>
-
                 </div>
-    </section>
+
+                <!-- Card 3 -->
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?butterfly" class="species-img-large" alt="Kupu Raja">
+                    <div class="species-info">
+                        <div class="species-name-main">Kupu-kupu Raja</div>
+                        <span class="species-name-sci">Troides cuneifera</span>
+                        <div class="badges">
+                            <span class="status-tag bg-cites">CITES App II</span>
+                            <span class="status-tag bg-p106">Dilindungi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?lizard" class="species-img-large" alt="Biawak">
+                    <div class="species-info">
+                        <div class="species-name-main">Biawak Air Asia</div>
+                        <span class="species-name-sci">Varanus salvator</span>
+                        <div class="badges">
+                            <span class="status-tag bg-iucn-lc">Least Concern</span>
+                            <span class="status-tag bg-cites">CITES App II</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" style="display:inline-block; padding: 12px 30px; background:var(--primary-dark); color:white; border-radius:30px; font-weight:bold;">Lihat Database Inventarisasi Lengkap &rarr;</a>
+            </div>
+
+        </div>
+       </section>
 
        <!-- 3.5. MONITORING LOG (DATA OPERASIONAL PER LOKASI) -->
     <section class="monitoring-section">
