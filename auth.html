@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-dark: #0b1f30; /* Warna Biru Gelap SS2 */
+            --primary-dark: #0b1f30;
             --teal-accent: #005f73;
             --text-light: #f9f9f9;
         }
@@ -17,7 +17,8 @@
         body {
             display: flex;
             height: 100vh;
-            overflow: hidden; /* Supaya tidak ada scrollbar di halaman login */
+            margin: 0;
+            overflow: hidden; /* Mencegah scroll ganda */
         }
 
         /* --- PANEL KIRI (BRANDING) --- */
@@ -34,7 +35,6 @@
             position: relative;
         }
 
-        /* Hiasan background kiri */
         .left-panel::before {
             content: "";
             position: absolute;
@@ -75,30 +75,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 50px 100px;
-            position: relative; /* Agar tombol close bisa diatur posisinya */
-            overflow-y: auto; /* Bisa scroll kalau form kepanjangan */
+            padding: 40px 100px;
+            position: relative;
+            overflow-y: auto; /* Agar bisa discroll jika layar pendek */
         }
 
-        .form-header {
-            margin-bottom: 30px;
-        }
-
-        .logo-mobile {
-            display: none; /* Hanya muncul di HP */
-            height: 50px;
-            margin-bottom: 20px;
-        }
-
-        /* Gaya Logo di atas Welcome (Baru) */
-        .logo-login-header {
-            height: 80px; /* Ukuran logo di atas form */
-            width: auto;
-            margin-bottom: 25px; 
-            display: block;
-        }
-
-        /* Tombol Close di Pojok Kanan Atas (Baru) */
+        /* Tombol Close di Pojok Kanan Atas */
         .btn-close-corner {
             position: absolute;
             top: 30px;
@@ -110,10 +92,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: 0.3s;
-            background: #f0f0f0;
             padding: 8px 15px;
+            background: #f4f4f4;
             border-radius: 20px;
+            transition: 0.3s;
+            z-index: 10;
         }
 
         .btn-close-corner:hover {
@@ -121,36 +104,48 @@
             background-color: #d9534f;
         }
 
-        .form-header h3 {
-            color: var(--primary-dark);
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+        /* Logo di atas form (Mobile & Desktop) */
+        .logo-login-header {
+            height: 70px;
+            width: auto;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .form-header p {
-            color: #666;
-            font-size: 0.95rem;
-        }
+        .logo-mobile { display: none; }
+
+        .form-header { margin-bottom: 30px; }
+        .form-header h3 { color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 5px; }
+        .form-header p { color: #666; font-size: 0.95rem; }
 
         /* Styling Input */
-        .form-group {
-            margin-bottom: 20px;
+        .form-group { margin-bottom: 20px; }
+        
+        .form-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 8px;
             font-weight: 600;
             color: #333;
             font-size: 0.9rem;
         }
 
-        .form-group input, .form-group select {
+        .forgot-link {
+            font-size: 0.85rem;
+            color: #483d8b;
+            text-decoration: none;
+        }
+
+        .form-group input {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #f4f6f8; /* Abu-abu muda mirip SS */
+            background-color: #f4f6f8;
             font-size: 1rem;
             transition: 0.3s;
         }
@@ -163,8 +158,8 @@
 
         .btn-submit {
             width: 100%;
-            padding: 12px;
-            background-color: #483d8b; /* Warna Ungu Tombol */
+            padding: 14px;
+            background-color: #483d8b;
             color: white;
             border: none;
             border-radius: 8px;
@@ -172,78 +167,149 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            margin-top: 10px;
         }
 
-        .btn-submit:hover {
-            background-color: #352b6b;
-        }
+        .btn-submit:hover { background-color: #352b6b; }
 
-        .form-footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #666;
-        }
+        .form-footer { margin-top: 25px; font-size: 0.9rem; color: #666; }
+        .link-action { color: #483d8b; font-weight: bold; text-decoration: none; cursor: pointer; }
+        .hidden { display: none; }
 
-        .link-action {
-            color: #483d8b;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Helper untuk sembunyikan form */
-        .hidden {
-            display: none;
-        }
-
-        /* --- RESPONSIVE UNTUK HP --- */
+        /* RESPONSIVE HP */
         @media (max-width: 900px) {
             body { flex-direction: column; height: auto; overflow: auto; }
-            .left-panel { display: none; } /* Sembunyikan panel kiri di HP */
-            .right-panel { padding: 40px 20px; }
-            .logo-mobile { display: block; }
-            .logo-login-header { display: none; } /* Sembunyikan logo besar di HP biar ga dobel */
-            .btn-close-corner { top: 20px; right: 20px; font-size: 0.9rem; padding: 6px 12px; }
+            .left-panel { display: none; }
+            .right-panel { padding: 40px 20px; width: 100%; }
+            .logo-mobile { display: block; height: 50px; margin-bottom: 20px; }
+            .logo-login-header { display: none; }
+            .btn-close-corner { top: 20px; right: 20px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- BAGIAN KIRI (GAMBAR & TEKS HERO) -->
+    <!-- BAGIAN KIRI -->
     <div class="left-panel">
         <div class="left-content">
             <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA2.png" alt="Logo AqruBiSA">
             <h2>Water Conservation Funds<br>Strategic & Action Plan</h2>
-            <p>Platform terintegrasi untuk mengelola investasi konservasi sumberdaya air, menghubungkan partisipasi komunitas hulu dengan kepedulian sektor industri hilir.</p>
+            <p>Platform terintegrasi untuk mengelola investasi konservasi sumberdaya air.</p>
         </div>
     </div>
 
     <!-- BAGIAN KANAN (FORM) -->
     <div class="right-panel">
         
-        <!-- 1. TOMBOL CLOSE (BALIK KE HOME) -->
-        <a href="index.html" class="btn-close-corner">
-            <i class="fas fa-times"></i> Close
-        </a>
+        <!-- Tombol Close -->
+        <a href="index.html" class="btn-close-corner"><i class="fas fa-times"></i> Close</a>
 
-        <!-- Logo Kecil (Hanya muncul di HP) -->
+        <!-- Logo Mobile -->
         <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-mobile" alt="Logo Mobile">
 
-        <!-- ===== FORM LOGIN (DEFAULT) ===== -->
+        <!-- ===== FORM LOGIN ===== -->
         <div id="login-container">
-            
-            <!-- 2. LOGO BARU DI ATAS WELCOME (Hanya di Desktop) -->
+            <!-- Logo Desktop -->
             <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-login-header" alt="Logo AqruBiSA">
 
             <div class="form-header">
                 <h3>Welcome to AqruBiSA</h3>
                 <p id="role-display-login">Login as User</p>
             </div>
+
             <form>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="Masukkan email Anda">
+                    <input type="email" placeholder="Masukkan email Anda" required>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label-row">
+                        <label>Password</label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <input type="password" placeholder="********" required>
+                </div>
+
+                <button type="button" class="btn-submit">Sign In</button>
+            </form>
+
+            <div class="form-footer">
+                New Here? <span class="link-action" onclick="showRegister()">Create an Account</span>
+            </div>
+        </div>
+
+        <!-- ===== FORM REGISTER ===== -->
+        <div id="register-container" class="hidden">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-login-header" alt="Logo AqruBiSA">
+
+            <div class="form-header">
+                <h3>Sign Up</h3>
+                <p>Enter your details to create an account</p>
+                <p id="role-display-register" style="color:#483d8b; font-weight:bold; margin-top:5px;"></p>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label>ID Number (KTP)</label>
+                    <input type="text" placeholder="Contoh: 3507xxxxxxxx">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <div style="display:flex; justify-content:space-b
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="email@contoh.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" placeholder="0812xxxxxx">
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>Password</label>
+                        <input type="password" placeholder="******">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Retype</label>
+                        <input type="password" placeholder="******">
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-submit">Submit Registration</button>
+                <button type="button" class="btn-submit" onclick="showLogin()" style="background:#ddd; color:#333; margin-top:10px;">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        // Ambil parameter peran (seller/buyer) dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role'); 
+
+        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa)' : 
+                         role === 'buyer' ? 'ES Buyer (Mitra/Investor)' : 'User';
+        
+        // Tampilkan teks peran
+        if(document.getElementById('role-display-login')) {
+            document.getElementById('role-display-login').innerText = "Login as " + roleText;
+        }
+        if(document.getElementById('role-display-register')) {
+            document.getElementById('role-display-register').innerText = "Registering as: " + roleText;
+        }
+
+        // Fungsi Ganti Form
+        function showRegister() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('register-container').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('register-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
