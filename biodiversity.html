@@ -253,13 +253,25 @@
             margin-right: 5px;
             margin-bottom: 5px;
         }
-
+        /* Badge Khusus Lokasi */
+        .loc-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            margin: 2px;
+            border-radius: 4px;
+            background-color: #e9ecef; /* Abu-abu terang */
+            color: #495057;
+            border: 1px solid #ced4da;
+            font-weight: 600;
+        }
         .bg-iucn-vu { background-color: #e67e22; } /* Rentan - Orange */
         .bg-iucn-nt { background-color: #f1c40f; color: black; } /* Hampir Terancam - Kuning */
         .bg-iucn-lc { background-color: #27ae60; } /* Resiko Rendah - Hijau */
         .bg-iucn-en { background-color: #c0392b; } /* Genting - Merah */
         .bg-p106 { background-color: #2980b9; }    /* Dilindungi UU - Biru */
         .bg-cites { background-color: #8e44ad; }   /* CITES - Ungu */
+        
     </style>
 </head>
 <body>
@@ -324,83 +336,127 @@
                 <p>Inventarisasi spesies kunci berdasarkan pemantauan 2024-2025 di kawasan Taman Kehati, Umbulan, Galih, dan Mangrove.</p>
             </div>
 
-            <!-- BAGIAN 1: TABEL DATA LENGKAP -->
+            <!-- BAGIAN 1: TABEL DATA SPESIES DILINDUNGI PER LOKASI -->
             <div class="status-table-container">
-                <h3 style="margin-bottom: 20px; color: var(--primary-dark);">Daftar Spesies Prioritas</h3>
-                <table class="status-table">
-                    <thead>
-                        <tr>
-                            <th width="5%">No</th>
-                            <th width="25%">Nama Spesies</th>
-                            <th width="25%">Nama Ilmiah</th>
-                            <th width="15%">Famili</th>
-                            <th width="30%">Status Konservasi (IUCN / CITES / P.106)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bubut Jawa</td>
-                            <td><em>Centropus nigrorufus</em></td>
-                            <td>Cuculidae</td>
-                            <td>
-                                <span class="status-tag bg-iucn-vu">IUCN: VU</span>
-                                <span class="status-tag bg-p106">P.106: Dilindungi</span>
-                                <span class="status-tag bg-cites">Endemik Jawa</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Cemara Norfolk</td>
-                            <td><em>Araucaria heterophylla</em></td>
-                            <td>Araucariaceae</td>
-                            <td>
-                                <span class="status-tag bg-iucn-vu">IUCN: VU</span>
-                                <span class="status-tag bg-p106">P.106: Dilindungi</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Kupu-kupu Raja</td>
-                            <td><em>Troides cuneifera</em></td>
-                            <td>Papilionidae</td>
-                            <td>
-                                <span class="status-tag bg-cites">CITES: App II</span>
-                                <span class="status-tag bg-p106">P.106: Dilindungi</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Palem Kuning</td>
-                            <td><em>Dypsis lutescens</em></td>
-                            <td>Arecaceae</td>
-                            <td>
-                                <span class="status-tag bg-iucn-nt">IUCN: NT</span>
-                                <span class="status-tag bg-cites">CITES: App II</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Biawak Air Asia</td>
-                            <td><em>Varanus salvator</em></td>
-                            <td>Varanidae</td>
-                            <td>
-                                <span class="status-tag bg-iucn-lc">IUCN: LC</span>
-                                <span class="status-tag bg-cites">CITES: App II</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Mahoni Daun Lebar</td>
-                            <td><em>Swietenia macrophylla</em></td>
-                            <td>Meliaceae</td>
-                            <td>
-                                <span class="status-tag bg-iucn-en">IUCN: EN</span>
-                                <span class="status-tag bg-cites">CITES: App II</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3 style="margin-bottom: 20px; color: var(--primary-dark);">Daftar Spesies Prioritas & Lokasi Sebaran</h3>
+                <div style="overflow-x: auto;">
+                    <table class="status-table">
+                        <thead>
+                            <tr>
+                                <th width="5%">No</th>
+                                <th width="20%">Nama Spesies</th>
+                                <th width="20%">Nama Ilmiah</th>
+                                <th width="25%">Lokasi Temuan (Site)</th>
+                                <th width="30%">Status Konservasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- SPESIES 1 -->
+                            <tr>
+                                <td>1</td>
+                                <td><strong>Bubut Jawa</strong></td>
+                                <td><em>Centropus nigrorufus</em></td>
+                                <td>
+                                    <span class="loc-badge">Desa Galih</span>
+                                    <span class="loc-badge">Mata Air Umbulan</span>
+                                    <span class="loc-badge">Mangrove Penunggul</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-iucn-vu">IUCN: VU</span>
+                                    <span class="status-tag bg-p106">P.106: Dilindungi</span>
+                                    <span class="status-tag bg-cites">Endemik Jawa</span>
+                                </td>
+                            </tr>
+                            
+                            <!-- SPESIES 2 -->
+                            <tr>
+                                <td>2</td>
+                                <td><strong>Kupu-kupu Raja</strong></td>
+                                <td><em>Troides cuneifera</em></td>
+                                <td>
+                                    <span class="loc-badge">Taman Kehati Keboncandi</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-p106">P.106: Dilindungi</span>
+                                    <span class="status-tag bg-cites">CITES: App II</span>
+                                </td>
+                            </tr>
+
+                            <!-- SPESIES 3 -->
+                            <tr>
+                                <td>3</td>
+                                <td><strong>Cemara Norfolk</strong></td>
+                                <td><em>Araucaria heterophylla</em></td>
+                                <td>
+                                    <span class="loc-badge">Taman Kehati Keboncandi</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-iucn-vu">IUCN: VU</span>
+                                    <span class="status-tag bg-p106">P.106: Dilindungi</span>
+                                </td>
+                            </tr>
+
+                            <!-- SPESIES 4 -->
+                            <tr>
+                                <td>4</td>
+                                <td><strong>Biawak Air Asia</strong></td>
+                                <td><em>Varanus salvator</em></td>
+                                <td>
+                                    <span class="loc-badge">Desa Galih</span>
+                                    <span class="loc-badge">Mata Air Umbulan</span>
+                                    <span class="loc-badge">Mangrove</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-iucn-lc">IUCN: LC</span>
+                                    <span class="status-tag bg-cites">CITES: App II</span>
+                                </td>
+                            </tr>
+
+                            <!-- SPESIES 5 -->
+                            <tr>
+                                <td>5</td>
+                                <td><strong>Mahoni Daun Lebar</strong></td>
+                                <td><em>Swietenia macrophylla</em></td>
+                                <td>
+                                    <span class="loc-badge">Mata Air Umbulan</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-iucn-en">IUCN: Endangered</span>
+                                    <span class="status-tag bg-cites">CITES: App II</span>
+                                </td>
+                            </tr>
+
+                             <!-- SPESIES 6 -->
+                             <tr>
+                                <td>6</td>
+                                <td><strong>Palem Kuning</strong></td>
+                                <td><em>Dypsis lutescens</em></td>
+                                <td>
+                                    <span class="loc-badge">Taman Kehati Keboncandi</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-iucn-nt">IUCN: Near Threatened</span>
+                                    <span class="status-tag bg-cites">CITES: App II</span>
+                                </td>
+                            </tr>
+
+                            <!-- SPESIES 7 -->
+                            <tr>
+                                <td>7</td>
+                                <td><strong>Tupai Kekes</strong></td>
+                                <td><em>Tupaia javanica</em></td>
+                                <td>
+                                    <span class="loc-badge">Desa Galih</span>
+                                </td>
+                                <td>
+                                    <span class="status-tag bg-iucn-lc">IUCN: LC</span>
+                                    <span class="status-tag bg-cites">CITES: App II</span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- BAGIAN 2: GALERI VISUALISASI (GAMBAR BESAR KOTAK) -->
