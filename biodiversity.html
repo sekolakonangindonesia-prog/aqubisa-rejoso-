@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategi Kehati Rejoso - AqruBiSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0b1f30; /* Biru Gelap Utama */
+            --primary-light: #1c3d52;
+            --accent-gold: #d4af37;
+            --text-dark: #333;
+            --bg-light: #f4f7f6;
+            --success-green: #28a745;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- HEADER (SAMA DENGAN INDEX) --- */
+        .top-bar { background-color: var(--primary-dark); color: white; padding: 6px 5%; display: flex; justify-content: space-between; font-size: 0.8rem; }
+        header { background: white; padding: 5px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+        .brand-wrapper { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { font-weight: 600; color: #444; font-size: 0.9rem; }
+        nav a:hover { color: var(--primary-dark); }
+        .btn-header { background: var(--primary-dark); color: white; padding: 8px 25px; border-radius: 25px; font-weight: bold; font-size: 0.9rem; }
+        
+        /* --- 1. HERO REPORT STYLE (Mirip Cover IBSAP) --- */
+        .report-hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(to right, rgba(11, 31, 48, 0.9) 40%, rgba(11, 31, 48, 0.4)), url('https://source.unsplash.com/1600x900/?jungle,forest');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+        
+        .report-hero-content { max-width: 700px; border-left: 5px solid var(--accent-gold); padding-left: 30px; }
+        .report-tag { background: var(--accent-gold); color: #000; padding: 5px 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; border-radius: 4px; }
+        .report-hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 15px; font-weight: 800; }
+        .report-hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
+        .btn-back { border: 1px solid white; padding: 10px 20px; color: white; border-radius: 50px; font-size: 0.9rem; }
+        .btn-back:hover { background: white; color: var(--primary-dark); }
+
+        /* --- CONTAINER UMUM --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 10px; }
+        .section-header p { color: #666; max-width: 700px; margin: 0 auto; }
+
+        /* --- 2. PENYELARASAN VISI (3 KOLOM) --- */
+        .vision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .vision-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--primary-dark); }
+        .vision-icon { width: 70px; height: 70px; background: #eef2f5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--primary-dark); font-size: 1.8rem; }
+        .vision-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #333; }
+        .vision-card p { font-size: 0.9rem; color: #666; }
+
+        /* --- 3. STATUS KEHATI (GRID GAMBAR) --- */
+        .status-section { background: white; }
+        .status-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .status-text h3 { color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 15px; }
+        .species-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .species-item { position: relative; border-radius: 8px; overflow: hidden; height: 120px; }
+        .species-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .species-item:hover img { transform: scale(1.1); }
+        .species-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.6); color: white; font-size: 0.75rem; padding: 5px; text-align: center; }
+        
+        /* --- 4. DATA CHART & PETA --- */
+        .data-panel { background: #0b1f30; color: white; padding: 60px 5%; margin-top: 60px; }
+        .data-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .map-box { background: #2c3e50; height: 350px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px dashed #555; }
+        .stat-list { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+        .stat-item { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; display: flex; align-items: center; gap: 20px; border-left: 4px solid var(--accent-gold); }
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent-gold); line-height: 1; }
+
+        /* --- 5. TABEL TARGET (Gaya Laporan) --- */
+        .table-container { overflow-x: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { background: var(--primary-dark); color: white; padding: 15px; text-align: left; font-weight: 600; }
+        td { padding: 15px; border-bottom: 1px solid #eee; color: #555; }
+        tr:last-child td { border-bottom: none; }
+        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+        .on-track { background: #d4edda; color: #155724; }
+        .in-progress { background: #fff3cd; color: #856404; }
+
+        /* --- FOOTER --- */
+        footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; border-top: 1px solid #333; }
+        
+        @media (max-width: 768px) {
+            .vision-grid, .status-wrapper, .data-grid { grid-template-columns: 1fr; }
+            .report-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER (KONSISTEN) -->
+    <header>
+        <div class="brand-wrapper">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA2.png" alt="Logo AqruBiSA" style="height: 60px; width: auto; margin-bottom: 0;">
+            <p style="font-size: 0.75rem; color: #555; font-weight: 600; margin-left: 2px; margin-top: -8px; line-height: 1;">Rejoso Co-Investment</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="#">Dokumen Strategis</a></li>
+                <li><a href="#">Peta Interaktif</a></li>
+            </ul>
+        </nav>
+        <a href="index.html#flow" class="btn-header">Gabung Sekarang</a>
+    </header>
+
+    <!-- 1. HERO SECTION (REPORT STYLE) -->
+    <section class="report-hero">
+        <div class="report-hero-content">
+            <span class="report-tag">DOKUMEN STRATEGIS & AKSI</span>
+            <h1>STRATEGI & RENCANA AKSI<br>KEHATI REJOSO 2025-2030</h1>
+            <p>Menerjemahkan <strong>IBSAP 2025-2045</strong> ke dalam aksi nyata tingkat tapak di DAS Rejoso untuk perlindungan ekosistem, spesies, dan genetik secara terukur.</p>
+            <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
+        </div>
+    </section>
+
+    <!-- 2. PENYELARASAN VISI (3 PILLAR IBSAP) -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Penyelarasan dengan Target Nasional</h2>
+            <p>AqruBiSA mengadopsi 3 pilar utama dari dokumen <em>Indonesian Biodiversity Strategy and Action Plan (IBSAP)</em> untuk konteks lokal Rejoso.</p>
+        </div>
+        <div class="vision-grid">
+            <!-- Goal 1 -->
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Konservasi & Restorasi</h3>
+                <p><strong>IBSAP Goal 1:</strong> Memperkuat integritas ekosistem dan mengurangi risiko kepunahan spesies endemik di hulu Rejoso.</p>
+            </div>
+            <!-- Goal 2 -->
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Pemanfaatan Berkelanjutan</h3>
+                <p><strong>IBSAP Goal 2:</strong> Mengoptimalkan nilai ekonomi kehati melalui agroforestri dan jasa lingkungan bagi masyarakat lokal.</p>
+            </div>
+            <!-- Goal 3 -->
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-gavel"></i></div>
+                <h3>Tata Kelola & Pendanaan</h3>
+                <p><strong>IBSAP Goal 3:</strong> Memperkuat mekanisme pendanaan (Co-Investment) yang transparan, adil, dan berbasis kinerja.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. STATUS KEHATI (GAMBAR & SPESIES) -->
+    <section class="status-section">
+        <div class="container">
+            <div class="status-wrapper">
+                <div class="status-text">
+                    <h3>Status Kekayaan Hayati Rejoso</h3>
+                    <p>DAS Rejoso merupakan rumah bagi beragam spesies kunci yang menjadi indikator kesehatan lingkungan. Melalui pemantauan berkala, kami mencatat keberadaan spesies berikut:</p>
+                    <ul style="margin-left:20px; color:#555; margin-bottom:20px;">
+                        <li>Habitat penting bagi <strong>Macan Tutul Jawa</strong> (Panthera pardus melas).</li>
+                        <li>Koridor migrasi bagi <strong>Elang Jawa</strong>.</li>
+                        <li>Kawasan resapan air vital bagi 4 kabupaten/kota.</li>
+                    </ul>
+                    <a href="#" style="color:var(--primary-dark); font-weight:bold; text-decoration:underline;">Lihat Laporan Lengkap Inventarisasi &rarr;</a>
+                </div>
+                <div class="species-grid">
+                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?eagle" alt="Elang"><div class="species-overlay">Elang Jawa</div></div>
+                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?leopard" alt="Macan"><div class="species-overlay">Macan Tutul</div></div>
+                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?orchid" alt="Anggrek"><div class="species-overlay">Anggrek Hutan</div></div>
+                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?monkey" alt="Lutung"><div class="species-overlay">Lutung Jawa</div></div>
+                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?tree" alt="Pohon"><div class="species-overlay">Cemara Gunung</div></div>
+                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?butterfly" alt="Kupu"><div class="species-overlay">Serangga Polinator</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. DATA VISUALISASI (DARK SECTION) -->
+    <section class="data-panel">
+        <div class="section-header" style="margin-bottom:30px;">
+            <h2 style="color:white;">Peta & Indikator Kinerja</h2>
+            <p style="color:#ccc;">Pemantauan berbasis sains untuk memastikan dampak nyata.</p>
+        </div>
+        <div class="data-grid">
+            <div class="map-box">
+                <!-- Placeholder Peta -->
+                <div style="text-align:center;">
+                    <i class="fas fa-map-marked-alt" style="font-size:3rem; color:#666;"></i>
+                    <p style="margin-top:10px; font-size:0.9rem;">[PETA GIS INTERAKTIF DAS REJOSO]</p>
+                    <small>Menampilkan Zona Konservasi & Titik Tanam</small>
+                </div>
+            </div>
+            <div class="stat-list">
+                <div class="stat-item">
+                    <div class="stat-num">3.6</div>
+                    <div>
+                        <h4 style="margin:0;">Indeks Kehati</h4>
+                        <p style="font-size:0.8rem; margin:0; opacity:0.8;">Target 2025 (Baseline 2.8)</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">1.2<span style="font-size:1rem;">jt</span></div>
+                    <div>
+                        <h4 style="margin:0;">Pohon Tertanam</h4>
+                        <p style="font-size:0.8rem; margin:0; opacity:0.8;">Akumulasi sejak 2018</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">55<span style="font-size:1rem;">Ha</span></div>
+                    <div>
+                        <h4 style="margin:0;">Lahan Kritis Pulih</h4>
+                        <p style="font-size:0.8rem; margin:0; opacity:0.8;">Melalui skema pembayaran jasa lingkungan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TABEL TARGET (TABLE SECTION) -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Matriks Target & Capaian</h2>
+            <p>Pengukuran kinerja berdasarkan indikator yang diselaraskan dengan RPJMN & IBSAP.</p>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indikator Kinerja Utama (KPI)</th>
+                        <th>Baseline (2020)</th>
+                        <th>Capaian (2024)</th>
+                        <th>Target (2030)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Luas Tutupan Lahan Hutan (Ha)</td>
+                        <td>45 Ha</td>
+                        <td><strong>55 Ha</strong></td>
+                        <td>120 Ha</td>
+                        <td><span class="status-badge on-track">On Track</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jumlah Spesies Burung Teridentifikasi</td>
+                        <td>28 Spesies</td>
+                        <td><strong>42 Spesies</strong></td>
+                        <td>60 Spesies</td>
+                        <td><span class="status-badge on-track">On Track</span></td>
+                    </tr>
+                    <tr>
+                        <td>Debit Mata Air Umbulan (Liter/detik)</td>
+                        <td>3.800</td>
+                        <td><strong>3.950</strong></td>
+                        <td>4.200</td>
+                        <td><span class="status-badge in-progress">Perlu Perhatian</span></td>
+                    </tr>
+                    <tr>
+                        <td>Partisipasi Petani (KK)</td>
+                        <td>120 KK</td>
+                        <td><strong>350 KK</strong></td>
+                        <td>800 KK</td>
+                        <td><span class="status-badge on-track">Melebihi Target</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026-2031 Rejoso Co-Investment Initiative. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
