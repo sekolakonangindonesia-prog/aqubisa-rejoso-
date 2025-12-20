@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk / Daftar - AqruBiSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0b1f30; /* Warna Biru Gelap SS2 */
+            --teal-accent: #005f73;
+            --text-light: #f9f9f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden; /* Supaya tidak ada scrollbar di halaman login */
+        }
+
+        /* --- PANEL KIRI (BRANDING) --- */
+        .left-panel {
+            flex: 4; /* Lebar 40% */
+            background-color: var(--primary-dark);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Hiasan background kiri */
+        .left-panel::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(11,31,48,0.9), rgba(0,95,115,0.7)), url('https://source.unsplash.com/1600x900/?river,forest');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-content img {
+            height: 120px;
+            margin-bottom: 20px;
+        }
+
+        .left-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .left-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- PANEL KANAN (FORM) --- */
+        .right-panel {
+            flex: 6; /* Lebar 60% */
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px 100px;
+            overflow-y: auto; /* Bisa scroll kalau form kepanjangan */
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .logo-mobile {
+            display: none; /* Hanya muncul di HP */
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .form-header h3 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Styling Input */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f4f6f8; /* Abu-abu muda mirip SS */
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--teal-accent);
+            background-color: white;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #483d8b; /* Warna Ungu Tombol */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #352b6b;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .link-action {
+            color: #483d8b;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Helper untuk sembunyikan form */
+        .hidden {
+            display: none;
+        }
+
+        /* --- RESPONSIVE UNTUK HP --- */
+        @media (max-width: 900px) {
+            body { flex-direction: column; height: auto; overflow: auto; }
+            .left-panel { display: none; } /* Sembunyikan panel kiri di HP */
+            .right-panel { padding: 40px 20px; }
+            .logo-mobile { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BAGIAN KIRI (GAMBAR & TEKS HERO) -->
+    <div class="left-panel">
+        <div class="left-content">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA2.png" alt="Logo AqruBiSA">
+            <h2>Water Conservation Funds<br>Strategic & Action Plan</h2>
+            <p>Platform terintegrasi untuk mengelola investasi konservasi sumberdaya air, menghubungkan partisipasi komunitas hulu dengan kepedulian sektor industri hilir.</p>
+        </div>
+    </div>
+
+    <!-- BAGIAN KANAN (FORM) -->
+    <div class="right-panel">
+        <!-- Logo Kecil (Hanya muncul di HP) -->
+        <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-mobile" alt="Logo Mobile">
+
+        <!-- ===== FORM LOGIN (DEFAULT) ===== -->
+        <div id="login-container">
+            <div class="form-header">
+                <h3>Welcome to AqruBiSA</h3>
+                <p id="role-display-login">Login as User</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Masukkan email Anda">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span></span>
+                        <a href="#" style="font-size:0.8rem; color:#483d8b; text-decoration:none;">Forgot Password?</a>
+                    </div>
+                    <input type="password" placeholder="********">
+                </div>
+                <button type="button" class="btn-submit">Sign In</button>
+            </form>
+            <div class="form-footer">
+                New Here? <span class="link-action" onclick="showRegister()">Create an Account</span>
+            </div>
+        </div>
+
+        <!-- ===== FORM REGISTER / SIGN UP (MIRIP SS3) ===== -->
+        <div id="register-container" class="hidden">
+            <div class="form-header">
+                <h3>Sign Up</h3>
+                <p>Enter your details to create an account in AqruBiSA</p>
+                <p id="role-display-register" style="color:#483d8b; font-weight:bold; margin-top:5px;"></p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Indonesian ID Number (KTP)</label>
+                    <input type="text" placeholder="Contoh: 3507xxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="email@contoh.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" placeholder="0812xxxxxx">
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>Password</label>
+                        <input type="password" placeholder="******">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Retype Password</label>
+                        <input type="password" placeholder="******">
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-submit">Submit Registration</button>
+                <button type="button" class="btn-submit" onclick="showLogin()" style="background:#ddd; color:#333; margin-top:10px;">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT SEDERHANA UNTUK PINDAH LOGIN <-> REGISTER -->
+    <script>
+        // Ambil parameter peran dari URL (seller/buyer)
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role'); // Contoh: auth.html?role=seller
+
+        // Tampilkan peran di teks
+        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa)' : 
+                         role === 'buyer' ? 'ES Buyer (Mitra/Investor)' : 'User';
+        
+        document.getElementById('role-display-login').innerText = "Login as " + roleText;
+        document.getElementById('role-display-register').innerText = "Registering as: " + roleText;
+
+        function showRegister() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('register-container').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('register-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
