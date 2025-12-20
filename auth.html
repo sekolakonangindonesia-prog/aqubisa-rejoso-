@@ -289,8 +289,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const role = urlParams.get('role'); 
 
-        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa)' : 
-                         role === 'buyer' ? 'ES Buyer (Mitra/Investor)' : 'User';
+        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa Lingkungan)' : 
+                         role === 'buyer' ? 'ES Buyer (Pemanfaat Jasa Lingkungan)' : 'User';
         
         // Tampilkan teks peran
         if(document.getElementById('role-display-login')) {
