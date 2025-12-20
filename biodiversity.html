@@ -115,6 +115,51 @@
             .vision-grid, .status-wrapper, .data-grid { grid-template-columns: 1fr; }
             .report-hero h1 { font-size: 2rem; }
         }
+        /* --- TAMBAHAN UNTUK LABEL STATUS SPESIES --- */
+        .species-item {
+            position: relative; /* Wajib ada agar badge bisa menempel */
+        }
+        
+        .status-badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .badge-info {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* Kode Warna Status */
+        .bg-red { background-color: #e63946; }      /* Endangered (EN) - Gawat */
+        .bg-orange { background-color: #fb8500; }   /* Vulnerable (VU) - Rentan */
+        .bg-green { background-color: #2a9d8f; }    /* Dilindungi UU (PermenLHK) */
+        .bg-blue { background-color: #0077b6; }     /* CITES / Appendix */
+        .bg-grey { background-color: #6c757d; }     /* Least Concern (LC) */
+
+        /* Perbaikan Overlay Text */
+        .species-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            height: auto;
+            padding: 15px 10px 5px;
+            text-align: left;
+        }
+        .species-overlay small {
+            display: block;
+            color: #ccc;
+            font-weight: 400;
+            font-size: 0.65rem;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
@@ -186,16 +231,86 @@
                     <a href="#" style="color:var(--primary-dark); font-weight:bold; text-decoration:underline;">Lihat Database Inventarisasi Lengkap &rarr;</a>
                 </div>
                 <div class="species-grid">
-                    <!-- FOTO ILUSTRASI SPESIES NYATA -->
-                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?kingfisher" alt="Raja Udang"><div class="species-overlay">Raja Udang Meninting</div></div>
-                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?bird,black" alt="Bubut Jawa"><div class="species-overlay">Bubut Jawa (VU)</div></div>
-                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?butterfly,yellow" alt="Troides"><div class="species-overlay">Kupu-kupu Raja</div></div>
-                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?mangrove" alt="Mangrove"><div class="species-overlay">Rhizophora mucronata</div></div>
-                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?palm,tree" alt="Sagu"><div class="species-overlay">Pohon Sagu Umbulan</div></div>
-                    <div class="species-item"><img src="https://source.unsplash.com/300x300/?lizard" alt="Biawak"><div class="species-overlay">Biawak Air Asia</div></div>
+                    
+                    <!-- 1. MAHONI (Endangered) -->
+                    <div class="species-item">
+                        <img src="https://source.unsplash.com/300x300/?mahogany,tree" alt="Mahoni">
+                        <div class="status-badges">
+                            <span class="badge-info bg-red">IUCN: Endangered (EN)</span>
+                            <span class="badge-info bg-blue">CITES: App II</span>
+                        </div>
+                        <div class="species-overlay">
+                            Mahoni Daun Lebar<br>
+                            <small>Swietenia macrophylla</small>
+                        </div>
+                    </div>
+
+                    <!-- 2. BUBUT JAWA (Vulnerable + Dilindungi) -->
+                    <div class="species-item">
+                        <img src="https://source.unsplash.com/300x300/?black,bird" alt="Bubut Jawa">
+                        <div class="status-badges">
+                            <span class="badge-info bg-orange">IUCN: Vulnerable (VU)</span>
+                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
+                        </div>
+                        <div class="species-overlay">
+                            Bubut Jawa<br>
+                            <small>Centropus nigrorufus</small>
+                        </div>
+                    </div>
+
+                    <!-- 3. KUPU RAJA (Dilindungi) -->
+                    <div class="species-item">
+                        <img src="https://source.unsplash.com/300x300/?butterfly,yellow" alt="Troides">
+                        <div class="status-badges">
+                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
+                            <span class="badge-info bg-blue">CITES: App II</span>
+                        </div>
+                        <div class="species-overlay">
+                            Kupu-kupu Raja<br>
+                            <small>Troides cuneifera</small>
+                        </div>
+                    </div>
+
+                    <!-- 4. RAJA UDANG (Dilindungi) -->
+                    <div class="species-item">
+                        <img src="https://source.unsplash.com/300x300/?kingfisher" alt="Raja Udang">
+                        <div class="status-badges">
+                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
+                            <span class="badge-info bg-grey">IUCN: LC</span>
+                        </div>
+                        <div class="species-overlay">
+                            Raja Udang Meninting<br>
+                            <small>Alcedo meninting</small>
+                        </div>
+                    </div>
+
+                    <!-- 5. GAJAHAN PENGGALA (Migran/Dilindungi) -->
+                    <div class="species-item">
+                        <img src="https://source.unsplash.com/300x300/?wader,bird" alt="Gajahan">
+                        <div class="status-badges">
+                            <span class="badge-info bg-green">UU: Dilindungi (P.106)</span>
+                            <span class="badge-info bg-blue">Satwa Migran</span>
+                        </div>
+                        <div class="species-overlay">
+                            Gajahan Penggala<br>
+                            <small>Numenius phaeopus</small>
+                        </div>
+                    </div>
+
+                    <!-- 6. SAGU (Khas Umbulan) -->
+                    <div class="species-item">
+                        <img src="https://source.unsplash.com/300x300/?sago,palm" alt="Sagu">
+                        <div class="status-badges">
+                            <span class="badge-info bg-grey">Spesies Kunci</span>
+                            <span class="badge-info bg-blue">Khas Umbulan</span>
+                        </div>
+                        <div class="species-overlay">
+                            Pohon Sagu<br>
+                            <small>Metroxylon sagu</small>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </div>
     </section>
 
        <!-- 3.5. MONITORING LOG (DATA OPERASIONAL PER LOKASI) -->
