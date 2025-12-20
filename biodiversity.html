@@ -96,6 +96,108 @@
             .vision-grid, .status-wrapper, .data-grid { grid-template-columns: 1fr; }
             .report-hero h1 { font-size: 2rem; }
         }
+        /* --- CSS KHUSUS TABEL MONITORING (SS1 STYLE) --- */
+        .monitoring-section {
+            background-color: white;
+            padding: 60px 5%;
+            border-top: 10px solid #f4f7f6; /* Pemisah visual */
+        }
+        
+        .monitoring-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .monitoring-header {
+            background-color: #ccff00; /* Warna Hijau Stabilo SS1 */
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .monitoring-header h3 {
+            margin: 0;
+            color: #000;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-monitor {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px; /* Agar tidak gepeng di HP */
+        }
+
+        .table-monitor th {
+            background-color: #f9f9f9;
+            color: #555;
+            font-weight: 700;
+            text-align: left;
+            padding: 15px 20px;
+            border-bottom: 2px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .table-monitor td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            color: #333;
+            vertical-align: middle;
+        }
+
+        /* Kolom Lokasi Tebal */
+        .loc-name { font-weight: 700; color: #000; }
+        
+        /* Kolom Company & Lembaga */
+        .company-tag { font-size: 0.8rem; font-weight: bold; color: #005f73; }
+        .monitor-by { font-size: 0.75rem; color: #666; font-style: italic; }
+
+        /* Index H' Tebal */
+        .index-val { font-weight: 800; font-size: 1.1rem; }
+
+        /* Status Badge (Sesuai SS1) */
+        .badge-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid;
+            min-width: 100px;
+        }
+
+        .st-sangat-baik { background-color: #f0fff0; color: #2e7d32; border-color: #ccff00; }
+        .st-baik { background-color: #f9fff0; color: #558b2f; border-color: #d4e157; }
+        .st-sedang { background-color: #e3f2fd; color: #1565c0; border-color: #90caf9; }
+
+        /* Tombol Detail */
+        .btn-detail-small {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #555;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-detail-small:hover {
+            background: #0b1f30;
+            color: white;
+            border-color: #0b1f30;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +322,108 @@
             </div>
         </div>
     </section>
+<!-- 3.5. MONITORING LOG (DATA REAL AQUA KEBONCANDI) -->
+    <section class="monitoring-section">
+        <div class="container" style="padding-top:0;">
+            <div class="section-header">
+                <h2>Log Data Monitoring Terkini</h2>
+                <p>Transparansi data kondisi keanekaragaman hayati dari mitra perusahaan di wilayah Pasuruan. <br>Data divalidasi dan dimonitoring langsung oleh tim ahli.</p>
+            </div>
 
+            <!-- Tabel Card -->
+            <div class="monitoring-card">
+                <!-- Header Hijau SS1 -->
+                <div class="monitoring-header">
+                    <i class="fas fa-table"></i>
+                    <h3>Data Baseline & Monitoring Berkala</h3>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-monitor">
+                        <thead>
+                            <tr>
+                                <th width="25%">Lokasi Pantau</th>
+                                <th width="20%">Mitra Penanggung Jawab</th>
+                                <th width="15%">Pelaksana Monitoring</th>
+                                <th width="8%">Tahun</th>
+                                <th width="10%">Indeks (H')</th>
+                                <th width="12%">Status</th>
+                                <th width="10%">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ROW 1 -->
+                            <tr>
+                                <td class="loc-name">Taman Kehati AQUA Keboncandi</td>
+                                <td><span class="company-tag">PT. Tirta Investama</span></td>
+                                <td class="monitor-by">Yayasan Sekola Konang</td>
+                                <td>2025</td>
+                                <td class="index-val">3.99</td>
+                                <td><span class="badge-status st-sangat-baik">Sangat Baik</span></td>
+                                <td><a href="#" class="btn-detail-small">Detail</a></td>
+                            </tr>
+
+                            <!-- ROW 2 -->
+                            <tr>
+                                <td class="loc-name">Desa Galih - Lahan Pecaton</td>
+                                <td><span class="company-tag">PT. Tirta Investama</span></td>
+                                <td class="monitor-by">Yayasan Sekola Konang</td>
+                                <td>2025</td>
+                                <td class="index-val">3.11</td>
+                                <td><span class="badge-status st-baik">Baik</span></td>
+                                <td><a href="#" class="btn-detail-small">Detail</a></td>
+                            </tr>
+
+                            <!-- ROW 3 -->
+                            <tr>
+                                <td class="loc-name">Desa Galih - Tegal Pak Karyono</td>
+                                <td><span class="company-tag">PT. Tirta Investama</span></td>
+                                <td class="monitor-by">Yayasan Sekola Konang</td>
+                                <td>2025</td>
+                                <td class="index-val">2.74</td>
+                                <td><span class="badge-status st-sedang">Sedang</span></td>
+                                <td><a href="#" class="btn-detail-small">Detail</a></td>
+                            </tr>
+
+                            <!-- ROW 4 -->
+                            <tr>
+                                <td class="loc-name">Desa Galih - Tegal Pak Andari</td>
+                                <td><span class="company-tag">PT. Tirta Investama</span></td>
+                                <td class="monitor-by">Yayasan Sekola Konang</td>
+                                <td>2025</td>
+                                <td class="index-val">2.75</td>
+                                <td><span class="badge-status st-sedang">Sedang</span></td>
+                                <td><a href="#" class="btn-detail-small">Detail</a></td>
+                            </tr>
+
+                            <!-- ROW 5 -->
+                            <tr>
+                                <td class="loc-name">Kawasan Mata Air Umbulan</td>
+                                <td><span class="company-tag">PT. Tirta Investama</span></td>
+                                <td class="monitor-by">Yayasan Sekola Konang</td>
+                                <td>2024</td>
+                                <td class="index-val">3.5</td>
+                                <td><span class="badge-status st-sangat-baik">Sangat Baik</span></td>
+                                <td><a href="#" class="btn-detail-small">Detail</a></td>
+                            </tr>
+
+                            <!-- ROW 6 -->
+                            <tr>
+                                <td class="loc-name">Kawasan Penyangga Nguling</td>
+                                <td><span class="company-tag">PT. Tirta Investama</span></td>
+                                <td class="monitor-by">Yayasan Sekola Konang</td>
+                                <td>2024</td>
+                                <td class="index-val">2.9</td>
+                                <td><span class="badge-status st-sedang">Sedang</span></td>
+                                <td><a href="#" class="btn-detail-small">Detail</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- 5. TABEL TARGET (TABLE SECTION) -->
     <section class="container">
         <div class="section-header">
