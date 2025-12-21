@@ -217,10 +217,20 @@
             border-color: var(--accent-gold);
         }
 
+        /* UPDATE: GAMBAR KOTAK (SQUARE) */
         .species-img-large {
             width: 100%;
-            height: 250px; /* Gambar Besar */
-            object-fit: cover;
+            aspect-ratio: 1 / 1; /* Rasio 1:1 (Kotak Sempurna) */
+            object-fit: cover;   /* Gambar tidak gepeng */
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Update Grid agar cuma isi 2 per baris (Untuk Highlight) */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
         .species-info {
@@ -494,13 +504,28 @@
                 </div>
             </div>
 
-            <!-- BAGIAN 2: GALERI VISUALISASI (GAMBAR BESAR KOTAK) -->
-            <h3 style="color: var(--primary-dark); margin-top: 50px;">Visualisasi Spesies Kunci</h3>
-            <div class="species-gallery-grid">
+            <!-- BAGIAN 2: HIGHLIGHT GALERI (DIBAGI 2 KATEGORI) -->
+            
+            <!-- BARIS 1: FAUNA -->
+            <h3 style="color: var(--primary-dark); margin-top: 50px; border-left:5px solid var(--accent-gold); padding-left:15px;">Status Konservasi Fauna</h3>
+            <div class="highlight-grid">
                 
-                <!-- Card 1 -->
+                <!-- Kupu-kupu Raja -->
                 <div class="species-card-box">
-                    <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/bubut_jawa.jpg" alt="Bubut Jawa">
+                    <img src="https://source.unsplash.com/400x400/?butterfly,yellow" class="species-img-large" alt="Kupu Raja">
+                    <div class="species-info">
+                        <div class="species-name-main">Kupu-kupu Raja</div>
+                        <span class="species-name-sci">Troides cuneifera</span>
+                        <div class="badges">
+                            <span class="status-tag bg-p106">Dilindungi</span>
+                            <span class="status-tag bg-cites">CITES App II</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bubut Jawa -->
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?bird,black" class="species-img-large" alt="Bubut Jawa">
                     <div class="species-info">
                         <div class="species-name-main">Bubut Jawa</div>
                         <span class="species-name-sci">Centropus nigrorufus</span>
@@ -511,7 +536,13 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
+            </div>
+
+            <!-- BARIS 2: TUMBUHAN (FLORA) -->
+            <h3 style="color: var(--primary-dark); border-left:5px solid var(--success-green); padding-left:15px;">Status Konservasi Tumbuhan</h3>
+            <div class="highlight-grid">
+                
+                <!-- Cemara Norfolk -->
                 <div class="species-card-box">
                     <img src="https://source.unsplash.com/400x400/?pine,tree" class="species-img-large" alt="Cemara">
                     <div class="species-info">
@@ -524,27 +555,14 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Mahoni Daun Lebar -->
                 <div class="species-card-box">
-                    <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/kupu-troides.jpg" alt="Kupu Raja">
+                    <img src="https://source.unsplash.com/400x400/?mahogany,tree" class="species-img-large" alt="Mahoni">
                     <div class="species-info">
-                        <div class="species-name-main">Kupu-kupu Raja</div>
-                        <span class="species-name-sci">Troides cuneifera</span>
+                        <div class="species-name-main">Mahoni Daun Lebar</div>
+                        <span class="species-name-sci">Swietenia macrophylla</span>
                         <div class="badges">
-                            <span class="status-tag bg-cites">CITES App II</span>
-                            <span class="status-tag bg-p106">Dilindungi</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="species-card-box">
-                    <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/biawak_air.jpg" alt="Biawak">
-                    <div class="species-info">
-                        <div class="species-name-main">Biawak Air Asia</div>
-                        <span class="species-name-sci">Varanus salvator</span>
-                        <div class="badges">
-                            <span class="status-tag bg-iucn-lc">Least Concern</span>
+                            <span class="status-tag bg-iucn-en">Endangered</span>
                             <span class="status-tag bg-cites">CITES App II</span>
                         </div>
                     </div>
@@ -552,11 +570,12 @@
 
             </div>
 
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="#" style="display:inline-block; padding: 12px 30px; background:var(--primary-dark); color:white; border-radius:30px; font-weight:bold;">Lihat Database Inventarisasi Lengkap &rarr;</a>
+            <!-- TOMBOL LIHAT LENGKAP -->
+            <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
+                <a href="inventory.html" style="display:inline-block; padding: 15px 40px; background:var(--primary-dark); color:white; border-radius:50px; font-weight:bold; font-size:1rem; text-decoration:none; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    Lihat Database Inventarisasi Lengkap &rarr;
+                </a>
             </div>
-
-        </div>
        </section>
 
        <!-- 3.5. MONITORING LOG (DATA OPERASIONAL PER LOKASI) -->
