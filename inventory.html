@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Inventarisasi - AqruBiSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS DASAR (Sama dengan biodiversity.html) */
+        :root {
+            --primary-dark: #0b1f30;
+            --accent-gold: #d4af37;
+            --text-dark: #333;
+            --bg-light: #f4f7f6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); }
+        
+        /* HEADER */
+        header { background: white; padding: 10px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+        .brand-text { font-weight: 800; color: var(--primary-dark); font-size: 1.5rem; }
+        .btn-back { color: var(--primary-dark); text-decoration: none; font-weight: bold; }
+
+        /* HERO INVENTORY */
+        .inventory-hero {
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        /* GRID GALERI LENGKAP (GAMBAR LEBIH BESAR) */
+        .full-gallery {
+            display: grid;
+            /* Minmax 350px agar kartu lebih besar dari halaman sebelumnya */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px;
+            padding: 50px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .species-card-large {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border: 1px solid #ddd;
+        }
+        
+        .species-card-large:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+
+        /* GAMBAR KOTAK BESAR */
+        .img-box-lg {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Tetap Kotak */
+            object-fit: cover;
+        }
+
+        .card-body { padding: 25px; }
+        .sp-name { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 5px; }
+        .sp-latin { font-style: italic; color: #666; display: block; margin-bottom: 15px; font-size: 1rem; }
+        
+        /* BADGES */
+        .tag { display: inline-block; padding: 5px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; color: white; margin-right: 5px; margin-bottom: 5px; }
+        .bg-red { background: #e63946; } /* Endangered */
+        .bg-orange { background: #fb8500; } /* Vulnerable */
+        .bg-yellow { background: #f1c40f; color:#000; } /* NT */
+        .bg-black { background: #000; } /* EW */
+        .bg-blue { background: #0077b6; } /* CITES/Migran */
+        .bg-green { background: #2a9d8f; } /* Dilindungi */
+        .bg-grey { background: #6c757d; } /* LC */
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-text">AqruBiSA Inventory</div>
+        <a href="biodiversity.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+    </header>
+
+    <div class="inventory-hero">
+        <h1>Database Spesies Dilindungi & Endemik</h1>
+        <p>Inventarisasi lengkap hasil monitoring di Kawasan Konservasi Rejoso.</p>
+    </div>
+
+    <div class="full-gallery">
+        
+        <!-- 1. KUPU-KUPU RAJA -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?butterfly,yellow" class="img-box-lg" alt="Troides">
+            <div class="card-body">
+                <div class="sp-name">Kupu-kupu Raja</div>
+                <span class="sp-latin">Troides cuneifera</span>
+                <span class="tag bg-green">Dilindungi P.106</span>
+                <span class="tag bg-blue">CITES App II</span>
+            </div>
+        </div>
+
+        <!-- 2. BUBUT JAWA -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?bird,black" class="img-box-lg" alt="Bubut Jawa">
+            <div class="card-body">
+                <div class="sp-name">Bubut Jawa</div>
+                <span class="sp-latin">Centropus nigrorufus</span>
+                <span class="tag bg-orange">IUCN: Vulnerable</span>
+                <span class="tag bg-green">Dilindungi P.106</span>
+            </div>
+        </div>
+
+        <!-- 3. BIAWAK AIR ASIA -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?lizard" class="img-box-lg" alt="Biawak">
+            <div class="card-body">
+                <div class="sp-name">Biawak Air Asia</div>
+                <span class="sp-latin">Varanus salvator</span>
+                <span class="tag bg-blue">CITES App II</span>
+                <span class="tag bg-grey">IUCN: LC</span>
+            </div>
+        </div>
+
+        <!-- 4. GAJAHAN PENGGALA -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?wader,bird" class="img-box-lg" alt="Gajahan">
+            <div class="card-body">
+                <div class="sp-name">Gajahan Penggala</div>
+                <span class="sp-latin">Numenius phaeopus</span>
+                <span class="tag bg-blue">Satwa Migran</span>
+                <span class="tag bg-green">Dilindungi P.106</span>
+            </div>
+        </div>
+
+        <!-- 5. CEMARA NORFOLK -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?pine,tree" class="img-box-lg" alt="Cemara">
+            <div class="card-body">
+                <div class="sp-name">Cemara Norfolk</div>
+                <span class="sp-latin">Araucaria heterophylla</span>
+                <span class="tag bg-orange">IUCN: Vulnerable</span>
+                <span class="tag bg-green">Dilindungi</span>
+            </div>
+        </div>
+
+        <!-- 6. MAHONI DAUN LEBAR -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?mahogany" class="img-box-lg" alt="Mahoni">
+            <div class="card-body">
+                <div class="sp-name">Mahoni Daun Lebar</div>
+                <span class="sp-latin">Swietenia macrophylla</span>
+                <span class="tag bg-red">IUCN: Endangered</span>
+                <span class="tag bg-blue">CITES App II</span>
+            </div>
+        </div>
+
+        <!-- 7. PALEM KUNING -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?palm" class="img-box-lg" alt="Palem">
+            <div class="card-body">
+                <div class="sp-name">Palem Kuning</div>
+                <span class="sp-latin">Dypsis lutescens</span>
+                <span class="tag bg-yellow">IUCN: Near Threatened</span>
+            </div>
+        </div>
+
+        <!-- 8. KECUBUNG HUTAN -->
+        <div class="species-card-large">
+            <img src="https://source.unsplash.com/500x500/?flower,forest" class="img-box-lg" alt="Kecubung">
+            <div class="card-body">
+                <div class="sp-name">Kecubung Hutan</div>
+                <span class="sp-latin">Brugmansia suaveolens</span>
+                <span class="tag bg-black">IUCN: EW (Extinct in Wild)</span>
+                <small style="display:block; margin-top:5px; color:#666;">*Dilestarikan di Zona Konservasi</small>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
