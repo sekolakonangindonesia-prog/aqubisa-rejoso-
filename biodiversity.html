@@ -219,7 +219,7 @@
 
         /* UPDATE: GAMBAR KOTAK (SQUARE) */
         .species-img-large {
-            width: 80%;
+            width: 100%;
             aspect-ratio: 1 / 1; /* Rasio 1:1 (Kotak Sempurna) */
             object-fit: cover;   /* Gambar tidak gepeng */
             border-bottom: 1px solid #eee;
@@ -281,7 +281,62 @@
         .bg-iucn-en { background-color: #c0392b; } /* Genting - Merah */
         .bg-p106 { background-color: #2980b9; }    /* Dilindungi UU - Biru */
         .bg-cites { background-color: #8e44ad; }   /* CITES - Ungu */
-        
+
+        /* --- CSS BARU: TARGET IBSAP (KOTAK WARNA) --- */
+        .ibsap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .ibsap-card {
+            color: white;
+            padding: 30px 25px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .ibsap-card:hover { transform: translateY(-5px); }
+
+        /* Warna Background per Tujuan (Sesuai Gambar SS) */
+        .bg-goal-1 { background: linear-gradient(135deg, #4caf50, #2e7d32); } /* Hijau (Tujuan 1) */
+        .bg-goal-2 { background: linear-gradient(135deg, #ff9800, #ef6c00); } /* Orange (Tujuan 2) */
+        .bg-goal-3 { background: linear-gradient(135deg, #29b6f6, #0277bd); } /* Biru (Tujuan 3) */
+
+        .goal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .target-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .target-list li {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .target-icon {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            min-width: 30px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -312,28 +367,87 @@
         </div>
     </section>
 
-    <!-- 2. PENYELARASAN VISI -->
+   <!-- 2. PENYELARASAN DENGAN TARGET NASIONAL (IBSAP 2025-2045) -->
     <section class="container">
         <div class="section-header">
-            <h2>Penyelarasan dengan Target Nasional</h2>
-            <p>AqruBiSA mengadopsi 3 pilar utama dari dokumen <em>Indonesian Biodiversity Strategy and Action Plan (IBSAP)</em> untuk konteks lokal Rejoso.</p>
+            <h2>Kontribusi Strategis DAS Rejoso</h2>
+            <p>Inisiatif ini dirancang untuk mendukung pencapaian <strong>20 Target Nasional</strong> dalam <em>Indonesian Biodiversity Strategy and Action Plan (IBSAP)</em> melalui pendekatan bentang alam terpadu.</p>
         </div>
-        <div class="vision-grid">
-            <div class="vision-card">
-                <div class="vision-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Konservasi & Restorasi</h3>
-                <p><strong>IBSAP Goal 1:</strong> Memperkuat integritas ekosistem mata air Umbulan dan hutan lindung Galih.</p>
+
+        <div class="ibsap-grid">
+            
+            <!-- TUJUAN 1: KONSERVASI (HIJAU) - Referensi SS2 -->
+            <div class="ibsap-card bg-goal-1">
+                <div class="goal-title">Tujuan 1</div>
+                <p style="margin-bottom:20px; font-weight:600;">Integritas & Ketahanan Ekosistem</p>
+                <ul class="target-list">
+                    <li>
+                        <i class="fas fa-cubes target-icon"></i>
+                        <span><strong>Integrasi Ekosistem:</strong> Pengelolaan terpadu hulu-hilir DAS Rejoso.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-seedling target-icon"></i>
+                        <span><strong>Restorasi & Rehabilitasi:</strong> Pemulihan lahan kritis dan sempadan sungai.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-shield-alt target-icon"></i>
+                        <span><strong>Perlindungan Spesies:</strong> Konservasi habitat satwa endemik & terancam punah.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-cloud-sun-rain target-icon"></i>
+                        <span><strong>Ketahanan Iklim:</strong> Mitigasi risiko bencana banjir dan kekeringan.</span>
+                    </li>
+                </ul>
             </div>
-            <div class="vision-card">
-                <div class="vision-icon"><i class="fas fa-leaf"></i></div>
-                <h3>Pemanfaatan Berkelanjutan</h3>
-                <p><strong>IBSAP Goal 2:</strong> Mengoptimalkan nilai ekonomi kehati, seperti pemanfaatan tanaman Sagu dan buah-buahan lokal.</p>
+
+            <!-- TUJUAN 2: PEMANFAATAN (ORANYE) - Referensi SS3 -->
+            <div class="ibsap-card bg-goal-2">
+                <div class="goal-title">Tujuan 2</div>
+                <p style="margin-bottom:20px; font-weight:600;">Pemanfaatan Berkelanjutan</p>
+                <ul class="target-list">
+                    <li>
+                        <i class="fas fa-wheat target-icon"></i>
+                        <span><strong>Budi Daya Berkelanjutan:</strong> Praktik pertanian ramah air dan kehati.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-hand-holding-usd target-icon"></i>
+                        <span><strong>Nilai Jasa Ekosistem:</strong> Skema Pembayaran Jasa Lingkungan (PES) yang adil.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-tree target-icon"></i>
+                        <span><strong>Ketersediaan RTH:</strong> Perluasan Ruang Terbuka Hijau di kawasan industri & publik.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-dna target-icon"></i>
+                        <span><strong>Sumber Daya Genetik:</strong> Pemanfaatan tanaman lokal untuk pangan & obat.</span>
+                    </li>
+                </ul>
             </div>
-            <div class="vision-card">
-                <div class="vision-icon"><i class="fas fa-gavel"></i></div>
-                <h3>Tata Kelola & Pendanaan</h3>
-                <p><strong>IBSAP Goal 3:</strong> Kemitraan strategis antara PT Tirta Investama dan masyarakat dalam monitoring berkala.</p>
+
+            <!-- TUJUAN 3: TATA KELOLA (BIRU MUDA) - Referensi SS4 -->
+            <div class="ibsap-card bg-goal-3">
+                <div class="goal-title">Tujuan 3</div>
+                <p style="margin-bottom:20px; font-weight:600;">Penguatan Tata Kelola & Pendanaan</p>
+                <ul class="target-list">
+                    <li>
+                        <i class="fas fa-microscope target-icon"></i>
+                        <span><strong>Pengayaan IPTEK:</strong> Riset berbasis sains (Scientific-based monitoring).</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-database target-icon"></i>
+                        <span><strong>Integrasi Data:</strong> Sistem database terpusat (AqruBiSA) yang transparan.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-users target-icon"></i>
+                        <span><strong>Partisipasi Masyarakat:</strong> Pelibatan multipihak (Petani, Swasta, Pemerintah).</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-coins target-icon"></i>
+                        <span><strong>Daya Dukung Finansial:</strong> Model investasi hijau (Co-Investment) lintas sektor.</span>
+                    </li>
+                </ul>
             </div>
+
         </div>
     </section>
 
