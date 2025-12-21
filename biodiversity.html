@@ -31,7 +31,7 @@
         /* --- 1. HERO REPORT STYLE --- */
         .report-hero {
             position: relative;
-            height: 500px;
+            height: 350px; /* Dikecilkan dari 500px jadi 350px biar ramping */
             background: linear-gradient(to right, rgba(11, 31, 48, 0.9) 40%, rgba(11, 31, 48, 0.4)), url('https://source.unsplash.com/1600x900/?jungle,forest');
             background-size: cover;
             background-position: center;
@@ -43,7 +43,7 @@
         
         .report-hero-content { max-width: 700px; border-left: 5px solid var(--accent-gold); padding-left: 30px; }
         .report-tag { background: var(--accent-gold); color: #000; padding: 5px 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; border-radius: 4px; }
-        .report-hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 15px; font-weight: 800; }
+        .report-hero h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 15px; font-weight: 800; }
         .report-hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
         .btn-back { border: 1px solid white; padding: 10px 20px; color: white; border-radius: 50px; font-size: 0.9rem; }
         .btn-back:hover { background: white; color: var(--primary-dark); }
@@ -226,11 +226,30 @@
         }
 
         /* Update Grid agar cuma isi 2 per baris (Untuk Highlight) */
+        .category-title {
+            color: var(--primary-dark);
+            margin-top: 40px; 
+            margin-bottom: 30px; /* DITAMBAH: Jarak ke gambar biar gak ketabrak saat hover */
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 15px;
+        }
         .highlight-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+            max-width: 900px; /* Membatasi lebar total agar gambar tidak raksasa */
+            margin-left: 0;
+        }
+        
+        .species-card-box {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            border: 1px solid #e0e0e0;
+            max-width: 350px; /* Membatasi ukuran maksimal kartu */
         }
 
         .species-info {
@@ -621,7 +640,7 @@
             <!-- BAGIAN 2: HIGHLIGHT GALERI (DIBAGI 2 KATEGORI) -->
             
             <!-- BARIS 1: FAUNA -->
-            <h3 style="color: var(--primary-dark); margin-top: 50px; border-left:5px solid var(--accent-gold); padding-left:15px;">Status Konservasi Fauna</h3>
+            <h3 class="category-title" style="border-color: var(--accent-gold);">Status Konservasi Fauna</h3>
             <div class="highlight-grid">
                 
                 <!-- Kupu-kupu Raja -->
@@ -629,7 +648,7 @@
                     <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/kupu-troides.jpg" alt="Kupu Raja">
                     <div class="species-info">
                         <div class="species-name-main">Kupu-kupu Raja</div>
-                        <span class="species-name-sci">Troides cuneifera</span>
+                        <span class="species-name-sci">Troides Helena</span>
                         <div class="badges">
                             <span class="status-tag bg-p106">Dilindungi</span>
                             <span class="status-tag bg-cites">CITES App II</span>
@@ -653,7 +672,7 @@
             </div>
 
             <!-- BARIS 2: TUMBUHAN (FLORA) -->
-            <h3 style="color: var(--primary-dark); border-left:5px solid var(--success-green); padding-left:15px;">Status Konservasi Tumbuhan</h3>
+            <h3 class="category-title" style="border-color: var(--success-green);">Status Konservasi Tumbuhan</h3>
             <div class="highlight-grid">
                 
                 <!-- Cemara Norfolk -->
