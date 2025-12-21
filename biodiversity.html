@@ -354,6 +354,19 @@
             min-width: 30px;
             text-align: center;
         }
+        
+        /* UPDATE CSS UNTUK LINK STATUS */
+        a.status-tag {
+            text-decoration: none; /* Hilangkan garis bawah link */
+            cursor: pointer;       /* Ubah kursor jadi tangan */
+            transition: 0.3s;
+        }
+
+        a.status-tag:hover {
+            opacity: 0.8;          /* Efek transparan sedikit saat di-hover */
+            transform: scale(1.05); /* Membesar sedikit */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -648,8 +661,11 @@
                         <div class="species-name-main">Kupu-kupu Raja</div>
                         <span class="species-name-sci">Troides Helena</span>
                         <div class="badges">
-                            <span class="status-tag bg-p106">Dilindungi</span>
-                            <span class="status-tag bg-cites">CITES App II</span>
+                            <a href="https://id.wikipedia.org/wiki/Troides_helena" target="_blank" class="status-tag bg-p106" title="Klik untuk info lengkap">
+                            <i class="fas fa-info-circle"></i> Dilindungi
+                            </a>
+                            <a href="https://id.wikipedia.org/wiki/Troides" target="_blank" class="status-tag bg-cites">CITES App II
+                            </a>
                         </div>
                     </div>
                 </div>
