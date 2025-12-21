@@ -200,31 +200,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
-        }
-
-        .species-card-box {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: 0.3s;
-            border: 1px solid #e0e0e0;
-        }
-
-        .species-card-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            border-color: var(--accent-gold);
-        }
-
-        /* UPDATE: GAMBAR KOTAK (SQUARE) */
-        .species-img-large {
-            width: 100%;
-            aspect-ratio: 1 / 1; /* Rasio 1:1 (Kotak Sempurna) */
-            object-fit: cover;   /* Gambar tidak gepeng */
-            border-bottom: 1px solid #eee;
-        }
-
+        }        
+       
         /* Update Grid agar cuma isi 2 per baris (Untuk Highlight) */
         .category-title {
             color: var(--primary-dark);
@@ -234,24 +211,41 @@
             padding-left: 15px;
         }
         .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-            max-width: 700px; /* Membatasi lebar total agar gambar tidak raksasa */
-            margin-left: 0;
+            display: flex; /* Ganti Grid jadi Flex agar mudah ditengahin */
+            flex-wrap: wrap; /* Agar turun ke bawah kalau layar sempit */
+            justify-content: center; /* Posisi di tengah layar */
+            gap: 30px;
+            margin-bottom: 50px;
+            max-width: 1200px; /* Batas lebar total */
+            margin-left: auto; 
+            margin-right: auto;
         }
-        
-        .species-card-box {
+       .species-card-box {
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: 0.3s;
             border: 1px solid #e0e0e0;
-            max-width: 350px; /* Membatasi ukuran maksimal kartu */
+            
+            /* KUNCI UKURAN KARTU (Agar tidak raksasa) */
+            width: 320px; 
+            flex: 0 0 auto; /* Mencegah kartu melar */
         }
 
+       .species-card-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: var(--accent-gold);
+        }
+
+         species-img-large {
+            width: 100%;
+            height: 320px; /* Samakan dengan lebar kartu biar jadi kotak */
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        
         .species-info {
             padding: 20px;
         }
@@ -668,6 +662,18 @@
                         </div>
                     </div>
                 </div>
+                <!-- 3. Tupai Kekes (ITEM BARU) -->
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?squirrel" class="species-img-large" alt="Tupai">
+                    <div class="species-info">
+                        <div class="species-name-main">Tupai Kekes</div>
+                        <span class="species-name-sci">Tupaia javanica</span>
+                        <div class="badges">
+                            <span class="status-tag bg-cites">CITES App II</span>
+                            <span class="status-tag bg-iucn-lc">Least Concern</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -696,6 +702,17 @@
                         <span class="species-name-sci">Swietenia macrophylla</span>
                         <div class="badges">
                             <span class="status-tag bg-iucn-en">Endangered</span>
+                            <span class="status-tag bg-cites">CITES App II</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="species-card-box">
+                    <img src="https://source.unsplash.com/400x400/?palm" class="species-img-large" alt="Palem">
+                    <div class="species-info">
+                        <div class="species-name-main">Palem Kuning</div>
+                        <span class="species-name-sci">Dypsis lutescens</span>
+                        <div class="badges">
+                            <span class="status-tag bg-iucn-nt">Near Threatened</span>
                             <span class="status-tag bg-cites">CITES App II</span>
                         </div>
                     </div>
