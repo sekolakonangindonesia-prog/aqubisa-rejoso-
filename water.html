@@ -83,7 +83,7 @@
             color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; 
         }
         
-        /* UPDATED: UKURAN FONT LEBIH BESAR */
+        /* UKURAN FONT BESAR UNTUK TARGET */
         .big-number { 
             font-size: 4.5rem; 
             font-weight: 800; 
@@ -139,8 +139,12 @@
         .res-divider { height: 1px; background: rgba(255,255,255,0.2); margin: 15px 0; }
         .res-sub { display: flex; justify-content: space-between; font-size: 0.85rem; text-align: center; }
 
-        /* Info Box */
-        .info-box { background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.8rem; color: #0d47a1; border-left: 4px solid var(--water-blue); }
+        /* Badge Rujukan */
+        .badge-ref { 
+            display: inline-block; background: #e3f2fd; color: #0d47a1; 
+            padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px;
+            border: 1px solid #90caf9;
+        }
 
         /* Accordion (Edukasi Rumus) */
         .accordion { margin-top: 30px; max-width: 900px; margin-left: auto; margin-right: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
@@ -196,9 +200,9 @@
 
     <!-- 2. GLOBAL COUNTER -->
     <div class="global-counter-box">
-        <h3 class="counter-label">Total Potensi Air Diresapkan (Estimasi)</h3>
+        <h3 class="counter-label">Estimasi Total Air Diresapkan Kembali</h3>
         <div id="global-counter" class="counter-val">0</div>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur terbangun</p>
+        <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur eksisting</p>
     </div>
 
     <!-- 3. SINERGI KEBIJAKAN -->
@@ -239,7 +243,7 @@
                 <h3 style="color:var(--water-blue);">Sumur Resapan</h3>
                 <p style="font-size:0.85rem; color:#666;">Bangunan konservasi air tanah dalam untuk mengisi kembali akuifer Umbulan.</p>
                 
-                <!-- ANGKA DIPERBESAR DI SINI -->
+                <!-- ANGKA BESAR -->
                 <div class="big-number">70 <span style="font-size:1.2rem; font-weight:400; color:#666;">Unit</span></div>
                 <small>Terbangun & Terpelihara (Eksisting 2026)</small>
 
@@ -263,7 +267,7 @@
                 <h3 style="color:var(--success-green);">Rorak (Silt Pit)</h3>
                 <p style="font-size:0.85rem; color:#666;">Jebakan air dan sedimen buntu untuk menahan laju larian air permukaan (Run-off).</p>
                 
-                <!-- ANGKA DIPERBESAR DI SINI -->
+                <!-- ANGKA BESAR -->
                 <div class="big-number" style="color:var(--success-green);">3.000 <span style="font-size:1.2rem; font-weight:400; color:#666;">Meter</span></div>
                 <small>Terlaksana Revitalisasi & Normalisasi</small>
 
@@ -311,25 +315,27 @@
     <section class="calc-section">
         <div style="text-align:center; margin-bottom:30px;">
             <h2 style="color:var(--primary-dark); font-size:2rem; margin-bottom:5px;">Kalkulator Potensi Serapan</h2>
-            <p style="color:#666;">Hitung estimasi kontribusi Anda berdasarkan standar hidrologi Rejoso.</p>
+            <p style="color:#666;">Pilih dasar metode perhitungan yang ingin digunakan.</p>
         </div>
 
         <div class="calc-wrapper">
             <!-- TABS -->
             <div class="calc-tabs">
                 <div class="calc-tab active" onclick="switchTab('satuan', this)">
-                    <i class="fas fa-calculator"></i> Mode Satuan (Sellers)
+                    <i class="fas fa-cube"></i> Metode Volumetrik (Dimensi Fisik)
                 </div>
                 <div class="calc-tab" onclick="switchTab('program', this)">
-                    <i class="fas fa-map-marked-alt"></i> Mode Kawasan (Buyers)
+                    <i class="fas fa-globe-asia"></i> Metode Standar SNI (Hidrologi)
                 </div>
             </div>
 
-            <!-- TAB 1: MODE SATUAN (PETANI/PENYEDIA) -->
+            <!-- TAB 1: METODE VOLUMETRIK (SATUAN) -->
             <div id="mode-satuan" class="calc-body">
                 <div>
-                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="far fa-edit"></i> Masukkan Data Unit</h4>
+                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="far fa-edit"></i> Input Data Dimensi Unit</h4>
                     
+                    <span class="badge-ref">Dasar Hitungan: Kapasitas Tampung Volume</span>
+
                     <label class="form-label">Jenis Infrastruktur</label>
                     <select id="infraType" class="form-control" onchange="toggleDimensi()">
                         <option value="rorak">Rorak (Jebakan Air)</option>
@@ -375,7 +381,6 @@
                         <option value="lambat">Hilir (Lempung/Liat) - Lambat Meresap</option>
                         <option value="cepat">Pasir/Berbatu - Cepat Meresap</option>
                     </select>
-                    <small style="color:#888; font-size:0.7rem; display:block; margin-top:-10px; margin-bottom:15px;">*Berdasarkan Peta Tanah Rejoso (Latosol/Andosol)</small>
 
                     <label class="form-label">Jumlah Unit</label>
                     <input type="number" id="qty_satuan" value="1" class="form-control">
@@ -403,11 +408,13 @@
                 </div>
             </div>
 
-            <!-- TAB 2: MODE PROGRAM (BUYER/KAWASAN) -->
+            <!-- TAB 2: METODE SNI/PU (KAWASAN) -->
             <div id="mode-program" class="calc-body" style="display:none;">
                 <div>
-                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="fas fa-layer-group"></i> Input Data Kawasan (Metode Rasional)</h4>
+                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="fas fa-layer-group"></i> Input Data Hidrologi Kawasan</h4>
                     
+                    <span class="badge-ref">Dasar Hitungan: SNI 03-2453-2002</span>
+
                     <label class="form-label">Luas Lahan Program (Hektar)</label>
                     <input type="number" id="luas_lahan" value="1" class="form-control">
 
@@ -436,7 +443,6 @@
                     <button class="btn-calc" onclick="hitungProgram()">Analisa Dampak Program &rarr;</button>
                 </div>
 
-                <!-- HASIL MODE PROGRAM: UTAMANYA LITER, KECILNYA PERSEN -->
                 <div class="result-panel" style="background:#2c3e50;">
                     <span class="res-title">Estimasi Total Serapan Kawasan</span>
                     <div id="res-vol-prog" class="res-number" style="color:#20c997;">0</div>
@@ -459,8 +465,8 @@
             
             <!-- INFO BOX -->
             <div class="info-box">
-                <strong><i class="fas fa-info-circle"></i> Catatan Teknis:</strong><br>
-                Perhitungan menggunakan asumsi curah hujan rata-rata DAS Rejoso (2.000 mm/thn) dan koefisien permeabilitas tanah sesuai studi hidrologi kawasan. Angka ini adalah estimasi untuk perencanaan.
+                <strong><i class="fas fa-info-circle"></i> Transparansi Metode:</strong><br>
+                Kalkulator ini menyediakan dua pendekatan. Gunakan <strong>Metode Volumetrik</strong> untuk menghitung kapasitas per-lubang, atau <strong>Metode SNI/Hidrologi</strong> untuk analisis kebutuhan kawasan berdasarkan limpasan air hujan (Run-off).
             </div>
 
         </div>
@@ -472,29 +478,30 @@
                 <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="accordion-content">
-                <p style="margin-bottom: 20px;">Platform ini menggunakan dua pendekatan ilmiah berbeda sesuai dengan mode yang dipilih:</p>
+                <p style="margin-bottom: 20px;">Platform AqruBiSA menggunakan landasan ilmiah untuk setiap angka yang ditampilkan:</p>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                     <!-- RUMUS SATUAN -->
                     <div class="formula-box">
-                        <strong style="color:var(--primary-dark);">1. Mode Satuan (Sellers)</strong>
-                        <p style="font-size:0.85rem; margin-top:5px;">Menggunakan pendekatan <strong>Volumetrik</strong>. Menghitung kapasitas fisik lubang dikalikan frekuensi hujan efektif di Rejoso (Asumsi 120 hari/tahun).</p>
+                        <strong style="color:var(--primary-dark);">1. Metode Volumetrik (Cek Fisik)</strong>
+                        <p style="font-size:0.85rem; margin-top:5px;">Digunakan untuk menghitung kapasitas tampung fisik. Dasar perhitungannya adalah volume geometris dikalikan frekuensi hujan tahunan di Rejoso.</p>
                         <code class="code-math">V_total = (P x L x D) x Hari_Hujan x K_tanah</code>
                         <ul style="font-size:0.8rem; padding-left:15px; margin-top:5px;">
-                            <li><strong>P, L, D:</strong> Dimensi infrastruktur (Volume)</li>
+                            <li><strong>P, L, D:</strong> Dimensi infrastruktur (Panjang, Lebar, Dalam)</li>
+                            <li><strong>Hari_Hujan:</strong> Asumsi 120 Hari/Tahun (Data Iklim Rejoso)</li>
                             <li><strong>K_tanah:</strong> Koefisien serapan tanah (Latosol=1.0)</li>
                         </ul>
                     </div>
 
                     <!-- RUMUS KAWASAN -->
                     <div class="formula-box">
-                        <strong style="color:var(--primary-dark);">2. Mode Kawasan (Buyers)</strong>
-                        <p style="font-size:0.85rem; margin-top:5px;">Menggunakan pendekatan <strong>Hidrologi (Metode Rasional)</strong>. Membandingkan volume hujan yang jatuh (Run-off) dengan kapasitas tampung.</p>
+                        <strong style="color:var(--primary-dark);">2. Metode SNI 03-2453-2002 (Kawasan)</strong>
+                        <p style="font-size:0.85rem; margin-top:5px;">Digunakan untuk perencanaan kawasan (Program). Mengacu pada Metode Rasional untuk menghitung debit limpasan (Run-off) yang harus ditangani.</p>
                         <code class="code-math">Q_limpasan = C x I x A</code>
                         <ul style="font-size:0.8rem; padding-left:15px; margin-top:5px;">
-                            <li><strong>C:</strong> Koefisien Limpasan (berdasarkan Tutupan Lahan)</li>
-                            <li><strong>I:</strong> Intensitas Hujan (Rejoso ~2000mm/thn)</li>
-                            <li><strong>A:</strong> Luas Area (Hektar)</li>
+                            <li><strong>C (Koefisien Aliran):</strong> Berdasarkan jenis tutupan lahan (Misal: Hutan=0.3, Tegal=0.7)</li>
+                            <li><strong>I (Intensitas):</strong> Curah hujan rata-rata tahunan Rejoso (~2000mm)</li>
+                            <li><strong>A (Area):</strong> Luas lahan dalam Hektar</li>
                         </ul>
                     </div>
                 </div>
