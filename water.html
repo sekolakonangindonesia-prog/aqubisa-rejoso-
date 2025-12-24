@@ -82,7 +82,16 @@
             position: absolute; top: 20px; right: 20px; background: var(--water-blue); 
             color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; 
         }
-        .infra-val { font-size: 3rem; font-weight: 800; color: var(--primary-dark); line-height: 1; margin: 15px 0; }
+        
+        /* UPDATED: UKURAN FONT LEBIH BESAR */
+        .big-number { 
+            font-size: 4.5rem; /* Diperbesar dari 3rem */
+            font-weight: 800; 
+            color: var(--primary-dark); 
+            line-height: 1; 
+            margin: 20px 0; 
+        }
+        
         .progress-container { margin: 20px 0; }
         .progress-bg { width: 100%; height: 8px; background: #eee; border-radius: 4px; }
         .progress-fill { height: 100%; background: var(--water-blue); border-radius: 4px; }
@@ -90,7 +99,7 @@
         .spec-list { margin-top: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 0.85rem; color: #555; }
         .spec-list div { margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
 
-        /* --- CALCULATOR SECTION (THE MAIN FEATURE) --- */
+        /* --- CALCULATOR SECTION --- */
         .calc-section { background: white; padding: 60px 5%; border-top: 1px solid #eee; }
         
         .calc-wrapper {
@@ -133,10 +142,10 @@
         /* Info Box */
         .info-box { background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.8rem; color: #0d47a1; border-left: 4px solid var(--water-blue); }
 
-        /* Accordion */
-        .accordion { margin-top: 40px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
-        .accordion summary { padding: 15px 20px; background: #f8fbff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
-        .accordion-content { padding: 20px; border-top: 1px solid #ddd; font-size: 0.9rem; color: #555; display: none; }
+        /* Accordion (Edukasi Rumus) */
+        .accordion { margin-top: 30px; max-width: 900px; margin-left: auto; margin-right: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .accordion summary { padding: 15px 20px; background: #f8fbff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; color: var(--primary-dark); }
+        .accordion-content { padding: 25px; border-top: 1px solid #ddd; font-size: 0.9rem; color: #555; display: none; background: #fff; }
         details[open] .accordion-content { display: block; }
         
         /* Gallery */
@@ -149,6 +158,7 @@
         @media (max-width: 900px) {
             .policy-grid, .infra-grid, .calc-body, .gallery-grid { grid-template-columns: 1fr; }
             .water-hero h1 { font-size: 2rem; }
+            .big-number { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -174,7 +184,8 @@
     <section class="water-hero">
         <div class="hero-content-box">
             <h1>WATER CONSERVATION FUNDS</h1>
-            <p>Implementasi teknologi sipil teknis <em>(Sumur Resapan & Rorak)</em> untuk memulihkan keseimbangan neraca air di DAS Rejoso.</p>
+            <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">Infrastruktur Sipil Teknis & Neraca Air</p>
+            <p>Implementasi teknologi <em>Recharge Well</em> dan <em>Silt Pit</em> (Rorak) untuk memulihkan keseimbangan neraca air di DAS Rejoso.</p>
             <br>
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
         </div>
@@ -184,7 +195,7 @@
     <div class="global-counter-box">
         <h3 class="counter-label">Total Potensi Air Diresapkan (Estimasi)</h3>
         <div id="global-counter" class="counter-val">0</div>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur terbangun</p>
+        <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur eksisting</p>
     </div>
 
     <!-- 3. SINERGI KEBIJAKAN -->
@@ -225,7 +236,8 @@
                 <h3 style="color:var(--water-blue);">Sumur Resapan</h3>
                 <p style="font-size:0.85rem; color:#666;">Bangunan konservasi air tanah dalam untuk mengisi kembali akuifer Umbulan.</p>
                 
-                <div class="big-number">70 <span style="font-size:1rem; font-weight:400; color:#666;">Unit</span></div>
+                <!-- ANGKA DIPERBESAR DI SINI -->
+                <div class="big-number">70 <span style="font-size:1.2rem; font-weight:400; color:#666;">Unit</span></div>
                 <small>Terbangun & Terpelihara (Eksisting 2026)</small>
 
                 <div class="progress-container">
@@ -248,7 +260,8 @@
                 <h3 style="color:var(--success-green);">Rorak (Silt Pit)</h3>
                 <p style="font-size:0.85rem; color:#666;">Jebakan air dan sedimen buntu untuk menahan laju larian air permukaan (Run-off).</p>
                 
-                <div class="big-number" style="color:var(--success-green);">3.000 <span style="font-size:1rem; font-weight:400; color:#666;">Meter</span></div>
+                <!-- ANGKA DIPERBESAR DI SINI -->
+                <div class="big-number" style="color:var(--success-green);">3.000 <span style="font-size:1.2rem; font-weight:400; color:#666;">Meter</span></div>
                 <small>Terlaksana Revitalisasi & Normalisasi</small>
 
                 <div class="progress-container">
@@ -448,7 +461,7 @@
 
         </div>
 
-        <!-- ACCORDION EDUKASI -->
+        <!-- ACCORDION EDUKASI (YANG SEMPAT HILANG, DIKEMBALIKAN DISINI) -->
         <details class="accordion">
             <summary>
                 <span><i class="fas fa-book-open" style="margin-right:10px; color:var(--water-blue);"></i> Dasar Perhitungan & Metodologi</span>
