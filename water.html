@@ -85,7 +85,7 @@
         
         /* UPDATED: UKURAN FONT LEBIH BESAR */
         .big-number { 
-            font-size: 4.5rem; /* Diperbesar dari 3rem */
+            font-size: 4.5rem; 
             font-weight: 800; 
             color: var(--primary-dark); 
             line-height: 1; 
@@ -148,6 +148,9 @@
         .accordion-content { padding: 25px; border-top: 1px solid #ddd; font-size: 0.9rem; color: #555; display: none; background: #fff; }
         details[open] .accordion-content { display: block; }
         
+        .formula-box { background: #f9f9f9; padding: 15px; border-left: 4px solid var(--accent-gold); margin-bottom: 15px; border-radius: 4px; }
+        .code-math { display:block; background:#333; color:#fff; padding:8px 12px; border-radius:4px; font-family:monospace; margin:8px 0; letter-spacing: 1px; }
+
         /* Gallery */
         .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
         .gallery-img { width: 100%; height: 150px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; }
@@ -185,7 +188,7 @@
         <div class="hero-content-box">
             <h1>WATER CONSERVATION FUNDS</h1>
             <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">Infrastruktur Sipil Teknis & Neraca Air</p>
-            <p>Implementasi teknologi <em>Recharge Well</em> dan <em>Silt Pit</em> (Rorak) untuk memulihkan keseimbangan neraca air di DAS Rejoso.</p>
+            <p>Implementasi teknologi sipil teknis <em>(Sumur Resapan & Rorak)</em> untuk memulihkan keseimbangan neraca air di DAS Rejoso.</p>
             <br>
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
         </div>
@@ -195,7 +198,7 @@
     <div class="global-counter-box">
         <h3 class="counter-label">Total Potensi Air Diresapkan (Estimasi)</h3>
         <div id="global-counter" class="counter-val">0</div>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur eksisting</p>
+        <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur terbangun</p>
     </div>
 
     <!-- 3. SINERGI KEBIJAKAN -->
@@ -315,17 +318,17 @@
             <!-- TABS -->
             <div class="calc-tabs">
                 <div class="calc-tab active" onclick="switchTab('satuan', this)">
-                    <i class="fas fa-calculator"></i> Mode Cek Fisik (Satuan)
+                    <i class="fas fa-calculator"></i> Mode Satuan (Sellers)
                 </div>
                 <div class="calc-tab" onclick="switchTab('program', this)">
-                    <i class="fas fa-map-marked-alt"></i> Mode Perencanaan Program (Kawasan)
+                    <i class="fas fa-map-marked-alt"></i> Mode Kawasan (Buyers)
                 </div>
             </div>
 
-            <!-- TAB 1: MODE SATUAN -->
+            <!-- TAB 1: MODE SATUAN (PETANI/PENYEDIA) -->
             <div id="mode-satuan" class="calc-body">
                 <div>
-                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="far fa-edit"></i> Masukkan Data</h4>
+                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="far fa-edit"></i> Masukkan Data Unit</h4>
                     
                     <label class="form-label">Jenis Infrastruktur</label>
                     <select id="infraType" class="form-control" onchange="toggleDimensi()">
@@ -400,7 +403,7 @@
                 </div>
             </div>
 
-            <!-- TAB 2: MODE PROGRAM (PU) -->
+            <!-- TAB 2: MODE PROGRAM (BUYER/KAWASAN) -->
             <div id="mode-program" class="calc-body" style="display:none;">
                 <div>
                     <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="fas fa-layer-group"></i> Input Data Kawasan (Metode Rasional)</h4>
@@ -433,21 +436,22 @@
                     <button class="btn-calc" onclick="hitungProgram()">Analisa Dampak Program &rarr;</button>
                 </div>
 
+                <!-- HASIL MODE PROGRAM: UTAMANYA LITER, KECILNYA PERSEN -->
                 <div class="result-panel" style="background:#2c3e50;">
-                    <span class="res-title">Estimasi Limpasan Air (Run-off) Tertangani</span>
-                    <div id="res-persen-prog" class="res-number" style="color:#20c997;">0%</div>
-                    <span class="res-unit">Efektivitas Penyerapan</span>
+                    <span class="res-title">Estimasi Total Serapan Kawasan</span>
+                    <div id="res-vol-prog" class="res-number" style="color:#20c997;">0</div>
+                    <span class="res-unit">Liter / Tahun</span>
                     
                     <div class="res-divider"></div>
                     
                     <div class="res-sub">
                         <div>
-                            <strong id="res-vol-prog" style="font-size:1.2rem;">0</strong><br>
-                            Total Serapan (m³/Tahun)
+                            <strong id="res-m3-prog" style="font-size:1.2rem;">0</strong><br>
+                            Volume (m³/Tahun)
                         </div>
                         <div>
-                            <strong id="res-run-prog" style="font-size:1.2rem;">0</strong><br>
-                            Total Run-off Lahan (m³)
+                            <strong id="res-persen-prog" style="font-size:1.2rem;">0%</strong><br>
+                            Efektivitas Menangani Run-off
                         </div>
                     </div>
                 </div>
@@ -461,23 +465,38 @@
 
         </div>
 
-        <!-- ACCORDION EDUKASI (YANG SEMPAT HILANG, DIKEMBALIKAN DISINI) -->
+        <!-- ACCORDION EDUKASI (RUMUS TRANSPARAN) -->
         <details class="accordion">
             <summary>
-                <span><i class="fas fa-book-open" style="margin-right:10px; color:var(--water-blue);"></i> Dasar Perhitungan & Metodologi</span>
+                <span><i class="fas fa-book-open" style="margin-right:10px; color:var(--water-blue);"></i> Pelajari Dasar Perhitungan & Rumus</span>
                 <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="accordion-content">
-                <p style="margin-bottom: 15px;">Platform AqruBiSA menggunakan dua pendekatan perhitungan:</p>
-                <div style="margin-bottom:15px;">
-                    <strong>1. Mode Cek Fisik (Petani/Pelaksana)</strong><br>
-                    Menggunakan pendekatan <em>Volumetrik</em> sederhana. Menghitung volume fisik lubang dikalikan frekuensi hujan efektif di Rejoso (Asumsi 120 hari/tahun).
-                </div>
-                <div>
-                    <strong>2. Mode Perencanaan Program (CSR/Dinas)</strong><br>
-                    Menggunakan pendekatan <em>Hidrologi (Metode Rasional)</em>.
-                    <code style="display:block; background:#333; color:#fff; padding:5px 10px; border-radius:4px; font-family:monospace; margin:5px 0;">Q = C x I x A</code>
-                    Memperhitungkan Koefisien Limpasan (C) berdasarkan tutupan lahan, Intensitas Hujan (I) tahunan rata-rata Rejoso (2.000 mm), dan Luas Area (A).
+                <p style="margin-bottom: 20px;">Platform ini menggunakan dua pendekatan ilmiah berbeda sesuai dengan mode yang dipilih:</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- RUMUS SATUAN -->
+                    <div class="formula-box">
+                        <strong style="color:var(--primary-dark);">1. Mode Satuan (Sellers)</strong>
+                        <p style="font-size:0.85rem; margin-top:5px;">Menggunakan pendekatan <strong>Volumetrik</strong>. Menghitung kapasitas fisik lubang dikalikan frekuensi hujan efektif di Rejoso (Asumsi 120 hari/tahun).</p>
+                        <code class="code-math">V_total = (P x L x D) x Hari_Hujan x K_tanah</code>
+                        <ul style="font-size:0.8rem; padding-left:15px; margin-top:5px;">
+                            <li><strong>P, L, D:</strong> Dimensi infrastruktur (Volume)</li>
+                            <li><strong>K_tanah:</strong> Koefisien serapan tanah (Latosol=1.0)</li>
+                        </ul>
+                    </div>
+
+                    <!-- RUMUS KAWASAN -->
+                    <div class="formula-box">
+                        <strong style="color:var(--primary-dark);">2. Mode Kawasan (Buyers)</strong>
+                        <p style="font-size:0.85rem; margin-top:5px;">Menggunakan pendekatan <strong>Hidrologi (Metode Rasional)</strong>. Membandingkan volume hujan yang jatuh (Run-off) dengan kapasitas tampung.</p>
+                        <code class="code-math">Q_limpasan = C x I x A</code>
+                        <ul style="font-size:0.8rem; padding-left:15px; margin-top:5px;">
+                            <li><strong>C:</strong> Koefisien Limpasan (berdasarkan Tutupan Lahan)</li>
+                            <li><strong>I:</strong> Intensitas Hujan (Rejoso ~2000mm/thn)</li>
+                            <li><strong>A:</strong> Luas Area (Hektar)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </details>
@@ -608,16 +627,20 @@
                 volPerUnitM3 = 3.14 * 0.4 * 0.4 * 1.5; // Asumsi standar sumur
             }
 
-            const totalCapacity = volPerUnitM3 * totalUnit * hariHujan;
+            const totalCapacityM3 = volPerUnitM3 * totalUnit * hariHujan;
+            
+            // Konversi ke Liter untuk Tampilan Utama
+            const totalCapacityLiter = totalCapacityM3 * 1000;
 
             // C. Efektivitas
             let efektivitas = 0;
-            if (totalRunoff > 0) efektivitas = (totalCapacity / totalRunoff) * 100;
+            if (totalRunoff > 0) efektivitas = (totalCapacityM3 / totalRunoff) * 100;
             if (efektivitas > 100) efektivitas = 100;
 
-            document.getElementById('res-persen-prog').innerText = Math.round(efektivitas) + "%";
-            document.getElementById('res-vol-prog').innerText = Math.round(totalCapacity).toLocaleString('id-ID');
-            document.getElementById('res-run-prog').innerText = Math.round(totalRunoff).toLocaleString('id-ID');
+            // RENDER OUTPUT PROGRAM
+            document.getElementById('res-vol-prog').innerText = Math.round(totalCapacityLiter).toLocaleString('id-ID'); // Liter (Besar)
+            document.getElementById('res-m3-prog').innerText = Math.round(totalCapacityM3).toLocaleString('id-ID'); // M3 (Kecil)
+            document.getElementById('res-persen-prog').innerText = Math.round(efektivitas) + "%"; // Persen (Kecil)
         }
     </script>
 </body>
