@@ -299,6 +299,52 @@
             <h2 style="color:var(--primary-dark); font-size:2rem; font-weight:700;">Kalkulator Potensi Serapan</h2>
             <p style="color:#666;">Hitung estimasi kontribusi Anda berdasarkan standar hidrologi Rejoso.</p>
         </div>
+        <!-- ... (Kode Kalkulator di atas sini) ... -->
+    
+    <!-- EDUKASI RUMUS (ACCORDION STYLE) -->
+    <div style="max-width: 800px; margin: 40px auto 0;">
+        <details style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+            <summary style="padding: 15px 20px; font-weight: bold; color: var(--primary-dark); cursor: pointer; background: #f8fbff; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fas fa-book-open" style="margin-right:10px; color:var(--water-blue);"></i> Pelajari Dasar Perhitungan & Rumus</span>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+            </summary>
+            
+            <div style="padding: 20px; font-size: 0.9rem; color: #444; border-top: 1px solid #eee;">
+                <p style="margin-bottom: 15px;">Kalkulator ini menggunakan pendekatan <strong>Neraca Air (Water Balance)</strong> yang disesuaikan dengan karakteristik hidrologi DAS Rejoso:</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <!-- Rumus Rorak -->
+                    <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-gold);">
+                        <strong style="display:block; margin-bottom:10px; color:#333;">1. Rumus Rorak (Silt Pit)</strong>
+                        <code style="display:block; background:#333; color:#fff; padding:8px; border-radius:4px; font-family:monospace; font-size:0.8rem;">V = (P x L x D) x H x E</code>
+                        <ul style="margin-top:10px; padding-left:20px; font-size:0.85rem;">
+                            <li><strong>V:</strong> Volume Serapan Tahunan</li>
+                            <li><strong>P, L, D:</strong> Dimensi Fisik (Panjang, Lebar, Dalam)</li>
+                            <li><strong>H:</strong> Hari Hujan Efektif (Asumsi: 120 Hari/Tahun)</li>
+                            <li><strong>E:</strong> Efisiensi Serapan Tanah (Tergantung jenis tanah Latosol/Lempung)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Rumus Sumur -->
+                    <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid var(--water-blue);">
+                        <strong style="display:block; margin-bottom:10px; color:#333;">2. Rumus Sumur Resapan</strong>
+                        <span style="font-size:0.8rem;">Mengacu pada SNI 03-2453-2002 & Metode Sunjoto:</span>
+                        <code style="display:block; background:#333; color:#fff; padding:8px; border-radius:4px; font-family:monospace; font-size:0.8rem; margin-top:5px;">V = (π x r² x t) x F x H</code>
+                        <ul style="margin-top:10px; padding-left:20px; font-size:0.85rem;">
+                            <li><strong>Volume Fisik:</strong> Luas alas x tinggi air</li>
+                            <li><strong>F (Faktor Dinding):</strong> Pengali 1.5x jika menggunakan dinding berpori/celah bata (resapan samping).</li>
+                            <li><strong>H:</strong> Frekuensi Hujan Tahunan</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #fff3cd; color: #856404; padding: 10px 15px; border-radius: 6px; font-size: 0.85rem;">
+                    <strong>Catatan Referensi:</strong>
+                    Standar infiltrasi rorak menurut kajian BRIN berkisar antara <strong>75.000 - 200.000 Liter/Tahun</strong> tergantung dimensi. Pastikan dimensi rorak Anda minimal Panjang 2 meter untuk hasil optimal.
+                </div>
+            </div>
+        </details>
+    </div>
 
         <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
             
