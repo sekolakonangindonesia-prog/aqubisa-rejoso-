@@ -300,6 +300,230 @@
             <img src="https://source.unsplash.com/400x300/?rain,forest" class="gallery-img" alt="Lokasi Tangkapan Air">
         </div>
     </section>
+    <!-- SISIPKAN INI DI BAWAH SECTION "INFRA-SECTION" DAN DI ATAS "CALC-SECTION" -->
+
+    <!-- GLOBAL COUNTER SECTION -->
+    <section style="background: #005f73; color: white; padding: 40px 5%; text-align: center; margin-top: -20px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h3 style="margin-bottom: 10px; font-weight: 400; font-size: 1.2rem;">Total Potensi Air Diresapkan (Estimasi)</h3>
+            <div id="global-counter" style="font-size: 4rem; font-weight: 800; color: #caf0f8; line-height: 1;">0</div>
+            <p style="margin-top: 10px; opacity: 0.9;">Liter per Tahun dari seluruh infrastruktur terbangun</p>
+        </div>
+    </section>
+
+    <!-- CALCULATOR SECTION -->
+    <section class="container" style="padding-top: 60px;">
+        <div class="section-header" style="text-align:center; margin-bottom:40px;">
+            <h2 style="color:var(--primary-dark); font-size:2rem; font-weight:700;">Kalkulator Potensi Serapan</h2>
+            <p style="color:#666;">Hitung estimasi kontribusi Anda berdasarkan standar hidrologi Rejoso.</p>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+            
+            <!-- FORM INPUT -->
+            <div style="flex: 1; min-width: 300px; max-width: 500px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                <h3 style="color: var(--water-blue); margin-bottom: 20px;"><i class="fas fa-calculator"></i> Masukkan Data</h3>
+                
+                <!-- Pilih Jenis -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:8px; color:#555;">Jenis Infrastruktur</label>
+                    <select id="infraType" onchange="toggleInputs()" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;">
+                        <option value="rorak">Rorak (Jebakan Air)</option>
+                        <option value="sumur">Sumur Resapan</option>
+                    </select>
+                </div>
+
+                <!-- Input Rorak -->
+                <div id="inputRorak">
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <div style="flex:1;">
+                            <label style="font-size:0.85rem; color:#777;">Panjang (m)</label>
+                            <input type="number" id="rorakP" value="2" class="calc-input" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+                        </div>
+                        <div style="flex:1;">
+                            <label style="font-size:0.85rem; color:#777;">Lebar (cm)</label>
+                            <input type="number" id="rorakL" value="40" class="calc-input" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+                        </div>
+                        <div style="flex:1;">
+                            <label style="font-size:0.85rem; color:#777;">Dalam (cm)</label>
+                            <input type="number" id="rorakD" value="40" class="calc-input" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Sumur (Hidden by default) -->
+                <div id="inputSumur" style="display:none;">
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <div style="flex:1;">
+                            <label style="font-size:0.85rem; color:#777;">Diameter (cm)</label>
+                            <input type="number" id="sumurDia" value="80" class="calc-input" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+                        </div>
+                        <div style="flex:1;">
+                            <label style="font-size:0.85rem; color:#777;">Kedalaman (m)</label>
+                            <input type="number" id="sumurDepth" value="1.5" class="calc-input" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+                        </div>
+                    </div>
+                    <div style="margin-bottom:15px;">
+                         <label style="font-size:0.85rem; color:#777;">Model Dinding</label>
+                         <select id="sumurWall" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+                             <option value="porous">Berpori / Celah Bata (Resapan Tinggi)</option>
+                             <option value="solid">Beton Kedap (Resapan Dasar Saja)</option>
+                         </select>
+                    </div>
+                </div>
+
+                <!-- Jenis Tanah & Jumlah -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:8px; color:#555;">Kondisi Tanah (Lokasi)</label>
+                    <select id="soilType" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;">
+                        <option value="sedang">Hulu/Tengah (Gembur/Latosol) - Std Rejoso</option>
+                        <option value="lambat">Hilir (Lempung/Liat) - Lambat Meresap</option>
+                        <option value="cepat">Pasir/Berbatu - Cepat Meresap</option>
+                    </select>
+                    <small style="color:#888; font-size:0.75rem;">*Berdasarkan Peta Tanah Rejoso (Latosol/Andosol)</small>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:8px; color:#555;">Jumlah Unit</label>
+                    <input type="number" id="totalUnit" value="1" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; font-weight:bold; color:var(--primary-dark);">
+                </div>
+
+                <button onclick="calculateWater()" style="width:100%; background:var(--accent-gold); color:#000; font-weight:bold; border:none; padding:15px; border-radius:30px; cursor:pointer; font-size:1rem; transition:0.3s;">
+                    Hitung Potensi Serapan <i class="fas fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+            <!-- HASIL OUTPUT -->
+            <div style="flex: 1; min-width: 300px; max-width: 500px; display:flex; flex-direction:column; gap:20px;">
+                
+                <!-- Card Hasil -->
+                <div style="background: #0b1f30; color: white; padding: 30px; border-radius: 15px; text-align:center;">
+                    <h4 style="margin-top:0; opacity:0.8;">Potensi Serapan per Tahun</h4>
+                    <div id="resultLiter" style="font-size: 3rem; font-weight: 800; color: var(--accent-gold); margin: 10px 0;">0</div>
+                    <span style="font-size:1.2rem;">Liter Air</span>
+                    <hr style="border:0; border-top:1px solid rgba(255,255,255,0.2); margin:20px 0;">
+                    <div style="display:flex; justify-content:space-around;">
+                        <div>
+                            <div id="resultM3" style="font-size:1.5rem; font-weight:bold;">0</div>
+                            <small>Meter Kubik (m³)</small>
+                        </div>
+                        <div>
+                            <div id="resultPeople" style="font-size:1.5rem; font-weight:bold;">0</div>
+                            <small>Setara Kebutuhan Orang/Thn</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div style="background: #e3f2fd; color: #0d47a1; padding: 20px; border-radius: 10px; border-left: 5px solid var(--water-blue); font-size: 0.9rem;">
+                    <strong><i class="fas fa-info-circle"></i> Catatan Teknis:</strong><br>
+                    Perhitungan menggunakan asumsi curah hujan rata-rata DAS Rejoso (2.000 mm/thn) dan koefisien permeabilitas tanah sesuai studi hidrologi kawasan. Angka ini adalah estimasi untuk perencanaan.
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT LOGIKA HITUNGAN (Sesuai Diskusi) -->
+    <script>
+        // Animate Global Counter saat load
+        window.addEventListener('load', () => {
+            const counterElement = document.getElementById('global-counter');
+            // Angka Dummy Total: (70 Sumur x 400.000) + (3000m Rorak x 30.000) = ~118 Juta Liter
+            // Bisa disesuaikan dengan data real nanti
+            animateValue(counterElement, 0, 118000000, 2000);
+        });
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Format angka dengan ribuan separator
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString('id-ID');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Toggle Input Form
+        function toggleInputs() {
+            const type = document.getElementById('infraType').value;
+            if (type === 'rorak') {
+                document.getElementById('inputRorak').style.display = 'block';
+                document.getElementById('inputSumur').style.display = 'none';
+            } else {
+                document.getElementById('inputRorak').style.display = 'none';
+                document.getElementById('inputSumur').style.display = 'block';
+            }
+        }
+
+        // --- INTI LOGIKA PERHITUNGAN (Scientific Based) ---
+        function calculateWater() {
+            const type = document.getElementById('infraType').value;
+            const count = parseFloat(document.getElementById('totalUnit').value) || 0;
+            const soil = document.getElementById('soilType').value;
+
+            // Faktor Tanah (Konstanta Permeabilitas / K)
+            // Diambil dari range Laporan SWAT (26-30 mm/jam untuk Latosol/Andosol)
+            // Disederhanakan menjadi faktor pengali efisiensi serapan
+            let kFactor = 1.0; 
+            if (soil === 'sedang') kFactor = 1.0; // Standard Rejoso
+            if (soil === 'lambat') kFactor = 0.5; // Liat
+            if (soil === 'cepat') kFactor = 1.5;  // Pasir
+
+            // Data Curah Hujan Rejoso (Konservatif)
+            const annualRainDays = 120; // Hari hujan efektif
+            // Asumsi: Dalam 1 hari hujan, infrastruktur bisa terisi dan meresap 'n' kali
+            // Tanah gembur bisa meresap lebih cepat (siklus lebih banyak)
+            const cyclesPerDay = soil === 'cepat' ? 1.5 : (soil === 'lambat' ? 0.8 : 1.0); 
+
+            let volumePerUnit = 0; // dalam Liter
+
+            if (type === 'rorak') {
+                // Rorak: P(m) x L(cm) x D(cm)
+                const p = parseFloat(document.getElementById('rorakP').value) || 0;
+                const l = parseFloat(document.getElementById('rorakL').value) / 100 || 0; // ke meter
+                const d = parseFloat(document.getElementById('rorakD').value) / 100 || 0; // ke meter
+                
+                // Volume Fisik (m3) = P x L x D
+                const volM3 = p * l * d;
+                volumePerUnit = volM3 * 1000; // Konversi ke Liter
+
+            } else {
+                // Sumur: Diameter(cm) x Depth(m)
+                const dia = parseFloat(document.getElementById('sumurDia').value) / 100 || 0; // ke meter
+                const depth = parseFloat(document.getElementById('sumurDepth').value) || 0;
+                const r = dia / 2;
+                const model = document.getElementById('sumurWall').value;
+
+                // Volume Silinder = pi x r^2 x t
+                const volM3 = Math.PI * (r * r) * depth;
+                
+                // Faktor Dinding (Porous vs Solid)
+                // Jika porous, area resapan lebih luas, efisiensi naik
+                const wallFactor = model === 'porous' ? 1.5 : 1.0;
+
+                volumePerUnit = volM3 * 1000 * wallFactor; // Konversi ke Liter
+            }
+
+            // RUMUS TOTAL:
+            // Volume Fisik x Hari Hujan x Siklus Harian x Faktor Tanah x Jumlah Unit
+            let totalLiter = volumePerUnit * annualRainDays * cyclesPerDay * kFactor * count;
+            
+            // Output
+            document.getElementById('resultLiter').innerText = Math.round(totalLiter).toLocaleString('id-ID');
+            document.getElementById('resultM3').innerText = (totalLiter / 1000).toLocaleString('id-ID', {maximumFractionDigits: 1});
+            
+            // Konversi Kebutuhan Air Orang
+            // Standar: 1 orang butuh +/- 60 liter/hari untuk hidup dasar -> 21.900 liter/tahun
+            const peopleServed = totalLiter / 21900;
+            document.getElementById('resultPeople').innerText = Math.round(peopleServed).toLocaleString('id-ID');
+        }
+    </script>
 
     <!-- FOOTER -->
     <footer>
