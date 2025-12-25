@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Land Rehabilitation - AqruBiSA</title>
+    <title>Land & Forest Conservation - AqruBiSA</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* --- CSS VARIABLE & RESET --- */
         :root {
             --primary-dark: #0b1f30; 
-            --land-green: #2e7d32; /* Warna Khusus Halaman Ini (Hijau Hutan) */
+            --land-green: #2e7d32; /* Warna Utama Halaman Ini */
             --land-light: #e8f5e9;
             --accent-gold: #d4af37;
             --text-dark: #333;
             --bg-light: #f9f9f9;
+            --rispro-border: #dee2e6;
+            --rispro-purple: #6f42c1;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
@@ -33,8 +35,7 @@
         .land-hero {
             position: relative;
             height: 400px;
-            /* Background Hutan */
-            background: linear-gradient(to right, rgba(20, 61, 30, 0.9), rgba(11, 31, 48, 0.5)), url('https://source.unsplash.com/1600x900/?forest,tree');
+            background: linear-gradient(to right, rgba(27, 94, 32, 0.9), rgba(11, 31, 48, 0.5)), url('https://source.unsplash.com/1600x900/?forest,mountain');
             background-size: cover;
             background-position: center;
             color: white;
@@ -48,47 +49,86 @@
         .btn-back { border: 1px solid white; padding: 10px 20px; color: white; border-radius: 50px; font-size: 0.9rem; display: inline-block; }
         .btn-back:hover { background: white; color: var(--land-green); }
 
-        /* --- NARASI PENGANTAR (INTRODUCTION) --- */
-        .intro-section { padding: 60px 5%; background: white; text-align: center; }
-        .intro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; text-align: left; }
-        .intro-card { background: #fff; border: 1px solid #eee; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; }
-        .intro-card:hover { transform: translateY(-5px); border-color: var(--land-green); }
-        .intro-icon { font-size: 2.5rem; color: var(--land-green); margin-bottom: 15px; display: block; }
-        .intro-title { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+        /* --- MAP & STATS SECTION --- */
+        .map-section { padding: 40px 5%; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .map-container { 
+            background: #ddd; height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e4/Mount_Bromo_Panorama.jpg') center/cover; /* Placeholder Gambar Bromo/Rejoso */
+            position: relative; overflow: hidden;
+            border: 1px solid #ccc;
+        }
+        .map-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.7); color: white; padding: 15px; font-size: 0.9rem;
+        }
+        
+        .stats-box { display: flex; flex-direction: column; gap: 20px; }
+        .stat-card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid var(--land-green); }
+        .stat-val { font-size: 3rem; font-weight: 800; color: var(--primary-dark); line-height: 1; }
+        .stat-label { font-size: 0.9rem; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- DASHBOARD TARGET (LFA) --- */
-        .target-section { padding: 60px 5%; background: #f1f8e9; }
-        .section-title { text-align: center; margin-bottom: 40px; color: var(--primary-dark); font-size: 2rem; font-weight: 700; }
+        /* --- RISPRO STYLE TABLE --- */
+        .rispro-section { padding: 60px 5%; background: white; border-top: 10px solid #f4f6f9; }
         
-        .target-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .target-card { background: white; border-radius: 12px; padding: 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .target-card::before { content:''; position: absolute; top:0; left:0; width:100%; height:5px; background: var(--land-green); }
+        .tagline-box {
+            background: #e8f5e9;
+            border-left: 5px solid var(--land-green);
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
         
-        .big-number { font-size: 3.5rem; font-weight: 800; color: var(--primary-dark); margin: 10px 0; }
-        .sub-text { font-size: 0.9rem; color: #666; }
-        
-        /* --- CALCULATOR (CARBON) --- */
-        .calc-section { padding: 60px 5%; background: white; }
+        .table-container {
+            border: 1px solid var(--rispro-border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .table-header-box {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--rispro-border);
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rispro-table { width: 100%; border-collapse: collapse; }
+        .rispro-table th {
+            text-align: left; padding: 15px 20px; font-size: 0.85rem; color: #495057; font-weight: 600; border-bottom: 1px solid var(--rispro-border); background: #fff;
+        }
+        .rispro-table td { padding: 20px; border-bottom: 1px solid var(--rispro-border); vertical-align: top; color: #212529; }
+        .rispro-table tr:hover { background-color: #f8f9fa; }
+
+        .proposal-title { font-size: 1rem; font-weight: 600; color: #333; display: block; margin-bottom: 5px; }
+        .btn-rispro {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border: 1px solid var(--land-green);
+            border-radius: 4px; background: transparent; color: var(--land-green); font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: 0.2s;
+        }
+        .btn-rispro:hover { background: var(--land-green); color: white; }
+        .badge-vol { background-color: var(--rispro-purple); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .badge-report { background-color: #6c757d; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .info-list { list-style: none; padding: 0; font-size: 0.85rem; color: #495057; margin-top: 8px; }
+        .info-list li { margin-bottom: 4px; }
+
+        /* --- CALCULATOR --- */
+        .calc-section { background: #0b1f30; padding: 60px 5%; color: white; }
         .calc-wrapper { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .form-box { background: #fff; padding: 30px; border-radius: 15px; border: 1px solid #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .result-box { background: var(--primary-dark); color: white; padding: 40px; border-radius: 15px; text-align: center; }
+        .form-control { width: 100%; padding: 12px; border: none; border-radius: 6px; margin-bottom: 20px; font-size: 1rem; }
+        .btn-calc { width: 100%; padding: 15px; background: var(--accent-gold); color: #000; font-weight: 800; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: 0.3s; }
+        .btn-calc:hover { background: #e0b836; transform: translateY(-2px); }
 
-        .form-label { display: block; font-weight: 600; margin-bottom: 8px; color: #444; }
-        .form-input, .form-select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
-        .btn-calc { width: 100%; padding: 15px; background: var(--accent-gold); color: #000; font-weight: 800; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; }
-        
-        /* --- GALLERY --- */
-        .gallery-section { padding: 60px 5%; background: white; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
-        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; transition: 0.3s; }
-        .gallery-img:hover { transform: scale(1.05); }
-
-        /* FOOTER */
-        footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; margin-top: 0; }
+        /* Footer */
+        footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; }
 
         @media (max-width: 900px) {
-            .intro-grid, .target-grid, .calc-wrapper, .gallery-grid { grid-template-columns: 1fr; }
-            .land-hero h1 { font-size: 2rem; }
+            .map-section, .calc-wrapper { grid-template-columns: 1fr; }
+            .rispro-table, .rispro-table thead, .rispro-table tbody, .rispro-table tr, .rispro-table td { display: block; }
+            .rispro-table thead { display: none; }
+            .rispro-table tr { margin-bottom: 15px; border: 1px solid #ddd; }
+            .rispro-table td { padding-left: 15px; position: relative; }
         }
     </style>
 </head>
@@ -113,129 +153,214 @@
     <!-- 1. HERO SECTION -->
     <section class="land-hero">
         <div class="hero-content-box">
-            <h1>LAND REHABILITATION & AGROFORESTRY</h1>
-            <p>Memulihkan fungsi daerah tangkapan air melalui perbaikan tutupan lahan, penanaman pohon, dan pertanian berkelanjutan.</p>
+            <h1>LAND REHABILITATION & CARBON</h1>
+            <p>Pemulihan lahan kritis di DAS Rejoso melalui skema Agroforestri untuk meningkatkan resapan air dan stok karbon.</p>
             <br>
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
         </div>
     </section>
 
-    <!-- 2. NARASI PENGANTAR (KONTEKS & FILOSOFI) -->
-    <section class="intro-section">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="color:var(--primary-dark); font-size:2rem; margin-bottom:20px;">Mengapa Rehabilitasi Lahan Penting?</h2>
-            <p style="color:#666; font-size:1.05rem;">
-                Kesehatan DAS Rejoso berawal dari kondisi tanah di hulu. Lahan yang kritis tidak mampu menyimpan air hujan, menyebabkan banjir di hilir dan kekeringan mata air. Program ini menggunakan pendekatan <strong>Agroforestri</strong>: memadukan tanaman hutan dengan tanaman buah bernilai ekonomi.
+    <!-- 2. MAP & GLOBAL STATS -->
+    <section class="map-section">
+        <!-- PETA VISUALISASI -->
+        <div class="map-container">
+            <!-- Ini Placeholder Peta, nanti diganti Peta GIS/JPG Lahan Kritis -->
+            <div style="background:rgba(255,255,255,0.8); padding:10px 20px; border-radius:30px; font-weight:bold; color:#333;">
+                <i class="fas fa-map"></i> Peta Sebaran Lahan & DAS Rejoso
+            </div>
+            <div class="map-overlay">
+                <div><i class="fas fa-info-circle"></i> <strong>4 Tapak Strategis:</strong> RTH Industri, Sumber Mata Air, Hutan Lindung, Mangrove Hilir.</div>
+            </div>
+        </div>
+
+        <!-- STATISTIK TOTAL -->
+        <div class="stats-box">
+            <div class="stat-card">
+                <div class="stat-label">Total Lahan Tervegetasi</div>
+                <div class="stat-val" style="color:var(--land-green);">55 <span style="font-size:1.5rem;">Ha</span></div>
+                <small style="color:#666;">Target: Rehabilitasi Lahan Kritis</small>
+            </div>
+            <div class="stat-card" style="border-color:#17a2b8;">
+                <div class="stat-label">Total Pohon Tertanam</div>
+                <div class="stat-val" style="color:#17a2b8;">14.000</div>
+                <small style="color:#666;">Bibit Kayu & MPTS</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TABEL PES & RIWAYAT (STYLE eRISPRO) -->
+    <section class="rispro-section">
+        
+        <div class="tagline-box">
+            <h4 style="margin:0 0 10px 0; color:#1b5e20;">MODEL KONSERVASI BERKELANJUTAN</h4>
+            <p style="font-size:0.95rem; opacity:0.9; font-style:italic;">
+                "Mendorong kemitraan antara pemilik lahan (Sellers) dan investor (Buyers) untuk menjaga tutupan lahan dengan standar minimal <strong>400 Pohon/Hektar</strong> guna menjamin fungsi hidrologis dan penyerapan karbon."
             </p>
         </div>
 
-        <div class="intro-grid">
-            <div class="intro-card">
-                <i class="fas fa-cloud-rain intro-icon"></i>
-                <div class="intro-title">Fungsi "Spons" Alami</div>
-                <p style="font-size:0.9rem; color:#666;">Akar pohon menggemburkan tanah (makropori), meningkatkan laju infiltrasi air hujan hingga 40% dibandingkan lahan gundul.</p>
-            </div>
-            <div class="intro-card">
-                <i class="fas fa-mountain intro-icon"></i>
-                <div class="intro-title">Pengendali Erosi</div>
-                <p style="font-size:0.9rem; color:#666;">Tajuk pohon memecah energi air hujan, mencegah lapisan tanah subur hanyut (sedimentasi) ke sungai.</p>
-            </div>
-            <div class="intro-card">
-                <i class="fas fa-hand-holding-usd intro-icon"></i>
-                <div class="intro-title">Ekonomi Masyarakat</div>
-                <p style="font-size:0.9rem; color:#666;">Menanam bibit produktif (Alpukat, Durian, Kopi) memberikan pendapatan jangka panjang bagi petani tanpa merusak hutan.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. DASHBOARD STATUS (TARGET LFA) -->
-    <section class="target-section">
-        <h2 class="section-title">Status Rehabilitasi Lahan</h2>
-        <div class="target-grid">
+        <div style="max-width: 1200px; margin: 0 auto;">
             
-            <!-- Target Luas -->
-            <div class="target-card">
-                <i class="fas fa-map-marked-alt" style="font-size:2rem; color:var(--land-green); margin-bottom:15px;"></i>
-                <h3 style="margin:0; font-size:1.2rem; color:#555;">Luas Lahan Kemitraan</h3>
-                <div class="big-number">55</div>
-                <span style="font-weight:bold; color:var(--land-green);">HEKTAR</span>
-                <p class="sub-text" style="margin-top:10px;">Lokasi: Tosari, Puspo, Pasrepan, Lumbang</p>
+            <!-- BAGIAN 1: PELUANG INVESTASI (PES) -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="color:var(--primary-dark); font-size:1.5rem; margin-bottom:5px;">Peluang Investasi Adopsi Lahan (PES)</h3>
+                <p style="color:#666; font-size:0.9rem;">Daftar lahan masyarakat yang siap direhabilitasi atau dijaga (Skema Voluntary).</p>
             </div>
 
-            <!-- Target Pohon -->
-            <div class="target-card">
-                <i class="fas fa-tree" style="font-size:2rem; color:var(--land-green); margin-bottom:15px;"></i>
-                <h3 style="margin:0; font-size:1.2rem; color:#555;">Target Penanaman</h3>
-                <div class="big-number">14.000</div>
-                <span style="font-weight:bold; color:var(--land-green);">BIBIT POHON</span>
-                <p class="sub-text" style="margin-top:10px;">Jenis: Kayu Keras & MPTS (Buah)</p>
+            <div class="table-container">
+                <div class="table-header-box" style="border-left:5px solid var(--land-green);"><i class="fas fa-tree"></i> Daftar Usulan Lahan</div>
+                <table class="rispro-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="35%">Judul Program & Lokasi</th>
+                            <th width="25%">Pengusul (Seller)</th>
+                            <th width="35%">Info Lahan & Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ITEM 1 -->
+                        <tr>
+                            <td style="font-weight:bold; color:#888;">1</td>
+                            <td>
+                                <span class="proposal-title">Agroforestri Kopi Rakyat</span>
+                                <span style="font-size:0.85rem; color:#666;"><i class="fas fa-map-marker-alt"></i> Desa Puspo, Kec. Puspo</span>
+                                <br><br>
+                                <a href="#" class="btn-rispro"><i class="far fa-eye"></i> Lihat Detail</a>
+                            </td>
+                            <td>
+                                <span class="pi-name">KTH Harapan Maju</span>
+                                <span class="pi-inst">Kelompok Tani Hutan</span>
+                            </td>
+                            <td>
+                                <span class="badge-vol">Voluntary PES</span>
+                                <ul class="info-list">
+                                    <li><strong>Luas Lahan:</strong> 5.0 Hektar</li>
+                                    <li><strong>Target Tanam:</strong> 2.000 Pohon (400/Ha)</li>
+                                    <li><strong>Jenis:</strong> Kopi, Alpukat, Sengon</li>
+                                    <li><strong>Est. Karbon:</strong> ~44 Ton CO2/Thn</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <!-- ITEM 2 -->
+                        <tr>
+                            <td style="font-weight:bold; color:#888;">2</td>
+                            <td>
+                                <span class="proposal-title">Rehabilitasi Lahan Miring Tosari</span>
+                                <span style="font-size:0.85rem; color:#666;"><i class="fas fa-map-marker-alt"></i> Desa Wonokitri, Kec. Tosari</span>
+                                <br><br>
+                                <a href="#" class="btn-rispro"><i class="far fa-eye"></i> Lihat Detail</a>
+                            </td>
+                            <td>
+                                <span class="pi-name">LMDH Tengger Makmur</span>
+                                <span class="pi-inst">Lembaga Masyarakat Desa Hutan</span>
+                            </td>
+                            <td>
+                                <span class="badge-vol">Voluntary PES</span>
+                                <ul class="info-list">
+                                    <li><strong>Luas Lahan:</strong> 10.0 Hektar</li>
+                                    <li><strong>Target Tanam:</strong> 5.000 Pohon (500/Ha)</li>
+                                    <li><strong>Jenis:</strong> Cemara Gunung, Akasia</li>
+                                    <li><strong>Est. Karbon:</strong> ~110 Ton CO2/Thn</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Estimasi Karbon -->
-            <div class="target-card">
-                <i class="fas fa-smog" style="font-size:2rem; color:var(--land-green); margin-bottom:15px;"></i>
-                <h3 style="margin:0; font-size:1.2rem; color:#555;">Potensi Serapan Karbon</h3>
-                <div class="big-number">308</div>
-                <span style="font-weight:bold; color:var(--land-green);">TON CO2/Tahun</span>
-                <p class="sub-text" style="margin-top:10px;">*Estimasi dari 14.000 pohon dewasa</p>
+            <!-- BAGIAN 2: RIWAYAT / LAPORAN (HISTORICAL) -->
+            <div style="margin-bottom: 20px; margin-top: 60px;">
+                <h3 style="color:var(--primary-dark); font-size:1.5rem; margin-bottom:5px;">Laporan Aksi Penanaman (CSR)</h3>
+                <p style="color:#666; font-size:0.9rem;">Rekam jejak kontribusi penanaman yang telah terlaksana.</p>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header-box" style="background:#e9ecef; border-left:5px solid #0077b6;"><i class="fas fa-history"></i> Log Penanaman Terlaksana</div>
+                <table class="rispro-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="30%">Program</th>
+                            <th width="20%">Pendana (Supporter)</th>
+                            <th width="20%">Pelaksana</th>
+                            <th width="25%">Realisasi Output</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:bold;">1</td>
+                            <td>
+                                <span class="proposal-title">Penanaman Kawasan Penyangga 2024</span>
+                                <span style="font-size:0.8rem; color:#666;">Lokasi: Pasrepan & Lumbang</span>
+                            </td>
+                            <td>PT. Tirta Investama</td>
+                            <td>Yayasan Sekola Konang</td>
+                            <td>
+                                <span class="badge-report">Reported</span>
+                                <ul class="info-list">
+                                    <li><strong>Luas:</strong> 15 Hektar</li>
+                                    <li><strong>Tanam:</strong> 6.000 Pohon (MPTS)</li>
+                                    <li><strong>Survival Rate:</strong> 85%</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:bold;">2</td>
+                            <td>
+                                <span class="proposal-title">Rehabilitasi Hutan Lindung 2023</span>
+                                <span style="font-size:0.8rem; color:#666;">Lokasi: Tosari</span>
+                            </td>
+                            <td>PT. Tirta Investama</td>
+                            <td>Mitra Lokal / LMDH</td>
+                            <td>
+                                <span class="badge-report">Reported</span>
+                                <ul class="info-list">
+                                    <li><strong>Luas:</strong> 10 Hektar</li>
+                                    <li><strong>Tanam:</strong> 4.000 Pohon Keras</li>
+                                    <li><strong>Survival Rate:</strong> 90%</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
         </div>
     </section>
 
-    <!-- 4. KALKULATOR SERAPAN KARBON -->
+    <!-- 4. CALCULATOR (CARBON FOOTPRINT) -->
     <section class="calc-section">
-        <div class="section-header" style="text-align:center; margin-bottom:40px;">
-            <h2 style="color:var(--primary-dark); font-size:2rem;">Kalkulator Jejak Hijau</h2>
-            <p style="color:#666;">Hitung kontribusi penanaman pohon terhadap pengurangan emisi karbon.</p>
+        <div style="text-align:center; margin-bottom:40px;">
+            <h2 style="color:var(--accent-gold); font-size:2rem;">Kalkulator Serapan Karbon</h2>
+            <p style="opacity:0.8;">Hitung potensi kontribusi penanaman pohon Anda terhadap pengurangan emisi.</p>
         </div>
 
         <div class="calc-wrapper">
-            <!-- INPUT FORM -->
-            <div class="form-box">
-                <h4 style="color:var(--land-green); margin-bottom:20px; font-size:1.2rem;"><i class="fas fa-leaf"></i> Data Penanaman</h4>
-                
-                <label class="form-label">Jenis Tanaman</label>
-                <select id="treeType" class="form-select">
-                    <option value="25">Pohon Kayu Keras (Sengon, Jati, Mahoni)</option>
-                    <option value="15">Pohon Buah/MPTS (Durian, Alpukat, Kopi)</option>
-                    <option value="10">Tanaman Semusim/Perdu</option>
+            <!-- INPUT -->
+            <div>
+                <label style="display:block; margin-bottom:10px; font-weight:bold;">Jenis Tanaman</label>
+                <select id="treeType" class="form-control">
+                    <option value="22">Tanaman Kayu Keras (Jati, Mahoni, Sengon) - Est. 22kg/thn</option>
+                    <option value="15">Tanaman Buah/MPTS (Durian, Alpukat) - Est. 15kg/thn</option>
+                    <option value="35">Bambu (Rumpun) - Est. 35kg/thn</option>
                 </select>
 
-                <label class="form-label">Jumlah Bibit</label>
-                <input type="number" id="treeCount" value="10" class="form-input" placeholder="Masukkan jumlah pohon">
+                <label style="display:block; margin-bottom:10px; font-weight:bold;">Jumlah Pohon</label>
+                <input type="number" id="treeCount" value="400" class="form-control" placeholder="Contoh: 400">
 
-                <button onclick="calculateCarbon()" class="btn-calc">Hitung Kontribusi &rarr;</button>
-                
-                <div style="margin-top:20px; font-size:0.8rem; color:#888; border-top:1px solid #eee; padding-top:10px;">
-                    *Dasar Perhitungan: Rata-rata serapan karbon pohon tropis usia produktif (IPCC Guidelines). Angka ini adalah estimasi.
-                </div>
+                <button onclick="calcCarbon()" class="btn-calc">Hitung Dampak &rarr;</button>
             </div>
 
             <!-- RESULT -->
-            <div class="result-box">
-                <h4 style="margin-bottom:10px; opacity:0.8; font-weight:400;">Potensi Serapan Karbon</h4>
-                <div id="res-carbon" style="font-size:3.5rem; font-weight:800; color:var(--accent-gold); margin:10px 0;">0</div>
-                <span style="font-size:1.2rem; font-weight:600;">kg CO2 / Tahun</span>
+            <div style="text-align:center;">
+                <h3 style="margin-bottom:15px; font-weight:400;">Potensi Penyerapan CO2</h3>
+                <div id="res-carbon" style="font-size:3.5rem; font-weight:800; color:var(--accent-gold); line-height:1;">0</div>
+                <span style="font-size:1.2rem; display:block; margin-bottom:20px;">Kg CO2 / Tahun</span>
                 
-                <div style="margin-top:30px; padding:15px; background:rgba(255,255,255,0.1); border-radius:8px;">
-                    <strong style="display:block; margin-bottom:5px;">Tahukah Anda?</strong>
-                    <span style="font-size:0.9rem;">Jumlah ini setara dengan mengimbangi emisi gas buang kendaraan sejauh <span id="res-km" style="color:var(--accent-gold); font-weight:bold;">0</span> Kilometer.</span>
+                <div style="background:rgba(255,255,255,0.1); padding:15px; border-radius:8px; font-size:0.9rem;">
+                    Setara dengan emisi gas buang mobil sejauh <strong id="res-km" style="color:var(--accent-gold);">0</strong> KM.
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- 5. GALERI KEGIATAN -->
-    <section class="gallery-section">
-        <h2 style="text-align:center; color:var(--primary-dark); margin-bottom:10px;">Galeri Aksi Lapangan</h2>
-        <p style="text-align:center; color:#666;">Bukti nyata upaya penghijauan di kawasan hulu.</p>
-        
-        <div class="gallery-grid">
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Nursery.jpg" class="gallery-img" alt="Nursery">
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Distribusi%20Bibit.jpg" class="gallery-img" alt="Distribusi Bibit">
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Penanaman.jpg" class="gallery-img" alt="Penanaman">
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Monitoring%20Tumbuh.jpg" class="gallery-img" alt="Monitoring">
         </div>
     </section>
 
@@ -244,9 +369,9 @@
         <p>&copy; 2026-2031 Rejoso Co-Investment Initiative. All Rights Reserved.</p>
     </footer>
 
-    <!-- SCRIPT HITUNGAN KARBON -->
+    <!-- SCRIPT -->
     <script>
-        function calculateCarbon() {
+        function calcCarbon() {
             const factor = parseInt(document.getElementById('treeType').value);
             const count = parseInt(document.getElementById('treeCount').value) || 0;
             
@@ -261,8 +386,8 @@
             document.getElementById('res-km').innerText = equivalentKM.toLocaleString('id-ID');
         }
 
-        // Run default on load
-        window.addEventListener('load', calculateCarbon);
+        // Run default
+        window.addEventListener('load', calcCarbon);
     </script>
 </body>
 </html>
