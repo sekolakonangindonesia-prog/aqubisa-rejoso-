@@ -99,6 +99,104 @@
         .spec-list { margin-top: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 0.85rem; color: #555; }
         .spec-list div { margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
 
+        /* --- TABLE STYLE (GAYA eRISPRO) --- */
+        .rispro-container {
+            background: white;
+            border: 1px solid var(--rispro-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        
+        .rispro-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rispro-table th {
+            text-align: left;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--rispro-border);
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 600;
+            background-color: #fafafa;
+        }
+
+        .rispro-table td {
+            padding: 25px 20px;
+            border-bottom: 1px solid var(--rispro-border);
+            vertical-align: top;
+        }
+
+        .rispro-table tr:last-child td { border-bottom: none; }
+        .rispro-table tr:hover { background-color: #fcfcfc; }
+
+        /* Styling Isi Tabel */
+        .prop-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .prop-loc {
+            color: #666;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .btn-abstract {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 15px;
+            border: 1px solid var(--primary-dark);
+            border-radius: 4px;
+            background: transparent;
+            color: var(--primary-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-abstract:hover { background: var(--primary-dark); color: white; }
+
+        .investigator-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #000;
+            display: block;
+        }
+        .investigator-inst {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .badge-mandatory {
+            background-color: var(--rispro-purple);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .prop-info-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .prop-info-list li { margin-bottom: 4px; }
+        .prop-info-list strong { color: #333; }
+
+
         /* --- CALCULATOR SECTION --- */
         .calc-section { background: white; padding: 60px 5%; border-top: 1px solid #eee; }
         
