@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water Conservation Funds - AqruBiSA</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- CSS VARIABLE --- */
+        /* --- CSS VARIABLE & RESET --- */
         :root {
             --primary-dark: #0b1f30; 
             --water-blue: #0077b6;
             --water-light: #caf0f8;
             --accent-gold: #d4af37;
             --text-dark: #333;
-            --bg-light: #f9f9f9;
-            --rispro-border: #e0e0e0;
-            --rispro-purple: #6f42c1; /* Warna Badge mirip eRISPRO */
+            --bg-light: #f4f7f6;
+            --success-green: #28a745;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
         body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* HEADER */
+        /* --- HEADER --- */
         header { background: white; padding: 5px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
         .brand-wrapper { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
         nav ul { list-style: none; display: flex; gap: 20px; }
@@ -30,7 +30,7 @@
         nav a:hover { color: var(--water-blue); }
         .btn-header { background: var(--water-blue); color: white; padding: 8px 25px; border-radius: 25px; font-weight: bold; font-size: 0.9rem; }
 
-        /* HERO */
+        /* --- HERO SECTION --- */
         .water-hero {
             position: relative;
             height: 400px;
@@ -48,151 +48,124 @@
         .btn-back { border: 1px solid white; padding: 10px 20px; color: white; border-radius: 50px; font-size: 0.9rem; display: inline-block; }
         .btn-back:hover { background: white; color: var(--water-blue); }
 
-        /* GLOBAL COUNTER */
+        /* --- GLOBAL COUNTER (ANGKA TOTAL) --- */
         .global-counter-box {
-            background: var(--primary-dark); color: white; padding: 40px 5%; text-align: center;
-            position: relative; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-bottom: 5px solid var(--water-blue);
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--water-blue);
         }
         .counter-val { font-size: 3.5rem; font-weight: 800; color: var(--water-light); line-height: 1; margin: 10px 0; }
+        .counter-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; opacity: 0.8; }
 
-        /* STATUS INFRA */
+        /* --- POLICY GRID --- */
+        .policy-section { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+        .policy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: -30px; }
+        .policy-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; border: 1px solid #eee; }
+        .policy-icon { font-size: 2rem; color: var(--water-blue); }
+        
+        /* --- INFRASTRUCTURE DASHBOARD --- */
         .infra-section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 40px; color: var(--primary-dark); font-size: 2rem; font-weight: 700; }
+        
         .infra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-        .infra-card { background: white; border: 1px solid #ddd; border-radius: 12px; padding: 30px; position: relative; border-top: 4px solid var(--water-blue); }
-        .tag-infra { position: absolute; top: 20px; right: 20px; background: var(--water-blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
-        .big-number { font-size: 4.5rem; font-weight: 800; color: var(--primary-dark); line-height: 1; margin: 20px 0; }
-        .progress-bg { width: 100%; height: 8px; background: #eee; border-radius: 4px; margin: 20px 0; }
+        
+        .infra-card { 
+            background: white; border: 1px solid #ddd; border-radius: 12px; padding: 30px; position: relative; 
+            border-top: 4px solid var(--water-blue); 
+        }
+        .tag-infra { 
+            position: absolute; top: 20px; right: 20px; background: var(--water-blue); 
+            color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; 
+        }
+        
+        /* UKURAN FONT BESAR UNTUK TARGET */
+        .big-number { 
+            font-size: 4.5rem; 
+            font-weight: 800; 
+            color: var(--primary-dark); 
+            line-height: 1; 
+            margin: 20px 0; 
+        }
+        
+        .progress-container { margin: 20px 0; }
+        .progress-bg { width: 100%; height: 8px; background: #eee; border-radius: 4px; }
         .progress-fill { height: 100%; background: var(--water-blue); border-radius: 4px; }
-
-        /* --- TABLE STYLE (GAYA eRISPRO) --- */
-        .rispro-container {
-            background: white;
-            border: 1px solid var(--rispro-border);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 50px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
         
-        .rispro-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+        .spec-list { margin-top: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 0.85rem; color: #555; }
+        .spec-list div { margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
 
-        .rispro-table th {
-            text-align: left;
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--rispro-border);
-            font-size: 0.85rem;
-            color: #666;
-            font-weight: 600;
-            background-color: #fafafa;
-        }
-
-        .rispro-table td {
-            padding: 25px 20px;
-            border-bottom: 1px solid var(--rispro-border);
-            vertical-align: top;
-        }
-
-        .rispro-table tr:last-child td { border-bottom: none; }
-        .rispro-table tr:hover { background-color: #fcfcfc; }
-
-        /* Styling Isi Tabel */
-        .prop-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-        }
+        /* --- CALCULATOR SECTION --- */
+        .calc-section { background: white; padding: 60px 5%; border-top: 1px solid #eee; }
         
-        .prop-loc {
-            color: #666;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 15px;
+        .calc-wrapper {
+            max-width: 900px; margin: 0 auto; background: white; 
+            border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;
         }
 
-        .btn-abstract {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 15px;
-            border: 1px solid var(--primary-dark);
-            border-radius: 4px;
-            background: transparent;
-            color: var(--primary-dark);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        .btn-abstract:hover { background: var(--primary-dark); color: white; }
-
-        .investigator-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #000;
-            display: block;
-        }
-        .investigator-inst {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .badge-mandatory {
-            background-color: var(--rispro-purple);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        .prop-info-list {
-            list-style: none;
-            padding: 0;
-            font-size: 0.85rem;
-            color: #555;
-        }
-        .prop-info-list li { margin-bottom: 4px; }
-        .prop-info-list strong { color: #333; }
-
-        /* --- CALCULATOR --- */
-        .calc-wrapper { max-width: 900px; margin: 60px auto 0; background: white; border-radius: 15px; border: 1px solid #ddd; overflow: hidden; }
+        /* Tabs */
         .calc-tabs { display: flex; background: #f1f3f5; border-bottom: 1px solid #ddd; }
-        .calc-tab { flex: 1; padding: 18px; text-align: center; cursor: pointer; font-weight: 700; color: #666; }
-        .calc-tab.active { background: white; border-bottom: 3px solid var(--accent-gold); color: var(--primary-dark); }
-        .calc-body { padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px; }
-        .btn-calc { width: 100%; padding: 12px; background: var(--accent-gold); color: #000; font-weight: 800; border: none; border-radius: 6px; cursor: pointer; }
-        .result-panel { background: var(--primary-dark); color: white; border-radius: 10px; padding: 30px; text-align: center; }
+        .calc-tab {
+            flex: 1; padding: 18px; text-align: center; cursor: pointer; font-weight: 700; color: #666; transition: 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .calc-tab.active { background: white; color: var(--primary-dark); border-bottom: 3px solid var(--accent-gold); }
+        .calc-tab:hover { background: #e9ecef; }
 
-        /* Accordion */
-        .accordion { max-width: 900px; margin: 30px auto; border: 1px solid #ddd; border-radius: 8px; }
-        .accordion summary { padding: 15px; background: #f8fbff; font-weight: bold; cursor: pointer; }
-        .accordion-content { padding: 20px; border-top: 1px solid #ddd; display: none; }
+        /* Calc Body */
+        .calc-body { padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .form-label { display: block; font-weight: 600; margin-bottom: 8px; color: #444; font-size: 0.9rem; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem; margin-bottom: 15px; }
+        .form-row { display: flex; gap: 15px; }
+        
+        .btn-calc {
+            width: 100%; padding: 12px; background: var(--accent-gold); color: #000; font-weight: 800; 
+            border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-calc:hover { background: #c5a028; transform: translateY(-2px); }
+
+        /* Result Box */
+        .result-panel {
+            background: var(--primary-dark); color: white; border-radius: 10px; padding: 30px; text-align: center;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .res-title { font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px; }
+        .res-number { font-size: 2.5rem; font-weight: 800; color: var(--accent-gold); line-height: 1.2; }
+        .res-unit { font-size: 1rem; font-weight: 600; margin-bottom: 20px; display: block; }
+        .res-divider { height: 1px; background: rgba(255,255,255,0.2); margin: 15px 0; }
+        .res-sub { display: flex; justify-content: space-between; font-size: 0.85rem; text-align: center; }
+
+        /* Badge Rujukan */
+        .badge-ref { 
+            display: inline-block; background: #e3f2fd; color: #0d47a1; 
+            padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px;
+            border: 1px solid #90caf9;
+        }
+
+        /* Accordion (Edukasi Rumus) */
+        .accordion { margin-top: 30px; max-width: 900px; margin-left: auto; margin-right: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .accordion summary { padding: 15px 20px; background: #f8fbff; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; color: var(--primary-dark); }
+        .accordion-content { padding: 25px; border-top: 1px solid #ddd; font-size: 0.9rem; color: #555; display: none; background: #fff; }
         details[open] .accordion-content { display: block; }
         
+        .formula-box { background: #f9f9f9; padding: 15px; border-left: 4px solid var(--accent-gold); margin-bottom: 15px; border-radius: 4px; }
+        .code-math { display:block; background:#333; color:#fff; padding:8px 12px; border-radius:4px; font-family:monospace; margin:8px 0; letter-spacing: 1px; }
+
         /* Gallery */
         .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
-        .gallery-img { width: 100%; height: 150px; object-fit: cover; border-radius: 6px; }
+        .gallery-img { width: 100%; height: 150px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; }
 
         /* Footer */
         footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; margin-top: 60px; }
-        
+
         @media (max-width: 900px) {
-            .infra-grid, .calc-body, .gallery-grid { grid-template-columns: 1fr; }
+            .policy-grid, .infra-grid, .calc-body, .gallery-grid { grid-template-columns: 1fr; }
             .water-hero h1 { font-size: 2rem; }
             .big-number { font-size: 3.5rem; }
-            .rispro-table, .rispro-table thead, .rispro-table tbody, .rispro-table th, .rispro-table td, .rispro-table tr { display: block; }
-            .rispro-table thead tr { position: absolute; top: -9999px; left: -9999px; }
-            .rispro-table tr { border: 1px solid #ccc; margin-bottom: 15px; border-radius: 8px; }
-            .rispro-table td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 15px; }
         }
     </style>
 </head>
@@ -218,20 +191,48 @@
     <section class="water-hero">
         <div class="hero-content-box">
             <h1>WATER CONSERVATION FUNDS</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">Infrastruktur Sipil Teknis & Neraca Air</p>
             <p>Implementasi teknologi sipil teknis <em>(Sumur Resapan & Rorak)</em> untuk memulihkan keseimbangan neraca air di DAS Rejoso.</p>
             <br>
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
         </div>
     </section>
 
-    <!-- 2. GLOBAL COUNTER -->
+     <!-- 2. SINERGI KEBIJAKAN -->
+    <section class="policy-section">
+        <div class="policy-grid">
+            <div class="policy-card">
+                <i class="fas fa-hand-holding-water policy-icon"></i>
+                <div>
+                    <h4 style="margin:0;">SDG 6: Clean Water</h4>
+                    <p style="font-size:0.8rem; margin:0; color:#666;">Mendukung target global akses air bersih dan manajemen akuifer berkelanjutan.</p>
+                </div>
+            </div>
+            <div class="policy-card">
+                <i class="fas fa-layer-group policy-icon"></i>
+                <div>
+                    <h4 style="margin:0;">Zero Delta Q Policy</h4>
+                    <p style="font-size:0.8rem; margin:0; color:#666;">Sinergi dengan Permen PUPR untuk menahan air hujan agar meresap ke tanah (Recharge).</p>
+                </div>
+            </div>
+            <div class="policy-card">
+                <i class="fas fa-bullseye policy-icon"></i>
+                <div>
+                    <h4 style="margin:0;">Target LFA 2031</h4>
+                    <p style="font-size:0.8rem; margin:0; color:#666;">Komitmen pembangunan 300 Sumur Resapan dan 6.000 Meter Rorak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. GLOBAL COUNTER -->
     <div class="global-counter-box">
-        <h3 class="counter-label" style="opacity:0.8;">Estimasi Total Air Diresapkan Kembali</h3>
+        <h3 class="counter-label">Estimasi Total Air Diresapkan Kembali</h3>
         <div id="global-counter" class="counter-val">0</div>
         <p style="font-size: 0.9rem; margin-top: 5px;">Liter per Tahun dari seluruh infrastruktur eksisting</p>
     </div>
-
-    <!-- 3. STATUS INFRASTRUKTUR (LFA) -->
+   
+    <!-- 4. STATUS CAPAIAN (LFA) -->
     <section class="infra-section">
         <h2 class="section-title">Status Capaian Infrastruktur</h2>
         
@@ -241,8 +242,19 @@
                 <span class="tag-infra">DEEP INJECTION</span>
                 <h3 style="color:var(--water-blue);">Sumur Resapan</h3>
                 <p style="font-size:0.85rem; color:#666;">Bangunan konservasi air tanah dalam untuk mengisi kembali akuifer Umbulan.</p>
+                
+                <!-- ANGKA BESAR -->
                 <div class="big-number">70 <span style="font-size:1.2rem; font-weight:400; color:#666;">Unit</span></div>
-                <div class="progress-bg"><div class="progress-fill" style="width: 23%;"></div></div>
+                <small>Terbangun & Terpelihara (Eksisting 2026)</small>
+
+                <div class="progress-container">
+                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; margin-bottom:5px;">
+                        <span>Capaian</span>
+                        <span>Target 2031: 300 Unit</span>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 23%;"></div></div>
+                </div>
+
                 <div class="spec-list">
                     <div><i class="fas fa-ruler-combined"></i> <strong>Dimensi:</strong> Standar Teknis PUPR</div>
                     <div><i class="fas fa-check-circle"></i> <strong>Verifikasi:</strong> 30 Unit terpasang Water Meter Digital.</div>
@@ -254,8 +266,19 @@
                 <span class="tag-infra" style="background:var(--success-green);">SEDIMENT TRAP</span>
                 <h3 style="color:var(--success-green);">Rorak (Silt Pit)</h3>
                 <p style="font-size:0.85rem; color:#666;">Jebakan air dan sedimen buntu untuk menahan laju larian air permukaan (Run-off).</p>
+                
+                <!-- ANGKA BESAR -->
                 <div class="big-number" style="color:var(--success-green);">3.000 <span style="font-size:1.2rem; font-weight:400; color:#666;">Meter</span></div>
-                <div class="progress-bg"><div class="progress-fill" style="width: 50%; background:var(--success-green);"></div></div>
+                <small>Terlaksana Revitalisasi & Normalisasi</small>
+
+                <div class="progress-container">
+                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; margin-bottom:5px;">
+                        <span>Capaian</span>
+                        <span>Target 2031: 6.000 Meter</span>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 50%; background:var(--success-green);"></div></div>
+                </div>
+
                 <div class="spec-list">
                     <div><i class="fas fa-ruler-combined"></i> <strong>Dimensi LFA:</strong> 1m x 75cm x 50cm</div>
                     <div><i class="fas fa-map"></i> <strong>Standar:</strong> 100 Meter / Hektar Lahan.</div>
@@ -264,152 +287,228 @@
         </div>
     </section>
 
-    <!-- 4. PES PROJECT LIST (STYLE eRISPRO) -->
-    <section style="padding: 60px 5%; background: white;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="margin-bottom: 30px;">
-                <h2 style="color:var(--primary-dark); font-size:1.8rem;">Peluang Investasi Jasa Lingkungan (PES)</h2>
-                <p style="color:#666;">Daftar usulan program konservasi dari masyarakat yang siap didanai (Co-Investment).</p>
+<!-- 5. PROJECT & HISTORY SECTION -->
+    <section class="history-section" style="background: #f4f6f9; padding: 60px 5%;">
+        
+        <!-- =========================================================
+             BAGIAN 1: PROJECT PES (PELUANG INVESTASI) - TAMPILAN KARTU
+             Ini untuk Seller menawarkan jasa & Buyer memilih investasi
+        ========================================================== -->
+        <div style="max-width: 1200px; margin: 0 auto 80px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid #c8e6c9;">OPEN FOR CO-INVESTMENT</span>
+                <h2 style="color:var(--primary-dark); font-size:2rem; margin-top: 10px;">Peluang Investasi Jasa Lingkungan (PES)</h2>
+                <p style="color:#666;">Pilih paket konservasi yang diajukan oleh komunitas hulu dan biayai sebagai wujud tanggung jawab lingkungan (Water Stewardship).</p>
             </div>
 
-            <div class="rispro-container">
-                <table class="rispro-table">
-                    <thead>
-                        <tr>
-                            <th width="5%">No</th>
-                            <th width="40%">Proposal Title</th>
-                            <th width="30%">Principal Investigator (Participant)</th>
-                            <th width="25%">Proposal Info</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- ROW 1 -->
-                        <tr>
-                            <td style="font-weight:bold; color:#888;">1</td>
-                            <td>
-                                <span class="prop-title">Desa Galih Mandiri Lestari</span>
-                                <span class="prop-loc"><i class="fas fa-map-marker-alt"></i> Desa Galih, Kec. Pasrepan</span>
-                                <a href="#" class="btn-abstract"><i class="far fa-eye"></i> Lihat Detail</a>
-                            </td>
-                            <td>
-                                <span class="investigator-name">KMPS Desa Galih</span>
-                                <span class="investigator-inst">Kelompok Masyarakat Peduli Sungai</span>
-                            </td>
-                            <td>
-                                <span class="badge-mandatory">Voluntary</span>
-                                <ul class="prop-info-list">
-                                    <li><strong>Focus:</strong> 250 Rorak, 2 Sumur Resapan</li>
-                                    <li><strong>Output:</strong> Est. 9.6 Juta Liter Air/Thn</li>
-                                    <li><strong>Status:</strong> Open for Investment</li>
-                                </ul>
-                            </td>
-                        </tr>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                
+                <!-- PROJECT 1 -->
+                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
+                    <div style="background: var(--success-green); height: 5px;"></div>
+                    <div style="padding: 25px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
+                            <span style="font-size: 0.75rem; color: #666; background:#eee; padding:3px 8px; border-radius:4px;">Target: 2026</span>
+                            <span style="font-weight: bold; color: var(--primary-dark); font-size:0.9rem;"><i class="fas fa-map-marker-alt"></i> Tosari (Zona Hulu)</span>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Inisiatif Mandiri Lahan Atas Blok A</h3>
+                        
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border:1px dashed #ddd;">
+                            <div style="font-size:0.85rem; color:#555; margin-bottom:5px;">Rencana Infrastruktur:</div>
+                            <div style="font-weight:bold; color:#0b1f30;">100 Unit Rorak & 5 Sumur Resapan</div>
+                            <div style="font-size:0.8rem; color:#2e7d32; margin-top:5px;">Est. Serapan: <strong>12 Juta Liter/Thn</strong></div>
+                        </div>
 
-                        <!-- ROW 2 -->
-                        <tr>
-                            <td style="font-weight:bold; color:#888;">2</td>
-                            <td>
-                                <span class="prop-title">Konservasi Hulu Tosari (Blok A)</span>
-                                <span class="prop-loc"><i class="fas fa-map-marker-alt"></i> Desa Tosari, Kec. Tosari</span>
-                                <a href="#" class="btn-abstract"><i class="far fa-eye"></i> Lihat Detail</a>
-                            </td>
-                            <td>
-                                <span class="investigator-name">KT. Sumber Rejeki</span>
-                                <span class="investigator-inst">Kelompok Tani Hutan</span>
-                            </td>
-                            <td>
-                                <span class="badge-mandatory">Voluntary</span>
-                                <ul class="prop-info-list">
-                                    <li><strong>Focus:</strong> 500 Meter Rorak</li>
-                                    <li><strong>Output:</strong> Est. 19.2 Juta Liter Air/Thn</li>
-                                    <li><strong>Status:</strong> Open for Investment</li>
-                                </ul>
-                            </td>
-                        </tr>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top:20px;">
+                            <div>
+                                <span style="font-size:0.75rem; color:#888;">Pengusul (Seller):</span><br>
+                                <strong style="font-size:0.9rem;">KT. Sumber Rejeki</strong>
+                            </div>
+                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-decoration: none;">Lihat Proposal</a>
+                        </div>
+                    </div>
+                </div>
 
-                         <!-- ROW 3 -->
-                         <tr>
-                            <td style="font-weight:bold; color:#888;">3</td>
-                            <td>
-                                <span class="prop-title">Pemulihan Kawasan Penyangga</span>
-                                <span class="prop-loc"><i class="fas fa-map-marker-alt"></i> Kec. Puspo</span>
-                                <a href="#" class="btn-abstract"><i class="far fa-eye"></i> Lihat Detail</a>
-                            </td>
-                            <td>
-                                <span class="investigator-name">LMDH Wana Lestari</span>
-                                <span class="investigator-inst">Lembaga Masyarakat Desa Hutan</span>
-                            </td>
-                            <td>
-                                <span class="badge-mandatory">Voluntary</span>
-                                <ul class="prop-info-list">
-                                    <li><strong>Focus:</strong> 100 Rorak, 10 Sumur</li>
-                                    <li><strong>Output:</strong> Est. 15.3 Juta Liter Air/Thn</li>
-                                    <li><strong>Status:</strong> Open for Investment</li>
-                                </ul>
-                            </td>
-                        </tr>
+                <!-- PROJECT 2 -->
+                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
+                    <div style="background: var(--water-blue); height: 5px;"></div>
+                    <div style="padding: 25px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
+                            <span style="font-size: 0.75rem; color: #666; background:#eee; padding:3px 8px; border-radius:4px;">Target: 2025</span>
+                            <span style="font-weight: bold; color: var(--primary-dark); font-size:0.9rem;"><i class="fas fa-map-marker-alt"></i> Puspo (Zona Tengah)</span>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Normalisasi Catchment Area Kopi</h3>
+                        
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border:1px dashed #ddd;">
+                            <div style="font-size:0.85rem; color:#555; margin-bottom:5px;">Rencana Infrastruktur:</div>
+                            <div style="font-weight:bold; color:#0b1f30;">250 Meter Rorak</div>
+                            <div style="font-size:0.8rem; color:#2e7d32; margin-top:5px;">Est. Serapan: <strong>4.8 Juta Liter/Thn</strong></div>
+                        </div>
 
-                    </tbody>
-                </table>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top:20px;">
+                            <div>
+                                <span style="font-size:0.75rem; color:#888;">Pengusul (Seller):</span><br>
+                                <strong style="font-size:0.9rem;">LMDH Wana Lestari</strong>
+                            </div>
+                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-decoration: none;">Lihat Proposal</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3 -->
+                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
+                    <div style="background: #8e44ad; height: 5px;"></div>
+                    <div style="padding: 25px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
+                            <span style="font-size: 0.75rem; color: #666; background:#eee; padding:3px 8px; border-radius:4px;">Target: 2026</span>
+                            <span style="font-weight: bold; color: var(--primary-dark); font-size:0.9rem;"><i class="fas fa-map-marker-alt"></i> Pasrepan</span>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Sumur Resapan Padat Karya</h3>
+                        
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border:1px dashed #ddd;">
+                            <div style="font-size:0.85rem; color:#555; margin-bottom:5px;">Rencana Infrastruktur:</div>
+                            <div style="font-weight:bold; color:#0b1f30;">10 Unit Sumur Resapan Dalam</div>
+                            <div style="font-size:0.8rem; color:#2e7d32; margin-top:5px;">Est. Serapan: <strong>1.5 Juta Liter/Thn</strong></div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top:20px;">
+                            <div>
+                                <span style="font-size:0.75rem; color:#888;">Pengusul (Seller):</span><br>
+                                <strong style="font-size:0.9rem;">Kelompok Tani Makmur</strong>
+                            </div>
+                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-decoration: none;">Lihat Proposal</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </section>
 
-    <!-- 5. RIWAYAT PROGRAM (TABEL LAPORAN/CSR) -->
-    <section style="padding: 40px 5%; background: #f4f7f6; border-top: 1px solid #ddd;">
+        <!-- =========================================================
+             BAGIAN 2: RIWAYAT PROGRAM (REPORTING/CSR) - TAMPILAN TABEL
+             Ini adalah data historis/laporan yang sudah terjadi
+        ========================================================== -->
         <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="margin-bottom: 20px;">
-                <h3 style="color:var(--primary-dark);">Riwayat Program & Laporan (CSR)</h3>
-                <p style="font-size:0.9rem; color:#666;">Data kontribusi yang telah terlaksana dan terverifikasi.</p>
+            <div style="margin-bottom: 20px; border-bottom:2px solid #ddd; padding-bottom:15px; display:flex; align-items:center; justify-content:space-between;">
+                <div>
+                    <h2 style="color:var(--primary-dark); font-size:1.8rem; margin:0;">Jejak Rekam & Laporan (CSR)</h2>
+                    <p style="color:#666; font-size:0.9rem; margin-top:5px;">Database transparansi kontribusi yang telah terlaksana dan terverifikasi.</p>
+                </div>
+                <button style="padding:10px 20px; border:1px solid #005f73; background:white; color:#005f73; border-radius:5px; cursor:pointer;"><i class="fas fa-download"></i> Download Report</button>
+            </div>
+
+            <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e0e0e0;">
+                
+                <div class="table-responsive">
+                    <table class="table-history" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background:#0b1f30; color:white;">
+                                <th style="padding:15px;">Tahun</th>
+                                <th style="padding:15px; text-align:left;">Nama Program / Lokasi</th>
+                                <th style="padding:15px; text-align:left;">Pendana (Supporter)</th>
+                                <th style="padding:15px; text-align:left;">Pelaksana (Implementer)</th>
+                                <th style="padding:15px; text-align:left;">Output Infrastruktur</th>
+                                <th style="padding:15px; text-align:left;">Estimasi Infiltrasi*</th>
+                                <th style="padding:15px; text-align:center;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- DATA 2024 -->
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:15px; font-weight:bold; text-align:center;">2024</td>
+                                <td style="padding:15px;">
+                                    <strong>Konservasi Terintegrasi 2024</strong><br>
+                                    <span style="font-size:0.8rem; color:#666;">Kawasan Penyangga</span>
+                                </td>
+                                <td style="padding:15px;">PT. Tirta Investama</td>
+                                <td style="padding:15px;">Yayasan Sekola Konang</td>
+                                <td style="padding:15px;">
+                                    <span style="background:#f1f3f5; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:bold;">1.500m Rorak</span>
+                                </td>
+                                <!-- Hitungan Skema Kita: 1500m x 0.16m3 x 120hari = 28.800 m3 = 28.8 Juta Liter -->
+                                <td style="padding:15px; font-family:monospace; font-weight:bold; color:#0077b6;">28.8 Juta Liter</td>
+                                <td style="padding:15px; text-align:center;"><a href="#" style="color:#666;"><i class="fas fa-file-alt"></i></a></td>
+                            </tr>
+
+                            <!-- DATA 2023 -->
+                            <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+                                <td style="padding:15px; font-weight:bold; text-align:center;">2023</td>
+                                <td style="padding:15px;">
+                                    <strong>Program AQUA Keboncandi</strong><br>
+                                    <span style="font-size:0.8rem; color:#666;">Desa Galih</span>
+                                </td>
+                                <td style="padding:15px;">PT. Tirta Investama</td>
+                                <td style="padding:15px;">Yayasan Sekola Konang</td>
+                                <td style="padding:15px;">
+                                    <div style="margin-bottom:3px;"><span style="background:#f1f3f5; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:bold;">500m Rorak</span></div>
+                                    <div><span style="background:#f1f3f5; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:bold;">5 Unit Sumur</span></div>
+                                </td>
+                                <!-- Hitungan: (500x0.16x120) + (5x1.13x120) = 9600 + 678 = 10.278 m3 -->
+                                <td style="padding:15px; font-family:monospace; font-weight:bold; color:#0077b6;">10.3 Juta Liter</td>
+                                <td style="padding:15px; text-align:center;"><a href="#" style="color:#666;"><i class="fas fa-file-alt"></i></a></td>
+                            </tr>
+
+                            <!-- DATA 2022 -->
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:15px; font-weight:bold; text-align:center;">2022</td>
+                                <td style="padding:15px;">
+                                    <strong>Rejoso Menabung Air</strong><br>
+                                    <span style="font-size:0.8rem; color:#666;">Kec. Pasrepan</span>
+                                </td>
+                                <td style="padding:15px;">PT. Tirta Investama</td>
+                                <td style="padding:15px;">LMDH / Mitra Lokal</td>
+                                <td style="padding:15px;">
+                                    <div style="margin-bottom:3px;"><span style="background:#f1f3f5; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:bold;">750m Rorak</span></div>
+                                    <div><span style="background:#f1f3f5; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:bold;">20 Unit Sumur</span></div>
+                                </td>
+                                <!-- Hitungan: (750x0.16x120) + (20x1.13x120) = 14400 + 2712 = 17.112 m3 -->
+                                <td style="padding:15px; font-family:monospace; font-weight:bold; color:#0077b6;">17.1 Juta Liter</td>
+                                <td style="padding:15px; text-align:center;"><a href="#" style="color:#666;"><i class="fas fa-file-alt"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
-            <div style="background:white; border-radius:8px; overflow:hidden; border:1px solid #ddd;">
-                <table style="width:100%; border-collapse:collapse;">
-                    <thead style="background:#e9ecef; color:#333;">
-                        <tr>
-                            <th style="padding:15px; text-align:left;">Tahun</th>
-                            <th style="padding:15px; text-align:left;">Program</th>
-                            <th style="padding:15px; text-align:left;">Pendana</th>
-                            <th style="padding:15px; text-align:left;">Pelaksana</th>
-                            <th style="padding:15px; text-align:left;">Capaian</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom:1px solid #eee;">
-                            <td style="padding:15px;">2024</td>
-                            <td style="padding:15px; font-weight:bold;">Konservasi Terintegrasi</td>
-                            <td style="padding:15px;">PT. Tirta Investama</td>
-                            <td style="padding:15px;">Yayasan Sekola Konang</td>
-                            <td style="padding:15px;">1.500m Rorak (28.8 ML/Thn)</td>
-                        </tr>
-                        <tr style="border-bottom:1px solid #eee;">
-                            <td style="padding:15px;">2023</td>
-                            <td style="padding:15px; font-weight:bold;">Program AQUA Keboncandi</td>
-                            <td style="padding:15px;">PT. Tirta Investama</td>
-                            <td style="padding:15px;">Yayasan Sekola Konang</td>
-                            <td style="padding:15px;">500m Rorak, 5 Sumur (10.3 ML/Thn)</td>
-                        </tr>
-                         <tr>
-                            <td style="padding:15px;">2022</td>
-                            <td style="padding:15px; font-weight:bold;">Rejoso Menabung Air</td>
-                            <td style="padding:15px;">PT. Tirta Investama</td>
-                            <td style="padding:15px;">LMDH / Mitra Lokal</td>
-                            <td style="padding:15px;">750m Rorak, 20 Sumur (17.1 ML/Thn)</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Disclaimer Kecil -->
+            <p style="font-size:0.75rem; color:#888; margin-top:10px;">*Estimasi Infiltrasi dihitung menggunakan Metode Volumetrik (Kapasitas Infrastruktur x Frekuensi Hujan Tahunan Rejoso)</p>
+
+        </div>
+    </section>
+          
+    <!-- 5. METODOLOGI VALIDASI DAMPAK -->
+    <section style="background:#0b1f30; color:white; padding:50px 5%; text-align:center;">
+        <h2 style="font-size:1.8rem; margin-bottom:10px;">Metodologi Validasi Dampak</h2>
+        <p style="opacity:0.8; margin-bottom:40px;">Bagaimana kami menghitung volume air 1.2 Juta m³ yang terserap kembali?</p>
+        
+        <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:50px;">
+            <div style="max-width:300px;">
+                <i class="fas fa-calculator" style="font-size:2.5rem; color:var(--accent-gold); margin-bottom:15px;"></i>
+                <h4 style="margin-bottom:10px;">Pendekatan Rumus</h4>
+                <p style="font-size:0.85rem; opacity:0.8;">Perhitungan berbasis <strong>Dimensi Bangunan x Intensitas Curah Hujan Harian</strong> di lokasi tangkapan air.</p>
+            </div>
+            <div style="max-width:300px;">
+                <i class="fas fa-wifi" style="font-size:2.5rem; color:var(--accent-gold); margin-bottom:15px;"></i>
+                <h4 style="margin-bottom:10px;">Validasi Digital</h4>
+                <p style="font-size:0.85rem; opacity:0.8;">Verifikasi data real-time menggunakan <strong>Water Meter</strong> yang terpasang pada sampel unit sumur resapan.</p>
+            </div>
+            <div style="max-width:300px;">
+                <i class="fas fa-check-double" style="font-size:2.5rem; color:var(--accent-gold); margin-bottom:15px;"></i>
+                <h4 style="margin-bottom:10px;">Verifikasi Pihak Ketiga</h4>
+                <p style="font-size:0.85rem; opacity:0.8;">Audit berkala oleh tim ahli hidrologi untuk memastikan fungsi resapan berjalan optimal.</p>
             </div>
         </div>
     </section>
 
-    <!-- 6. KALKULATOR -->
+    <!-- 6. KALKULATOR POTENSI SERAPAN (TAB MODE) -->
     <section class="calc-section">
         <div style="text-align:center; margin-bottom:30px;">
             <h2 style="color:var(--primary-dark); font-size:2rem; margin-bottom:5px;">Kalkulator Potensi Serapan</h2>
-            <p style="color:#666;">Hitung estimasi kontribusi Anda berdasarkan standar hidrologi Rejoso.</p>
+            <p style="color:#666;">Pilih dasar metode perhitungan yang ingin digunakan.</p>
         </div>
 
         <div class="calc-wrapper">
+            <!-- TABS -->
             <div class="calc-tabs">
                 <div class="calc-tab active" onclick="switchTab('satuan', this)">
                     <i class="fas fa-cube"></i> Metode Volumetrik (Dimensi Fisik)
@@ -419,9 +518,13 @@
                 </div>
             </div>
 
-            <!-- TAB 1: MODE SATUAN -->
+            <!-- TAB 1: METODE VOLUMETRIK (SATUAN) -->
             <div id="mode-satuan" class="calc-body">
                 <div>
+                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="far fa-edit"></i> Input Data Dimensi Unit</h4>
+                    
+                    <span class="badge-ref">Dasar Hitungan: Kapasitas Tampung Volume</span>
+
                     <label class="form-label">Jenis Infrastruktur</label>
                     <select id="infraType" class="form-control" onchange="toggleDimensi()">
                         <option value="rorak">Rorak (Jebakan Air)</option>
@@ -461,6 +564,13 @@
                         </select>
                     </div>
 
+                    <label class="form-label">Kondisi Tanah (Lokasi)</label>
+                    <select id="soilType" class="form-control">
+                        <option value="sedang">Hulu/Tengah (Gembur/Latosol) - Std Rejoso</option>
+                        <option value="lambat">Hilir (Lempung/Liat) - Lambat Meresap</option>
+                        <option value="cepat">Pasir/Berbatu - Cepat Meresap</option>
+                    </select>
+
                     <label class="form-label">Jumlah Unit</label>
                     <input type="number" id="qty_satuan" value="1" class="form-control">
 
@@ -471,20 +581,40 @@
                     <span class="res-title">Potensi Serapan per Tahun</span>
                     <div id="res-val-satuan" class="res-number">58.800</div>
                     <span class="res-unit">Liter Air</span>
+                    
+                    <div class="res-divider"></div>
+                    
+                    <div class="res-sub">
+                        <div>
+                            <strong id="res-m3-satuan" style="font-size:1.2rem;">58,8</strong><br>
+                            Meter Kubik (m³)
+                        </div>
+                        <div>
+                            <strong id="res-org-satuan" style="font-size:1.2rem;">3</strong><br>
+                            Setara Kebutuhan Orang/Thn
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- TAB 2: MODE PROGRAM -->
+            <!-- TAB 2: METODE SNI/PU (KAWASAN) -->
             <div id="mode-program" class="calc-body" style="display:none;">
                 <div>
+                    <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="fas fa-layer-group"></i> Input Data Hidrologi Kawasan</h4>
+                    
+                    <span class="badge-ref">Dasar Hitungan: SNI 03-2453-2002</span>
+
                     <label class="form-label">Luas Lahan Program (Hektar)</label>
                     <input type="number" id="luas_lahan" value="1" class="form-control">
+
                     <label class="form-label">Kondisi Tutupan Lahan Saat Ini</label>
                     <select id="tutupan_lahan" class="form-control">
                         <option value="0.3">Hutan / Agroforest Rapat (Koef C: 0.3)</option>
                         <option value="0.5">Kebun Campuran / Semak (Koef C: 0.5)</option>
                         <option value="0.7">Tegalan Terbuka / Ladang (Koef C: 0.7)</option>
+                        <option value="0.9">Pemukiman / Atap (Koef C: 0.9)</option>
                     </select>
+
                     <label class="form-label">Rencana Infrastruktur</label>
                     <div class="form-row">
                         <div style="flex:2;">
@@ -497,6 +627,8 @@
                             <input type="number" id="target_per_ha" value="100" class="form-control" placeholder="Jml/Ha">
                         </div>
                     </div>
+                    <small style="color:#888; font-size:0.7rem;">*Masukkan target jumlah unit per Hektar.</small>
+
                     <button class="btn-calc" onclick="hitungProgram()">Analisa Dampak Program &rarr;</button>
                 </div>
 
@@ -504,25 +636,73 @@
                     <span class="res-title">Estimasi Total Serapan Kawasan</span>
                     <div id="res-vol-prog" class="res-number" style="color:#20c997;">0</div>
                     <span class="res-unit">Liter / Tahun</span>
+                    
+                    <div class="res-divider"></div>
+                    
+                    <div class="res-sub">
+                        <div>
+                            <strong id="res-m3-prog" style="font-size:1.2rem;">0</strong><br>
+                            Volume (m³/Tahun)
+                        </div>
+                        <div>
+                            <strong id="res-persen-prog" style="font-size:1.2rem;">0%</strong><br>
+                            Efektivitas Menangani Run-off
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- INFO BOX -->
+            <div class="info-box">
+                <strong><i class="fas fa-info-circle"></i> Transparansi Metode:</strong><br>
+                Kalkulator ini menyediakan dua pendekatan. Gunakan <strong>Metode Volumetrik</strong> untuk menghitung kapasitas per-lubang, atau <strong>Metode SNI/Hidrologi</strong> untuk analisis kebutuhan kawasan berdasarkan limpasan air hujan (Run-off).
+            </div>
+
         </div>
 
+        <!-- ACCORDION EDUKASI (RUMUS TRANSPARAN) -->
         <details class="accordion">
             <summary>
-                <span><i class="fas fa-book-open" style="margin-right:10px; color:var(--water-blue);"></i> Dasar Perhitungan & Metodologi</span>
+                <span><i class="fas fa-book-open" style="margin-right:10px; color:var(--water-blue);"></i> Pelajari Dasar Perhitungan & Rumus</span>
                 <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="accordion-content">
-                <p><strong>1. Metode Volumetrik:</strong> V = (P x L x D) x Hari_Hujan x K_tanah. Asumsi 120 hari hujan.</p>
-                <p><strong>2. Metode SNI 03-2453-2002:</strong> Q = C x I x A. Menggunakan data curah hujan tahunan rata-rata Rejoso (~2000mm).</p>
+                <p style="margin-bottom: 20px;">Platform AqruBiSA menggunakan landasan ilmiah untuk setiap angka yang ditampilkan:</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- RUMUS SATUAN -->
+                    <div class="formula-box">
+                        <strong style="color:var(--primary-dark);">1. Metode Volumetrik (Cek Fisik)</strong>
+                        <p style="font-size:0.85rem; margin-top:5px;">Digunakan untuk menghitung kapasitas tampung fisik. Dasar perhitungannya adalah volume geometris dikalikan frekuensi hujan tahunan di Rejoso.</p>
+                        <code class="code-math">V_total = (P x L x D) x Hari_Hujan x K_tanah</code>
+                        <ul style="font-size:0.8rem; padding-left:15px; margin-top:5px;">
+                            <li><strong>P, L, D:</strong> Dimensi infrastruktur (Panjang, Lebar, Dalam)</li>
+                            <li><strong>Hari_Hujan:</strong> Asumsi 120 Hari/Tahun (Data Iklim Rejoso)</li>
+                            <li><strong>K_tanah:</strong> Koefisien serapan tanah (Latosol=1.0)</li>
+                        </ul>
+                    </div>
+
+                    <!-- RUMUS KAWASAN -->
+                    <div class="formula-box">
+                        <strong style="color:var(--primary-dark);">2. Metode SNI 03-2453-2002 (Kawasan)</strong>
+                        <p style="font-size:0.85rem; margin-top:5px;">Digunakan untuk perencanaan kawasan (Program). Mengacu pada Metode Rasional untuk menghitung debit limpasan (Run-off) yang harus ditangani.</p>
+                        <code class="code-math">Q_limpasan = C x I x A</code>
+                        <ul style="font-size:0.8rem; padding-left:15px; margin-top:5px;">
+                            <li><strong>C (Koefisien Aliran):</strong> Berdasarkan jenis tutupan lahan (Misal: Hutan=0.3, Tegal=0.7)</li>
+                            <li><strong>I (Intensitas):</strong> Curah hujan rata-rata tahunan Rejoso (~2000mm)</li>
+                            <li><strong>A (Area):</strong> Luas lahan dalam Hektar</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </details>
+
     </section>
 
     <!-- GALERI -->
     <section class="infra-section">
         <h2 style="text-align:center; margin-bottom:20px; color:var(--primary-dark);">Dokumentasi Infrastruktur Terbangun</h2>
+        <p style="text-align:center; color:#666; margin-bottom:30px;">Bukti fisik implementasi program di lapangan.</p>
         <div class="gallery-grid">
             <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/sumur%20resapan%201.jpg" class="gallery-img" alt="Sumur Resapan 1">
             <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Pembangunan%20Rorak.jpg" class="gallery-img" alt="Pembangunan Rorak">
@@ -531,16 +711,18 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026-2031 Rejoso Co-Investment Initiative. All Rights Reserved.</p>
     </footer>
 
     <!-- JAVASCRIPT -->
     <script>
+        // 1. GLOBAL ANIMATION
         window.addEventListener('load', () => {
             const counterElement = document.getElementById('global-counter');
             animateValue(counterElement, 0, 118000000, 2000);
-            hitungSatuan();
+            hitungSatuan(); // Hitung default saat load
         });
 
         function animateValue(obj, start, end, duration) {
@@ -554,9 +736,11 @@
             window.requestAnimationFrame(step);
         }
 
+        // 2. TAB SWITCHER
         function switchTab(mode, element) {
             document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
             element.classList.add('active');
+
             if (mode === 'satuan') {
                 document.getElementById('mode-satuan').style.display = 'grid';
                 document.getElementById('mode-program').style.display = 'none';
@@ -568,6 +752,7 @@
             }
         }
 
+        // 3. TOGGLE DIMENSI
         function toggleDimensi() {
             const type = document.getElementById('infraType').value;
             if (type === 'rorak') {
@@ -579,11 +764,20 @@
             }
         }
 
+        // 4. LOGIKA HITUNGAN SATUAN (VOLUMETRIK)
         function hitungSatuan() {
             const type = document.getElementById('infraType').value;
             const qty = parseFloat(document.getElementById('qty_satuan').value) || 0;
             const hariHujan = 120;
+            
+            // Faktor Tanah
+            const soil = document.getElementById('soilType').value;
+            let kFactor = 1.0; 
+            if (soil === 'lambat') kFactor = 0.5;
+            if (soil === 'cepat') kFactor = 1.5;
+
             let volPerUnit = 0;
+
             if (type === 'rorak') {
                 const p = parseFloat(document.getElementById('p_rorak').value) || 0;
                 const l = parseFloat(document.getElementById('l_rorak').value) / 100 || 0;
@@ -597,20 +791,52 @@
                 if (document.getElementById('wall_sumur').value === 'porous') volM3 *= 1.5;
                 volPerUnit = volM3 * 1000;
             }
-            const totalLiter = volPerUnit * hariHujan * qty;
+
+            const totalLiter = volPerUnit * hariHujan * qty * kFactor;
+            
             document.getElementById('res-val-satuan').innerText = Math.round(totalLiter).toLocaleString('id-ID');
+            document.getElementById('res-m3-satuan').innerText = (totalLiter / 1000).toLocaleString('id-ID', {maximumFractionDigits: 1});
+            document.getElementById('res-org-satuan').innerText = Math.round(totalLiter / 21900).toLocaleString('id-ID');
         }
 
+        // 5. LOGIKA HITUNGAN PROGRAM (METODE RASIONAL PU)
         function hitungProgram() {
             const luasHa = parseFloat(document.getElementById('luas_lahan').value) || 0;
+            const koefC = parseFloat(document.getElementById('tutupan_lahan').value);
+            const curahHujanTahunan = 2000; // mm
+
+            // A. Supply (Runoff Total)
+            const luasM2 = luasHa * 10000;
+            const hujanM = curahHujanTahunan / 1000;
+            const totalRunoff = luasM2 * hujanM * koefC; // m3
+
+            // B. Demand (Kapasitas Infra)
             const targetPerHa = parseFloat(document.getElementById('target_per_ha').value) || 0;
             const totalUnit = targetPerHa * luasHa;
             const hariHujan = 120;
             const tipe = document.getElementById('tipe_infra_prog').value;
-            let volPerUnitM3 = (tipe === 'rorak') ? (2 * 0.4 * 0.4) : (3.14 * 0.4 * 0.4 * 1.5);
+
+            let volPerUnitM3 = 0;
+            if (tipe === 'rorak') {
+                volPerUnitM3 = 2 * 0.4 * 0.4; // Asumsi standar 2m x 40cm x 40cm
+            } else {
+                volPerUnitM3 = 3.14 * 0.4 * 0.4 * 1.5; // Asumsi standar sumur
+            }
+
             const totalCapacityM3 = volPerUnitM3 * totalUnit * hariHujan;
+            
+            // Konversi ke Liter untuk Tampilan Utama
             const totalCapacityLiter = totalCapacityM3 * 1000;
-            document.getElementById('res-vol-prog').innerText = Math.round(totalCapacityLiter).toLocaleString('id-ID');
+
+            // C. Efektivitas
+            let efektivitas = 0;
+            if (totalRunoff > 0) efektivitas = (totalCapacityM3 / totalRunoff) * 100;
+            if (efektivitas > 100) efektivitas = 100;
+
+            // RENDER OUTPUT PROGRAM
+            document.getElementById('res-vol-prog').innerText = Math.round(totalCapacityLiter).toLocaleString('id-ID'); // Liter (Besar)
+            document.getElementById('res-m3-prog').innerText = Math.round(totalCapacityM3).toLocaleString('id-ID'); // M3 (Kecil)
+            document.getElementById('res-persen-prog').innerText = Math.round(efektivitas) + "%"; // Persen (Kecil)
         }
     </script>
 </body>
