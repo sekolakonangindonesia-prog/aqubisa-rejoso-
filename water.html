@@ -545,8 +545,8 @@
         </div>
     </section>
 
-    <!-- 6. KALKULATOR POTENSI SERAPAN -->
-        <section class="calc-section">
+        <!-- 6. KALKULATOR POTENSI SERAPAN (TAB MODE) -->
+    <section class="calc-section">
         <div style="text-align:center; margin-bottom:30px;">
             <h2 style="color:var(--primary-dark); font-size:2rem; margin-bottom:5px;">Kalkulator Potensi Serapan</h2>
             <p style="color:#666;">Pilih dasar metode perhitungan yang ingin digunakan.</p>
@@ -556,14 +556,30 @@
             <!-- TABS -->
             <div class="calc-tabs">
                 <div class="calc-tab active" onclick="switchTab('satuan', this)">
-                    <i class="fas fa-cube"></i> Daya Tampung (Metode Volumeti)
+                    <i class="fas fa-cube"></i> Metode Volumetrik (Dimensi Fisik)
                 </div>
                 <div class="calc-tab" onclick="switchTab('program', this)">
-                    <i class="fas fa-globe-asia"></i> Daua Dukung (Metode Standar SNI (Hidrologi))
+                    <i class="fas fa-globe-asia"></i> Metode Standar SNI (Hidrologi)
+                </div>
+            </div>
+    <section class="calc-section">
+        <div style="text-align:center; margin-bottom:30px;">
+            <h2 style="color:var(--primary-dark); font-size:2rem; margin-bottom:5px;">Kalkulator Potensi Serapan</h2>
+            <p style="color:#666;">Pilih dasar metode perhitungan yang ingin digunakan.</p>
+        </div>
+
+        <div class="calc-wrapper">
+            <!-- TABS -->
+            <div class="calc-tabs">
+                <div class="calc-tab active" onclick="switchTab('satuan', this)">
+                    <i class="fas fa-cube"></i> Metode Volumetrik (Dimensi Fisik)
+                </div>
+                <div class="calc-tab" onclick="switchTab('program', this)">
+                    <i class="fas fa-globe-asia"></i> Metode Standar SNI (Hidrologi)
                 </div>
             </div>
 
-            <!-- TAB 1: MODE SATUAN -->
+            <!-- TAB 1: METODE VOLUMETRIK (SATUAN) -->
             <div id="mode-satuan" class="calc-body">
                 <div>
                     <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="far fa-edit"></i> Input Data Dimensi Unit</h4>
@@ -609,10 +625,10 @@
                         </select>
                     </div>
 
-                    <label class="form-label">Jenis Tanah</label>
+                    <label class="form-label">Kondisi Tanah (Lokasi)</label>
                     <select id="soilType" class="form-control">
-                        <option value="sedang">Gembur/Latosol - Std Rejoso</option>
-                        <option value="lambat">Lempung/Liat - Lambat Meresap</option>
+                        <option value="sedang">Hulu/Tengah (Gembur/Latosol) - Std Rejoso</option>
+                        <option value="lambat">Hilir (Lempung/Liat) - Lambat Meresap</option>
                         <option value="cepat">Pasir/Berbatu - Cepat Meresap</option>
                     </select>
 
@@ -642,10 +658,9 @@
                 </div>
             </div>
 
-            <!-- TAB 2: MODE PROGRAM -->
-              <div id="mode-program" class="calc-body" style="display:none;">
+            <!-- TAB 2: METODE SNI/PU (KAWASAN) -->
+            <div id="mode-program" class="calc-body" style="display:none;">
                 <div>
-            </div>
                     <h4 style="color:var(--water-blue); margin-bottom:15px;"><i class="fas fa-layer-group"></i> Input Data Hidrologi Kawasan</h4>
                     
                     <span class="badge-ref">Dasar Hitungan: SNI 03-2453-2002</span>
