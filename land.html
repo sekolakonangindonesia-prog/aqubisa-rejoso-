@@ -129,6 +129,13 @@
         .btn-calc { width: 100%; padding: 15px; background: var(--accent-gold); color: #000; font-weight: 800; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: 0.3s; }
         .btn-calc:hover { background: #e0b836; transform: translateY(-2px); }
 
+        /* --- GALLERY --- */
+        .gallery-section { padding: 60px 5%; background: white; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
+        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; transition: 0.3s; }
+        .gallery-img:hover { transform: scale(1.05); }
+
+
         /* Footer */
         footer { background: #111; color: #777; padding: 30px 5%; font-size: 0.85rem; text-align: center; }
 
@@ -296,7 +303,7 @@
             <!-- Badge Hijau: Menunjukkan ini aset yang sudah aman/berjalan -->
             <span class="badge-funded"><i class="fas fa-check-circle"></i> Terkelola (Funded)</span>
             <ul class="info-list">
-                <li><i class="fas fa-expand"></i> <strong>Luas:</strong> 15,8 Hektar</li>
+                <li><i class="fas fa-expand"></i> <strong>Luas:</strong> 15 Hektar</li>
                 <li><i class="fas fa-tree"></i> <strong>Aset:</strong> ~6.400 Pohon</li>
                 <li><i class="fas fa-info-circle"></i> <strong>Fase:</strong> Perawatan (Maintenance)</li>
             </ul>
@@ -327,7 +334,7 @@
             <ul class="info-list">
                 <li><i class="fas fa-expand"></i> <strong>Luas:</strong> 10.0 Hektar</li>
                 <li><i class="fas fa-tree"></i> <strong>Target:</strong> 4.000 Pohon</li>
-                <li><i class="fas fa-bullseye"></i> <strong>Fokus:</strong> Penanaman Baru</li>
+                <li><i class="fas fa-bullseye"></i> <strong>Fokus:</strong> Ladang </li>
             </ul>
         </td>
     </tr>
@@ -364,12 +371,12 @@
                                 <span style="font-size:0.8rem; color:#666;">Lokasi: Desa Galih & Kawasan Penyangga</span>
                             </td>
                             <td>PT. Tirta Investama</td>
-                            <td>Yayasan Sekola Konang</td>
+                            <td>Yayasan Sekola Konang Indonesia</td>
                             <td>
                                 <span class="badge-report" style="background:#2e7d32;">Reported</span>
                                 <ul class="info-list">
                                     <li><strong>Tanam:</strong> 2.000 Pohon</li>
-                                    <li><strong>Status:</strong> Tumbuh Baik</li>
+                                    <li><strong>Status:</strong> Selesai</li>
                                 </ul>
                             </td>
                             <td>
@@ -387,12 +394,12 @@
                                 <span style="font-size:0.8rem; color:#666;">Lokasi: Area Ring 1 Pabrik</span>
                             </td>
                             <td>PT. Tirta Investama</td>
-                            <td>Yayasan Sekola Konang</td>
+                            <td>Yayasan Sekola Konang Indonesia</td>
                             <td>
                                 <span class="badge-report" style="background:#2e7d32;">Reported</span>
                                 <ul class="info-list">
                                     <li><strong>Tanam:</strong> 5.000 Pohon</li>
-                                    <li><strong>Jenis:</strong> MPTS & Kayu</li>
+                                    <li><strong>Status:</strong> MSelesai</li>
                                 </ul>
                             </td>
                             <td>
@@ -410,12 +417,12 @@
                                 <span style="font-size:0.8rem; color:#666;">Lokasi: Pasrepan & Lumbang</span>
                             </td>
                             <td>PT. Tirta Investama</td>
-                            <td>Mitra Lokal / LMDH</td>
+                            <td>Yaysana Sekola Konang Indonesia</td>
                             <td>
                                 <span class="badge-report" style="background:#2e7d32;">Reported</span>
                                 <ul class="info-list">
                                     <li><strong>Tanam:</strong> 10.000 Pohon</li>
-                                    <li><strong>Status:</strong> Monitoring</li>
+                                    <li><strong>Status:</strong> Selesai</li>
                                 </ul>
                             </td>
                             <td>
@@ -433,12 +440,12 @@
                                 <span style="font-size:0.8rem; color:#666;">Lokasi: Kawasan Hutan Hulu</span>
                             </td>
                             <td>PT. Tirta Investama</td>
-                            <td>LMDH Wana Lestari</td>
+                            <td>Yayasan Sekola Konang Indonesia</td>
                             <td>
                                 <span class="badge-report" style="background:#2e7d32;">Reported</span>
                                 <ul class="info-list">
                                     <li><strong>Tanam:</strong> 5.000 Pohon</li>
-                                    <li><strong>Jenis:</strong> Tanaman Keras</li>
+                                    <li><strong>Status:</strong> Selesai</li>
                                 </ul>
                             </td>
                             <td>
@@ -488,6 +495,20 @@
             </div>
         </div>
     </section>
+    
+    <!-- 5. GALERI KEGIATAN -->
+    <section class="gallery-section">
+        <h2 style="text-align:center; color:var(--primary-dark); margin-bottom:10px;">Galeri Aksi Lapangan</h2>
+        <p style="text-align:center; color:#666;">Bukti nyata upaya penghijauan di kawasan hulu.</p>
+        
+        <div class="gallery-grid">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Nursery.jpg" class="gallery-img" alt="Nursery">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Distribusi%20Bibit.jpg" class="gallery-img" alt="Distribusi Bibit">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Penanaman.jpg" class="gallery-img" alt="Penanaman">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Monitoring%20Tumbuh.jpg" class="gallery-img" alt="Monitoring">
+        </div>
+    </section>
+
 
     <!-- FOOTER -->
     <footer>
