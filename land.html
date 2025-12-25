@@ -226,28 +226,57 @@
     <!-- 2. MAP & GLOBAL STATS -->
     <section class="map-section">
         <!-- PETA VISUALISASI -->
-        <div class="map-container">
-            <!-- Ini Placeholder Peta, nanti diganti Peta GIS/JPG Lahan Kritis -->
-            <div style="background:rgba(255,255,255,0.8); padding:10px 20px; border-radius:30px; font-weight:bold; color:#333;">
-                <i class="fas fa-map"></i> Peta Sebaran Lahan & DAS Rejoso
-            </div>
+        div class="map-container" style="border: 2px solid #ddd; padding:0; background:#eee;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63286.07921935664!2d112.8752391!3d-7.7288629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7c8bc704602d3%3A0x4027a76e3532890!2sKec.%20Rejoso%2C%20Pasuruan%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1709228491234!5m2!1sid!2sid" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
             <div class="map-overlay">
-                <div><i class="fas fa-info-circle"></i> <strong>4 Tapak Strategis:</strong> RTH Industri, Sumber Mata Air, Hutan Lindung, Mangrove Hilir.</div>
+               <div><i class="fas fa-info-circle"></i> <strong>Fokus Area:</strong> Rejoso, Winongan, Gondang Wetan, Pasrepan, Puspo, Tosari.</div>
             </div>
         </div>
 
         <!-- STATISTIK TOTAL -->
         <div class="stats-box">
-            <div class="stat-card">
-                <div class="stat-label">Total Lahan Tervegetasi</div>
-                <div class="stat-val" style="color:var(--land-green);">55 <span style="font-size:1.5rem;">Ha</span></div>
-                <small style="color:#666;">Target: Rehabilitasi Lahan Kritis</small>
+           <!-- KARTU 1: LAHAN KEMITRAAN (ORANGE) -->
+            <div class="stat-card" style="border-left: 5px solid #fd7e14;">
+                <div class="stat-label" style="color:#fd7e14;">Total Lahan Kemitraan</div>
+                <div style="display:flex; align-items:baseline; gap:10px;">
+                    <div class="stat-val" style="color:#333;">15 <span style="font-size:1.5rem;">Ha</span></div>
+                    <span style="font-size:0.8rem; color:#666; font-weight:600;">(Capaian 2024)</span>
+                </div>
+            <!-- Progress Bar Target LFA -->
+                <div style="margin-top:5px;">
+                    <div style="font-size:0.75rem; color:#666; display:flex; justify-content:space-between; margin-bottom:3px;">
+                        <span>Progress</span>
+                        <span>Target 2031: <strong>55 Ha</strong></span>
+                    </div>
+                    <div style="width:100%; background:#eee; height:6px; border-radius:3px;">
+                        <!-- 15 dari 55 = 27% -->
+                        <div style="width:27%; background:#fd7e14; height:100%; border-radius:3px;"></div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card" style="border-color:#17a2b8;">
-                <div class="stat-label">Total Pohon Tertanam</div>
-                <div class="stat-val" style="color:#17a2b8;">14.000</div>
-                <small style="color:#666;">Bibit Kayu & MPTS</small>
+
+            <!-- KARTU 2: POHON TERTANAM (HIJAU) -->
+            <div class="stat-card" style="border-left: 5px solid #28a745;">
+                <div class="stat-label" style="color:#28a745;">Total Pohon Tertanam</div>
+                <div class="stat-val" style="color:#333;">22.000</div>
+                <small style="color:#666;">Bibit Kayu Keras & MPTS (Buah)</small>
             </div>
+
+            <!-- KARTU 3: SERAPAN KARBON (BIRU) -->
+            <div class="stat-card" style="border-left: 5px solid #17a2b8;">
+                <div class="stat-label" style="color:#17a2b8;">Estimasi Stok Karbon</div>
+                <div class="stat-val" style="color:#333;">484 <span style="font-size:1.5rem;">Ton CO2</span></div>
+                <small style="color:#666;">Dampak Ekologis / Tahun</small>
+            </div>
+
         </div>
     </section>
 
