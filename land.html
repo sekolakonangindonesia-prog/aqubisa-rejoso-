@@ -49,6 +49,15 @@
         .btn-back { border: 1px solid white; padding: 10px 20px; color: white; border-radius: 50px; font-size: 0.9rem; display: inline-block; }
         .btn-back:hover { background: white; color: var(--land-green); }
 
+                /* --- NARASI PENGANTAR (INTRODUCTION) --- */
+        .intro-section { padding: 60px 5%; background: white; text-align: center; }
+        .intro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; text-align: left; }
+        .intro-card { background: #fff; border: 1px solid #eee; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; }
+        .intro-card:hover { transform: translateY(-5px); border-color: var(--land-green); }
+        .intro-icon { font-size: 2.5rem; color: var(--land-green); margin-bottom: 15px; display: block; }
+        .intro-title { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+
+
         /* --- MAP & STATS SECTION --- */
         .map-section { padding: 40px 5%; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
         .map-container { 
@@ -176,6 +185,34 @@
             <p>Pemulihan lahan kritis di DAS Rejoso melalui skema Agroforestri untuk meningkatkan resapan air dan stok karbon.</p>
             <br>
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
+        </div>
+    </section>
+
+        <!-- 2. NARASI PENGANTAR (KONTEKS & FILOSOFI) -->
+    <section class="intro-section">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="color:var(--primary-dark); font-size:2rem; margin-bottom:20px;">Mengapa Rehabilitasi Lahan Penting?</h2>
+            <p style="color:#666; font-size:1.05rem;">
+                Kesehatan DAS Rejoso berawal dari kondisi tanah di hulu. Lahan yang kritis tidak mampu menyimpan air hujan, menyebabkan banjir di hilir dan kekeringan mata air. Program ini menggunakan pendekatan <strong>Agroforestri</strong>: memadukan tanaman hutan dengan tanaman buah bernilai ekonomi.
+            </p>
+        </div>
+
+        <div class="intro-grid">
+            <div class="intro-card">
+                <i class="fas fa-cloud-rain intro-icon"></i>
+                <div class="intro-title">Fungsi "Spons" Alami</div>
+                <p style="font-size:0.9rem; color:#666;">Akar pohon menggemburkan tanah (makropori), meningkatkan laju infiltrasi air hujan hingga 40% dibandingkan lahan gundul.</p>
+            </div>
+            <div class="intro-card">
+                <i class="fas fa-mountain intro-icon"></i>
+                <div class="intro-title">Pengendali Erosi</div>
+                <p style="font-size:0.9rem; color:#666;">Tajuk pohon memecah energi air hujan, mencegah lapisan tanah subur hanyut (sedimentasi) ke sungai.</p>
+            </div>
+            <div class="intro-card">
+                <i class="fas fa-hand-holding-usd intro-icon"></i>
+                <div class="intro-title">Ekonomi Masyarakat</div>
+                <p style="font-size:0.9rem; color:#666;">Menanam bibit produktif (Alpukat, Durian, Kopi) memberikan pendapatan jangka panjang bagi petani tanpa merusak hutan.</p>
+            </div>
         </div>
     </section>
 
