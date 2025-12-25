@@ -287,111 +287,168 @@
         </div>
     </section>
 
-    <!-- 5. RIWAYAT PROGRAM & KONTRIBUSI (UPDATED LOGIC) -->
-    <section class="history-section">
+  <!-- 5. BAGIAN PES & RIWAYAT (DESAIN BARU: KARTU & TABEL) -->
+    <section class="history-section" style="padding: 60px 5%; background: #f8f9fa;">
         
-        <!-- Header Section untuk Tabel -->
-        <div style="margin-bottom: 20px; text-align: center;">
-            <h2 style="color:var(--primary-dark); font-size:1.8rem;">Jejak Rekam & Partisipasi</h2>
-            <p style="color:#666;">Database terpadu: Laporan kontribusi perusahaan (CSR) dan inisiatif mandiri masyarakat.</p>
+        <!-- BAGIAN 1: PELUANG INVESTASI (PES) - TAMPILAN KARTU -->
+        <div style="max-width: 1200px; margin: 0 auto 60px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid #c8e6c9;">OPEN FOR INVESTMENT</span>
+                <h2 style="color:var(--primary-dark); font-size:2rem; margin-top: 10px;">Peluang Investasi Jasa Lingkungan</h2>
+                <p style="color:#666;">Dukung inisiatif masyarakat hulu secara langsung melalui skema PES (Payment for Ecosystem Services).</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                
+                <!-- KARTU INVESTASI 1 -->
+                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
+                    <div style="background: var(--success-green); height: 5px;"></div>
+                    <div style="padding: 25px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 15px;">
+                            <span style="font-size: 0.85rem; color: #666;"><i class="far fa-calendar-alt"></i> Target: 2026</span>
+                            <span style="font-weight: bold; color: var(--primary-dark);">Tosari (Blok A)</span>
+                        </div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: #333;">Inisiatif Mandiri Lahan Atas</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Konservasi lahan kritis seluas 5 Ha dengan kombinasi sipil teknis untuk mengurangi run-off ke pemukiman.</p>
+                        
+                        <div style="background: #f4f7f6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <div style="display:flex; align-items:center; gap:10px; margin-bottom:5px;">
+                                <i class="fas fa-layer-group" style="color: var(--success-green);"></i> 
+                                <span style="font-weight:bold;">100 Unit Rorak</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <i class="fas fa-arrow-down" style="color: var(--water-blue);"></i> 
+                                <span style="font-weight:bold;">5 Unit Sumur</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <div style="width:35px; height:35px; background:#ddd; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:bold;">KT</div>
+                                <div style="font-size:0.85rem;">
+                                    <strong>KT. Sumber Rejeki</strong><br>
+                                    <span style="color:#888;">Pelaksana (Seller)</span>
+                                </div>
+                            </div>
+                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; text-decoration: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);">Lihat Proposal</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KARTU INVESTASI 2 (CONTOH) -->
+                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
+                    <div style="background: var(--water-blue); height: 5px;"></div>
+                    <div style="padding: 25px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 15px;">
+                            <span style="font-size: 0.85rem; color: #666;"><i class="far fa-calendar-alt"></i> Target: 2026</span>
+                            <span style="font-weight: bold; color: var(--primary-dark);">Desa Petung</span>
+                        </div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: #333;">Normalisasi Catchment Area</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Fokus pada perbaikan resapan air di area kebun kopi rakyat untuk menjaga debit mata air lokal.</p>
+                        
+                        <div style="background: #f4f7f6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <div style="display:flex; align-items:center; gap:10px; margin-bottom:5px;">
+                                <i class="fas fa-layer-group" style="color: var(--success-green);"></i> 
+                                <span style="font-weight:bold;">250 Meter Rorak</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <i class="fas fa-tree" style="color: var(--land-green);"></i> 
+                                <span style="font-weight:bold;">500 Pohon Kopi</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <div style="width:35px; height:35px; background:#ddd; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:bold;">LMDH</div>
+                                <div style="font-size:0.85rem;">
+                                    <strong>LMDH Wana</strong><br>
+                                    <span style="color:#888;">Pelaksana (Seller)</span>
+                                </div>
+                            </div>
+                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; text-decoration: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);">Lihat Proposal</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div class="history-card">
-            <div class="history-header" style="background: #005f73; color: white;">
-                <i class="fas fa-history"></i> Log Capaian Konservasi Sipil Teknis
-            </div>
-            
-            <div class="table-responsive">
-                <table class="table-history">
-                    <thead>
-                        <tr style="background:#f4f7f6;">
-                            <th width="5%">Tahun</th>
-                            <th width="25%">Nama Program / Lokasi</th>
-                            <th width="10%">Skema</th>
-                            <th width="20%">Pendana (Supporter)</th>
-                            <th width="20%">Pelaksana (Implementer)</th>
-                            <th width="15%">Output Infrastruktur</th>
-                            <th width="5%">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- DATA 1: FUTURE PES SCENARIO (CONTOH) -->
-                        <tr>
-                            <td class="col-year">2026</td>
-                            <td>
-                                <div class="col-prog">Inisiatif Mandiri Lahan Atas</div>
-                                <span class="seller-tag">Desa Tosari (Blok A)</span>
-                            </td>
-                            <td><span style="background:#e8f5e9; color:#2e7d32; padding:3px 8px; border-radius:4px; font-size:0.7rem; border:1px solid #c8e6c9;">PES / Imbal Jasa</span></td>
-                            <td><em>(Open for Investment)</em></td>
-                            <td>KT. Sumber Rejeki</td>
-                            <td style="font-size:0.85rem;">
-                                <div><i class="fas fa-layer-group"></i> 100 Rorak</div>
-                                <div><i class="fas fa-arrow-down"></i> 5 Sumur</div>
-                            </td>
-                            <td><a href="#" class="btn-detail-table" style="background:var(--accent-gold); border:none; color:black; font-weight:bold;">Lihat</a></td>
-                        </tr>
-
-                        <!-- DATA 2: REPORTING (HISTORICAL) -->
-                        <tr>
-                            <td class="col-year">2024</td>
-                            <td>
-                                <div class="col-prog">Konservasi Terintegrasi 2024</div>
-                                <span class="seller-tag">Kawasan Penyangga</span>
-                            </td>
-                            <td><span style="background:#e3f2fd; color:#0d47a1; padding:3px 8px; border-radius:4px; font-size:0.7rem; border:1px solid #bbdefb;">CSR / Report</span></td>
-                            <td>PT. Tirta Investama</td>
-                            <td>Yayasan Sekola Konang</td>
-                            <td style="font-size:0.85rem;">
-                                <div><i class="fas fa-layer-group"></i> 1.500m Rorak</div>
-                            </td>
-                            <td><a href="#" class="btn-detail-table">Detail</a></td>
-                        </tr>
-
-                        <!-- DATA 3: REPORTING -->
-                        <tr>
-                            <td class="col-year">2023</td>
-                            <td>
-                                <div class="col-prog">Program AQUA Keboncandi</div>
-                                <span class="seller-tag">Desa Galih</span>
-                            </td>
-                            <td><span style="background:#e3f2fd; color:#0d47a1; padding:3px 8px; border-radius:4px; font-size:0.7rem; border:1px solid #bbdefb;">CSR / Report</span></td>
-                            <td>PT. Tirta Investama</td>
-                            <td>Yayasan Sekola Konang</td>
-                            <td style="font-size:0.85rem;">
-                                <div><i class="fas fa-layer-group"></i> 500m Rorak</div>
-                                <div><i class="fas fa-arrow-down"></i> 5 Sumur</div>
-                            </td>
-                            <td><a href="#" class="btn-detail-table">Detail</a></td>
-                        </tr>
-
-                        <!-- DATA 4: REPORTING -->
-                        <tr>
-                            <td class="col-year">2022</td>
-                            <td>
-                                <div class="col-prog">Rejoso Menabung Air</div>
-                                <span class="seller-tag">Kec. Pasrepan</span>
-                            </td>
-                            <td><span style="background:#e3f2fd; color:#0d47a1; padding:3px 8px; border-radius:4px; font-size:0.7rem; border:1px solid #bbdefb;">CSR / Report</span></td>
-                            <td>PT. Tirta Investama</td>
-                            <td>LMDH / Mitra Lokal</td>
-                            <td style="font-size:0.85rem;">
-                                <div><i class="fas fa-layer-group"></i> 750m Rorak</div>
-                                <div><i class="fas fa-arrow-down"></i> 20 Sumur</div>
-                            </td>
-                            <td><a href="#" class="btn-detail-table">Detail</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- KETERANGAN DI BAWAH TABEL -->
-            <div style="padding:15px; background:#f9f9f9; border-top:1px solid #eee; font-size:0.8rem; color:#666; display:flex; gap:20px;">
-                <div><span style="display:inline-block; width:10px; height:10px; background:#e3f2fd; border:1px solid #bbdefb; margin-right:5px;"></span> <strong>CSR / Report:</strong> Program mandiri perusahaan/instansi yang dilaporkan sebagai kontribusi.</div>
-                <div><span style="display:inline-block; width:10px; height:10px; background:#e8f5e9; border:1px solid #c8e6c9; margin-right:5px;"></span> <strong>PES / Imbal Jasa:</strong> Skema investasi kolaboratif (Sellers & Buyers) melalui verifikasi platform.</div>
+        <!-- BAGIAN 2: JEJAK REKAM (CSR/REPORT) - TAMPILAN TABEL -->
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color:var(--primary-dark); font-size:1.8rem;">Jejak Rekam & Laporan (CSR)</h2>
+                <p style="color:#666;">Database transparansi kontribusi perusahaan dan mitra yang telah terlaksana.</p>
             </div>
 
+            <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e0e0e0;">
+                <div style="background: var(--primary-dark); color: white; padding: 15px 25px; font-weight: bold;">
+                    <i class="fas fa-history"></i> Log Aktivitas Terverifikasi
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table-history" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background:#f8f9fa; border-bottom:2px solid #ddd;">
+                                <th style="padding:15px; text-align:left; color:#555;">Tahun</th>
+                                <th style="padding:15px; text-align:left; color:#555;">Program / Lokasi</th>
+                                <th style="padding:15px; text-align:left; color:#555;">Pendana (Supporter)</th>
+                                <th style="padding:15px; text-align:left; color:#555;">Pelaksana</th>
+                                <th style="padding:15px; text-align:left; color:#555;">Output</th>
+                                <th style="padding:15px; text-align:left; color:#555;">Infiltrasi</th>
+                                <th style="padding:15px; text-align:center; color:#555;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:15px; font-weight:bold;">2024</td>
+                                <td style="padding:15px;">
+                                    <strong>Konservasi Terintegrasi</strong><br>
+                                    <span style="font-size:0.8rem; color:#666;">Kawasan Penyangga</span>
+                                </td>
+                                <td style="padding:15px;">PT. Tirta Investama</td>
+                                <td style="padding:15px;">Yayasan Sekola Konang</td>
+                                <td style="padding:15px;">
+                                    <span style="background:#e3f2fd; color:#0d47a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">1.500m Rorak</span>
+                                </td>
+                                <td style="padding:15px; font-family:monospace; font-weight:bold;">262,5 ML/Y</td>
+                                <td style="padding:15px; text-align:center;"><a href="#" style="color:var(--water-blue); font-size:0.9rem;"><i class="fas fa-external-link-alt"></i></a></td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:15px; font-weight:bold;">2023</td>
+                                <td style="padding:15px;">
+                                    <strong>Program AQUA Keboncandi</strong><br>
+                                    <span style="font-size:0.8rem; color:#666;">Desa Galih</span>
+                                </td>
+                                <td style="padding:15px;">PT. Tirta Investama</td>
+                                <td style="padding:15px;">Yayasan Sekola Konang</td>
+                                <td style="padding:15px;">
+                                    <span style="background:#e3f2fd; color:#0d47a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">500m Rorak</span>
+                                    <span style="background:#e3f2fd; color:#0d47a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">5 Sumur</span>
+                                </td>
+                                <td style="padding:15px; font-family:monospace; font-weight:bold;">129,6 ML/Y</td>
+                                <td style="padding:15px; text-align:center;"><a href="#" style="color:var(--water-blue); font-size:0.9rem;"><i class="fas fa-external-link-alt"></i></a></td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:15px; font-weight:bold;">2022</td>
+                                <td style="padding:15px;">
+                                    <strong>Rejoso Menabung Air</strong><br>
+                                    <span style="font-size:0.8rem; color:#666;">Kec. Pasrepan</span>
+                                </td>
+                                <td style="padding:15px;">PT. Tirta Investama</td>
+                                <td style="padding:15px;">LMDH / Mitra Lokal</td>
+                                <td style="padding:15px;">
+                                    <span style="background:#e3f2fd; color:#0d47a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">750m Rorak</span>
+                                    <span style="background:#e3f2fd; color:#0d47a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">20 Sumur</span>
+                                </td>
+                                <td style="padding:15px; font-family:monospace; font-weight:bold;">203,3 ML/Y</td>
+                                <td style="padding:15px; text-align:center;"><a href="#" style="color:var(--water-blue); font-size:0.9rem;"><i class="fas fa-external-link-alt"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
     </section>
 
     <!-- 5. METODOLOGI VALIDASI DAMPAK -->
