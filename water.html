@@ -287,102 +287,96 @@
         </div>
     </section>
 
-<!-- 5. PROJECT & HISTORY SECTION -->
-    <section class="history-section" style="background: #f4f6f9; padding: 60px 5%;">
-        
-        <!-- =========================================================
-             BAGIAN 1: PROJECT PES (PELUANG INVESTASI) - TAMPILAN KARTU
-             Ini untuk Seller menawarkan jasa & Buyer memilih investasi
-        ========================================================== -->
-        <div style="max-width: 1200px; margin: 0 auto 80px;">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid #c8e6c9;">OPEN FOR CO-INVESTMENT</span>
-                <h2 style="color:var(--primary-dark); font-size:2rem; margin-top: 10px;">Peluang Investasi Jasa Lingkungan (PES)</h2>
-                <p style="color:#666;">Pilih paket konservasi yang diajukan oleh komunitas hulu dan biayai sebagai wujud tanggung jawab lingkungan (Water Stewardship).</p>
+  <!-- 4. PES PROJECT LIST (STYLE eRISPRO) -->
+    <section style="padding: 60px 5%; background: white;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="margin-bottom: 30px;">
+                <h2 style="color:var(--primary-dark); font-size:1.8rem;">Peluang Investasi Jasa Lingkungan (PES)</h2>
+                <p style="color:#666;">Daftar usulan program konservasi dari masyarakat yang siap didanai (Co-Investment).</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
-                
-                <!-- PROJECT 1 -->
-                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
-                    <div style="background: var(--success-green); height: 5px;"></div>
-                    <div style="padding: 25px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
-                            <span style="font-size: 0.75rem; color: #666; background:#eee; padding:3px 8px; border-radius:4px;">Target: 2026</span>
-                            <span style="font-weight: bold; color: var(--primary-dark); font-size:0.9rem;"><i class="fas fa-map-marker-alt"></i> Tosari (Zona Hulu)</span>
-                        </div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Inisiatif Mandiri Lahan Atas Blok A</h3>
-                        
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border:1px dashed #ddd;">
-                            <div style="font-size:0.85rem; color:#555; margin-bottom:5px;">Rencana Infrastruktur:</div>
-                            <div style="font-weight:bold; color:#0b1f30;">100 Unit Rorak & 5 Sumur Resapan</div>
-                            <div style="font-size:0.8rem; color:#2e7d32; margin-top:5px;">Est. Serapan: <strong>12 Juta Liter/Thn</strong></div>
-                        </div>
+            <div class="rispro-container">
+                <table class="rispro-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="40%">Proposal Title</th>
+                            <th width="30%">Principal Investigator (Participant)</th>
+                            <th width="25%">Proposal Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ROW 1 -->
+                        <tr>
+                            <td style="font-weight:bold; color:#888;">1</td>
+                            <td>
+                                <span class="prop-title">Desa Galih Mandiri Lestari</span>
+                                <span class="prop-loc"><i class="fas fa-map-marker-alt"></i> Desa Galih, Kec. Pasrepan</span>
+                                <a href="#" class="btn-abstract"><i class="far fa-eye"></i> Lihat Detail</a>
+                            </td>
+                            <td>
+                                <span class="investigator-name">KMPS Desa Galih</span>
+                                <span class="investigator-inst">Kelompok Masyarakat Peduli Sungai</span>
+                            </td>
+                            <td>
+                                <span class="badge-mandatory">Voluntary</span>
+                                <ul class="prop-info-list">
+                                    <li><strong>Focus:</strong> 250 Rorak, 2 Sumur Resapan</li>
+                                    <li><strong>Output:</strong> Est. 9.6 Juta Liter Air/Thn</li>
+                                    <li><strong>Status:</strong> Open for Investment</li>
+                                </ul>
+                            </td>
+                        </tr>
 
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top:20px;">
-                            <div>
-                                <span style="font-size:0.75rem; color:#888;">Pengusul (Seller):</span><br>
-                                <strong style="font-size:0.9rem;">KT. Sumber Rejeki</strong>
-                            </div>
-                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-decoration: none;">Lihat Proposal</a>
-                        </div>
-                    </div>
-                </div>
+                        <!-- ROW 2 -->
+                        <tr>
+                            <td style="font-weight:bold; color:#888;">2</td>
+                            <td>
+                                <span class="prop-title">Konservasi Hulu Tosari (Blok A)</span>
+                                <span class="prop-loc"><i class="fas fa-map-marker-alt"></i> Desa Tosari, Kec. Tosari</span>
+                                <a href="#" class="btn-abstract"><i class="far fa-eye"></i> Lihat Detail</a>
+                            </td>
+                            <td>
+                                <span class="investigator-name">KT. Sumber Rejeki</span>
+                                <span class="investigator-inst">Kelompok Tani Hutan</span>
+                            </td>
+                            <td>
+                                <span class="badge-mandatory">Voluntary</span>
+                                <ul class="prop-info-list">
+                                    <li><strong>Focus:</strong> 500 Meter Rorak</li>
+                                    <li><strong>Output:</strong> Est. 19.2 Juta Liter Air/Thn</li>
+                                    <li><strong>Status:</strong> Open for Investment</li>
+                                </ul>
+                            </td>
+                        </tr>
 
-                <!-- PROJECT 2 -->
-                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
-                    <div style="background: var(--water-blue); height: 5px;"></div>
-                    <div style="padding: 25px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
-                            <span style="font-size: 0.75rem; color: #666; background:#eee; padding:3px 8px; border-radius:4px;">Target: 2025</span>
-                            <span style="font-weight: bold; color: var(--primary-dark); font-size:0.9rem;"><i class="fas fa-map-marker-alt"></i> Puspo (Zona Tengah)</span>
-                        </div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Normalisasi Catchment Area Kopi</h3>
-                        
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border:1px dashed #ddd;">
-                            <div style="font-size:0.85rem; color:#555; margin-bottom:5px;">Rencana Infrastruktur:</div>
-                            <div style="font-weight:bold; color:#0b1f30;">250 Meter Rorak</div>
-                            <div style="font-size:0.8rem; color:#2e7d32; margin-top:5px;">Est. Serapan: <strong>4.8 Juta Liter/Thn</strong></div>
-                        </div>
+                         <!-- ROW 3 -->
+                         <tr>
+                            <td style="font-weight:bold; color:#888;">3</td>
+                            <td>
+                                <span class="prop-title">Pemulihan Kawasan Penyangga</span>
+                                <span class="prop-loc"><i class="fas fa-map-marker-alt"></i> Kec. Puspo</span>
+                                <a href="#" class="btn-abstract"><i class="far fa-eye"></i> Lihat Detail</a>
+                            </td>
+                            <td>
+                                <span class="investigator-name">LMDH Wana Lestari</span>
+                                <span class="investigator-inst">Lembaga Masyarakat Desa Hutan</span>
+                            </td>
+                            <td>
+                                <span class="badge-mandatory">Voluntary</span>
+                                <ul class="prop-info-list">
+                                    <li><strong>Focus:</strong> 100 Rorak, 10 Sumur</li>
+                                    <li><strong>Output:</strong> Est. 15.3 Juta Liter Air/Thn</li>
+                                    <li><strong>Status:</strong> Open for Investment</li>
+                                </ul>
+                            </td>
+                        </tr>
 
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top:20px;">
-                            <div>
-                                <span style="font-size:0.75rem; color:#888;">Pengusul (Seller):</span><br>
-                                <strong style="font-size:0.9rem;">LMDH Wana Lestari</strong>
-                            </div>
-                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-decoration: none;">Lihat Proposal</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 3 -->
-                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; position: relative;">
-                    <div style="background: #8e44ad; height: 5px;"></div>
-                    <div style="padding: 25px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
-                            <span style="font-size: 0.75rem; color: #666; background:#eee; padding:3px 8px; border-radius:4px;">Target: 2026</span>
-                            <span style="font-weight: bold; color: var(--primary-dark); font-size:0.9rem;"><i class="fas fa-map-marker-alt"></i> Pasrepan</span>
-                        </div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Sumur Resapan Padat Karya</h3>
-                        
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; border:1px dashed #ddd;">
-                            <div style="font-size:0.85rem; color:#555; margin-bottom:5px;">Rencana Infrastruktur:</div>
-                            <div style="font-weight:bold; color:#0b1f30;">10 Unit Sumur Resapan Dalam</div>
-                            <div style="font-size:0.8rem; color:#2e7d32; margin-top:5px;">Est. Serapan: <strong>1.5 Juta Liter/Thn</strong></div>
-                        </div>
-
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top:20px;">
-                            <div>
-                                <span style="font-size:0.75rem; color:#888;">Pengusul (Seller):</span><br>
-                                <strong style="font-size:0.9rem;">Kelompok Tani Makmur</strong>
-                            </div>
-                            <a href="#" style="background: var(--accent-gold); color: #000; padding: 8px 20px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-decoration: none;">Lihat Proposal</a>
-                        </div>
-                    </div>
-                </div>
-
+                    </tbody>
+                </table>
             </div>
         </div>
+    </section>
 
         <!-- =========================================================
              BAGIAN 2: RIWAYAT PROGRAM (REPORTING/CSR) - TAMPILAN TABEL
