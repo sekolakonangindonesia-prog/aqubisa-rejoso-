@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - AqruBiSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; margin: 0; display: flex; }
+        .sidebar { width: 250px; background: #1a202c; color: white; height: 100vh; padding: 20px; }
+        .sidebar h2 { font-size: 1.2rem; margin-bottom: 30px; border-bottom: 1px solid #444; padding-bottom: 10px; }
+        .content { flex: 1; padding: 30px; }
+        
+        table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        th { background: #005f73; color: white; text-align: left; padding: 15px; }
+        td { padding: 15px; border-bottom: 1px solid #eee; }
+        
+        .badge { padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+        .bg-pending { background: #ffeeba; color: #856404; }
+        .bg-verified { background: #d4edda; color: #155724; }
+        
+        .btn-verify { background: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .btn-verify:hover { background: #218838; }
+        
+        .role-seller { color: #007bff; font-weight: bold; }
+        .role-buyer { color: #d63384; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Admin AqruBiSA</h2>
+        <p><i class="fas fa-users"></i> Kelola User</p>
+        <p><i class="fas fa-file-contract"></i> Kelola MoU</p>
+        <p><i class="fas fa-chart-pie"></i> Laporan Global</p>
+        <div style="margin-top: 50px;">
+            <button onclick="resetData()" style="background: #dc3545; color: white; border: none; padding: 10px; width: 100%; cursor: pointer;">Reset Semua Data</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 style="margin-bottom: 20px;">Verifikasi Pendaftar Baru</h2>
+        
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Nama User</th>
+                    <th>Email</th>
+                    <th>Peran (Role)</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data akan masuk di sini lewat Javascript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Fungsi Memuat Data dari LocalStorage
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('aqrubisa_users')) || [];
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = "";
+
+            if(users.length === 0) {
+                tableBody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Belum ada pendaftar baru.</td></tr>";
+                return;
+            }
+
+            users.forEach((user, index) => {
+                const roleClass = user.role === 'seller' ? 'role-seller' : 'role-buyer';
+                const statusBadge = user.status === 'Verified' ? 'bg-verified' : 'bg-pending';
+                const actionBtn = user.status === 'Verified' 
+                    ? '<span style="color:green;"><i class="fas fa-check"></i> Selesai</span>' 
+                    : `<button class="btn-verify" onclick="verifyUser(${index})">Verifikasi</button>`;
+
+                const row = `
+                    <tr>
+                        <td>${user.date}</td>
+                        <td><strong>${user.name}</strong></td>
+                        <td>${user.email}</td>
+                        <td class="${roleClass}">${user.role.toUpperCase()}</td>
+                        <td><span class="badge ${statusBadge}">${user.status}</span></td>
+                        <td>${actionBtn}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Fungsi Klik Verifikasi
+        function verifyUser(index) {
+            let users = JSON.parse(localStorage.getItem('aqrubisa_users'));
+            users[index].status = 'Verified';
+            
+            // Simpan balik ke database pura-pura
+            localStorage.setItem('aqrubisa_users', JSON.stringify(users));
+            
+            // Update juga current user jika kebetulan dia yang lagi login
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if(currentUser && currentUser.email === users[index].email) {
+                currentUser.status = 'Verified';
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+
+            alert("User berhasil diverifikasi! Sekarang user tersebut bisa mengakses fitur penuh.");
+            loadUsers(); // Refresh tabel
+        }
+
+        // Fungsi Reset (Hapus semua data dummy)
+        function resetData() {
+            if(confirm("Hapus semua data pendaftar?")) {
+                localStorage.removeItem('aqrubisa_users');
+                localStorage.removeItem('currentUser');
+                location.reload();
+            }
+        }
+
+        // Load saat halaman dibuka
+        window.onload = loadUsers;
+    </script>
+</body>
+</html>
