@@ -220,7 +220,7 @@
             <form>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="Masukkan email Anda" required>
+                    <input type="email" id="regEmail" placeholder="email@contoh.com">
                 </div>
                 
                 <div class="form-group">
@@ -228,10 +228,10 @@
                         <label>Password</label>
                         <a href="#" class="forgot-link">Forgot Password?</a>
                     </div>
-                    <input type="password" placeholder="********" required>
+                    <input type="text" id="regName" placeholder="Nama Lengkap">
                 </div>
 
-                <button type="button" class="btn-submit">Sign In</button>
+                <button type="button" class="btn-submit" onclick="handleRegister()">Submit Registration</button>
             </form>
 
             <div class="form-footer">
@@ -284,13 +284,13 @@
     </div>
 
     <!-- SCRIPT -->
-    <script>
+   <script>
         // Ambil parameter peran (seller/buyer) dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const role = urlParams.get('role'); 
 
-        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa Lingkungan)' : 
-                         role === 'buyer' ? 'ES Buyer (Pemanfaat Jasa Lingkungan)' : 'User';
+        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa)' : 
+                         role === 'buyer' ? 'ES Buyer (Pemanfaat Jasa)' : 'User';
         
         // Tampilkan teks peran
         if(document.getElementById('role-display-login')) {
@@ -309,6 +309,47 @@
         function showLogin() {
             document.getElementById('register-container').classList.add('hidden');
             document.getElementById('login-container').classList.remove('hidden');
+        }
+
+        // --- FUNGSI SIMULASI REGISTRASI ---
+        function handleRegister() {
+            // 1. Ambil data dari input
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            
+            if(name === "" || email === "") {
+                alert("Harap isi Nama dan Email!");
+                return;
+            }
+
+            // 2. Simpan ke LocalStorage (Database Pura-pura)
+            const newUser = {
+                name: name,
+                email: email,
+                role: role || 'seller', // Default seller jika kosong
+                status: 'Pending Verification', // Status awal
+                date: new Date().toLocaleDateString()
+            };
+
+            // Simpan list user
+            let users = JSON.parse(localStorage.getItem('aqrubisa_users')) || [];
+            users.push(newUser);
+            localStorage.setItem('aqrubisa_users', JSON.stringify(users));
+
+            // 3. Simpan sesi login saat ini
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+            alert("Registrasi Berhasil! Mohon tunggu verifikasi Admin.");
+            
+            // 4. Arahkan ke Dashboard
+            window.location.href = 'dashboard.html';
+        }
+
+        // --- FUNGSI SIMULASI LOGIN ---
+        function handleLogin() {
+            // Untuk demo, langsung masuk saja
+            // Nanti di dashboard akan membaca data 'currentUser'
+            window.location.href = 'dashboard.html';
         }
     </script>
 </body>
