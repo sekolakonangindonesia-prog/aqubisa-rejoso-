@@ -423,56 +423,56 @@
 }
 
 @media (max-width: 900px) {
-    /* 1. Rapikan Top Bar agar tidak terlalu sempit */
-     .top-bar {
+    /* 1. TOP BAR: Kecil & Berjejer Sempurna */
+    .top-bar {
+        display: flex !important;
         flex-direction: row !important;
-        justify-content: space-between;
-        padding: 8px 5%;
-        font-size: 0.7rem;
-    }
-    
-    .top-right {
-        justify-content: center;
-        width: 100%;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 5px 10px !important;
+        font-size: 0.6rem !important; 
     }
 
-    /* 2. Paksa Logo dan Hamburger SEJAJAR (Kiri & Kanan) */
+    .top-left {
+        max-width: 65%;
+        text-align: left;
+    }
+
+    .top-right {
+        white-space: nowrap;
+    }
+
+    /* 2. HEADER: Logo di Kiri, Hamburger di Kanan */
     header {
         display: flex !important;
         flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 10px 5%;
+        padding: 8px 15px !important;
+        height: auto !important;
     }
 
     .brand-wrapper img {
-        height: 55px !important; /* Logo mengecil biar pas */
+        height: 45px !important; /* Ukuran pas di HP */
     }
 
-   .hamburger {
+    .hamburger {
         display: block !important;
         font-size: 1.5rem;
+        cursor: pointer;
     }
 
-    .desktop-only-btn {
-        display: none !important;
-    }
-
-     .mobile-only-btn {
-        display: block !important;
-        width: 100%;
-        text-align: center;
-    }
-    
-     nav {
+    /* 3. MENU NAVIGASI HP (Gaya Gelap Elegan) */
+    nav {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        background: #111;
+        padding: 20px 0;
+        z-index: 1000;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     nav.active { display: block; }
@@ -480,37 +480,51 @@
     nav ul {
         flex-direction: column;
         gap: 15px;
-        text-align: center;
+        align-items: center;
     }
 
-    /* 4. Kecilkan Ukuran Teks Hero agar tidak 'tumpah' */
+    nav a { color: white !important; font-size: 0.95rem; }
+
+    /* 4. TOMBOL GABUNG DI DALAM MENU (Berdasar Permintaanmu) */
+    .mobile-only-btn {
+        display: block !important;
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    .mobile-only-btn a {
+        display: block !important;
+        padding: 12px !important;
+        border: 2px solid var(--ss-green) !important;
+        border-radius: 8px !important;
+        background: rgba(40, 167, 69, 0.1);
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Sembunyikan tombol Gabung yang ada di Header Laptop */
+    .desktop-only-btn {
+        display: none !important;
+    }
+
+    /* 5. HERO: Teks Tidak Tumpah */
     .hero h1 {
-        font-size: 1.8rem; /* Lebih kecil di HP */
+        font-size: 1.6rem !important;
         text-align: center;
+        line-height: 1.2;
     }
+
     .hero p {
-        font-size: 1rem;
+        font-size: 0.9rem !important;
         text-align: center;
+        padding: 0 10px;
     }
-    
-    /* 5. Rapikan Section Story */
+
+    /* 6. STORY SECTION: Satu Kolom */
     .story-section {
         grid-template-columns: 1fr;
-        padding: 40px 5%;
-    }
-     header {
-        padding: 5px 3% !important; /* Kurangi padding samping agar muat 3 elemen */
-    }
-
-    .btn-header {
-        padding: 6px 12px !important; /* Tombol jadi lebih ramping */
-        font-size: 0.7rem !important;  /* Tulisan lebih kecil */
-        margin: 0 5px;
-        white-space: nowrap; /* Teks tidak turun ke bawah */
-    }
-
-    .brand-wrapper img {
-        height: 50px !important; /* Logo dikecilkan sedikit lagi agar lega */
+        padding: 30px 5%;
+        gap: 20px;
     }
 }
         
@@ -983,6 +997,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
