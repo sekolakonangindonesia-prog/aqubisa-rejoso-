@@ -308,6 +308,8 @@
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background: #155740; color: white; }
 
+        .mobile-only-btn { display: none; }
+
         @media (max-width: 900px) {
             header { flex-direction: column; gap: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; }
@@ -422,12 +424,13 @@
 
 @media (max-width: 900px) {
     /* 1. Rapikan Top Bar agar tidak terlalu sempit */
-    .top-bar {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-        gap: 8px;
+     .top-bar {
+        flex-direction: row !important;
+        justify-content: space-between;
+        padding: 8px 5%;
+        font-size: 0.7rem;
     }
+    
     .top-right {
         justify-content: center;
         width: 100%;
@@ -435,34 +438,41 @@
 
     /* 2. Paksa Logo dan Hamburger SEJAJAR (Kiri & Kanan) */
     header {
-        flex-direction: row !important; /* Tetap sejajar ke samping */
+        display: flex !important;
+        flex-direction: row !important;
         justify-content: space-between !important;
+        align-items: center !important;
         padding: 10px 5%;
-        height: auto;
     }
 
     .brand-wrapper img {
-        height: 60px !important; /* Logo mengecil di HP agar tidak makan tempat */
+        height: 55px !important; /* Logo mengecil biar pas */
     }
 
-    .hamburger { 
-        display: block; 
-        order: 2; /* Biarkan hamburger di kanan */
+   .hamburger {
+        display: block !important;
+        font-size: 1.5rem;
     }
 
-    /* 3. Sembunyikan tombol biru besar dan Menu asli */
-    .hide-mobile { display: none !important; }
+    .desktop-only-btn {
+        display: none !important;
+    }
 
-    nav {
+     .mobile-only-btn {
+        display: block !important;
+        width: 100%;
+        text-align: center;
+    }
+    
+     nav {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background: white;
+        background: #fff;
         padding: 20px;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-        z-index: 1001;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
     nav.active { display: block; }
@@ -512,9 +522,7 @@
     <div class="top-bar">
         <div class="top-left"><i class="fas fa-info-circle"></i> Portal Strategis Konservasi DAS Rejoso 2026-2031</div>
        <div class="top-right">
-    <a href="#"><i class="fas fa-book"></i> Panduan</a>
-    <a href="#"><i class="fas fa-file-alt"></i> Laporan Transparansi</a>
-    <a href="javascript:void(0)" onclick="openModal('modal-admin')" style="color: #ffd700;"><i class="fas fa-user-shield"></i> Admin</a>
+       <a href="javascript:void(0)" onclick="openModal('modal-admin')" style="color: #ffd700;"><i class="fas fa-user-shield"></i> Admin</a>
     </div>
     </div>
 
@@ -540,13 +548,15 @@
                 <li><a href="#flow">Cara Berkontribusi</a></li>
                 <li><a href="#gallery">Galeri</a></li>
                 <li><a href="#project">Project</a></li>
-                <li><a href="javascript:void(0)" onclick="openModal('modal-join')" style="color: var(--ss-green); font-weight: bold;">+ Gabung Sekarang</a></li>
+                 <li class="mobile-only-btn">
+                <a href="javascript:void(0)" onclick="openModal('modal-join')" style="color: var(--ss-green); font-weight: bold; border: 1px solid var(--ss-green); border-radius: 5px; margin-top: 10px;">
+                    <i class="fas fa-user-plus"></i> Gabung Sekarang</a></li>
             </ul>
         </nav>
         
-        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header">
-            <i class="fas fa-user-plus"></i> Gabung Sekarang
-        </a>
+        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header desktop-only-btn">
+        <i class="fas fa-user-plus"></i> Gabung Sekarang
+    </a>
     </header>
        
     <!-- HERO SECTION (Sesuai General Goal LFA) -->
@@ -973,6 +983,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
