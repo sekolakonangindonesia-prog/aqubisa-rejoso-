@@ -421,30 +421,72 @@
 }
 
 @media (max-width: 900px) {
-    .hamburger { display: block; }
-    
-    .hide-mobile { display: none !important; } /* Sembunyikan tombol biru besar di header HP */
+    /* 1. Rapikan Top Bar agar tidak terlalu sempit */
+    .top-bar {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+        gap: 8px;
+    }
+    .top-right {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* 2. Paksa Logo dan Hamburger SEJAJAR (Kiri & Kanan) */
+    header {
+        flex-direction: row !important; /* Tetap sejajar ke samping */
+        justify-content: space-between !important;
+        padding: 10px 5%;
+        height: auto;
+    }
+
+    .brand-wrapper img {
+        height: 60px !important; /* Logo mengecil di HP agar tidak makan tempat */
+    }
+
+    .hamburger { 
+        display: block; 
+        order: 2; /* Biarkan hamburger di kanan */
+    }
+
+    /* 3. Sembunyikan tombol biru besar dan Menu asli */
+    .hide-mobile { display: none !important; }
 
     nav {
-        display: none; /* Sembunyikan menu default di HP */
+        display: none;
         position: absolute;
-        top: 100%; /* Muncul tepat di bawah header */
+        top: 100%;
         left: 0;
         width: 100%;
         background: white;
         padding: 20px;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        border-top: 1px solid #eee;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        z-index: 1001;
     }
 
-    nav.active {
-        display: block; /* Muncul saat menu aktif */
-    }
+    nav.active { display: block; }
 
     nav ul {
         flex-direction: column;
         gap: 15px;
-        align-items: center;
+        text-align: center;
+    }
+
+    /* 4. Kecilkan Ukuran Teks Hero agar tidak 'tumpah' */
+    .hero h1 {
+        font-size: 1.8rem; /* Lebih kecil di HP */
+        text-align: center;
+    }
+    .hero p {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    /* 5. Rapikan Section Story */
+    .story-section {
+        grid-template-columns: 1fr;
+        padding: 40px 5%;
     }
 }
         
@@ -916,6 +958,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
