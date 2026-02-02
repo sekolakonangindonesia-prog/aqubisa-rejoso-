@@ -488,6 +488,20 @@
         grid-template-columns: 1fr;
         padding: 40px 5%;
     }
+     header {
+        padding: 5px 3% !important; /* Kurangi padding samping agar muat 3 elemen */
+    }
+
+    .btn-header {
+        padding: 6px 12px !important; /* Tombol jadi lebih ramping */
+        font-size: 0.7rem !important;  /* Tulisan lebih kecil */
+        margin: 0 5px;
+        white-space: nowrap; /* Teks tidak turun ke bawah */
+    }
+
+    .brand-wrapper img {
+        height: 50px !important; /* Logo dikecilkan sedikit lagi agar lega */
+    }
 }
         
     </style>
@@ -526,10 +540,11 @@
                 <li><a href="#flow">Cara Berkontribusi</a></li>
                 <li><a href="#gallery">Galeri</a></li>
                 <li><a href="#project">Project</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('modal-join')" style="color: var(--ss-green); font-weight: bold;">+ Gabung Sekarang</a></li>
             </ul>
         </nav>
         
-        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header hide-mobile">
+        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header">
             <i class="fas fa-user-plus"></i> Gabung Sekarang
         </a>
     </header>
@@ -958,6 +973,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
