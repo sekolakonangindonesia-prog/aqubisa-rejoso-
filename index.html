@@ -411,6 +411,43 @@
         .btn-close-ss2:hover {
             background-color: #bbdefb; /* Sedikit lebih gelap saat hover */
         }
+
+        /* --- RESPONSIVE HAMBURGER STYLE --- */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--portal-dark);
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .hamburger { display: block; }
+    
+    .hide-mobile { display: none !important; } /* Sembunyikan tombol biru besar di header HP */
+
+    nav {
+        display: none; /* Sembunyikan menu default di HP */
+        position: absolute;
+        top: 100%; /* Muncul tepat di bawah header */
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+    }
+
+    nav.active {
+        display: block; /* Muncul saat menu aktif */
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+}
+        
     </style>
 </head>
 <body>
@@ -430,11 +467,14 @@
         <!-- Updated: Logo dan Tulisan Kecil di Bawahnya -->
         <div class="brand-wrapper">
             <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" alt="Logo AqruBiSA" style="height: 105px; width: auto;">
-            <div style="margin-top: -15px; margin-left: 2px;">
+            <div style="margin-top: -15px; margin-left: 2px;"></div>
         </div>
-    </div>
 
-        <nav>
+           <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+        
+         <nav id="nav-menu">
             <ul>
                 <li><a href="#story">Tujuan Kami</a></li>
                 <li><a href="#kpi">Capaian</a></li>
@@ -446,11 +486,12 @@
                 <li><a href="#project">Project</a></li>
             </ul>
         </nav>
-        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header">
+        
+        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header hide-mobile">
             <i class="fas fa-user-plus"></i> Gabung Sekarang
         </a>
-    </header>
 
+       
     <!-- HERO SECTION (Sesuai General Goal LFA) -->
     <section class="hero">
         <div class="hero-content">
@@ -870,45 +911,11 @@
         </div>
     </div>
 
-    <!-- FIREBASE & ADMIN LOGIC -->
-    <script type="module">
-        // 1. Inisialisasi Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAktDrPlV480mUvQEqjOmJ7EdXDpt8zc1o",
-            authDomain: "aqubisa-rejoso.firebaseapp.com",
-            projectId: "aqubisa-rejoso",
-            storageBucket: "aqubisa-rejoso.firebasestorage.app",
-            messagingSenderId: "427028729815",
-            appId: "1:427028729815:web:741d8563ff434468ac0592",
-            measurementId: "G-SD80Q9M20R"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // 2. Fungsi Login Admin
-        window.loginAdmin = function() {
-            const user = document.getElementById('adminUser').value;
-            const pass = document.getElementById('adminPass').value;
-
-            // Cek Kredensial sesuai permintaan kamu
-            if (user === "admin" && pass === "admin456") {
-                alert("Login Berhasil! Mengalihkan ke Dashboard Admin...");
-                // Simpan status login sementara
-                localStorage.setItem('isAdmin', 'true');
-                window.location.href = "admin-dashboard.html";
-            } else {
-                alert("User ID atau Password Salah!");
-            }
-        }
-
-        console.log("Firebase Aqubisa Aktif & Terhubung!");
-    </script>
+<!-- PANGGIL FILE JS EKSTERNAL -->
+    <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
