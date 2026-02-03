@@ -58,9 +58,14 @@
         /* Grid Indikator eRISPRO */
         .indicator-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
         .ind-card {
-            background: white; padding: 20px; border-radius: 10px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e9ecef;
-        }
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.ind-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-color: var(--accent-gold);
+}
         .ind-num { font-size: 0.8rem; color: #888; margin-bottom: 10px; display: block; }
         .ind-title { font-size: 0.95rem; font-weight: 700; color: #444; height: 40px; }
         .ind-status { font-size: 0.85rem; color: var(--purple-erispro); margin-top: 15px; display: block; }
@@ -136,11 +141,89 @@
 
     <!-- CONTENT -->
     <main class="main-content">
-        <div class="top-header">
-            <button class="btn-hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-            <div style="font-weight: bold; color: var(--primary-dark);" id="display-role">ES SELLER</div>
+       <div class="top-header">
+    <div style="display:flex; align-items:center; gap:15px;">
+        <button class="btn-hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <!-- Tombol Home yang Anda minta -->
+        <a href="index.html" style="text-decoration:none; color:var(--primary-dark); font-weight:bold; font-size:0.9rem;">
+            <i class="fas fa-globe"></i> Lihat Beranda Utama
+        </a>
+    </div>
+    
+    <div style="display:flex; align-items:center; gap:25px;">
+        <!-- Lonceng Notifikasi -->
+        <div style="position:relative; color:#666; cursor:pointer;">
+            <i class="fas fa-bell" style="font-size:1.2rem;"></i>
+            <span style="position:absolute; top:-5px; right:-5px; background:red; color:white; font-size:0.6rem; padding:2px 5px; border-radius:50%;">!</span>
         </div>
 
+        <!-- Profil Dropdown -->
+        <div class="user-profile" onclick="toggleProfileMenu()" style="position:relative; cursor:pointer;">
+            <i class="fas fa-user-circle" style="font-size: 2rem; color: var(--accent-gold);"></i>
+            <div class="desktop-only-btn">
+                <div style="font-weight:bold; font-size:0.9rem;" id="profile-name-header">...</div>
+                <div style="font-size:0.7rem; color:#888;" id="role-text-header">...</div>
+            </div>
+            
+            <!-- Dropdown menu profil -->
+            <div id="dropdown-profile" class="hidden" style="position:absolute; top:50px; right:0; background:white; width:180px; box-shadow:0 5px 15px rgba(0,0,0,0.1); border-radius:8px; z-index:100;">
+                <a href="javascript:void(0)" onclick="showView('profile')" style="display:block; padding:12px 20px; text-decoration:none; color:#333; font-size:0.9rem; border-bottom:1px solid #eee;">
+                    <i class="fas fa-user-edit"></i> Profil Saya
+                </a>
+                <a href="javascript:void(0)" onclick="logout()" style="display:block; padding:12px 20px; text-decoration:none; color:red; font-size:0.9rem;">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+        
+<!-- 3. VIEW: PROFIL SAYA (Identitas & Rekening) -->
+<div id="view-profile" class="hidden">
+    <div class="content-title">Profil Pengguna</div>
+    <div style="display:grid; grid-template-columns: 280px 1fr; gap:30px;">
+        
+        <!-- Sidebar Profil (Kiri) -->
+        <div>
+            <div class="content-box" style="text-align: center;">
+                <i class="fas fa-user-circle" style="font-size: 4rem; color: #ccc; margin-bottom: 15px;"></i>
+                <h4 id="display-name-sidebar">...</h4>
+                <p id="display-email-sidebar" style="font-size:0.8rem; color:#666;"></p>
+                <div style="margin-top:20px; text-align:left;">
+                    <button class="btn-sm btn-primary" style="width:100%; margin-bottom:10px; text-align:left;"><i class="fas fa-id-card"></i> Data Identitas</button>
+                    <button class="btn-sm btn-outline" style="width:100%; text-align:left;"><i class="fas fa-university"></i> Info Rekening Bank</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Data (Kanan) -->
+        <div class="content-box">
+            <div class="box-header"><div class="box-title">Identitas Lengkap</div></div>
+            <form id="formUpdateProfile">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div class="form-group"><label>Nama Lengkap</label><input type="text" id="p_name"></div>
+                    <div class="form-group"><label>Nomor KTP (NIK)</label><input type="text" id="p_ktp" readonly></div>
+                    <div class="form-group"><label>Nomer Telepon/WA</label><input type="text" id="p_phone"></div>
+                    <div class="form-group"><label>Pekerjaan/Jabatan</label><input type="text" id="p_job"></div>
+                </div>
+                <div class="form-group"><label>Alamat Domisili Sekarang</label><input type="text" id="p_address"></div>
+                
+                <h4 style="margin:20px 0 15px 0; border-bottom:1px solid #eee; padding-bottom:10px; color:var(--purple-erispro);"><i class="fas fa-university"></i> Informasi Rekening (Untuk Pencairan Dana)</h4>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div class="form-group"><label>Nama Bank</label><input type="text" id="p_bank" placeholder="Misal: Bank Jatim / BRI"></div>
+                    <div class="form-group"><label>Nomor Rekening</label><input type="text" id="p_acc_no" placeholder="0000-0000-0000"></div>
+                </div>
+                <div class="form-group"><label>Nama Pemilik Rekening</label><input type="text" id="p_acc_name" placeholder="Sesuai di Buku Tabungan"></div>
+                
+                <div style="background:#fff3cd; padding:15px; border-left:4px solid #ffc107; font-size:0.85rem; margin-bottom:20px;">
+                    <strong>Penting:</strong> Data ini akan digunakan secara otomatis saat pembuatan dokumen MoU. Mohon isi dengan teliti.
+                </div>
+                
+                <button type="submit" class="btn-primary">Update Profil & Rekening</button>
+            </form>
+        </div>
+    </div>
+</div>
         <!-- 1. VIEW: BERANDA (Home) -->
         <div id="view-home">
             <div class="welcome-banner">
