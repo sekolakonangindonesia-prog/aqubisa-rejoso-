@@ -589,6 +589,32 @@
     box-shadow: 0 5px 15px rgba(72, 61, 139, 0.4);
     background-color: #382f6e; /* Warna ungu lebih gelap saat hover */
 }
+        /* Style Khusus Tombol Masuk Admin */
+.btn-admin-submit {
+    background-color: #483d8b;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px; /* Bentuk Kapsul */
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    width: auto;
+    min-width: 220px;
+    box-shadow: 0 4px 10px rgba(72, 61, 139, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-admin-submit:hover {
+    background-color: #382f6e;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(72, 61, 139, 0.4);
+}
+
+/* Memastikan input fokus warnanya ungu */
+#adminUser:focus, #adminPass:focus {
+    border-color: #483d8b !important;
+}
         
     </style>
 </head>
@@ -993,33 +1019,44 @@
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } }
     </script>
+
+    
 <!-- MODAL LOGIN ADMIN -->
-    <div id="modal-admin" class="modal">
-        <div class="modal-content" style="max-width: 400px; padding: 0; overflow: hidden; border-radius: 12px;">
-            <div class="modal-header-custom">
-                <div class="header-left">
-                    <i class="fas fa-lock" style="font-size: 1.5rem; color: #483d8b;"></i>
-                    
-                    <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" 
-                     alt="Logo AqruBiSA" 
-                     style="height: 110px; width: auto; margin-top: 5px;">
+<div id="id-modal-admin" class="modal">
+    <div class="modal-content" style="max-width: 400px; padding: 0; overflow: hidden; border-radius: 12px; border: none;">
+        
+        <!-- HEADER: Ikon + Logo di Kiri, Tombol Close (X) di Kanan -->
+        <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid #eee;">
+            <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
+                <i class="fas fa-lock" style="font-size: 1.5rem; color: #483d8b;"></i>
+                <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" 
+                     alt="Logo" style="height: 100px; width: auto; margin-top: 5px;">
+            </div>
+            <!-- Tombol Close (X) di Atas -->
+            <span class="close-custom" onclick="closeModal('id-modal-admin')" style="font-size: 24px; cursor: pointer; color: #aaa;">&times;</span>
+        </div>
+
+        <!-- BODY: Form Input -->
+        <div class="modal-body-custom" style="padding: 30px 30px 10px;">
+            <p style="margin-bottom: 25px; color:#333; font-weight:bold; font-size: 1.1rem;">Login Portal Admin</p>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display:block; margin-bottom:8px; font-size:0.85rem; color: #666; font-weight: 600;">User ID</label>
+                <input type="text" id="adminUser" placeholder="Masukkan ID" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline: none;">                             
             </div>
 
-                 <span class="close-custom" onclick="closeModal('modal-admin')">&times;</span>
-        </div>
-                                               
-            <div class="modal-body-custom" style="padding: 20px 30px;">
-               <p style="margin-bottom: 20px; color:#555; font-weight:bold;">Login Portal Admin</p>
-                
-                    <label style="display:block; margin-bottom:5px; font-size:0.9rem;">User ID</label>
-                    <input type="text" id="adminUser" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">                             
-                    <label style="display:block; margin-bottom:5px; font-size:0.9rem;">Password</label>
-                    <input type="password" id="adminPass" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">  
-                 </div>
-                    <button onclick="loginAdmin()" class="role-btn" style="border:1px; padding:10px; margin-bottom:5px; border-radius:5px; cursor:pointer; text-align:center;">Masuk ke Dashboard</button>
+            <div style="margin-bottom: 5px;">
+                <label style="display:block; margin-bottom:8px; font-size:0.85rem; color: #666; font-weight: 600;">Password</label>
+                <input type="password" id="adminPass" placeholder="Masukkan Password" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline: none;">  
             </div>
         </div>
+
+        <!-- FOOTER: Tombol Login (Bentuk Kapsul & Tidak Meper) -->
+        <div style="padding: 20px 30px 40px; text-align: center;">
+            <button onclick="loginAdmin()" class="btn-admin-submit">Masuk ke Dashboard</button>
+        </div>
     </div>
+</div>
     
     <!-- MODAL PILIH PERAN (GABUNG SEKARANG) -->
     <!-- PENTING: Baris ini adalah "Rumah" modalnya dengan ID modal-join -->
@@ -1071,10 +1108,3 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
