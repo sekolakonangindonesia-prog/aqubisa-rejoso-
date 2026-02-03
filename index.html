@@ -569,6 +569,27 @@
     .dropdown:hover .dropdown-menu { display: block; }
 }
         
+        /* --- PERBAIKAN TOMBOL LOGIN ADMIN --- */
+#modal-admin .role-btn {
+    width: auto !important; /* Supaya tidak panjang mentok */
+    min-width: 220px;       /* Lebar minimal agar tetap tegas */
+    margin: 10px auto 0 !important; /* Posisi di tengah secara otomatis */
+    display: block !important;
+    padding: 12px 30px !important;
+    border-radius: 50px !important; /* Bentuk Kapsul yang elegan */
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+#modal-admin .role-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(72, 61, 139, 0.4);
+    background-color: #382f6e; /* Warna ungu lebih gelap saat hover */
+}
+        
     </style>
 </head>
 <body>
@@ -1050,6 +1071,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
