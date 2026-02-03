@@ -87,11 +87,18 @@
         .logo-login-header {
             height: 70px;
             width: auto;
+             object-fit: contain;
             margin-bottom: 20px;
             display: block;
         }
 
-        .logo-mobile { display: none; }
+        .logo-mobile {
+    display: none;     /* Default sembunyi di desktop */
+    height: 50px;
+    width: auto;       /* KUNCI: Sama seperti di atas */
+    object-fit: contain;
+    margin: 0 auto 20px; /* Biar posisi di tengah di HP */
+}
 
         .form-header { margin-bottom: 30px; }
         .form-header h3 { color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 5px; }
