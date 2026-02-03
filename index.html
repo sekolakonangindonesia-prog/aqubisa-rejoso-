@@ -1021,35 +1021,42 @@
     </script>
 
     
-<!-- MODAL LOGIN ADMIN -->
-<div id="id-modal-admin" class="modal">
-    <div class="modal-content" style="max-width: 400px; padding: 0; overflow: hidden; border-radius: 12px; border: none;">
+<!-- MODAL LOGIN ADMIN (REVISI FINAL: ID KONSISTEN) -->
+<div id="modal-admin" class="modal">
+    <div class="modal-content" style="max-width: 400px; padding: 0; overflow: hidden; border-radius: 12px;">
         
-        <!-- HEADER: Ikon + Logo di Kiri, Tombol Close (X) di Kanan -->
+        <!-- HEADER: Logo + Tombol X -->
         <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid #eee;">
             <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
                 <i class="fas fa-lock" style="font-size: 1.5rem; color: #483d8b;"></i>
                 <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" 
                      alt="Logo" style="height: 100px; width: auto; margin-top: 5px;">
             </div>
-            <!-- Tombol Close (X) di Atas -->
-            <span class="close-custom" onclick="closeModal('id-modal-admin')" style="font-size: 24px; cursor: pointer; color: #aaa;">&times;</span>
+            <!-- Tombol Close (X) -->
+            <span class="close-custom" onclick="closeModal('modal-admin')" style="font-size: 24px; cursor: pointer; color: #aaa;">&times;</span>
         </div>
 
-        <!-- BODY: Form Input -->
+        <!-- BODY: Input -->
         <div class="modal-body-custom" style="padding: 30px 30px 10px;">
             <p style="margin-bottom: 25px; color:#333; font-weight:bold; font-size: 1.1rem;">Login Portal Admin</p>
             
             <div style="margin-bottom: 20px;">
                 <label style="display:block; margin-bottom:8px; font-size:0.85rem; color: #666; font-weight: 600;">User ID</label>
-                <input type="text" id="adminUser" placeholder="Masukkan ID" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline: none;">                             
+                <input type="text" id="adminUser" placeholder="Masukkan ID" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;">                             
             </div>
 
             <div style="margin-bottom: 5px;">
                 <label style="display:block; margin-bottom:8px; font-size:0.85rem; color: #666; font-weight: 600;">Password</label>
-                <input type="password" id="adminPass" placeholder="Masukkan Password" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline: none;">  
+                <input type="password" id="adminPass" placeholder="Masukkan Password" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;">  
             </div>
         </div>
+
+        <!-- FOOTER: Tombol Kapsul & Jarak Lega -->
+        <div style="padding: 20px 30px 40px; text-align: center;">
+            <button onclick="loginAdmin()" class="btn-admin-submit">Masuk ke Dashboard</button>
+        </div>
+    </div>
+</div>
 
         <!-- FOOTER: Tombol Login (Bentuk Kapsul & Tidak Meper) -->
         <div style="padding: 20px 30px 40px; text-align: center;">
@@ -1108,3 +1115,4 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
