@@ -421,6 +421,31 @@
     color: var(--portal-dark);
     cursor: pointer;
 }
+        /* --- STYLE DROPDOWN DESKTOP --- */
+.dropdown { position: relative; }
+.dropdown-menu { 
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background: white; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    border-radius: 8px; 
+    min-width: 180px; 
+    padding: 10px 0;
+    z-index: 1001;
+}
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { 
+    display: block; 
+    padding: 10px 20px; 
+    font-size: 0.85rem; 
+    color: #555 !important; 
+    border-bottom: 1px solid #f1f1f1;
+    text-align: left;
+}
+.dropdown-menu a:last-child { border: none; }
+.dropdown-menu a:hover { background: #f9f9f9; color: var(--ss-green) !important; }
 
 @media (max-width: 900px) {
     /* 1. TOP BAR: Kecil & Berjejer Sempurna */
@@ -526,6 +551,22 @@
         padding: 30px 5%;
         gap: 20px;
     }
+
+    /* Dropdown di HP jadi list biasa kebawah */
+    .dropdown-menu { 
+        position: static !important; 
+        background: transparent !important; 
+        box-shadow: none !important; 
+        padding: 0 !important;
+        text-align: center !important;
+    }
+    .dropdown-menu a { 
+        color: #aaa !important; 
+        border: none !important; 
+        padding: 5px !important; 
+    }
+    /* Munculkan submenu Capaian langsung di HP */
+    .dropdown:hover .dropdown-menu { display: block; }
 }
         
     </style>
@@ -555,13 +596,21 @@
          <nav id="nav-menu">
             <ul>
                 <li><a href="#story">Tujuan Kami</a></li>
-                <li><a href="#kpi">Capaian</a></li>
+                <li class="dropdown">
+            <a href="#kpi">Capaian <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+            <div class="dropdown-menu">
+                <a href="biodiversity.html">Biodiversitas</a>
+                <a href="water.html">Air</a>
+                <a href="land.html">Lahan</a>
+            </div>
+        </li>                    
                 <li><a href="#impact">Dampak Lingkungan</a></li>
                 <li><a href="#sih3">Data & SIH3</a></li>
                 <li><a href="#awards">Rejoso Sustainable Award</a></li>
                 <li><a href="#flow">Cara Berkontribusi</a></li>
                 <li><a href="#gallery">Galeri</a></li>
                 <li><a href="#project">Project</a></li>
+                <li><a href="contact.html">Kontak Kami</a></li>
                  <li class="mobile-only-btn">
                 <a href="javascript:void(0)" onclick="openModal('modal-join')" style="color: var(--ss-green); font-weight: bold; border: 1px solid var(--ss-green); border-radius: 5px; margin-top: 10px;">
                     <i class="fas fa-user-plus"></i> Gabung Sekarang</a></li>
@@ -997,6 +1046,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
