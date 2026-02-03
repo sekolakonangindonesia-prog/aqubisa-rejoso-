@@ -313,16 +313,51 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // CEK STATUS LOGIN (VERSI PERBAIKAN)
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                const docSnap = await getDoc(doc(db, "users", user.uid));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    document.getElementById('user-name').innerText = data.fullName;
-                    document.getElementById('display-role').innerText = data.role.toUpperCase();
-                    document.getElementById('loader').style.display = 'none';
+                console.log("User terdeteksi:", user.uid);
+                try {
+                    const docSnap = await getDoc(doc(db, "users", user.uid));
+                    
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        
+                        // Gunakan pengecekan 'if' agar jika ID tidak ada, web tidak error
+                        if(document.getElementById('welcome-text')) {
+                            document.getElementById('welcome-text').innerHTML = `Selamat Datang, <span>${data.fullName}</span>!`;
+                        }
+                        
+                        if(document.getElementById('profile-name-header')) {
+                            document.getElementById('profile-name-header').innerText = data.fullName;
+                        }
+
+                        if(document.getElementById('role-text-header')) {
+                            document.getElementById('role-text-header').innerText = data.role.toUpperCase();
+                        }
+
+                        if(document.getElementById('display-role')) {
+                            document.getElementById('display-role').innerText = data.role.toUpperCase();
+                        }
+
+                        // Mengaktifkan View Sesuai Role
+                        renderDashboard(data);
+
+                    } else {
+                        console.log("Data profil tidak ditemukan di Firestore");
+                        window.location.href = "auth.html";
+                    }
+                } catch (err) {
+                    console.error("Gagal ambil data:", err);
+                } finally {
+                    // APAPUN YANG TERJADI, HILANGKAN LOADER MUTAR
+                    if(document.getElementById('loader')) {
+                        document.getElementById('loader').style.display = 'none';
+                    }
                 }
-            } else { window.location.href = "auth.html"; }
+            } else {
+                window.location.href = "auth.html";
+            }
         });
 
         // FUNGSI GANTI TAMPILAN (SPA Style)
