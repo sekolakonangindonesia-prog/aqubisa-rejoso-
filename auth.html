@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-dark: #0b1f30;
+            --primary-dark: #0b1f30; 
             --teal-accent: #005f73;
             --text-light: #f9f9f9;
         }
@@ -18,12 +18,12 @@
             display: flex;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Mencegah scroll ganda */
+            overflow: hidden; 
         }
 
-        /* --- PANEL KIRI (BRANDING) --- */
+        /* --- PANEL KIRI --- */
         .left-panel {
-            flex: 4; /* Lebar 40% */
+            flex: 4; 
             background-color: var(--primary-dark);
             color: white;
             display: flex;
@@ -44,139 +44,66 @@
             z-index: 0;
         }
 
-        .left-content {
-            position: relative;
-            z-index: 1;
-        }
+        .left-content { position: relative; z-index: 1; }
+        .left-content img { height: 120px; margin-bottom: 20px; }
+        .left-content h2 { font-size: 2rem; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
+        .left-content p { font-size: 1rem; opacity: 0.9; max-width: 500px; margin: 0 auto; }
 
-        .left-content img {
-            height: 120px;
-            margin-bottom: 20px;
-        }
-
-        .left-content h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .left-content p {
-            font-size: 1rem;
-            opacity: 0.9;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* --- PANEL KANAN (FORM) --- */
+        /* --- PANEL KANAN --- */
         .right-panel {
-            flex: 6; /* Lebar 60% */
+            flex: 6; 
             background-color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 40px 100px;
             position: relative;
-            overflow-y: auto; /* Agar bisa discroll jika layar pendek */
+            overflow-y: auto; 
         }
 
-        /* Tombol Close di Pojok Kanan Atas */
         .btn-close-corner {
             position: absolute;
-            top: 30px;
-            right: 40px;
-            text-decoration: none;
-            color: #999;
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            background: #f4f4f4;
-            border-radius: 20px;
-            transition: 0.3s;
+            top: 30px; right: 40px;
+            text-decoration: none; color: #999;
+            font-weight: 600; font-size: 1rem;
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 15px; background: #f4f4f4;
+            border-radius: 20px; transition: 0.3s;
             z-index: 10;
         }
+        .btn-close-corner:hover { color: #fff; background-color: #d9534f; }
 
-        .btn-close-corner:hover {
-            color: #fff;
-            background-color: #d9534f;
-        }
-
-        /* Logo di atas form (Mobile & Desktop) */
-        .logo-login-header {
-            height: 90px;
-            width: auto;
-            margin-bottom: 20px;
-            display: block;
-        }
-
+        .logo-login-header { height: 70px; width: auto; margin-bottom: 20px; display: block; }
         .logo-mobile { display: none; }
-
+        
         .form-header { margin-bottom: 30px; }
         .form-header h3 { color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 5px; }
         .form-header p { color: #666; font-size: 0.95rem; }
 
-        /* Styling Input */
         .form-group { margin-bottom: 20px; }
+        .form-group label { font-weight: 600; color: #333; font-size: 0.9rem; display: block; margin-bottom: 8px;}
         
-        .form-label-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #333;
-            font-size: 0.9rem;
-        }
-
-        .forgot-link {
-            font-size: 0.85rem;
-            color: #483d8b;
-            text-decoration: none;
-        }
-
         .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f4f6f8;
-            font-size: 1rem;
-            transition: 0.3s;
+            width: 100%; padding: 12px 15px;
+            border: 1px solid #ddd; border-radius: 8px;
+            background-color: #f4f6f8; font-size: 1rem; transition: 0.3s;
         }
-
-        .form-group input:focus {
-            border-color: var(--teal-accent);
-            background-color: white;
-            outline: none;
-        }
+        .form-group input:focus { border-color: var(--teal-accent); background-color: white; outline: none; }
 
         .btn-submit {
-            width: 100%;
-            padding: 14px;
-            background-color: #483d8b;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
+            width: 100%; padding: 14px;
+            background-color: #483d8b; color: white;
+            border: none; border-radius: 8px;
+            font-size: 1rem; font-weight: bold;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
-
         .btn-submit:hover { background-color: #352b6b; }
+        .btn-loading { background-color: #ccc; cursor: not-allowed; }
 
         .form-footer { margin-top: 25px; font-size: 0.9rem; color: #666; }
         .link-action { color: #483d8b; font-weight: bold; text-decoration: none; cursor: pointer; }
         .hidden { display: none; }
 
-        /* RESPONSIVE HP */
         @media (max-width: 900px) {
             body { flex-direction: column; height: auto; overflow: auto; }
             .left-panel { display: none; }
@@ -189,168 +116,238 @@
 </head>
 <body>
 
-    <!-- BAGIAN KIRI -->
+    <!-- KIRI -->
     <div class="left-panel">
         <div class="left-content">
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Gelap.png" alt="Logo AqruBiSA" style="height: 200px; width: auto;">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA2.png" alt="Logo AqruBiSA">
             <h2>Water Conservation Funds<br>Strategic & Action Plan</h2>
             <p>Platform terintegrasi untuk mengelola investasi konservasi sumberdaya air.</p>
         </div>
     </div>
 
-    <!-- BAGIAN KANAN (FORM) -->
+    <!-- KANAN -->
     <div class="right-panel">
-        
-        <!-- Tombol Close -->
         <a href="index.html" class="btn-close-corner"><i class="fas fa-times"></i> Close</a>
+        <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-mobile" alt="Logo Mobile">
 
-        <!-- Logo Mobile -->
-        <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" class="logo-mobile" alt="Logo Mobile" style="height: 150px; width: auto;">
-
-        <!-- ===== FORM LOGIN ===== -->
+        <!-- ===== 1. FORM LOGIN ===== -->
         <div id="login-container">
-            <!-- Logo Desktop -->
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" class="logo-login-header" alt="Logo AqruBiSA" style="height: 150px; width: auto;">
-
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-login-header" alt="Logo AqruBiSA">
             <div class="form-header">
-                <h3>Welcome to AqruBiSA</h3>
-                <p id="role-display-login">Login as User</p>
+                <h3>Welcome Back</h3>
+                <p id="role-display-login">Login System</p>
             </div>
 
-            <form>
+            <form id="formLogin">
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" id="regEmail" placeholder="email@contoh.com">
+                    <input type="email" id="loginEmail" placeholder="Masukkan email Anda" required>
                 </div>
-                
                 <div class="form-group">
-                    <div class="form-label-row">
-                        <label>Password</label>
-                        <a href="#" class="forgot-link">Forgot Password?</a>
-                    </div>
-                    <input type="text" id="regName" placeholder="Nama Lengkap">
+                    <label>Password</label>
+                    <input type="password" id="loginPass" placeholder="********" required>
                 </div>
-
-                <button type="button" class="btn-submit" onclick="handleRegister()">Submit Registration</button>
+                <button type="submit" id="btnLogin" class="btn-submit">Sign In</button>
             </form>
 
             <div class="form-footer">
-                New Here? <span class="link-action" onclick="showRegister()">Create an Account</span>
+                Belum punya akun? <span class="link-action" onclick="showRegister()">Daftar Sekarang</span>
             </div>
         </div>
 
-        <!-- ===== FORM REGISTER ===== -->
+        <!-- ===== 2. FORM REGISTER (SIGN UP) ===== -->
         <div id="register-container" class="hidden">
-            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" class="logo-login-header" alt="Logo AqruBiSA">
-
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/AqruBiSA.png" class="logo-login-header" alt="Logo AqruBiSA">
             <div class="form-header">
-                <h3>Sign Up</h3>
-                <p>Enter your details to create an account</p>
-                <p id="role-display-register" style="color:#483d8b; font-weight:bold; margin-top:5px;"></p>
+                <h3>Create Account</h3>
+                <p id="role-display-register" style="color:#483d8b; font-weight:bold;">Registering...</p>
             </div>
 
-            <form>
+            <form id="formRegister">
                 <div class="form-group">
-                    <label>ID Number (KTP)</label>
-                    <input type="text" placeholder="Contoh: 3507xxxxxxxx">
+                    <label>Nomor KTP (NIK)</label>
+                    <input type="number" id="regKTP" placeholder="Contoh: 3507xxxxxxxx" required>
                 </div>
                 <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Nama Lengkap">
+                    <label>Nama Lengkap / Instansi</label>
+                    <input type="text" id="regName" placeholder="Nama Anda" required>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="email@contoh.com">
+                    <input type="email" id="regEmail" placeholder="email@contoh.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="text" placeholder="0812xxxxxx">
+                    <label>No. Handphone (WhatsApp)</label>
+                    <input type="number" id="regPhone" placeholder="0812xxxxxx" required>
                 </div>
                 <div style="display: flex; gap: 15px;">
                     <div class="form-group" style="flex:1;">
                         <label>Password</label>
-                        <input type="password" placeholder="******">
+                        <input type="password" id="regPass" placeholder="******" required>
                     </div>
                     <div class="form-group" style="flex:1;">
-                        <label>Retype</label>
-                        <input type="password" placeholder="******">
+                        <label>Ulangi Password</label>
+                        <input type="password" id="regRetypePass" placeholder="******" required>
                     </div>
                 </div>
                 
-                <button type="button" class="btn-submit">Submit Registration</button>
-                <button type="button" class="btn-submit" onclick="showLogin()" style="background:#ddd; color:#333; margin-top:10px;">Cancel</button>
+                <button type="submit" id="btnRegister" class="btn-submit">Daftar Akun</button>
+                <button type="button" class="btn-submit" onclick="showLogin()" style="background:#f0f0f0; color:#555; margin-top:10px;">Batal</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPT -->
-   <script>
-        // Ambil parameter peran (seller/buyer) dari URL
+    <!-- ===== LOGIKA FIREBASE (MODULE) ===== -->
+    <script type="module">
+        // 1. IMPORT PUSTAKA FIREBASE
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // 2. KONFIGURASI (Sama dengan main.js)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAktDrPlV480mUvQEqjOmJ7EdXDpt8zc1o",
+            authDomain: "aqubisa-rejoso.firebaseapp.com",
+            projectId: "aqubisa-rejoso",
+            storageBucket: "aqubisa-rejoso.firebasestorage.app",
+            messagingSenderId: "427028729815",
+            appId: "1:427028729815:web:741d8563ff434468ac0592",
+            measurementId: "G-SD80Q9M20R"
+        };
+
+        // 3. INISIALISASI
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // 4. TANGKAP ROLE DARI URL (Seller/Buyer)
         const urlParams = new URLSearchParams(window.location.search);
-        const role = urlParams.get('role'); 
+        let selectedRole = urlParams.get('role'); 
+        if (!selectedRole) selectedRole = 'seller'; // Default kalau kosong
 
-        const roleText = role === 'seller' ? 'ES Seller (Penyedia Jasa)' : 
-                         role === 'buyer' ? 'ES Buyer (Pemanfaat Jasa)' : 'User';
-        
-        // Tampilkan teks peran
-        if(document.getElementById('role-display-login')) {
-            document.getElementById('role-display-login').innerText = "Login as " + roleText;
-        }
-        if(document.getElementById('role-display-register')) {
-            document.getElementById('role-display-register').innerText = "Registering as: " + roleText;
-        }
+        // Update Teks Tampilan
+        const roleLabel = selectedRole === 'seller' ? 'ES SELLER (Penyedia)' : 'ES BUYER (Mitra)';
+        document.getElementById('role-display-login').innerText = "Login sebagai: " + roleLabel;
+        document.getElementById('role-display-register').innerText = "Mendaftar sebagai: " + roleLabel;
 
-        // Fungsi Ganti Form
-        function showRegister() {
-            document.getElementById('login-container').classList.add('hidden');
-            document.getElementById('register-container').classList.remove('hidden');
-        }
-
-        function showLogin() {
-            document.getElementById('register-container').classList.add('hidden');
-            document.getElementById('login-container').classList.remove('hidden');
-        }
-
-        // --- FUNGSI SIMULASI REGISTRASI ---
-        function handleRegister() {
-            // 1. Ambil data dari input
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
+        // ------------------------------------------
+        // A. FUNGSI REGISTER (DAFTAR)
+        // ------------------------------------------
+        document.getElementById('formRegister').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Mencegah reload
             
-            if(name === "" || email === "") {
-                alert("Harap isi Nama dan Email!");
+            const email = document.getElementById('regEmail').value;
+            const pass = document.getElementById('regPass').value;
+            const retype = document.getElementById('regRetypePass').value;
+            const ktp = document.getElementById('regKTP').value;
+            const name = document.getElementById('regName').value;
+            const phone = document.getElementById('regPhone').value;
+            const btn = document.getElementById('btnRegister');
+
+            // Validasi Password
+            if(pass !== retype) {
+                alert("Password tidak sama!");
                 return;
             }
 
-            // 2. Simpan ke LocalStorage (Database Pura-pura)
-            const newUser = {
-                name: name,
-                email: email,
-                role: role || 'seller', // Default seller jika kosong
-                status: 'Pending Verification', // Status awal
-                date: new Date().toLocaleDateString()
-            };
+            // Ubah tombol jadi loading
+            btn.innerText = "Memproses...";
+            btn.classList.add('btn-loading');
+            btn.disabled = true;
 
-            // Simpan list user
-            let users = JSON.parse(localStorage.getItem('aqrubisa_users')) || [];
-            users.push(newUser);
-            localStorage.setItem('aqrubisa_users', JSON.stringify(users));
+            try {
+                // 1. Buat User di Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                const user = userCredential.user;
 
-            // 3. Simpan sesi login saat ini
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
+                // 2. Simpan Data Lengkap ke Firestore (Database)
+                await setDoc(doc(db, "users", user.uid), {
+                    fullName: name,
+                    ktp: ktp,
+                    phone: phone,
+                    email: email,
+                    role: selectedRole, // Penting: Menyimpan dia Seller/Buyer
+                    createdAt: new Date()
+                });
 
-            alert("Registrasi Berhasil! Mohon tunggu verifikasi Admin.");
-            
-            // 4. Arahkan ke Dashboard
-            window.location.href = 'dashboard.html';
-        }
+                alert("Registrasi Berhasil! Silakan Login.");
+                showLogin(); // Pindah ke form login
 
-        // --- FUNGSI SIMULASI LOGIN ---
-        function handleLogin() {
-            // Untuk demo, langsung masuk saja
-            // Nanti di dashboard akan membaca data 'currentUser'
-            window.location.href = 'dashboard.html';
-        }
+            } catch (error) {
+                console.error("Error:", error);
+                // Pesan Error Bahasa Indonesia
+                let msg = error.message;
+                if(msg.includes('email-already-in-use')) msg = "Email sudah terdaftar!";
+                if(msg.includes('weak-password')) msg = "Password minimal 6 karakter!";
+                alert("Gagal Daftar: " + msg);
+            } finally {
+                btn.innerText = "Daftar Akun";
+                btn.classList.remove('btn-loading');
+                btn.disabled = false;
+            }
+        });
+
+        // ------------------------------------------
+        // B. FUNGSI LOGIN (MASUK)
+        // ------------------------------------------
+        document.getElementById('formLogin').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            const btn = document.getElementById('btnLogin');
+
+            btn.innerText = "Mengecek...";
+            btn.classList.add('btn-loading');
+            btn.disabled = true;
+
+            try {
+                // 1. Cek Email & Password
+                const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+                const user = userCredential.user;
+
+                // 2. Ambil Data Role dari Database
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    
+                    // Simpan info user di Memory Browser (LocalStorage) untuk Dashboard
+                    localStorage.setItem('aqru_user_role', userData.role);
+                    localStorage.setItem('aqru_user_name', userData.fullName);
+                    
+                    alert("Login Berhasil! Selamat datang, " + userData.fullName);
+                    
+                    // Redirect ke Dashboard (Nanti kita buat dashboard.html)
+                    window.location.href = "dashboard.html"; 
+                } else {
+                    alert("Data user tidak ditemukan di database!");
+                }
+
+            } catch (error) {
+                console.error("Login Error:", error);
+                let msg = error.message;
+                if(msg.includes('invalid-credential')) msg = "Email atau Password Salah!";
+                alert("Gagal Login: " + msg);
+            } finally {
+                btn.innerText = "Sign In";
+                btn.classList.remove('btn-loading');
+                btn.disabled = false;
+            }
+        });
+
+        // Expose fungsi toggle ke window agar bisa dipanggil HTML onclick
+        window.showRegister = function() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('register-container').classList.remove('hidden');
+        };
+
+        window.showLogin = function() {
+            document.getElementById('register-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        };
+
     </script>
 </body>
 </html>
