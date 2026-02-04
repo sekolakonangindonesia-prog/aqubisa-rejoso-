@@ -9,29 +9,28 @@
         :root {
             --sidebar-bg: #0b1f30;
             --sidebar-active: #005f73;
-            --main-bg: #f4f6f9;
+            --main-bg: #f4f7fa;
             --accent-gold: #d4af37;
+            --primary-purple: #483d8b;
+            --success-green: #28a745;
             --text-dark: #333;
-            --success: #28a745;
-            --warning: #ffc107;
-            --info: #17a2b8;
-            --primary-dark: #0b1f30;
+            --white: #ffffff;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { display: flex; background-color: var(--main-bg); min-height: 100vh; }
+        body { display: flex; background-color: var(--main-bg); min-height: 100vh; color: var(--text-dark); }
 
         /* --- SIDEBAR --- */
         .sidebar {
             width: 260px; background-color: var(--sidebar-bg); color: white;
-            display: flex; flex-direction: column; position: fixed; height: 100vh; transition: 0.3s;
+            display: flex; flex-direction: column; position: fixed; height: 100vh; transition: 0.3s; z-index: 1000;
         }
         .logo-area { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo-area img { height: 70px; }
+        .logo-area img { height: 60px; margin-bottom: 10px; }
         .menu { list-style: none; padding: 20px 0; flex: 1; }
         .menu li a {
-            display: flex; align-items: center; padding: 15px 25px; color: #ccc;
-            text-decoration: none; transition: 0.3s; font-size: 0.95rem;
+            display: flex; align-items: center; padding: 12px 25px; color: #ccc;
+            text-decoration: none; transition: 0.3s; font-size: 0.9rem; cursor: pointer;
         }
         .menu li a:hover, .menu li a.active { background-color: var(--sidebar-active); color: white; border-left: 4px solid var(--accent-gold); }
         .menu li a i { width: 25px; margin-right: 10px; }
@@ -39,118 +38,172 @@
         /* --- MAIN CONTENT --- */
         .main-content { flex: 1; margin-left: 260px; padding: 30px; width: calc(100% - 260px); }
 
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .user-profile {
-            display: flex; align-items: center; gap: 15px; background: white;
-            padding: 8px 20px; border-radius: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        /* TOP BAR (SS2 Style) */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: transparent; }
+        .welcome-msg h2 { font-size: 1.5rem; font-weight: 700; }
+        .user-badge-header {
+            display: flex; align-items: center; gap: 12px; background: white;
+            padding: 8px 15px; border-radius: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .role-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-        .role-seller { background: #e3f2fd; color: #0077b6; border: 1px solid #0077b6; }
-        .role-buyer { background: #fff3cd; color: #856404; border: 1px solid #856404; }
+        .role-pill { font-size: 0.65rem; padding: 2px 8px; border: 1px solid #0077b6; color: #0077b6; border-radius: 4px; font-weight: bold; }
 
-        /* Stats Cards */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--sidebar-bg); position: relative; }
-        .stat-card h3 { font-size: 2rem; margin: 10px 0; color: var(--primary-dark); }
-        .stat-icon { position: absolute; top: 20px; right: 20px; font-size: 2.5rem; opacity: 0.1; }
+        /* STATS CARD (SS1 Style) */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--sidebar-bg); position: relative; }
+        .stat-card p { font-size: 0.85rem; color: #666; font-weight: 600; }
+        .stat-card h3 { font-size: 1.8rem; margin-top: 10px; }
+        .stat-icon { position: absolute; top: 20px; right: 20px; font-size: 2rem; opacity: 0.1; }
 
-        .content-box { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); margin-bottom: 30px; }
-        .box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .box-title { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); }
+        /* MILESTONE GRID (SS3 Style) */
+        .milestone-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+        .m-card { background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #ddd; position: relative; }
+        .m-card.active { border-left-color: var(--primary-purple); }
+        .m-card.done { border-left-color: var(--success-green); }
+        .m-num { position: absolute; top: 15px; left: 10px; font-weight: bold; font-size: 0.8rem; background: #f0f0f0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+        .m-title { font-weight: bold; font-size: 0.85rem; margin-left: 20px; color: #555; }
+        .m-status { font-size: 0.7rem; margin-top: 10px; color: #999; display: block; }
+        .m-progress { height: 4px; background: #eee; border-radius: 2px; margin-top: 10px; overflow: hidden; }
+        .m-progress-bar { height: 100%; background: var(--primary-purple); width: 0%; }
+        .m-card.done .m-progress-bar { background: var(--success-green); width: 100%; }
+        .m-card.active .m-progress-bar { width: 60%; }
 
-        .dash-table { width: 100%; border-collapse: collapse; }
-        .dash-table th { text-align: left; padding: 12px; background: #f8f9fa; color: #666; font-size: 0.85rem; }
-        .dash-table td { padding: 15px 12px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
-        
-        .status-pill { padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
-        .st-pending { background: #f8f9fa; color: #6c757d; border: 1px solid #ccc; }
-        .st-funded { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        /* IDENTITAS GRID (SS1 & SS2 Style) */
+        .profile-section { background: white; border-radius: 12px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+        .info-item { display: flex; flex-direction: column; gap: 5px; }
+        .info-label { font-size: 0.8rem; color: #888; font-weight: 500; }
+        .info-value { font-size: 0.9rem; font-weight: 600; color: #333; }
 
-        .btn-primary { background: var(--accent-gold); color: #000; padding: 10px 20px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
-        .hidden { display: none; }
+        /* STEPPER (SS3 Lahan Style) */
+        .stepper-wrapper { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; padding: 0 20px; }
+        .stepper-wrapper::before { content: ""; position: absolute; top: 15px; left: 40px; right: 40px; height: 2px; background: #ddd; z-index: 1; }
+        .step { position: relative; z-index: 2; text-align: center; flex: 1; }
+        .step-circle { width: 30px; height: 30px; background: white; border: 2px solid #ddd; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .step.active .step-circle { border-color: var(--success-green); background: var(--success-green); color: white; }
+        .step-label { font-size: 0.7rem; color: #999; font-weight: 600; }
+        .step.active .step-label { color: var(--success-green); }
 
-        /* Loader Overlay */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: white; z-index: 10000; display: flex; justify-content: center; align-items: center;
-        }
+        /* UTILS */
+        .hidden { display: none !important; }
+        .btn-update { background: #fdf2f9; color: #d63384; border: none; padding: 5px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
+        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; }
     </style>
 </head>
 <body>
 
-    <!-- Animasi Loading saat Cek Sesi -->
     <div id="loader">
-        <div style="text-align: center;">
-            <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #0b1f30; margin-bottom: 15px;"></i>
-            <p>Memuat Dashboard...</p>
-        </div>
+        <div style="text-align: center;"><i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #0b1f30;"></i><p>Memuat Data...</p></div>
     </div>
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo-area">
             <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" alt="Logo">
-            <p>Dashboard Sistem</p>
+            <p style="font-size: 0.8rem; opacity: 0.8;">Dashboard Sistem</p>
         </div>
         <ul class="menu">
-            <li><a href="javascript:void(0)" onclick="showView('home')" id="link-home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a onclick="showView('home')" id="nav-home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a onclick="showView('profile')" id="nav-profile"><i class="fas fa-user-circle"></i> Profil Saya</a></li>
             
             <!-- Menu Khusus SELLER -->
-            <li class="menu-seller"><a href="javascript:void(0)" onclick="showView('lahan')"><i class="fas fa-layer-group"></i> Lahan Saya</a></li>
+            <li class="menu-seller"><a onclick="showView('lahan')" id="nav-lahan"><i class="fas fa-layer-group"></i> Lahan Saya</a></li>
             <li class="menu-seller"><a href="#"><i class="fas fa-file-contract"></i> Status MoU</a></li>
             
             <!-- Menu Khusus BUYER -->
             <li class="menu-buyer hidden"><a href="#"><i class="fas fa-search-dollar"></i> Cari Peluang</a></li>
-            <li class="menu-buyer hidden"><a href="#"><i class="fas fa-briefcase"></i> Portofolio</a></li>
             
             <li><a href="#"><i class="fas fa-cog"></i> Pengaturan</a></li>
-            <li><a href="javascript:void(0)" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+            <li><a id="btnLogout"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
         </ul>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
         
-        <!-- TOP BAR -->
+        <!-- HEADER (SS2 Style) -->
         <div class="top-bar">
-            <div>
-                <h2 id="welcome-text">Selamat Datang, <span id="real-name">...</span></h2>
-                <p style="color:#666; font-size:0.9rem;">Kelola aktivitas konservasi Anda di sini.</p>
+            <div class="welcome-msg">
+                <h2>Selamat Datang, <span id="real-name">...</span></h2>
+                <p style="color:#666; font-size:0.85rem;">Kelola aktivitas konservasi Anda di sini.</p>
             </div>
-            <div class="user-profile">
-                <i class="fas fa-user-circle" style="font-size: 2rem; color: #ccc;"></i>
-                <div>
-                    <div style="font-weight:bold; font-size:0.9rem;" id="profile-name">Memuat Nama...</div>
-                    <span id="role-badge" class="role-badge">...</span>
+            <div class="user-badge-header">
+                <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #ccc;"></i>
+                <div style="text-align: left;">
+                    <div style="font-weight:bold; font-size:0.85rem;" id="profile-name">...</div>
+                    <span id="role-badge" class="role-pill">...</span>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SELLER -->
-        <div id="view-seller" class="hidden">
+        <!-- VIEW 1: BERANDA (SS1, SS3, SS4) -->
+        <section id="view-home" class="view-content">
             <div class="stats-grid">
-                <div class="stat-card"><p>Total Luas Lahan</p><h3>0 <span style="font-size:1rem;">Ha</span></h3><i class="fas fa-map-marked-alt stat-icon"></i></div>
-                <div class="stat-card" style="border-left-color: var(--success);"><p>Aset Pohon</p><h3>0</h3><i class="fas fa-tree stat-icon"></i></div>
-                <div class="stat-card" style="border-left-color: var(--warning);"><p>Status</p><h3 style="font-size:1.5rem; margin-top:15px;">New User</h3><i class="fas fa-user stat-icon"></i></div>
+                <div class="stat-card"><p>Total Luas Lahan</p><h3 id="stat-luas">0 <span style="font-size:1rem;">Ha</span></h3><i class="fas fa-map-marked-alt stat-icon"></i></div>
+                <div class="stat-card" style="border-left-color: var(--success-green);"><p>Aset Pohon</p><h3 id="stat-pohon">0</h3><i class="fas fa-tree stat-icon"></i></div>
+                <div class="stat-card" style="border-left-color: var(--accent-gold);"><p>Status</p><h3 style="font-size:1.5rem;">New User</h3><i class="fas fa-medal stat-icon"></i></div>
             </div>
-            <div class="content-box">
-                <div class="box-header"><div class="box-title">Daftar Usulan Lahan Saya</div><a href="pengajuan.html" class="btn-primary"><i class="fas fa-plus"></i> Ajukan Lahan Baru</a></div>
-                <p style="text-align:center; padding:40px; color:#999;">Belum ada data usulan lahan. Silakan ajukan lahan baru.</p>
-            </div>
-        </div>
 
-        <!-- VIEW BUYER -->
-        <div id="view-buyer" class="hidden">
-            <div class="stats-grid">
-                <div class="stat-card"><p>Investasi</p><h3>0</h3><i class="fas fa-briefcase stat-icon"></i></div>
-                <div class="stat-card" style="border-left-color: var(--info);"><p>Impact Air</p><h3>0 <span style="font-size:1rem;">Ltr</span></h3><i class="fas fa-water stat-icon"></i></div>
-                <div class="stat-card" style="border-left-color: var(--success);"><p>Impact Karbon</p><h3>0</h3><i class="fas fa-leaf stat-icon"></i></div>
+            <div class="milestone-grid">
+                <div class="m-card active"><span class="m-num">1</span><span class="m-title">Proses Pengajuan</span><span class="m-status">Dalam Proses</span><div class="m-progress"><div class="m-progress-bar"></div></div></div>
+                <div class="m-card"><span class="m-num">2</span><span class="m-title">Pencairan Dana 1</span><span class="m-status">Belum Mulai</span><div class="m-progress"><div class="m-progress-bar"></div></div></div>
+                <div class="m-card"><span class="m-num">3</span><span class="m-title">Monitoring</span><span class="m-status">Belum Mulai</span><div class="m-progress"><div class="m-progress-bar"></div></div></div>
+                <div class="m-card"><span class="m-num">4</span><span class="m-title">Pencairan Dana 2</span><span class="m-status">Belum Mulai</span><div class="m-progress"><div class="m-progress-bar"></div></div></div>
+                <div class="m-card"><span class="m-num">5</span><span class="m-title">Evaluasi</span><span class="m-status">Belum Mulai</span><div class="m-progress"><div class="m-progress-bar"></div></div></div>
+                <div class="m-card"><span class="m-num">6</span><span class="m-title">Laporan Akhir</span><span class="m-status">Belum Mulai</span><div class="m-progress"><div class="m-progress-bar"></div></div></div>
             </div>
-            <div class="content-box">
-                <div class="box-header"><div class="box-title">Peluang Investasi</div></div>
-                <p style="text-align:center; padding:40px; color:#999;">Tidak ada peluang investasi aktif saat ini.</p>
+
+            <div class="profile-section">
+                <div class="section-header"><div style="font-weight:bold;">Aktivitas Pengajuan</div></div>
+                <div id="activity-list" style="font-size: 0.9rem; color: #666; text-align: center; padding: 20px;">
+                    Belum ada riwayat aktivitas pengajuan.
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- VIEW 2: PROFIL SAYA (SS1 & SS2 Identitas) -->
+        <section id="view-profile" class="view-content hidden">
+            <div class="profile-section">
+                <div class="section-header"><h3>Identitas</h3> <button class="btn-update">Ubah Profil</button></div>
+                <div class="info-grid">
+                    <div class="info-item"><span class="info-label">Nama Lengkap</span><span class="info-value" id="p-name">-</span></div>
+                    <div class="info-item"><span class="info-label">KTP</span><span class="info-value" id="p-ktp">-</span></div>
+                    <div class="info-item"><span class="info-label">Nomor Telepon</span><span class="info-value" id="p-phone">-</span></div>
+                    <div class="info-item"><span class="info-label">Email</span><span class="info-value" id="p-email">-</span></div>
+                </div>
+            </div>
+            <div class="profile-section">
+                <div class="section-header"><h3>Alamat & Identitas Pendukung</h3></div>
+                <div class="info-grid">
+                    <div class="info-item"><span class="info-label">Alamat (KTP)</span><span class="info-value">Data Belum Diisi</span></div>
+                    <div class="info-item"><span class="info-label">NPWP</span><span class="info-value">-</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 3: LAHAN SAYA (SS3 Stepper + Detail) -->
+        <section id="view-lahan" class="view-content hidden">
+            <div class="profile-section">
+                <div class="stepper-wrapper">
+                    <div class="step active"><div class="step-circle"><i class="fas fa-check"></i></div><div class="step-label">Submitted</div></div>
+                    <div class="step"><div class="step-circle">2</div><div class="step-label">Verifikasi Admin</div></div>
+                    <div class="step"><div class="step-circle">3</div><div class="step-label">TTD MoU</div></div>
+                    <div class="step"><div class="step-circle">4</div><div class="step-label">Pencairan 1</div></div>
+                    <div class="step"><div class="step-circle">5</div><div class="step-label">Monitoring</div></div>
+                    <div class="step"><div class="step-circle">6</div><div class="step-label">Pencairan 2</div></div>
+                    <div class="step"><div class="step-circle">7</div><div class="step-label">Laporan Akhir</div></div>
+                </div>
+            </div>
+            <div class="profile-section">
+                <div class="section-header"><h3>Detail Data Teknis Lahan</h3> <a href="pengajuan.html" class="btn-update" style="text-decoration:none;">+ Ajukan Lahan</a></div>
+                <div class="info-grid">
+                    <div class="info-item"><span class="info-label">Luas Lahan</span><span class="info-value">0 Ha</span></div>
+                    <div class="info-item"><span class="info-label">Jumlah Pohon</span><span class="info-value">0 Batang</span></div>
+                    <div class="info-item"><span class="info-label">Panjang Rorak</span><span class="info-value">0 Meter</span></div>
+                    <div class="info-item"><span class="info-label">Sumur Resapan</span><span class="info-value">0 Unit</span></div>
+                </div>
+                <div style="margin-top:20px;"><span class="info-label">Deskripsi Lahan</span><p style="font-size:0.9rem; margin-top:5px; color:#666;">Belum ada data lahan yang ditarik.</p></div>
+            </div>
+        </section>
 
     </main>
 
@@ -172,58 +225,55 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // CEK STATUS LOGIN
+        // --- NAVIGASI VIEW (SPA) ---
+        window.showView = (viewId) => {
+            document.querySelectorAll('.view-content').forEach(v => v.classList.add('hidden'));
+            document.getElementById('view-' + viewId).classList.remove('hidden');
+            
+            document.querySelectorAll('.menu li a').forEach(a => a.classList.remove('active'));
+            document.getElementById('nav-' + viewId).classList.add('active');
+        };
+
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Ambil data user dari Firestore
-                const docRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(docRef);
-
+                const docSnap = await getDoc(doc(db, "users", user.uid));
                 if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    renderDashboard(data);
+                    renderDashboard(docSnap.data());
                 } else {
-                    alert("Profil tidak ditemukan!");
                     window.location.href = "auth.html";
                 }
             } else {
-                // Jika belum login, tendang ke halaman login
                 window.location.href = "auth.html";
             }
         });
 
         function renderDashboard(data) {
-            // Sembunyikan loader
             document.getElementById('loader').style.display = 'none';
 
-            // Set Nama
+            // Top Header & Sidebar
             document.getElementById('real-name').innerText = data.fullName;
             document.getElementById('profile-name').innerText = data.fullName;
-
-            // Set Role & View
             const badge = document.getElementById('role-badge');
-            const sellerView = document.getElementById('view-seller');
-            const buyerView = document.getElementById('view-buyer');
-            const sellerMenus = document.querySelectorAll('.menu-seller');
-            const buyerMenus = document.querySelectorAll('.menu-buyer');
+            badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
 
+            // View Profil
+            document.getElementById('p-name').innerText = data.fullName;
+            document.getElementById('p-ktp').innerText = data.ktp || '-';
+            document.getElementById('p-phone').innerText = data.phone || '-';
+            document.getElementById('p-email').innerText = data.email || '-';
+
+            // Role Management
             if (data.role === 'seller') {
-                badge.className = 'role-badge role-seller';
-                badge.innerText = 'ES SELLER';
-                sellerView.classList.remove('hidden');
-                sellerMenus.forEach(m => m.classList.remove('hidden'));
+                document.querySelectorAll('.menu-seller').forEach(m => m.classList.remove('hidden'));
             } else {
-                badge.className = 'role-badge role-buyer';
-                badge.innerText = 'ES BUYER';
-                buyerView.classList.remove('hidden');
-                buyerMenus.forEach(m => m.classList.remove('hidden'));
+                document.querySelectorAll('.menu-buyer').forEach(m => m.classList.remove('hidden'));
+                window.showView('home'); // Buyer default ke home
             }
         }
 
         // LOGOUT
         document.getElementById('btnLogout').addEventListener('click', () => {
             signOut(auth).then(() => {
-                alert("Berhasil Keluar.");
                 window.location.href = "index.html";
             });
         });
