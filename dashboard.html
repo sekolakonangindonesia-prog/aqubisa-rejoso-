@@ -762,7 +762,93 @@ window.updateIndikatorList = () => {
             <td><button class="btn-update" onclick="modalPohon()">Kelola Data Pohon</button></td>
         </tr>`;
     }
+    
+    // --- LANJUTAN DI BAWAH BARIS 764 ---
 
+// 1. Fungsi untuk mengambil data dari Firebase dan menampilkannya di "Lahan Saya"
+async function loadLahanSaya(uid) {
+    const listContainer = document.getElementById('list-lahan-saya');
+    if (!listContainer) return;
+
+    try {
+        const q = query(collection(db, "pengajuan"), where("uid", "==", uid));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            listContainer.innerHTML = `<p style="text-align:center; color:#999; padding:20px;">Belum ada lahan. Klik tombol Tambah Lahan Baru.</p>`;
+            return;
+        }
+
+        let html = "";
+        querySnapshot.forEach((doc) => {
+            const lahan = doc.data();
+            const id = doc.id;
+            
+            // Logika Status: Jika semua indikator true, tombol submit aktif
+            const isReady = lahan.isLegalComplete && 
+                            (!lahan.jenisJasa.includes('pohon') || lahan.isPohonComplete) && 
+                            (!lahan.jenisJasa.includes('rorak') || lahan.isRorakComplete);
+
+            html += `
+                <div class="profile-section" style="border: 1px solid #eee; margin-bottom:15px; background: white;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="font-size:1.1rem; color:var(--sidebar-bg);">${lahan.namaLahan}</strong>
+                            <p style="font-size:0.8rem; color:#666;">Luas: ${lahan.luasHa} Ha | Status: <b>${lahan.statusAdmin}</b></p>
+                        </div>
+                        <button class="btn-update" onclick="window.kelolaIndikator('${id}')">Kelola Indikator</button>
+                    </div>
+                    
+                    <div id="target-indikator-${id}" class="hidden" style="margin-top:20px; border-top:1px solid #eee; padding-top:15px;">
+                        <table class="rekening-table">
+                            <thead>
+                                <tr>
+                                    <th>Indikator Pengajuan</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1. Dokumen Legalitas (SPPT)</td>
+                                    <td><span class="status-pill ${lahan.isLegalComplete ? 'st-funded' : 'st-pending'}">${lahan.isLegalComplete ? 'Lengkap' : 'Belum Lengkap'}</span></td>
+                                    <td><button class="btn-update" onclick="window.modalLegal('${id}')">Kelola</button></td>
+                                </tr>
+                                ${lahan.jenisJasa.includes('pohon') ? `
+                                <tr>
+                                    <td>2. Aset Tutupan Lahan (Pohon)</td>
+                                    <td><span class="status-pill ${lahan.isPohonComplete ? 'st-funded' : 'st-pending'}">${lahan.isPohonComplete ? 'Lengkap' : 'Belum Lengkap'}</span></td>
+                                    <td><button class="btn-update" onclick="window.modalPohon('${id}')">Kelola</button></td>
+                                </tr>` : ''}
+                                ${lahan.jenisJasa.includes('rorak') ? `
+                                <tr>
+                                    <td>3. Konstruksi Rorak</td>
+                                    <td><span class="status-pill ${lahan.isRorakComplete ? 'st-funded' : 'st-pending'}">${lahan.isRorakComplete ? 'Lengkap' : 'Belum Lengkap'}</span></td>
+                                    <td><button class="btn-update" onclick="window.modalRorak('${id}')">Kelola</button></td>
+                                </tr>` : ''}
+                            </tbody>
+                        </table>
+                        <div style="text-align:right; margin-top:20px;">
+                            <button class="btn-primary" ${!isReady ? 'disabled style="background:#ccc;"' : 'onclick="window.submitFinal(\''+id+'\')"'} >
+                                AJUKAN KE ADMIN VERIFIKATOR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        listContainer.innerHTML = html;
+    } catch (err) {
+        console.error("Gagal load lahan:", err);
+    }
+}
+
+// 2. Tempelkan fungsi toggle ke window agar bisa dipanggil onclick HTML
+window.kelolaIndikator = (id) => {
+    const el = document.getElementById(`target-indikator-${id}`);
+    if (el) el.classList.toggle('hidden');
+};
+    
     if(showRorak) {
         html += `<tr>
             <td><b>3. Konstruksi Rorak</b></td>
