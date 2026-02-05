@@ -655,15 +655,17 @@
                 <li><a href="#gallery">Galeri</a></li>
                 <li><a href="#project">Project</a></li>
                 <li><a href="contact.html">Kontak Kami</a></li>
-                 <li class="mobile-only-btn">
+                 <li class="mobile-only-btn" id="btn-gabung-mobile">
                 <a href="javascript:void(0)" onclick="openModal('modal-join')" style="color: var(--ss-green); font-weight: bold; border: 1px solid var(--ss-green); border-radius: 5px; margin-top: 10px;">
-                    <i class="fas fa-user-plus"></i> Gabung Sekarang</a></li>
+                    <i class="fas fa-user-plus"></i> Gabung Sekarang
+                </a>
+            </li>
             </ul>
         </nav>
         
-        <a href="javascript:void(0)" onclick="openModal('modal-join')" class="btn-header desktop-only-btn">
-        <i class="fas fa-user-plus"></i> Gabung Sekarang
-    </a>
+       <a href="javascript:void(0)" id="btn-gabung-desktop" onclick="openModal('modal-join')" class="btn-header desktop-only-btn">
+    <i class="fas fa-user-plus"></i> Gabung Sekarang
+</a>
     </header>
        
     <!-- HERO SECTION (Sesuai General Goal LFA) -->
@@ -1105,6 +1107,7 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
+
 
 
 
