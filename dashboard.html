@@ -88,6 +88,31 @@
         .hidden { display: none !important; }
         .btn-update { background: #fdf2f9; color: #d63384; border: none; padding: 5px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
         #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; }
+
+        /* Tambahan CSS untuk Detail Profil */
+.info-grid-3 { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 15px 30px; }
+.warning-box {
+    background: #fff9e6;
+    border: 1px dashed #ffcc00;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #856404;
+}
+.warning-box i { font-size: 1.5rem; color: #ffcc00; }
+.info-item input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+.btn-save { background: var(--success-green); color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; display: none; }
+        
     </style>
 </head>
 <body>
@@ -160,25 +185,70 @@
             </div>
         </section>
 
-        <!-- VIEW 2: PROFIL SAYA (SS1 & SS2 Identitas) -->
-        <section id="view-profile" class="view-content hidden">
-            <div class="profile-section">
-                <div class="section-header"><h3>Identitas</h3> <button class="btn-update">Ubah Profil</button></div>
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label">Nama Lengkap</span><span class="info-value" id="p-name">-</span></div>
-                    <div class="info-item"><span class="info-label">KTP</span><span class="info-value" id="p-ktp">-</span></div>
-                    <div class="info-item"><span class="info-label">Nomor Telepon</span><span class="info-value" id="p-phone">-</span></div>
-                    <div class="info-item"><span class="info-label">Email</span><span class="info-value" id="p-email">-</span></div>
-                </div>
+       <!-- VIEW 2: PROFIL SAYA (Detail Lengkap sesuai SS) -->
+<section id="view-profile" class="view-content hidden">
+    <div class="profile-section">
+        <div class="section-header">
+            <h3>Identitas</h3> 
+            <div>
+                <button class="btn-update" id="btnEditProfile" onclick="toggleEdit()">Ubah Profil</button>
+                <button class="btn-save" id="btnSaveProfile" onclick="saveProfile()">Simpan Perubahan</button>
             </div>
-            <div class="profile-section">
-                <div class="section-header"><h3>Alamat & Identitas Pendukung</h3></div>
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label">Alamat (KTP)</span><span class="info-value">Data Belum Diisi</span></div>
-                    <div class="info-item"><span class="info-label">NPWP</span><span class="info-value">-</span></div>
-                </div>
+        </div>
+        
+        <div class="info-grid-3" id="profile-fields">
+            <!-- Kolom 1 -->
+            <div class="info-item"><span class="info-label">Nama Lengkap</span><span class="info-value edit-text" id="p-name">-</span><input type="text" class="edit-input hidden" id="i-name"></div>
+            <div class="info-item"><span class="info-label">KTP</span><span class="info-value edit-text" id="p-ktp">-</span><input type="text" class="edit-input hidden" id="i-ktp"></div>
+            
+            <!-- Kolom 2 -->
+            <div class="info-item"><span class="info-label">Bidang Keahlian</span><span class="info-value edit-text" id="p-keahlian">-</span><input type="text" class="edit-input hidden" id="i-keahlian"></div>
+            <div class="info-item"><span class="info-label">KK</span><span class="info-value edit-text" id="p-kk">-</span><input type="text" class="edit-input hidden" id="i-kk"></div>
+            
+            <!-- Kolom 3 -->
+            <div class="info-item"><span class="info-label">NPWP</span><span class="info-value edit-text" id="p-npwp">-</span><input type="text" class="edit-input hidden" id="i-npwp"></div>
+            <div class="info-item"><span class="info-label">NIP</span><span class="info-value edit-text" id="p-nip">-</span><input type="text" class="edit-input hidden" id="i-nip"></div>
+
+            <div class="info-item"><span class="info-label">Tempat Lahir</span><span class="info-value edit-text" id="p-tmpt-lahir">-</span><input type="text" class="edit-input hidden" id="i-tmpt-lahir"></div>
+            <div class="info-item"><span class="info-label">Tanggal Lahir</span><span class="info-value edit-text" id="p-tgl-lahir">-</span><input type="date" class="edit-input hidden" id="i-tgl-lahir"></div>
+            <div class="info-item"><span class="info-label">Jenis Kelamin</span><span class="info-value edit-text" id="p-gender">-</span><select class="edit-input hidden" id="i-gender"><option value="Laki-Laki">Laki-Laki</option><option value="Perempuan">Perempuan</option></select></div>
+            
+            <div class="info-item"><span class="info-label">Nomor Telepon</span><span class="info-value edit-text" id="p-phone">-</span><input type="text" class="edit-input hidden" id="i-phone"></div>
+            <div class="info-item"><span class="info-label">Email</span><span class="info-value" id="p-email">-</span></div>
+            <div class="info-item"><span class="info-label">Lembaga</span><span class="info-value edit-text" id="p-lembaga">-</span><input type="text" class="edit-input hidden" id="i-lembaga"></div>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <!-- ALAMAT -->
+        <div class="profile-section">
+            <div class="section-header"><h3>Alamat</h3></div>
+            <div class="info-grid">
+                <div class="info-item"><span class="info-label">Alamat (KTP)</span><span class="info-value edit-text" id="p-alamat">-</span><input type="text" class="edit-input hidden" id="i-alamat"></div>
+                <div class="info-item"><span class="info-label">Provinsi</span><span class="info-value edit-text" id="p-prov">-</span><input type="text" class="edit-input hidden" id="i-prov"></div>
+                <div class="info-item"><span class="info-label">Kota / Kab</span><span class="info-value edit-text" id="p-kota">-</span><input type="text" class="edit-input hidden" id="i-kota"></div>
+                <div class="info-item"><span class="info-label">Kecamatan</span><span class="info-value edit-text" id="p-kec">-</span><input type="text" class="edit-input hidden" id="i-kec"></div>
+                <div class="info-item"><span class="info-label">Desa</span><span class="info-value edit-text" id="p-desa">-</span><input type="text" class="edit-input hidden" id="i-desa"></div>
+                <div class="info-item"><span class="info-label">Kode Pos</span><span class="info-value edit-text" id="p-kodepos">-</span><input type="text" class="edit-input hidden" id="i-kodepos"></div>
             </div>
-        </section>
+        </div>
+
+        <!-- DOMISILI -->
+        <div class="profile-section">
+            <div class="section-header"><h3>Domisili Saat Ini</h3></div>
+            <div class="info-item"><span class="info-label">Alamat Domisili</span><span class="info-value edit-text" id="p-domisili">-</span><input type="text" class="edit-input hidden" id="i-domisili"></div>
+        </div>
+    </div>
+
+    <!-- Kotak Peringatan (Warning Box) -->
+    <div class="warning-box">
+        <i class="fas fa-exclamation-circle"></i>
+        <div>
+            <strong>Mohon perhatian!</strong><br>
+            Data NIK dan/atau No. Rekening Bank Anda masih belum terverifikasi, silakan melakukan update data secara berkala.
+        </div>
+    </div>
+</section>
 
         <!-- VIEW 3: LAHAN SAYA (SS3 Stepper + Detail) -->
         <section id="view-lahan" class="view-content hidden">
@@ -211,6 +281,8 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 
         const firebaseConfig = {
             apiKey: "AIzaSyAktDrPlV480mUvQEqjOmJ7EdXDpt8zc1o",
@@ -247,36 +319,126 @@
             }
         });
 
-        function renderDashboard(data) {
-            document.getElementById('loader').style.display = 'none';
+       // --- EDIT FUNGSI INI (Menambah banyak field baru) ---
+    function renderDashboard(data) {
+        document.getElementById('loader').style.display = 'none';
 
-            // Top Header & Sidebar
-            document.getElementById('real-name').innerText = data.fullName;
-            document.getElementById('profile-name').innerText = data.fullName;
-            const badge = document.getElementById('role-badge');
-            badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
+        // Top Header & Sidebar
+        document.getElementById('real-name').innerText = data.fullName || "User";
+        document.getElementById('profile-name').innerText = data.fullName || "User";
+        const badge = document.getElementById('role-badge');
+        badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
 
-            // View Profil
-            document.getElementById('p-name').innerText = data.fullName;
-            document.getElementById('p-ktp').innerText = data.ktp || '-';
-            document.getElementById('p-phone').innerText = data.phone || '-';
-            document.getElementById('p-email').innerText = data.email || '-';
+        // View Profil (Isi data ke label teks)
+        document.getElementById('p-name').innerText = data.fullName || "-";
+        document.getElementById('p-ktp').innerText = data.ktp || "-";
+        document.getElementById('p-keahlian').innerText = data.bidangKeahlian || "-";
+        document.getElementById('p-kk').innerText = data.kk || "-";
+        document.getElementById('p-npwp').innerText = data.npwp || "-";
+        document.getElementById('p-nip').innerText = data.nip || "-";
+        document.getElementById('p-tmpt-lahir').innerText = data.tempatLahir || "-";
+        document.getElementById('p-tgl-lahir').innerText = data.tanggalLahir || "-";
+        document.getElementById('p-gender').innerText = data.jenisKelamin || "-";
+        document.getElementById('p-phone').innerText = data.phone || "-";
+        document.getElementById('p-email').innerText = data.email || "-";
+        document.getElementById('p-lembaga').innerText = data.lembaga || "-";
+        
+        // Alamat & Domisili
+        document.getElementById('p-alamat').innerText = data.alamatKTP || "-";
+        document.getElementById('p-prov').innerText = data.provinsi || "-";
+        document.getElementById('p-kota').innerText = data.kota || "-";
+        document.getElementById('p-kec').innerText = data.kecamatan || "-";
+        document.getElementById('p-desa').innerText = data.desa || "-";
+        document.getElementById('p-kodepos').innerText = data.kodePos || "-";
+        document.getElementById('p-domisili').innerText = data.alamatDomisili || "-";
 
-            // Role Management
-            if (data.role === 'seller') {
-                document.querySelectorAll('.menu-seller').forEach(m => m.classList.remove('hidden'));
-            } else {
-                document.querySelectorAll('.menu-buyer').forEach(m => m.classList.remove('hidden'));
-                window.showView('home'); // Buyer default ke home
-            }
+        // Role Management
+        if (data.role === 'seller') {
+            document.querySelectorAll('.menu-seller').forEach(m => m.classList.remove('hidden'));
+        } else {
+            document.querySelectorAll('.menu-buyer').forEach(m => m.classList.remove('hidden'));
+            window.showView('home'); 
         }
+    }
 
-        // LOGOUT
-        document.getElementById('btnLogout').addEventListener('click', () => {
-            signOut(auth).then(() => {
-                window.location.href = "index.html";
+    // --- TAMBAHKAN FUNGSI BARU DI BAWAH INI (Untuk Fitur Edit & Simpan) ---
+
+    window.toggleEdit = () => {
+        const isEditing = document.getElementById('btnSaveProfile').style.display === 'block';
+        
+        if (!isEditing) {
+            document.querySelectorAll('.edit-text').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.edit-input').forEach(el => el.classList.remove('hidden'));
+            document.getElementById('btnSaveProfile').style.display = 'block';
+            document.getElementById('btnEditProfile').innerText = 'Batal';
+            
+            // Isi input dengan data yang ada di teks
+            document.getElementById('i-name').value = document.getElementById('p-name').innerText;
+            document.getElementById('i-ktp').value = document.getElementById('p-ktp').innerText;
+            document.getElementById('i-keahlian').value = document.getElementById('p-keahlian').innerText;
+            document.getElementById('i-kk').value = document.getElementById('p-kk').innerText;
+            document.getElementById('i-npwp').value = document.getElementById('p-npwp').innerText;
+            document.getElementById('i-nip').value = document.getElementById('p-nip').innerText;
+            document.getElementById('i-tmpt-lahir').value = document.getElementById('p-tmpt-lahir').innerText;
+            document.getElementById('i-tgl-lahir').value = document.getElementById('p-tgl-lahir').innerText;
+            document.getElementById('i-phone').value = document.getElementById('p-phone').innerText;
+            document.getElementById('i-lembaga').value = document.getElementById('p-lembaga').innerText;
+            document.getElementById('i-alamat').value = document.getElementById('p-alamat').innerText;
+            document.getElementById('i-prov').value = document.getElementById('p-prov').innerText;
+            document.getElementById('i-kota').value = document.getElementById('p-kota').innerText;
+            document.getElementById('i-kec').value = document.getElementById('p-kec').innerText;
+            document.getElementById('i-desa').value = document.getElementById('p-desa').innerText;
+            document.getElementById('i-kodepos').value = document.getElementById('p-kodepos').innerText;
+            document.getElementById('i-domisili').value = document.getElementById('p-domisili').innerText;
+        } else {
+            document.querySelectorAll('.edit-text').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.edit-input').forEach(el => el.classList.add('hidden'));
+            document.getElementById('btnSaveProfile').style.display = 'none';
+            document.getElementById('btnEditProfile').innerText = 'Ubah Profil';
+        }
+    };
+
+    window.saveProfile = async () => {
+        const user = auth.currentUser;
+        if (!user) return;
+        document.getElementById('loader').style.display = 'flex';
+
+        try {
+            await updateDoc(doc(db, "users", user.uid), {
+                fullName: document.getElementById('i-name').value,
+                ktp: document.getElementById('i-ktp').value,
+                bidangKeahlian: document.getElementById('i-keahlian').value,
+                kk: document.getElementById('i-kk').value,
+                npwp: document.getElementById('i-npwp').value,
+                nip: document.getElementById('i-nip').value,
+                tempatLahir: document.getElementById('i-tmpt-lahir').value,
+                tanggalLahir: document.getElementById('i-tgl-lahir').value,
+                jenisKelamin: document.getElementById('i-gender').value,
+                phone: document.getElementById('i-phone').value,
+                lembaga: document.getElementById('i-lembaga').value,
+                alamatKTP: document.getElementById('i-alamat').value,
+                provinsi: document.getElementById('i-prov').value,
+                kota: document.getElementById('i-kota').value,
+                kecamatan: document.getElementById('i-kec').value,
+                desa: document.getElementById('i-desa').value,
+                kodePos: document.getElementById('i-kodepos').value,
+                alamatDomisili: document.getElementById('i-domisili').value
             });
+            alert("Profil Berhasil Diperbarui!");
+            location.reload();
+        } catch (error) {
+            alert("Gagal menyimpan: " + error.message);
+        } finally {
+            document.getElementById('loader').style.display = 'none';
+        }
+    };
+
+    // --- LOGOUT (Tetap) ---
+    document.getElementById('btnLogout').addEventListener('click', () => {
+        signOut(auth).then(() => {
+            window.location.href = "index.html";
         });
+    });
     </script>
 </body>
 </html>
