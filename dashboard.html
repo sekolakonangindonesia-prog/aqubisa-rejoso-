@@ -112,6 +112,43 @@
     font-size: 0.85rem;
 }
 .btn-save { background: var(--success-green); color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; display: none; }
+        /* Style Tabel Rekening SS1 */
+.rekening-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+.rekening-table th {
+    text-align: left;
+    padding: 12px;
+    background: #fdfdfd;
+    color: #888;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #eee;
+    text-transform: capitalize;
+}
+.rekening-table td {
+    padding: 20px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.85rem;
+    vertical-align: middle;
+}
+.bank-info-cell strong { display: block; color: #333; margin-bottom: 3px; }
+.bank-info-cell small { color: #888; }
+.verify-icon { color: #28a745; font-size: 1.2rem; }
+.btn-ajukan-perubahan {
+    background: #52d681;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+.btn-ajukan-perubahan:hover { background: #45bd6f; }        
         
     </style>
 </head>
@@ -134,6 +171,7 @@
             <!-- Menu Khusus SELLER -->
             <li class="menu-seller"><a onclick="showView('lahan')" id="nav-lahan"><i class="fas fa-layer-group"></i> Lahan Saya</a></li>
             <li class="menu-seller"><a href="#"><i class="fas fa-file-contract"></i> Status MoU</a></li>
+            <li class="menu-seller"><a onclick="showView('rekening')" id="nav-rekening"><i class="fas fa-university"></i> Info Rekening</a></li>
             
             <!-- Menu Khusus BUYER -->
             <li class="menu-buyer hidden"><a href="#"><i class="fas fa-search-dollar"></i> Cari Peluang</a></li>
@@ -274,6 +312,68 @@
                 <div style="margin-top:20px;"><span class="info-label">Deskripsi Lahan</span><p style="font-size:0.9rem; margin-top:5px; color:#666;">Belum ada data lahan yang ditarik.</p></div>
             </div>
         </section>
+        <!-- VIEW 4: INFO REKENING (Sesuai SS1) -->
+<section id="view-rekening" class="view-content hidden">
+    <div class="profile-section">
+        <div class="section-header"><h3>Info Rekening</h3></div>
+        
+        <div style="overflow-x: auto;">
+            <table class="rekening-table">
+                <thead>
+                    <tr>
+                        <th>Kode Reg</th>
+                        <th>No. Kontrak</th>
+                        <th>Judul Proposal</th>
+                        <th>Rekening</th>
+                        <th>Verifikasi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="r-reg-code">dnai2025-39135</td>
+                        <td id="r-contract-no">403/PRP/F1/KU/2025</td>
+                        <td id="r-proposal" style="max-width: 300px; color: #666; line-height: 1.4;">
+                            Revitalisasi Seni Jalanan Kota Probolinggo sebagai Kekuatan Modernisasi Budaya...
+                        </td>
+                        <td class="bank-info-cell">
+                            <strong id="r-bank-name">Bank BRI</strong>
+                            <span id="r-bank-number">650701019252535</span>
+                            <small id="r-bank-owner">a.n Yayasan Sekolah Konang Indonesia</small>
+                        </td>
+                        <td style="text-align: center;">
+                            <i class="fas fa-check verify-icon"></i>
+                        </td>
+                        <td>
+                            <button class="btn-ajukan-perubahan">Ajukan Perubahan</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tabel Bawah (Permintaan Perubahan) -->
+    <div class="profile-section">
+        <div class="section-header"><h3>Daftar Permintaan Perubahan Rekening Bank</h3></div>
+        <div style="overflow-x: auto;">
+            <table class="rekening-table">
+                <thead>
+                    <tr>
+                        <th>Kode Reg</th>
+                        <th>No. Kontrak</th>
+                        <th>Detail Perubahan</th>
+                        <th>Status Approval</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+            </table>
+            <p style="text-align: center; padding: 30px; color: #999; font-size: 0.9rem;">
+                Belum ada permintaan perubahan rekening bank.
+            </p>
+        </div>
+    </div>
+</section>
 
     </main>
 
@@ -351,6 +451,13 @@
         document.getElementById('p-desa').innerText = data.desa || "-";
         document.getElementById('p-kodepos').innerText = data.kodePos || "-";
         document.getElementById('p-domisili').innerText = data.alamatDomisili || "-";
+
+        document.getElementById('r-reg-code').innerText = data.regCode || "dnai-2025-XXXX";
+        document.getElementById('r-contract-no').innerText = data.contractNo || "-";
+        document.getElementById('r-proposal').innerText = data.proposalTitle || "Belum ada proposal aktif";
+        document.getElementById('r-bank-name').innerText = data.bankName || "Belum diisi";
+        document.getElementById('r-bank-number').innerText = data.bankAccNumber || "-";
+        document.getElementById('r-bank-owner').innerText = "a.n " + (data.bankAccOwner || data.fullName);       
 
         // Role Management
         if (data.role === 'seller') {
