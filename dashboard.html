@@ -348,28 +348,63 @@
 
         <!-- VIEW 3: LAHAN SAYA (SS3 Stepper + Detail) -->
         <section id="view-lahan" class="view-content hidden">
-            <div class="profile-section">
-                <div class="stepper-wrapper">
-                    <div class="step active"><div class="step-circle"><i class="fas fa-check"></i></div><div class="step-label">Submitted</div></div>
-                    <div class="step"><div class="step-circle">2</div><div class="step-label">Verifikasi Admin</div></div>
-                    <div class="step"><div class="step-circle">3</div><div class="step-label">TTD MoU</div></div>
-                    <div class="step"><div class="step-circle">4</div><div class="step-label">Pencairan 1</div></div>
-                    <div class="step"><div class="step-circle">5</div><div class="step-label">Monitoring</div></div>
-                    <div class="step"><div class="step-circle">6</div><div class="step-label">Pencairan 2</div></div>
-                    <div class="step"><div class="step-circle">7</div><div class="step-label">Laporan Akhir</div></div>
-                </div>
+           <div class="profile-section">
+        <div class="section-header">
+            <h3>Daftar Pengajuan Lahan</h3>
+            <button class="btn-primary" onclick="openStep1()" style="background:var(--accent-gold); padding:10px 20px; border-radius:8px; border:none; font-weight:bold; cursor:pointer;">
+                <i class="fas fa-plus"></i> Tambah Lahan Baru
+            </button>
+        </div>
+        <div id="list-lahan-saya">
+            <!-- Tempat daftar lahan yang sudah dibuat muncul di sini -->
+            <p style="text-align:center; color:#999; padding:20px;">Belum ada lahan. Klik tombol di atas untuk memulai.</p>
+        </div>
+    </div>
+
+    <!-- 2. AREA PENGISIAN INDIKATOR (Muncul setelah Lahan Dibuat) -->
+    <div id="form-indikator-lahan" class="hidden">
+        <div class="profile-section">
+            <div class="section-header">
+                <h3 id="display-nama-lahan">Detail Indikator Lahan</h3>
+                <span id="label-status-draft" class="status-pill st-pending">Status: Draft</span>
             </div>
-            <div class="profile-section">
-                <div class="section-header"><h3>Detail Data Teknis Lahan</h3> <a href="pengajuan.html" class="btn-update" style="text-decoration:none;">+ Ajukan Lahan</a></div>
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label">Luas Lahan</span><span class="info-value">0 Ha</span></div>
-                    <div class="info-item"><span class="info-label">Jumlah Pohon</span><span class="info-value">0 Batang</span></div>
-                    <div class="info-item"><span class="info-label">Panjang Rorak</span><span class="info-value">0 Meter</span></div>
-                    <div class="info-item"><span class="info-label">Sumur Resapan</span><span class="info-value">0 Unit</span></div>
-                </div>
-                <div style="margin-top:20px;"><span class="info-label">Deskripsi Lahan</span><p style="font-size:0.9rem; margin-top:5px; color:#666;">Belum ada data lahan yang ditarik.</p></div>
+
+            <!-- PILIH JENIS JASA (Modular) -->
+            <div style="background:#f8f9fa; padding:15px; border-radius:10px; margin-bottom:20px;">
+                <p style="font-weight:bold; font-size:0.9rem; margin-bottom:10px;">Pilih Jenis Jasa Lingkungan yang Tersedia di Lahan Ini:</p>
+                <label style="margin-right:20px;"><input type="checkbox" id="c-pohon" onchange="updateIndikatorList()"> Tutupan Lahan (Pohon)</label>
+                <label style="margin-right:20px;"><input type="checkbox" id="c-rorak" onchange="updateIndikatorList()"> Konservasi Air (Rorak)</label>
+                <label><input type="checkbox" id="c-sumur" onchange="updateIndikatorList()"> Sumur Resapan</label>
             </div>
-        </section>
+
+            <!-- TABEL INDIKATOR UMUM -->
+            <table class="rekening-table">
+                <thead>
+                    <tr>
+                        <th>Indikator Pengajuan</th>
+                        <th>Status Kelengkapan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="body-indikator">
+                    <!-- Baris 1: Selalu Ada -->
+                    <tr>
+                        <td><b>1. Dokumen Legalitas (SPPT/KTP)</b></td>
+                        <td><span id="st-legal" class="status-pill st-pending">Belum Lengkap</span></td>
+                        <td><button class="btn-update" onclick="modalLegal()">Kelola</button></td>
+                    </tr>
+                    <!-- Baris lain akan muncul otomatis di sini (Pohon/Rorak/Sumur) -->
+                </tbody>
+            </table>
+
+            <div style="margin-top:30px; text-align:right;">
+                <button id="btnSubmitFinal" class="btn-primary" disabled style="background:#ccc; padding:15px 40px; border-radius:50px; border:none; color:white; font-weight:bold;">
+                    AJUKAN KE ADMIN VERIFIKATOR
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
         
         <!-- VIEW 4: INFO REKENING (Sesuai SS1) -->
 <section id="view-rekening" class="view-content hidden">
