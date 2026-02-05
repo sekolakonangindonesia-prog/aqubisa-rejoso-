@@ -405,6 +405,40 @@
         </div>
     </div>
 </section>
+        <!-- TARUH DI BAWAH BARIS 407 -->
+
+<!-- MODAL STEP 1: AJUKAN LAHAN -->
+<div id="modal-step1" class="modal-lahan" style="display: none; position: fixed; z-index: 10001; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
+    <div class="modal-lahan-content" style="background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; color: #333;">
+        <h3 style="margin-bottom: 20px;">Ajukan Lahan Baru</h3>
+        
+        <div class="form-group-lahan" style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Nama Lahan</label>
+            <input type="text" id="in-nama-lahan" placeholder="Contoh: Lahan Desa Galih - Blok A" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        </div>
+
+        <div class="form-group-lahan" style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Luas Lahan (Hektar)</label>
+            <input type="number" id="in-luas" step="0.01" placeholder="0.00" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        </div>
+
+        <div class="form-group-lahan" style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Koordinat (GPS)</label>
+            <button type="button" class="btn-gps-lahan" onclick="window.getGPSLahan()" style="background: #0077b6; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold;">
+                <i class="fas fa-crosshairs"></i> Ambil Lokasi GPS
+            </button>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <input type="text" id="in-lat" placeholder="Lat" readonly style="flex:1; padding:8px; border:1px solid #ddd; border-radius:5px; background:#f9f9f9;">
+                <input type="text" id="in-lng" placeholder="Lng" readonly style="flex:1; padding:8px; border:1px solid #ddd; border-radius:5px; background:#f9f9f9;">
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="button" onclick="window.closeModalLahan('modal-step1')" style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd; background:none; cursor:pointer;">Batal</button>
+            <button type="button" onclick="window.saveStep1()" style="flex:1; padding:12px; border-radius:8px; border:none; background:#0b1f30; color:white; font-weight:bold; cursor:pointer;">Simpan & Lanjut</button>
+        </div>
+    </div>
+</div>
         
         <!-- VIEW 4: INFO REKENING (Sesuai SS1) -->
 <section id="view-rekening" class="view-content hidden">
@@ -717,6 +751,30 @@
         });
     });
 
+// --- FUNGSI PENDUKUNG MODAL (TARUH DI BARIS 754) ---
+    window.openStep1 = () => {
+        document.getElementById('modal-step1').style.display = 'flex';
+    };
+
+    window.closeModalLahan = (id) => {
+        document.getElementById(id).style.display = 'none';
+    };
+
+    window.getGPSLahan = () => {
+        if (navigator.geolocation) {
+            alert("Mencari Sinyal GPS...");
+            navigator.geolocation.getCurrentPosition((pos) => {
+                document.getElementById('in-lat').value = pos.coords.latitude;
+                document.getElementById('in-lng').value = pos.coords.longitude;
+                alert("Lokasi Terkunci!");
+            }, (err) => {
+                alert("Gagal mengambil lokasi. Pastikan GPS aktif.");
+            });
+        } else {
+            alert("Browser tidak mendukung GPS.");
+        }
+    };
+        
         // --- STEP 1: BUAT LAHAN BARU (Draft Awal) ---
 window.saveStep1 = async () => {
     const user = auth.currentUser;
