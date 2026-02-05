@@ -50,7 +50,7 @@ window.toggleMenu = function() {
     if(nav) nav.classList.toggle('active');
 };
 
-// --- LOGIKA UTAMA: CEK LOGIN DI LANDING PAGE ---
+// --- LOGIKA UTAMA: CEK LOGIN DI LANDING PAGE (DIPERBARUI) ---
 onAuthStateChanged(auth, async (user) => {
     const btnDesktop = document.getElementById('btn-gabung-desktop');
     const btnMobile = document.getElementById('btn-gabung-mobile');
@@ -63,27 +63,24 @@ onAuthStateChanged(auth, async (user) => {
                 const fullName = docSnap.data().fullName;
                 const firstName = fullName.split(' ')[0];
 
-                // FIX UNTUK DESKTOP (Menghapus total atribut onclick lama)
+                // FIX UNTUK DESKTOP (Warna & Bentuk tetap sesuai CSS asli)
                 if (btnDesktop) {
-                    btnDesktop.removeAttribute('onclick'); // Hapus fungsi modal
-                    btnDesktop.href = "dashboard.html";    // Ganti jadi link biasa
-                    btnDesktop.style.background = "#28a745"; 
-                    btnDesktop.style.borderColor = "#28a745";
-                    btnDesktop.innerHTML = `<i class="fas fa-user-circle"></i> Panel ${firstName}`;
+                    btnDesktop.removeAttribute('onclick'); 
+                    btnDesktop.href = "dashboard.html";    
+                    // Kita HAPUS baris .style.background agar kembali ke warna asli di CSS
+                    btnDesktop.innerHTML = `<i class="fas fa-user"></i> ${firstName}`;
                 }
 
-                // FIX UNTUK MOBILE
+                // FIX UNTUK MOBILE (Tetap menggunakan style yang serasi)
                 if (btnMobile) {
                     btnMobile.innerHTML = `
-                        <a href="dashboard.html" style="color: #28a745; font-weight: bold; border: 2px solid #28a745; border-radius: 5px; margin-top: 10px; display: block; text-align: center; padding: 10px; background: rgba(40,167,69,0.1);">
-                            <i class="fas fa-user-circle"></i> Panel ${firstName}
+                        <a href="dashboard.html" style="color: var(--ss-green); font-weight: bold; border: 1px solid var(--ss-green); border-radius: 5px; margin-top: 10px; display: block; text-align: center; padding: 10px;">
+                            <i class="fas fa-user"></i> ${firstName}
                         </a>`;
                 }
             }
         } catch (error) {
             console.error("Gagal memuat data user:", error);
         }
-    } else {
-        console.log("Tidak ada user login.");
     }
 });
