@@ -402,7 +402,7 @@
         <div class="section-header"><h3>KONTRAK</h3></div>
         
         <div class="info-grid" style="grid-template-columns: 1.2fr 1fr; gap: 30px 50px;">
-            <!-- Kolom Kiri -->
+          
             <!-- Kolom Kiri -->
 <div class="info-item">
     <span class="info-label"><i id="status-icon-no" class="far fa-square"></i> Nomor Kontrak:</span>
@@ -428,7 +428,6 @@
 </section>
         
     </main>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -511,15 +510,49 @@
         document.getElementById('r-bank-number').innerText = data.bankAccNumber || "-";
         document.getElementById('r-bank-owner').innerText = "a.n " + (data.bankAccOwner || data.fullName);  
 
-        // Data MoU / Kontrak (Sesuai SS Kontrak)
-        document.getElementById('mou-no').innerText = data.contractNo || "Belum ada nomor";
-        document.getElementById('mou-tgl').innerText = data.contractDate || "Menunggu TTD";
         
+        // 1. Cek Nomor Kontrak
+        const mouNo = data.contractNo;
+        const iconNo = document.getElementById('status-icon-no');
+        if (mouNo) {
+            document.getElementById('mou-no').innerText = mouNo;
+            if(iconNo) {
+                iconNo.className = "fas fa-check-square"; 
+                iconNo.style.color = "var(--success-green)";
+            }
+        } else {
+            document.getElementById('mou-no').innerText = "Belum tersedia";
+        }
+
+        // 2. Cek Tanggal Mulai
+        const mouTgl = data.contractDate;
+        const iconTgl = document.getElementById('status-icon-tgl');
+        if (mouTgl) {
+            document.getElementById('mou-tgl').innerText = mouTgl;
+            if(iconTgl) {
+                iconTgl.className = "fas fa-check-square";
+                iconTgl.style.color = "var(--success-green)";
+            }
+        } else {
+            document.getElementById('mou-tgl').innerText = "Menunggu verifikasi";
+        }
+
+        // 3. Cek File SK
+        const skUrl = data.fileSKUrl;
+        const iconSk = document.getElementById('status-icon-sk');
         const skLink = document.getElementById('mou-file-sk');
-        if (data.fileSKUrl) {
-            skLink.href = data.fileSKUrl;
-            // Jika ingin nama file dinamis dari database, aktifkan baris bawah ini:
-            // skLink.innerText = data.fileSKName || "Salinan Kepsekjen_28_Penerima Manfaat_PRP_B2.pdf";
+        const skFallback = document.getElementById('mou-sk-fallback');
+
+        if (skUrl) {
+            if(skLink) {
+                skLink.href = skUrl;
+                skLink.classList.remove('hidden');
+            }
+            if(skFallback) skFallback.classList.add('hidden');
+            if(iconSk) {
+                iconSk.className = "fas fa-check-square";
+                iconSk.style.color = "var(--success-green)";
+            }
         }
         
         
