@@ -148,7 +148,27 @@
     font-size: 0.8rem;
     transition: 0.3s;
 }
-.btn-ajukan-perubahan:hover { background: #45bd6f; }        
+.btn-ajukan-perubahan:hover { background: #45bd6f; }    
+
+        /* Style Khusus View MoU / Kontrak */
+.file-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0000ff; /* Biru cerah sesuai SS */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+.file-link:hover { text-decoration: underline; }
+.info-label i {
+    color: #ddd; /* Warna checkbox kosong */
+    margin-right: 8px;
+}
+.info-label i.fa-check-square {
+    color: #ccc; /* Warna checkbox sesuai SS */
+}
         
     </style>
 </head>
@@ -172,6 +192,7 @@
             <li class="menu-seller"><a onclick="showView('lahan')" id="nav-lahan"><i class="fas fa-layer-group"></i> Lahan Saya</a></li>
             <li class="menu-seller"><a href="#"><i class="fas fa-file-contract"></i> Status MoU</a></li>
             <li class="menu-seller"><a onclick="showView('rekening')" id="nav-rekening"><i class="fas fa-university"></i> Info Rekening</a></li>
+            <li class="menu-seller"><a onclick="showView('mou')" id="nav-mou"><i class="fas fa-file-contract"></i> Status MoU</a></li>
             
             <!-- Menu Khusus BUYER -->
             <li class="menu-buyer hidden"><a href="#"><i class="fas fa-search-dollar"></i> Cari Peluang</a></li>
@@ -312,6 +333,7 @@
                 <div style="margin-top:20px;"><span class="info-label">Deskripsi Lahan</span><p style="font-size:0.9rem; margin-top:5px; color:#666;">Belum ada data lahan yang ditarik.</p></div>
             </div>
         </section>
+        
         <!-- VIEW 4: INFO REKENING (Sesuai SS1) -->
 <section id="view-rekening" class="view-content hidden">
     <div class="profile-section">
@@ -375,6 +397,42 @@
     </div>
 </section>
 
+        <!-- VIEW 5: STATUS MoU / KONTRAK (Sesuai SS) -->
+<section id="view-mou" class="view-content hidden">
+    <div class="profile-section">
+        <div class="section-header"><h3>KONTRAK</h3></div>
+        
+        <div class="info-grid" style="grid-template-columns: 1.2fr 1fr; gap: 30px 50px;">
+            <!-- Kolom Kiri -->
+            <div class="info-item">
+                <span class="info-label"><i class="far fa-check-square"></i> Nomor Kontrak:</span>
+                <span class="info-value" id="mou-no">403/PRP/F1/KU/2025</span>
+            </div>
+            
+            <!-- Kolom Kanan -->
+            <div class="info-item">
+                <span class="info-label"><i class="far fa-check-square"></i> Tanggal Mulai:</span>
+                <span class="info-value" id="mou-tgl">01 December 2025</span>
+            </div>
+
+            <!-- Baris Baru Kiri -->
+            <div class="info-item">
+                <span class="info-label"><i class="far fa-check-square"></i> Keputusan Penerima Dana:</span>
+                <a href="#" class="file-link" id="mou-file-sk">
+                    <i class="fas fa-file-alt" style="color: #888;"></i> 
+                    Salinan Kepsekjen_28_Penerima Manfaat_PRP_B2.pdf
+                </a>
+            </div>
+
+            <!-- Baris Baru Kanan -->
+            <div class="info-item">
+                <span class="info-label"><i class="far fa-check-square"></i> Perjanjian antara Pihak Kedua (PMO) dengan Penerima Dana:</span>
+                <span class="info-value" id="mou-file-pmo" style="color: #999; font-style: italic;">Belum tersedia</span>
+            </div>
+        </div>
+    </div>
+</section>
+        
     </main>
 
     <script type="module">
@@ -457,8 +515,20 @@
         document.getElementById('r-proposal').innerText = data.proposalTitle || "Belum ada proposal aktif";
         document.getElementById('r-bank-name').innerText = data.bankName || "Belum diisi";
         document.getElementById('r-bank-number').innerText = data.bankAccNumber || "-";
-        document.getElementById('r-bank-owner').innerText = "a.n " + (data.bankAccOwner || data.fullName);       
+        document.getElementById('r-bank-owner').innerText = "a.n " + (data.bankAccOwner || data.fullName);  
 
+        // Data MoU / Kontrak (Sesuai SS Kontrak)
+        document.getElementById('mou-no').innerText = data.contractNo || "Belum ada nomor";
+        document.getElementById('mou-tgl').innerText = data.contractDate || "Menunggu TTD";
+        
+        const skLink = document.getElementById('mou-file-sk');
+        if (data.fileSKUrl) {
+            skLink.href = data.fileSKUrl;
+            // Jika ingin nama file dinamis dari database, aktifkan baris bawah ini:
+            // skLink.innerText = data.fileSKName || "Salinan Kepsekjen_28_Penerima Manfaat_PRP_B2.pdf";
+        }
+        
+        
         // Role Management
         if (data.role === 'seller') {
             document.querySelectorAll('.menu-seller').forEach(m => m.classList.remove('hidden'));
