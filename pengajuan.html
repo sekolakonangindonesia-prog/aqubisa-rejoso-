@@ -212,5 +212,76 @@
 
         document.getElementById('areaSize').addEventListener('input', toggleCalc);
     </script>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAktDrPlV480mUvQEqjOmJ7EdXDpt8zc1o",
+        authDomain: "aqubisa-rejoso.firebaseapp.com",
+        projectId: "aqubisa-rejoso",
+        storageBucket: "aqubisa-rejoso.firebasestorage.app",
+        messagingSenderId: "427028729815",
+        appId: "1:427028729815:web:741d8563ff434468ac0592"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let currentUser = null;
+    onAuthStateChanged(auth, (user) => {
+        if (!user) window.location.href = "auth.html";
+        currentUser = user;
+    });
+
+    document.getElementById('formPengajuan').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Ambil Jasa yang dipilih (Centang)
+        const jasa = [];
+        if(document.getElementById('checkPohon').checked) jasa.push('pohon');
+        if(document.getElementById('checkRorak').checked) jasa.push('rorak');
+        if(document.getElementById('checkSumur').checked) jasa.push('sumur');
+
+        if(jasa.length === 0) {
+            alert("Pilih minimal satu jenis jasa lingkungan!");
+            return;
+        }
+
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.innerText = "Menyimpan Draft...";
+        btn.disabled = true;
+
+        try {
+            await addDoc(collection(db, "pengajuan"), {
+                uid: currentUser.uid,
+                namaLahan: document.getElementById('siteName').value,
+                luasHa: parseFloat(document.getElementById('areaSize').value),
+                koordinat: {
+                    lat: document.getElementById('lat').value,
+                    lng: document.getElementById('lng').value
+                },
+                jenisJasa: jasa, // Modular: Pohon, Rorak, atau Sumur
+                statusAdmin: "Draft", // Belum Hijau (Submitted)
+                createdAt: new Date(),
+                // Indikator Kelengkapan (Awalnya false semua)
+                isLegalComplete: false,
+                isPohonComplete: false,
+                isRorakComplete: false,
+                isSumurComplete: false
+            });
+
+            alert("Draft Lahan Berhasil Dibuat! Silakan lengkapi indikator di Dashboard.");
+            window.location.href = "dashboard.html";
+        } catch (error) {
+            alert("Gagal: " + error.message);
+            btn.innerText = "Kirim Form Pengajuan";
+            btn.disabled = false;
+        }
+    });
+</script>
 </body>
 </html>
