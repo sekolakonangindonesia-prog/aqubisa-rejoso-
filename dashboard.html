@@ -403,31 +403,26 @@
         
         <div class="info-grid" style="grid-template-columns: 1.2fr 1fr; gap: 30px 50px;">
             <!-- Kolom Kiri -->
-            <div class="info-item">
-                <span class="info-label"><i class="far fa-check-square"></i> Nomor Kontrak:</span>
-                <span class="info-value" id="mou-no">403/PRP/F1/KU/2025</span>
-            </div>
-            
-            <!-- Kolom Kanan -->
-            <div class="info-item">
-                <span class="info-label"><i class="far fa-check-square"></i> Tanggal Mulai:</span>
-                <span class="info-value" id="mou-tgl">01 December 2025</span>
-            </div>
+            <!-- Kolom Kiri -->
+<div class="info-item">
+    <span class="info-label"><i id="status-icon-no" class="far fa-square"></i> Nomor Kontrak:</span>
+    <span class="info-value" id="mou-no">Memuat...</span>
+</div>
 
-            <!-- Baris Baru Kiri -->
-            <div class="info-item">
-                <span class="info-label"><i class="far fa-check-square"></i> Keputusan Penerima Dana:</span>
-                <a href="#" class="file-link" id="mou-file-sk">
-                    <i class="fas fa-file-alt" style="color: #888;"></i> 
-                    Salinan Kepsekjen_28_Penerima Manfaat_PRP_B2.pdf
-                </a>
-            </div>
+<!-- Kolom Kanan -->
+<div class="info-item">
+    <span class="info-label"><i id="status-icon-tgl" class="far fa-square"></i> Tanggal Mulai:</span>
+    <span class="info-value" id="mou-tgl">Memuat...</span>
+</div>
 
-            <!-- Baris Baru Kanan -->
-            <div class="info-item">
-                <span class="info-label"><i class="far fa-check-square"></i> Perjanjian antara Pihak Kedua (PMO) dengan Penerima Dana:</span>
-                <span class="info-value" id="mou-file-pmo" style="color: #999; font-style: italic;">Belum tersedia</span>
-            </div>
+<!-- Baris SK -->
+<div class="info-item">
+    <span class="info-label"><i id="status-icon-sk" class="far fa-square"></i> Keputusan Penerima Dana:</span>
+    <a href="#" class="file-link hidden" id="mou-file-sk">
+        <i class="fas fa-file-alt"></i> Salinan Dokumen SK.pdf
+    </a>
+    <span id="mou-sk-fallback" class="info-value">Belum tersedia</span>
+</div>
         </div>
     </div>
 </section>
