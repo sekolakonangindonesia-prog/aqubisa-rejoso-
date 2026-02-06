@@ -555,6 +555,38 @@
     </div>
 </section>
 
+
+    <!-- MODAL KELOLA LEGALITAS (SPPT) -->
+<div id="modal-legal" class="modal-lahan" style="display: none; position: fixed; z-index: 10002; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center;">
+    <div class="modal-lahan-content" style="background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Dokumen Legalitas Lahan</h3>
+            <button onclick="window.closeModalLahan('modal-legal')" style="border: none; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+        </div>
+
+        <div class="form-group-lahan">
+            <label>Nama Pemilik (Sesuai SPPT)</label>
+            <input type="text" id="in-legal-nama" placeholder="Nama Lengkap">
+        </div>
+
+        <div class="form-group-lahan">
+            <label>Nomor NOP / SPPT</label>
+            <input type="text" id="in-legal-nop" placeholder="Nomor Objek Pajak">
+        </div>
+
+        <div class="form-group-lahan">
+            <label>Upload Foto SPPT</label>
+            <input type="file" id="in-legal-file" accept="image/*">
+            <p style="font-size: 0.7rem; color: #999; margin-top: 5px;">*Format Gambar (JPG/PNG)</p>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+            <button onclick="window.closeModalLahan('modal-legal')" style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd; background:none; cursor:pointer;">Batal</button>
+            <button id="btnSaveLegal" style="flex:1; padding:12px; border-radius:8px; border:none; background:#28a745; color:white; font-weight:bold; cursor:pointer;">Simpan Dokumen</button>
+        </div>
+    </div>
+</div>
+        
         <!-- VIEW 5: STATUS MoU / KONTRAK (Sesuai SS) -->
 <section id="view-mou" class="view-content hidden">
     <div class="profile-section">
@@ -761,10 +793,44 @@
         } catch (e) { console.error(e); }
     };
 
-    // --- 6. AKSI MODAL INDIKATOR ---
-    window.modalLegal = (id) => { alert("Buka Modal Legalitas ID: " + id); };   
+    // --- 6. AKSI MODAL INDIKATOR ---    
     window.modalRorak = (id) => { alert("Buka Modal Rorak ID: " + id); };
 
+// --- FUNGSI BUKA MODAL LEGALITAS ---
+    window.modalLegal = (id) => {
+        currentLahanId = id; // Pastikan variable currentLahanId sudah dideklarasikan di luar fungsi
+        document.getElementById('modal-legal').style.display = 'flex';
+    };
+
+    // --- FUNGSI SIMPAN LEGALITAS ---
+    document.getElementById('btnSaveLegal').onclick = async () => {
+        const nama = document.getElementById('in-legal-nama').value;
+        const nop = document.getElementById('in-legal-nop').value;
+
+        if(!nama || !nop) { alert("Harap isi Nama Pemilik dan Nomor NOP!"); return; }
+
+        document.getElementById('loader').style.display = 'flex';
+
+        try {
+            const docRef = doc(db, "pengajuan", currentLahanId);
+            await updateDoc(docRef, {
+                namaPemilikSPPT: nama,
+                nomorNOP: nop,
+                isLegalComplete: true // Status berubah jadi LENGKAP
+            });
+
+            alert("Dokumen Legalitas Berhasil Disimpan!");
+            window.closeModalLahan('modal-legal');
+            loadLahanSaya(auth.currentUser.uid); // Refresh tabel
+        } catch (e) {
+            console.error("Gagal simpan legalitas: ", e);
+        } finally {
+            document.getElementById('loader').style.display = 'none';
+        }
+    };
+
+        
+        
         let currentLahanId = ''; // Variable untuk menampung ID lahan yang sedang dikelola
 
     // --- FUNGSI BUKA MODAL POHON ---
