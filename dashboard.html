@@ -686,58 +686,7 @@ input[type="file"]::file-selector-button {
         </div>
     </div>
 </div>
-
-// --- 1. LOGIKA TAMPILKAN SEKSI (TOGGLE) ---
-    window.toggleDataTeknis = () => {
-        const isPohon = document.getElementById('det-c-pohon').checked;
-        const isRorak = document.getElementById('det-c-rorak').checked;
-        const isSumur = document.getElementById('det-c-sumur').checked;
-
-        document.getElementById('sect-pohon').classList.toggle('hidden', !isPohon);
-        document.getElementById('sect-rorak').classList.toggle('hidden', !isRorak);
-        document.getElementById('sect-sumur').classList.toggle('hidden', !isSumur);
-    };
-
-    // --- 2. FUNGSI TAMBAH BARIS POHON ---
-    window.addRowDetailPohon = (data = {}) => {
-        const tbody = document.getElementById('det-pohon-body');
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><input type="text" class="in-det-p-jenis" value="${data.jenis || ''}" placeholder="Sengon/Jati.."></td>
-            <td><input type="number" class="in-det-p-jumlah" value="${data.jumlah || ''}"></td>
-            <td><input type="number" class="in-det-p-lilit" value="${data.lilit || ''}"></td>
-            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
-        `;
-        tbody.appendChild(row);
-    };
-
-    // --- 3. FUNGSI TAMBAH BARIS RORAK ---
-    window.addRowDetailRorak = (data = {}) => {
-        const tbody = document.getElementById('det-rorak-body');
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><input type="number" class="in-det-r-unit" value="${data.unit || ''}"></td>
-            <td><input type="number" class="in-det-r-p" value="${data.p || ''}"></td>
-            <td><input type="number" class="in-det-r-l" value="${data.l || ''}"></td>
-            <td><input type="number" class="in-det-r-d" value="${data.d || ''}"></td>
-            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
-        `;
-        tbody.appendChild(row);
-    };
-
-    // --- 4. FUNGSI TAMBAH BARIS SUMUR ---
-    window.addRowDetailSumur = (data = {}) => {
-        const tbody = document.getElementById('det-sumur-body');
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><input type="number" class="in-det-s-unit" value="${data.unit || ''}"></td>
-            <td><input type="number" class="in-det-s-dalam" value="${data.dalam || ''}"></td>
-            <td><input type="text" class="in-det-s-ket" value="${data.ket || ''}"></td>
-            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
-        `;
-        tbody.appendChild(row);
-    };
-        
+      
         <!-- VIEW 4: INFO REKENING (Sesuai SS1) -->
 <section id="view-rekening" class="view-content hidden">
     <div class="profile-section">
@@ -1002,6 +951,57 @@ input[type="file"]::file-selector-button {
             listContainer.innerHTML = html;
         } catch (err) { console.error("Load Lahan Gagal:", err); }
     }
+
+        // --- 1. LOGIKA TAMPILKAN SEKSI (TOGGLE) ---
+    window.toggleDataTeknis = () => {
+        const isPohon = document.getElementById('det-c-pohon').checked;
+        const isRorak = document.getElementById('det-c-rorak').checked;
+        const isSumur = document.getElementById('det-c-sumur').checked;
+
+        document.getElementById('sect-pohon').classList.toggle('hidden', !isPohon);
+        document.getElementById('sect-rorak').classList.toggle('hidden', !isRorak);
+        document.getElementById('sect-sumur').classList.toggle('hidden', !isSumur);
+    };
+
+    // --- 2. FUNGSI TAMBAH BARIS POHON ---
+    window.addRowDetailPohon = (data = {}) => {
+        const tbody = document.getElementById('det-pohon-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="text" class="in-det-p-jenis" value="${data.jenis || ''}" placeholder="Sengon/Jati.."></td>
+            <td><input type="number" class="in-det-p-jumlah" value="${data.jumlah || ''}"></td>
+            <td><input type="number" class="in-det-p-lilit" value="${data.lilit || ''}"></td>
+            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    };
+
+    // --- 3. FUNGSI TAMBAH BARIS RORAK ---
+    window.addRowDetailRorak = (data = {}) => {
+        const tbody = document.getElementById('det-rorak-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="number" class="in-det-r-unit" value="${data.unit || ''}"></td>
+            <td><input type="number" class="in-det-r-p" value="${data.p || ''}"></td>
+            <td><input type="number" class="in-det-r-l" value="${data.l || ''}"></td>
+            <td><input type="number" class="in-det-r-d" value="${data.d || ''}"></td>
+            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    };
+
+    // --- 4. FUNGSI TAMBAH BARIS SUMUR ---
+    window.addRowDetailSumur = (data = {}) => {
+        const tbody = document.getElementById('det-sumur-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="number" class="in-det-s-unit" value="${data.unit || ''}"></td>
+            <td><input type="number" class="in-det-s-dalam" value="${data.dalam || ''}"></td>
+            <td><input type="text" class="in-det-s-ket" value="${data.ket || ''}"></td>
+            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    };
 
     // --- 5. FUNGSI MODAL & GPS (WAJIB TEMPEL KE WINDOW) ---
     window.openStep1 = () => { document.getElementById('modal-step1').style.display = 'flex'; };
