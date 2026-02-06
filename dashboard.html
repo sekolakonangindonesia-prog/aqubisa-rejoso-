@@ -1161,15 +1161,49 @@ input[type="file"]::file-selector-button {
 
     window.saveProfile = async () => {
         const user = auth.currentUser;
-        try {
-            await updateDoc(doc(db, "users", user.uid), { fullName: document.getElementById('i-name').value });
-            alert("Berhasil!"); location.reload();
-        } catch (e) { console.error(e); }
-    };
+        if (!user) return;
 
-    document.getElementById('btnLogout').addEventListener('click', () => {
-        signOut(auth).then(() => { window.location.href = "index.html"; });
-    });
+        const newName = document.getElementById('i-name').value;
+
+         if (!newName || newName.trim() === "") {
+        alert("Nama Lengkap tidak boleh kosong!");
+        return;
+    }
+
+        document.getElementById('loader').style.display = 'flex';
+        
+        try {
+        const userRef = doc(db, "users", user.uid);
+        await updateDoc(userRef, {
+            fullName: newName, // Nama baru yang sudah divalidasi
+            ktp: document.getElementById('i-ktp').value,
+            bidangKeahlian: document.getElementById('i-keahlian').value,
+            kk: document.getElementById('i-kk').value,
+            npwp: document.getElementById('i-npwp').value,
+            nip: document.getElementById('i-nip').value,
+            tempatLahir: document.getElementById('i-tmpt-lahir').value,
+            tanggalLahir: document.getElementById('i-tgl-lahir').value,
+            jenisKelamin: document.getElementById('i-gender').value,
+            phone: document.getElementById('i-phone').value,
+            lembaga: document.getElementById('i-lembaga').value,
+            alamatKTP: document.getElementById('i-alamat').value,
+            provinsi: document.getElementById('i-prov').value,
+            kota: document.getElementById('i-kota').value,
+            kecamatan: document.getElementById('i-kec').value,
+            desa: document.getElementById('i-desa').value,
+            kodePos: document.getElementById('i-kodepos').value,
+            alamatDomisili: document.getElementById('i-domisili').value
+        });
+
+    alert("Profil Berhasil Diperbarui!");
+        location.reload(); 
+    } catch (error) {
+        console.error("Gagal simpan profil: ", error);
+        alert("Gagal menyimpan data.");
+    } finally {
+        document.getElementById('loader').style.display = 'none';
+    }
+};
 
         // --- FUNGSI BUKA DETAIL LAHAN (FORM MELEKAT) ---
     window.modalLegal = async (id) => {
