@@ -407,7 +407,7 @@
 </section>
         <!-- TARUH DI BAWAH BARIS 407 -->
 
-<!-- MODAL STEP 1: AJUKAN LAHAN -->
+<!-- MODAL STEP 1: AJUKAN LAHAN (DIPERBARUI DENGAN CHECKBOX) -->
 <div id="modal-step1" class="modal-lahan" style="display: none; position: fixed; z-index: 10001; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
     <div class="modal-lahan-content" style="background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; color: #333;">
         <h3 style="margin-bottom: 20px;">Ajukan Lahan Baru</h3>
@@ -420,6 +420,16 @@
         <div class="form-group-lahan" style="margin-bottom: 15px;">
             <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;">Luas Lahan (Hektar)</label>
             <input type="number" id="in-luas" step="0.01" placeholder="0.00" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        </div>
+
+        <!-- PILIHAN JASA MODULAR -->
+        <div class="form-group-lahan" style="margin-bottom: 15px; background: #f0f7ff; padding: 10px; border-radius: 8px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 8px;">Pilih Jasa Lingkungan:</label>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                <label><input type="checkbox" id="check-pohon"> Tutupan Lahan (Pohon)</label>
+                <label><input type="checkbox" id="check-rorak"> Konservasi Air (Rorak)</label>
+                <label><input type="checkbox" id="check-sumur"> Sumur Resapan</label>
+            </div>
         </div>
 
         <div class="form-group-lahan" style="margin-bottom: 15px;">
@@ -778,26 +788,69 @@
         // --- STEP 1: BUAT LAHAN BARU (Draft Awal) ---
 window.saveStep1 = async () => {
     const user = auth.currentUser;
-    const dataAwal = {
-        uid: user.uid,
-        namaLahan: document.getElementById('in-nama-lahan').value,
-        luasHa: parseFloat(document.getElementById('in-luas').value),
-        koordinat: { lat: document.getElementById('in-lat').value, lng: document.getElementById('in-lng').value },
-        statusAdmin: "Draft",
-        createdAt: new Date(),
-        // Status Indikator
-        isLegalComplete: false,
-        isPohonComplete: false,
-        isRorakComplete: false,
-        isSumurComplete: false
-    };
+    const nama = document.getElementById('in-nama-lahan').value;
+    const luas = document.getElementById('in-luas').value;
+    const lat = document.getElementById('in-lat').value;
+    const lng = document.getElementById('in-lng').value;
+
+    // Ambil pilihan jasa
+    const jasa = [];
+    if(document.getElementById('check-pohon').checked) jasa.push('pohon');
+    if(document.getElementById('check-rorak').checked) jasa.push('rorak');
+    if(document.getElementById('check-sumur').checked) jasa.push('sumur');
+
+    if(!nama || !luas || !lat || jasa.length === 0) { 
+        alert("Harap isi Nama, Luas, GPS, dan pilih minimal satu Jasa!"); 
+        return; 
+    }
 
     try {
-        const docRef = await addDoc(collection(db, "pengajuan"), dataAwal);
-        alert("Lahan Berhasil Dibuat. Silakan lengkapi indikator di bawah.");
-        loadLahanSaya(); // Refresh daftar
-    } catch (e) { console.error(e); }
+        await addDoc(collection(db, "pengajuan"), {
+            uid: user.uid,
+            namaLahan: nama,
+            luasHa: parseFloat(luas),
+            koordinat: { lat: lat, lng: lng },
+            jenisJasa: jasa, // Menyimpan pilihan jasa
+            statusAdmin: "Draft",
+            createdAt: new Date(),
+            isLegalComplete: false,
+            isPohonComplete: false,
+            isRorakComplete: false,
+            isSumurComplete: false
+        });
+
+        alert("Draft Lahan Berhasil Dibuat!");
+        
+        // 1. TUTUP MODAL
+        window.closeModalLahan('modal-step1');
+        
+        // 2. BERSIHKAN FORM
+        document.getElementById('in-nama-lahan').value = "";
+        document.getElementById('in-luas').value = "";
+        
+        // 3. REFRESH DAFTAR (PENTING: Masukkan ID User-nya)
+        loadLahanSaya(user.uid); 
+        
+    } catch (e) {
+        console.error("Error simpan: ", e);
+    }
 };
+        
+        // --- 3. AKSI KELOLA INDIKATOR (TARUH DI BARIS 838) ---
+    window.modalLegal = (id) => { 
+        alert("Buka Modal Legalitas untuk Lahan ID: " + id); 
+        // Nanti di sini kita buatkan modal untuk upload SPPT/KTP
+    };
+    
+    window.modalPohon = (id) => { 
+        alert("Buka Modal Aset Pohon untuk Lahan ID: " + id); 
+        // Nanti di sini kita buatkan tabel dinamis Jenis, Jumlah, Lilit
+    };
+    
+    window.modalRorak = (id) => { 
+        alert("Buka Modal Konstruksi Rorak untuk Lahan ID: " + id); 
+        // Nanti di sini kita buatkan form isian dimensi rorak
+    };
 
 // --- LOGIKA MODULAR: UPDATE DAFTAR TUGAS ---
 window.updateIndikatorList = () => {
@@ -821,8 +874,7 @@ window.updateIndikatorList = () => {
         </tr>`;
     }
     
-    // --- LANJUTAN DI BAWAH BARIS 764 ---
-
+ 
 // 1. Fungsi untuk mengambil data dari Firebase dan menampilkannya di "Lahan Saya"
 async function loadLahanSaya(uid) {
     const listContainer = document.getElementById('list-lahan-saya');
