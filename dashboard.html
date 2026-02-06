@@ -546,442 +546,208 @@
         
     </main>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, updateDoc, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, updateDoc, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyAktDrPlV480mUvQEqjOmJ7EdXDpt8zc1o",
+        authDomain: "aqubisa-rejoso.firebaseapp.com",
+        projectId: "aqubisa-rejoso",
+        storageBucket: "aqubisa-rejoso.firebasestorage.app",
+        messagingSenderId: "427028729815",
+        appId: "1:427028729815:web:741d8563ff434468ac0592"
+    };
 
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAktDrPlV480mUvQEqjOmJ7EdXDpt8zc1o",
-            authDomain: "aqubisa-rejoso.firebaseapp.com",
-            projectId: "aqubisa-rejoso",
-            storageBucket: "aqubisa-rejoso.firebasestorage.app",
-            messagingSenderId: "427028729815",
-            appId: "1:427028729815:web:741d8563ff434468ac0592"
-        };
+    // --- 1. NAVIGASI TAMPILAN ---
+    window.showView = (viewId) => {
+        document.querySelectorAll('.view-content').forEach(v => v.classList.add('hidden'));
+        const target = document.getElementById('view-' + viewId);
+        if(target) target.classList.remove('hidden');
+        document.querySelectorAll('.menu li a').forEach(a => a.classList.remove('active'));
+        const nav = document.getElementById('nav-' + viewId);
+        if(nav) nav.classList.add('active');
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // --- NAVIGASI VIEW (SPA) ---
-        window.showView = (viewId) => {
-            document.querySelectorAll('.view-content').forEach(v => v.classList.add('hidden'));
-            document.getElementById('view-' + viewId).classList.remove('hidden');
-            
-            document.querySelectorAll('.menu li a').forEach(a => a.classList.remove('active'));
-            document.getElementById('nav-' + viewId).classList.add('active');
-        };
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const docSnap = await getDoc(doc(db, "users", user.uid));
-                if (docSnap.exists()) {
-                    renderDashboard(docSnap.data());
-                } else {
-                    window.location.href = "auth.html";
-                }
+    // --- 2. CEK STATUS LOGIN ---
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const docSnap = await getDoc(doc(db, "users", user.uid));
+            if (docSnap.exists()) {
+                renderDashboard(docSnap.data());
+                loadLahanSaya(user.uid); // Panggil daftar lahan segera setelah login
             } else {
                 window.location.href = "auth.html";
             }
-        });
+        } else {
+            window.location.href = "auth.html";
+        }
+    });
 
-       // --- EDIT FUNGSI INI (Menambah banyak field baru) ---
+    // --- 3. RENDER DATA PROFIL & MOU ---
     function renderDashboard(data) {
         document.getElementById('loader').style.display = 'none';
-
-        // Top Header & Sidebar
         document.getElementById('real-name').innerText = data.fullName || "User";
         document.getElementById('profile-name').innerText = data.fullName || "User";
         const badge = document.getElementById('role-badge');
         badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
 
-        // View Profil (Isi data ke label teks)
-        document.getElementById('p-name').innerText = data.fullName || "-";
-        document.getElementById('p-ktp').innerText = data.ktp || "-";
-        document.getElementById('p-keahlian').innerText = data.bidangKeahlian || "-";
-        document.getElementById('p-kk').innerText = data.kk || "-";
-        document.getElementById('p-npwp').innerText = data.npwp || "-";
-        document.getElementById('p-nip').innerText = data.nip || "-";
-        document.getElementById('p-tmpt-lahir').innerText = data.tempatLahir || "-";
-        document.getElementById('p-tgl-lahir').innerText = data.tanggalLahir || "-";
-        document.getElementById('p-gender').innerText = data.jenisKelamin || "-";
-        document.getElementById('p-phone').innerText = data.phone || "-";
-        document.getElementById('p-email').innerText = data.email || "-";
-        document.getElementById('p-lembaga').innerText = data.lembaga || "-";
-        
-        // Alamat & Domisili
-        document.getElementById('p-alamat').innerText = data.alamatKTP || "-";
-        document.getElementById('p-prov').innerText = data.provinsi || "-";
-        document.getElementById('p-kota').innerText = data.kota || "-";
-        document.getElementById('p-kec').innerText = data.kecamatan || "-";
-        document.getElementById('p-desa').innerText = data.desa || "-";
-        document.getElementById('p-kodepos').innerText = data.kodePos || "-";
-        document.getElementById('p-domisili').innerText = data.alamatDomisili || "-";
+        // Isi Data Identitas
+        const fields = ['p-name', 'p-ktp', 'p-keahlian', 'p-kk', 'p-npwp', 'p-nip', 'p-tmpt-lahir', 'p-tgl-lahir', 'p-gender', 'p-phone', 'p-email', 'p-lembaga', 'p-alamat', 'p-prov', 'p-kota', 'p-kec', 'p-desa', 'p-kodepos', 'p-domisili'];
+        fields.forEach(f => {
+            const el = document.getElementById(f);
+            if(el) el.innerText = data[f.replace('p-', '')] || data.fullName || "-";
+        });
 
-        document.getElementById('r-reg-code').innerText = data.regCode || "dnai-2025-XXXX";
-        document.getElementById('r-contract-no').innerText = data.contractNo || "-";
-        document.getElementById('r-proposal').innerText = data.proposalTitle || "Belum ada proposal aktif";
-        document.getElementById('r-bank-name').innerText = data.bankName || "Belum diisi";
-        document.getElementById('r-bank-number').innerText = data.bankAccNumber || "-";
-        document.getElementById('r-bank-owner').innerText = "a.n " + (data.bankAccOwner || data.fullName);  
+        // Rekening
+        if(document.getElementById('r-bank-name')) {
+            document.getElementById('r-reg-code').innerText = data.regCode || "dnai-2025-XXXX";
+            document.getElementById('r-bank-name').innerText = data.bankName || "-";
+            document.getElementById('r-bank-number').innerText = data.bankAccNumber || "-";
+        }
 
-        
-        // 1. Cek Nomor Kontrak
-        const mouNo = data.contractNo;
-        const iconNo = document.getElementById('status-icon-no');
-        if (mouNo) {
-            document.getElementById('mou-no').innerText = mouNo;
-            if(iconNo) {
-                iconNo.className = "fas fa-check-square"; 
+        // MoU / Kontrak
+        if(document.getElementById('mou-no')) {
+            document.getElementById('mou-no').innerText = data.contractNo || "Belum ada nomor";
+            const iconNo = document.getElementById('status-icon-no');
+            if(data.contractNo && iconNo) {
+                iconNo.className = "fas fa-check-square";
                 iconNo.style.color = "var(--success-green)";
             }
-        } else {
-            document.getElementById('mou-no').innerText = "Belum tersedia";
         }
 
-        // 2. Cek Tanggal Mulai
-        const mouTgl = data.contractDate;
-        const iconTgl = document.getElementById('status-icon-tgl');
-        if (mouTgl) {
-            document.getElementById('mou-tgl').innerText = mouTgl;
-            if(iconTgl) {
-                iconTgl.className = "fas fa-check-square";
-                iconTgl.style.color = "var(--success-green)";
-            }
-        } else {
-            document.getElementById('mou-tgl').innerText = "Menunggu verifikasi";
-        }
-
-        // 3. Cek File SK
-        const skUrl = data.fileSKUrl;
-        const iconSk = document.getElementById('status-icon-sk');
-        const skLink = document.getElementById('mou-file-sk');
-        const skFallback = document.getElementById('mou-sk-fallback');
-
-        if (skUrl) {
-            if(skLink) {
-                skLink.href = skUrl;
-                skLink.classList.remove('hidden');
-            }
-            if(skFallback) skFallback.classList.add('hidden');
-            if(iconSk) {
-                iconSk.className = "fas fa-check-square";
-                iconSk.style.color = "var(--success-green)";
-            }
-
-         loadLahanSaya(auth.currentUser.uid);
-        }
-        
-        
-        // Role Management
+        // Role Menu
         if (data.role === 'seller') {
             document.querySelectorAll('.menu-seller').forEach(m => m.classList.remove('hidden'));
         } else {
             document.querySelectorAll('.menu-buyer').forEach(m => m.classList.remove('hidden'));
-            window.showView('home'); 
         }
     }
 
-    // --- TAMBAHKAN FUNGSI BARU DI BAWAH INI (Untuk Fitur Edit & Simpan) ---
+    // --- 4. LOGIKA LAHAN SAYA ---
+    async function loadLahanSaya(uid) {
+        const listContainer = document.getElementById('list-lahan-saya');
+        if (!listContainer) return;
 
+        try {
+            const q = query(collection(db, "pengajuan"), where("uid", "==", uid));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.empty) {
+                listContainer.innerHTML = `<p style="text-align:center; color:#999; padding:40px;">Belum ada lahan. Klik tombol Tambah Lahan Baru.</p>`;
+                return;
+            }
+
+            let html = "";
+            querySnapshot.forEach((docLahan) => {
+                const lahan = docLahan.data();
+                const id = docLahan.id;
+                
+                html += `
+                    <div class="profile-section" style="border: 1px solid #eee; margin-bottom:15px; padding:20px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <strong style="font-size:1.1rem; color:var(--sidebar-bg);">${lahan.namaLahan}</strong>
+                                <p style="font-size:0.8rem; color:#666;">Luas: ${lahan.luasHa} Ha | Status: <b>${lahan.statusAdmin}</b></p>
+                            </div>
+                            <button class="btn-update" onclick="window.kelolaIndikator('${id}')">Kelola Indikator</button>
+                        </div>
+                        <div id="target-indikator-${id}" class="hidden" style="margin-top:20px; border-top:1px solid #eee; padding-top:15px;">
+                            <table class="rekening-table">
+                                <thead><tr><th>Indikator</th><th>Status</th><th>Aksi</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1. Dokumen Legalitas (SPPT)</td>
+                                        <td><span class="status-pill ${lahan.isLegalComplete ? 'st-funded' : 'st-pending'}">${lahan.isLegalComplete ? 'Lengkap' : 'Belum'}</span></td>
+                                        <td><button class="btn-update" onclick="window.modalLegal('${id}')">Kelola</button></td>
+                                    </tr>
+                                    ${lahan.jenisJasa?.includes('pohon') ? `<tr><td>2. Aset Pohon</td><td><span class="status-pill st-pending">Belum</span></td><td><button class="btn-update" onclick="window.modalPohon('${id}')">Kelola</button></td></tr>` : ''}
+                                    ${lahan.jenisJasa?.includes('rorak') ? `<tr><td>3. Konstruksi Rorak</td><td><span class="status-pill st-pending">Belum</span></td><td><button class="btn-update" onclick="window.modalRorak('${id}')">Kelola</button></td></tr>` : ''}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+            listContainer.innerHTML = html;
+        } catch (err) { console.error("Load Lahan Gagal:", err); }
+    }
+
+    // --- 5. FUNGSI MODAL & GPS (WAJIB TEMPEL KE WINDOW) ---
+    window.openStep1 = () => { document.getElementById('modal-step1').style.display = 'flex'; };
+    window.closeModalLahan = (id) => { document.getElementById(id).style.display = 'none'; };
+    window.kelolaIndikator = (id) => { document.getElementById(`target-indikator-${id}`).classList.toggle('hidden'); };
+
+    window.getGPSLahan = () => {
+        if (navigator.geolocation) {
+            alert("Mencari sinyal GPS...");
+            navigator.geolocation.getCurrentPosition((pos) => {
+                document.getElementById('in-lat').value = pos.coords.latitude;
+                document.getElementById('in-lng').value = pos.coords.longitude;
+                alert("Lokasi Terkunci!");
+            });
+        }
+    };
+
+    window.saveStep1 = async () => {
+        const user = auth.currentUser;
+        const nama = document.getElementById('in-nama-lahan').value;
+        const luas = document.getElementById('in-luas').value;
+        const lat = document.getElementById('in-lat').value;
+        const lng = document.getElementById('in-lng').value;
+
+        const jasa = [];
+        if(document.getElementById('check-pohon').checked) jasa.push('pohon');
+        if(document.getElementById('check-rorak').checked) jasa.push('rorak');
+        if(document.getElementById('check-sumur').checked) jasa.push('sumur');
+
+        if(!nama || !luas || !lat || jasa.length === 0) { alert("Lengkapi data dan pilih minimal satu jasa!"); return; }
+
+        try {
+            await addDoc(collection(db, "pengajuan"), {
+                uid: user.uid, namaLahan: nama, luasHa: parseFloat(luas), koordinat: { lat, lng },
+                jenisJasa: jasa, statusAdmin: "Draft", createdAt: new Date(),
+                isLegalComplete: false, isPohonComplete: false, isRorakComplete: false
+            });
+            alert("Lahan Berhasil Ditambah!");
+            window.closeModalLahan('modal-step1');
+            loadLahanSaya(user.uid);
+        } catch (e) { console.error(e); }
+    };
+
+    // --- 6. AKSI MODAL INDIKATOR ---
+    window.modalLegal = (id) => { alert("Buka Modal Legalitas ID: " + id); };
+    window.modalPohon = (id) => { alert("Buka Modal Pohon ID: " + id); };
+    window.modalRorak = (id) => { alert("Buka Modal Rorak ID: " + id); };
+
+    // --- 7. EDIT PROFIL & LOGOUT ---
     window.toggleEdit = () => {
         const isEditing = document.getElementById('btnSaveProfile').style.display === 'block';
-        
         if (!isEditing) {
             document.querySelectorAll('.edit-text').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.edit-input').forEach(el => el.classList.remove('hidden'));
             document.getElementById('btnSaveProfile').style.display = 'block';
             document.getElementById('btnEditProfile').innerText = 'Batal';
-            
-            // Isi input dengan data yang ada di teks
-            document.getElementById('i-name').value = document.getElementById('p-name').innerText;
-            document.getElementById('i-ktp').value = document.getElementById('p-ktp').innerText;
-            document.getElementById('i-keahlian').value = document.getElementById('p-keahlian').innerText;
-            document.getElementById('i-kk').value = document.getElementById('p-kk').innerText;
-            document.getElementById('i-npwp').value = document.getElementById('p-npwp').innerText;
-            document.getElementById('i-nip').value = document.getElementById('p-nip').innerText;
-            document.getElementById('i-tmpt-lahir').value = document.getElementById('p-tmpt-lahir').innerText;
-            document.getElementById('i-tgl-lahir').value = document.getElementById('p-tgl-lahir').innerText;
-            document.getElementById('i-phone').value = document.getElementById('p-phone').innerText;
-            document.getElementById('i-lembaga').value = document.getElementById('p-lembaga').innerText;
-            document.getElementById('i-alamat').value = document.getElementById('p-alamat').innerText;
-            document.getElementById('i-prov').value = document.getElementById('p-prov').innerText;
-            document.getElementById('i-kota').value = document.getElementById('p-kota').innerText;
-            document.getElementById('i-kec').value = document.getElementById('p-kec').innerText;
-            document.getElementById('i-desa').value = document.getElementById('p-desa').innerText;
-            document.getElementById('i-kodepos').value = document.getElementById('p-kodepos').innerText;
-            document.getElementById('i-domisili').value = document.getElementById('p-domisili').innerText;
         } else {
-            document.querySelectorAll('.edit-text').forEach(el => el.classList.remove('hidden'));
-            document.querySelectorAll('.edit-input').forEach(el => el.classList.add('hidden'));
-            document.getElementById('btnSaveProfile').style.display = 'none';
-            document.getElementById('btnEditProfile').innerText = 'Ubah Profil';
+            location.reload();
         }
     };
 
     window.saveProfile = async () => {
         const user = auth.currentUser;
-        if (!user) return;
-        document.getElementById('loader').style.display = 'flex';
-
         try {
-            await updateDoc(doc(db, "users", user.uid), {
-                fullName: document.getElementById('i-name').value,
-                ktp: document.getElementById('i-ktp').value,
-                bidangKeahlian: document.getElementById('i-keahlian').value,
-                kk: document.getElementById('i-kk').value,
-                npwp: document.getElementById('i-npwp').value,
-                nip: document.getElementById('i-nip').value,
-                tempatLahir: document.getElementById('i-tmpt-lahir').value,
-                tanggalLahir: document.getElementById('i-tgl-lahir').value,
-                jenisKelamin: document.getElementById('i-gender').value,
-                phone: document.getElementById('i-phone').value,
-                lembaga: document.getElementById('i-lembaga').value,
-                alamatKTP: document.getElementById('i-alamat').value,
-                provinsi: document.getElementById('i-prov').value,
-                kota: document.getElementById('i-kota').value,
-                kecamatan: document.getElementById('i-kec').value,
-                desa: document.getElementById('i-desa').value,
-                kodePos: document.getElementById('i-kodepos').value,
-                alamatDomisili: document.getElementById('i-domisili').value
-            });
-            alert("Profil Berhasil Diperbarui!");
-            location.reload();
-        } catch (error) {
-            alert("Gagal menyimpan: " + error.message);
-        } finally {
-            document.getElementById('loader').style.display = 'none';
-        }
+            await updateDoc(doc(db, "users", user.uid), { fullName: document.getElementById('i-name').value });
+            alert("Berhasil!"); location.reload();
+        } catch (e) { console.error(e); }
     };
 
-    // --- LOGOUT (Tetap) ---
     document.getElementById('btnLogout').addEventListener('click', () => {
-        signOut(auth).then(() => {
-            window.location.href = "index.html";
-        });
+        signOut(auth).then(() => { window.location.href = "index.html"; });
     });
-
-// --- FUNGSI PENDUKUNG MODAL (TARUH DI BARIS 754) ---
-    window.openStep1 = () => {
-        document.getElementById('modal-step1').style.display = 'flex';
-    };
-
-    window.closeModalLahan = (id) => {
-        document.getElementById(id).style.display = 'none';
-    };
-
-    window.getGPSLahan = () => {
-        if (navigator.geolocation) {
-            alert("Mencari Sinyal GPS...");
-            navigator.geolocation.getCurrentPosition((pos) => {
-                document.getElementById('in-lat').value = pos.coords.latitude;
-                document.getElementById('in-lng').value = pos.coords.longitude;
-                alert("Lokasi Terkunci!");
-            }, (err) => {
-                alert("Gagal mengambil lokasi. Pastikan GPS aktif.");
-            });
-        } else {
-            alert("Browser tidak mendukung GPS.");
-        }
-    };
-        
-        // --- STEP 1: BUAT LAHAN BARU (Draft Awal) ---
-window.saveStep1 = async () => {
-    const user = auth.currentUser;
-    const nama = document.getElementById('in-nama-lahan').value;
-    const luas = document.getElementById('in-luas').value;
-    const lat = document.getElementById('in-lat').value;
-    const lng = document.getElementById('in-lng').value;
-
-    // Ambil pilihan jasa
-    const jasa = [];
-    if(document.getElementById('check-pohon').checked) jasa.push('pohon');
-    if(document.getElementById('check-rorak').checked) jasa.push('rorak');
-    if(document.getElementById('check-sumur').checked) jasa.push('sumur');
-
-    if(!nama || !luas || !lat || jasa.length === 0) { 
-        alert("Harap isi Nama, Luas, GPS, dan pilih minimal satu Jasa!"); 
-        return; 
-    }
-
-    try {
-        await addDoc(collection(db, "pengajuan"), {
-            uid: user.uid,
-            namaLahan: nama,
-            luasHa: parseFloat(luas),
-            koordinat: { lat: lat, lng: lng },
-            jenisJasa: jasa, // Menyimpan pilihan jasa
-            statusAdmin: "Draft",
-            createdAt: new Date(),
-            isLegalComplete: false,
-            isPohonComplete: false,
-            isRorakComplete: false,
-            isSumurComplete: false
-        });
-
-        alert("Draft Lahan Berhasil Dibuat!");
-        
-        // 1. TUTUP MODAL
-        window.closeModalLahan('modal-step1');
-        
-        // 2. BERSIHKAN FORM
-        document.getElementById('in-nama-lahan').value = "";
-        document.getElementById('in-luas').value = "";
-        
-        // 3. REFRESH DAFTAR (PENTING: Masukkan ID User-nya)
-        loadLahanSaya(user.uid); 
-        
-    } catch (e) {
-        console.error("Error simpan: ", e);
-    }
-};
-        
-        // --- 3. AKSI KELOLA INDIKATOR (TARUH DI BARIS 838) ---
-    window.modalLegal = (id) => { 
-        alert("Buka Modal Legalitas untuk Lahan ID: " + id); 
-        // Nanti di sini kita buatkan modal untuk upload SPPT/KTP
-    };
-    
-    window.modalPohon = (id) => { 
-        alert("Buka Modal Aset Pohon untuk Lahan ID: " + id); 
-        // Nanti di sini kita buatkan tabel dinamis Jenis, Jumlah, Lilit
-    };
-    
-    window.modalRorak = (id) => { 
-        alert("Buka Modal Konstruksi Rorak untuk Lahan ID: " + id); 
-        // Nanti di sini kita buatkan form isian dimensi rorak
-    };
-
-// --- LOGIKA MODULAR: UPDATE DAFTAR TUGAS ---
-window.updateIndikatorList = () => {
-    const showPohon = document.getElementById('c-pohon').checked;
-    const showRorak = document.getElementById('c-rorak').checked;
-    const showSumur = document.getElementById('c-sumur').checked;
-    
-    const tbody = document.getElementById('body-indikator');
-    // Simpan baris legalitas
-    let html = `<tr>
-        <td><b>1. Dokumen Legalitas (SPPT/KTP)</b></td>
-        <td><span class="status-pill st-pending">Belum Lengkap</span></td>
-        <td><button class="btn-update" onclick="modalLegal()">Kelola</button></td>
-    </tr>`;
-
-    if(showPohon) {
-        html += `<tr>
-            <td><b>2. Aset Tutupan Lahan (Pohon)</b></td>
-            <td><span class="status-pill st-pending">Belum Lengkap</span></td>
-            <td><button class="btn-update" onclick="modalPohon()">Kelola Data Pohon</button></td>
-        </tr>`;
-    }
-    
- 
-// 1. Fungsi untuk mengambil data dari Firebase dan menampilkannya di "Lahan Saya"
-async function loadLahanSaya(uid) {
-    const listContainer = document.getElementById('list-lahan-saya');
-    if (!listContainer) return;
-
-    try {
-        const q = query(collection(db, "pengajuan"), where("uid", "==", uid));
-        const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-            listContainer.innerHTML = `<p style="text-align:center; color:#999; padding:20px;">Belum ada lahan. Klik tombol Tambah Lahan Baru.</p>`;
-            return;
-        }
-
-        let html = "";
-        querySnapshot.forEach((doc) => {
-            const lahan = doc.data();
-            const id = doc.id;
-            
-            // Logika Status: Jika semua indikator true, tombol submit aktif
-            const isReady = lahan.isLegalComplete && 
-                            (!lahan.jenisJasa.includes('pohon') || lahan.isPohonComplete) && 
-                            (!lahan.jenisJasa.includes('rorak') || lahan.isRorakComplete);
-
-            html += `
-                <div class="profile-section" style="border: 1px solid #eee; margin-bottom:15px; background: white;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <strong style="font-size:1.1rem; color:var(--sidebar-bg);">${lahan.namaLahan}</strong>
-                            <p style="font-size:0.8rem; color:#666;">Luas: ${lahan.luasHa} Ha | Status: <b>${lahan.statusAdmin}</b></p>
-                        </div>
-                        <button class="btn-update" onclick="window.kelolaIndikator('${id}')">Kelola Indikator</button>
-                    </div>
-                    
-                    <div id="target-indikator-${id}" class="hidden" style="margin-top:20px; border-top:1px solid #eee; padding-top:15px;">
-                        <table class="rekening-table">
-                            <thead>
-                                <tr>
-                                    <th>Indikator Pengajuan</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1. Dokumen Legalitas (SPPT)</td>
-                                    <td><span class="status-pill ${lahan.isLegalComplete ? 'st-funded' : 'st-pending'}">${lahan.isLegalComplete ? 'Lengkap' : 'Belum Lengkap'}</span></td>
-                                    <td><button class="btn-update" onclick="window.modalLegal('${id}')">Kelola</button></td>
-                                </tr>
-                                ${lahan.jenisJasa.includes('pohon') ? `
-                                <tr>
-                                    <td>2. Aset Tutupan Lahan (Pohon)</td>
-                                    <td><span class="status-pill ${lahan.isPohonComplete ? 'st-funded' : 'st-pending'}">${lahan.isPohonComplete ? 'Lengkap' : 'Belum Lengkap'}</span></td>
-                                    <td><button class="btn-update" onclick="window.modalPohon('${id}')">Kelola</button></td>
-                                </tr>` : ''}
-                                ${lahan.jenisJasa.includes('rorak') ? `
-                                <tr>
-                                    <td>3. Konstruksi Rorak</td>
-                                    <td><span class="status-pill ${lahan.isRorakComplete ? 'st-funded' : 'st-pending'}">${lahan.isRorakComplete ? 'Lengkap' : 'Belum Lengkap'}</span></td>
-                                    <td><button class="btn-update" onclick="window.modalRorak('${id}')">Kelola</button></td>
-                                </tr>` : ''}
-                            </tbody>
-                        </table>
-                        <div style="text-align:right; margin-top:20px;">
-                            <button class="btn-primary" ${!isReady ? 'disabled style="background:#ccc;"' : 'onclick="window.submitFinal(\''+id+'\')"'} >
-                                AJUKAN KE ADMIN VERIFIKATOR
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        listContainer.innerHTML = html;
-    } catch (err) {
-        console.error("Gagal load lahan:", err);
-    }
-}
-
-// 2. Tempelkan fungsi toggle ke window agar bisa dipanggil onclick HTML
-window.kelolaIndikator = (id) => {
-    const el = document.getElementById(`target-indikator-${id}`);
-    if (el) el.classList.toggle('hidden');
-};
-    
-    if(showRorak) {
-        html += `<tr>
-            <td><b>3. Konstruksi Rorak</b></td>
-            <td><span class="status-pill st-pending">Belum Lengkap</span></td>
-            <td><button class="btn-update" onclick="modalRorak()">Kelola Data Rorak</button></td>
-        </tr>`;
-    }
-
-    tbody.innerHTML = html;
-};
-
-// --- SIMPAN DATA POHON (Tabel Dinamis) ---
-window.savePohonData = async (lahanId, listPohon) => {
-    const docRef = doc(db, "pengajuan", lahanId);
-    await updateDoc(docRef, {
-        dataPohon: listPohon,
-        isPohonComplete: true
-    });
-    alert("Data Pohon Tersimpan!");
-    checkSubmissionReady(); // Cek apakah tombol submit besar sudah bisa nyala
-};
     </script>
 </body>
 </html>
