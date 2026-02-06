@@ -197,6 +197,78 @@
 .input-table input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.85rem; }
 .btn-add-row { background: #e3f2fd; color: #007bff; border: 1px dashed #007bff; width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 .btn-remove-row { color: #dc3545; cursor: pointer; border: none; background: none; }
+
+        /* --- MODAL DESIGN PREMIUM --- */
+.modal-lahan {
+    display: none; position: fixed; z-index: 10005; inset: 0;
+    background: rgba(11, 31, 48, 0.85); /* Overlay gelap transparan */
+    backdrop-filter: blur(4px); /* Efek blur di belakang modal */
+    align-items: center; justify-content: center; padding: 20px;
+}
+
+.modal-lahan-content {
+    background: white; width: 100%; max-width: 500px;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header-premium {
+    background: var(--sidebar-bg); padding: 25px; text-align: center; color: white; position: relative;
+}
+
+.modal-header-premium img { height: 50px; margin-bottom: 10px; }
+.modal-header-premium h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.5px; }
+
+.modal-body-premium { padding: 30px; }
+
+.form-group-lahan { margin-bottom: 20px; }
+.form-group-lahan label {
+    display: block; font-size: 0.75rem; font-weight: 700; color: #555;
+    text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;
+}
+
+.form-group-lahan input[type="text"], 
+.form-group-lahan input[type="number"],
+.form-group-lahan input[type="file"] {
+    width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 10px;
+    font-size: 0.95rem; transition: 0.3s; background: #fafafa;
+}
+
+.form-group-lahan input:focus {
+    border-color: var(--sidebar-active); background: white; outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 95, 115, 0.1);
+}
+
+/* Custom File Upload */
+input[type="file"]::file-selector-button {
+    background: #eee; border: none; padding: 5px 15px; border-radius: 5px;
+    margin-right: 10px; cursor: pointer; font-weight: bold; font-size: 0.8rem;
+}
+
+.modal-footer-premium {
+    padding: 0 30px 30px; display: flex; gap: 15px;
+}
+
+.btn-premium-cancel {
+    flex: 1; padding: 14px; border-radius: 12px; border: 2px solid #eee;
+    background: white; color: #666; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+
+.btn-premium-submit {
+    flex: 2; padding: 14px; border-radius: 12px; border: none;
+    background: var(--sidebar-active); color: white; font-weight: bold; 
+    cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 95, 115, 0.3);
+}
+
+.btn-premium-submit:hover { background: #004555; transform: translateY(-2px); }
+.btn-premium-cancel:hover { background: #f5f5f5; color: #333; }
+        
     </style>
 </head>
 <body>
@@ -556,33 +628,40 @@
 </section>
 
 
-    <!-- MODAL KELOLA LEGALITAS (SPPT) -->
-<div id="modal-legal" class="modal-lahan" style="display: none; position: fixed; z-index: 10002; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center;">
-    <div class="modal-lahan-content" style="background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h3>Dokumen Legalitas Lahan</h3>
-            <button onclick="window.closeModalLahan('modal-legal')" style="border: none; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+
+<!-- MODAL KELOLA LEGALITAS (DESAIN BARU) -->
+<div id="modal-legal" class="modal-lahan">
+    <div class="modal-lahan-content">
+        <!-- Header dengan Logo -->
+        <div class="modal-header-premium">
+            <img src="https://raw.githubusercontent.com/sekolakonangindonesia-prog/aqubisa-rejoso-/refs/heads/main/Logo_B_Terang2.png" alt="Logo">
+            <h3>DOKUMEN LEGALITAS LAHAN</h3>
+            <button onclick="window.closeModalLahan('modal-legal')" style="position:absolute; top:20px; right:20px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer; opacity:0.7;">&times;</button>
         </div>
 
-        <div class="form-group-lahan">
-            <label>Nama Pemilik (Sesuai SPPT)</label>
-            <input type="text" id="in-legal-nama" placeholder="Nama Lengkap">
+        <div class="modal-body-premium">
+            <div class="form-group-lahan">
+                <label>Nama Pemilik (Sesuai SPPT)</label>
+                <input type="text" id="in-legal-nama" placeholder="Ketik nama lengkap pemilik...">
+            </div>
+
+            <div class="form-group-lahan">
+                <label>Nomor NOP / SPPT</label>
+                <input type="text" id="in-legal-nop" placeholder="Contoh: 35.13.xxx.xxx.xxx-xxxx.x">
+            </div>
+
+            <div class="form-group-lahan">
+                <label>Upload Foto SPPT</label>
+                <input type="file" id="in-legal-file" accept="image/*">
+                <p style="font-size: 0.7rem; color: #aaa; margin-top: 8px;">
+                    <i class="fas fa-info-circle"></i> Pastikan foto terlihat jelas dan tidak blur.
+                </p>
+            </div>
         </div>
 
-        <div class="form-group-lahan">
-            <label>Nomor NOP / SPPT</label>
-            <input type="text" id="in-legal-nop" placeholder="Nomor Objek Pajak">
-        </div>
-
-        <div class="form-group-lahan">
-            <label>Upload Foto SPPT</label>
-            <input type="file" id="in-legal-file" accept="image/*">
-            <p style="font-size: 0.7rem; color: #999; margin-top: 5px;">*Format Gambar (JPG/PNG)</p>
-        </div>
-
-        <div style="display: flex; gap: 10px; margin-top: 30px;">
-            <button onclick="window.closeModalLahan('modal-legal')" style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd; background:none; cursor:pointer;">Batal</button>
-            <button id="btnSaveLegal" style="flex:1; padding:12px; border-radius:8px; border:none; background:#28a745; color:white; font-weight:bold; cursor:pointer;">Simpan Dokumen</button>
+        <div class="modal-footer-premium">
+            <button onclick="window.closeModalLahan('modal-legal')" class="btn-premium-cancel">Batal</button>
+            <button id="btnSaveLegal" class="btn-premium-submit">SIMPAN DOKUMEN</button>
         </div>
     </div>
 </div>
