@@ -189,7 +189,14 @@
     gap: 20px; 
     margin-bottom: 30px; 
 }
-        
+
+        /* Style Tabel Dinamis di Dalam Modal */
+.input-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+.input-table th { font-size: 0.75rem; color: #888; text-align: left; padding: 10px; background: #f8f9fa; }
+.input-table td { padding: 10px; border-bottom: 1px solid #eee; }
+.input-table input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.85rem; }
+.btn-add-row { background: #e3f2fd; color: #007bff; border: 1px dashed #007bff; width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.btn-remove-row { color: #dc3545; cursor: pointer; border: none; background: none; }
     </style>
 </head>
 <body>
@@ -446,6 +453,41 @@
         <div style="display: flex; gap: 10px; margin-top: 20px;">
             <button type="button" onclick="window.closeModalLahan('modal-step1')" style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd; background:none; cursor:pointer;">Batal</button>
             <button type="button" onclick="window.saveStep1()" style="flex:1; padding:12px; border-radius:8px; border:none; background:#0b1f30; color:white; font-weight:bold; cursor:pointer;">Simpan & Lanjut</button>
+        </div>
+    </div>
+</div>
+
+        <!-- MODAL KELOLA POHON (TABEL DINAMIS) -->
+<div id="modal-pohon" class="modal-lahan" style="display: none; position: fixed; z-index: 10002; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center;">
+    <div class="modal-lahan-content" style="background: white; padding: 30px; border-radius: 15px; width: 95%; max-width: 700px; max-height: 90vh; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Kelola Aset Pohon</h3>
+            <button onclick="window.closeModalLahan('modal-pohon')" style="border: none; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+        </div>
+        
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Masukkan daftar jenis pohon, jumlah, dan rata-rata lilit batang yang ada di lahan Anda.</p>
+
+        <table class="input-table">
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Jenis Pohon</th>
+                    <th style="width: 20%;">Jumlah (Btg)</th>
+                    <th style="width: 30%;">Rata2 Lilit (cm)</th>
+                    <th style="width: 10%;"></th>
+                </tr>
+            </thead>
+            <tbody id="pohon-table-body">
+                <!-- Baris akan muncul otomatis di sini -->
+            </tbody>
+        </table>
+
+        <button class="btn-add-row" onclick="window.addTreeRow()">
+            <i class="fas fa-plus"></i> Tambah Jenis Pohon Lainnya
+        </button>
+
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+            <button onclick="window.closeModalLahan('modal-pohon')" style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd; background:none; cursor:pointer;">Batal</button>
+            <button id="btnSavePohon" style="flex:1; padding:12px; border-radius:8px; border:none; background:#28a745; color:white; font-weight:bold; cursor:pointer;">Simpan Data Pohon</button>
         </div>
     </div>
 </div>
@@ -720,9 +762,71 @@
     };
 
     // --- 6. AKSI MODAL INDIKATOR ---
-    window.modalLegal = (id) => { alert("Buka Modal Legalitas ID: " + id); };
-    window.modalPohon = (id) => { alert("Buka Modal Pohon ID: " + id); };
+    window.modalLegal = (id) => { alert("Buka Modal Legalitas ID: " + id); };   
     window.modalRorak = (id) => { alert("Buka Modal Rorak ID: " + id); };
+
+        let currentLahanId = ''; // Variable untuk menampung ID lahan yang sedang dikelola
+
+    // --- FUNGSI BUKA MODAL POHON ---
+    window.modalPohon = (id) => {
+        currentLahanId = id;
+        document.getElementById('pohon-table-body').innerHTML = ''; // Bersihkan tabel
+        addTreeRow(); // Tambahkan baris pertama secara otomatis
+        document.getElementById('modal-pohon').style.display = 'flex';
+    };
+
+    // --- FUNGSI TAMBAH BARIS TABEL ---
+    window.addTreeRow = () => {
+        const tbody = document.getElementById('pohon-table-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="text" class="in-pohon-jenis" placeholder="Contoh: Sengon"></td>
+            <td><input type="number" class="in-pohon-jumlah" placeholder="0"></td>
+            <td><input type="number" class="in-pohon-lilit" placeholder="cm"></td>
+            <td style="text-align:center;"><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()"><i class="fas fa-trash"></i></button></td>
+        `;
+        tbody.appendChild(row);
+    };
+
+    // --- FUNGSI SIMPAN DATA POHON KE FIREBASE ---
+    document.getElementById('btnSavePohon').onclick = async () => {
+        const rows = document.querySelectorAll('#pohon-table-body tr');
+        const dataPohon = [];
+
+        rows.forEach(row => {
+            const jenis = row.querySelector('.in-pohon-jenis').value;
+            const jumlah = row.querySelector('.in-pohon-jumlah').value;
+            const lilit = row.querySelector('.in-pohon-lilit').value;
+
+            if(jenis && jumlah && lilit) {
+                dataPohon.push({
+                    jenis: jenis,
+                    jumlah: parseInt(jumlah),
+                    lilitBatang: parseInt(lilit)
+                });
+            }
+        });
+
+        if(dataPohon.length === 0) { alert("Harap isi minimal satu data pohon dengan lengkap!"); return; }
+
+        document.getElementById('loader').style.display = 'flex';
+
+        try {
+            const docRef = doc(db, "pengajuan", currentLahanId);
+            await updateDoc(docRef, {
+                dataPohon: dataPohon,
+                isPohonComplete: true // Status berubah jadi LENGKAP
+            });
+
+            alert("Data Aset Pohon Berhasil Disimpan!");
+            window.closeModalLahan('modal-pohon');
+            loadLahanSaya(auth.currentUser.uid); // Refresh tampilan tabel indikator
+        } catch (e) {
+            console.error("Gagal simpan pohon: ", e);
+        } finally {
+            document.getElementById('loader').style.display = 'none';
+        }
+    };
 
     // --- 7. EDIT PROFIL & LOGOUT ---
     window.toggleEdit = () => {
