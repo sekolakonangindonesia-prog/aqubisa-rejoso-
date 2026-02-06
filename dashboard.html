@@ -268,6 +268,24 @@ input[type="file"]::file-selector-button {
 
 .btn-premium-submit:hover { background: #004555; transform: translateY(-2px); }
 .btn-premium-cancel:hover { background: #f5f5f5; color: #333; }
+
+        /* Style Form Terintegrasi (Melekat) */
+.form-container-premium { background: white; border-radius: 15px; padding: 0; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-top: 20px; }
+.form-header-blue { background: #0b1f30; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+.form-section-white { padding: 30px; border-bottom: 1px solid #eee; }
+.form-section-white h4 { color: #0b1f30; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--accent-gold); padding-left: 15px; }
+
+.grid-3-kolom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.input-premium { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; font-size: 0.9rem; }
+.input-premium:focus { border-color: var(--sidebar-active); background: white; outline: none; }
+
+.checkbox-card-group { display: flex; gap: 15px; margin-bottom: 20px; }
+.checkbox-card { flex: 1; border: 2px solid #eee; padding: 15px; border-radius: 10px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-weight: bold; }
+.checkbox-card input { transform: scale(1.2); }
+.checkbox-card.active { border-color: var(--success-green); background: #f0fff4; }
+
+.btn-back { background: none; border: 1px solid white; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+.btn-back:hover { background: rgba(255,255,255,0.1); }
         
     </style>
 </head>
@@ -439,6 +457,81 @@ input[type="file"]::file-selector-button {
             <p style="text-align:center; color:#999; padding:20px;">Belum ada lahan. Klik tombol di atas untuk memulai.</p>
         </div>
     </div>
+
+    <!-- VIEW DETAIL LAHAN (FORM MELEKAT) -->
+<div id="view-detail-lahan" class="hidden">
+    <div class="form-container-premium">
+        <!-- Header Form -->
+        <div class="form-header-blue">
+            <div>
+                <h3 id="det-nama-header">Lahan Juman</h3>
+                <p style="font-size: 0.8rem; opacity: 0.8;">Lengkapi semua data teknis di bawah ini</p>
+            </div>
+            <button class="btn-back" onclick="window.closeDetailLahan()"><i class="fas fa-arrow-left"></i> Kembali ke Daftar</button>
+        </div>
+
+        <!-- Progress Stepper (Melekat di Header) -->
+        <div class="form-section-white" style="background: #fdfdfd;">
+            <div class="stepper-wrapper" style="margin-bottom: 0;">
+                <div class="step active"><div class="step-circle">1</div><div class="step-label">Draft</div></div>
+                <div class="step" id="step-submitted"><div class="step-circle">2</div><div class="step-label">Submitted</div></div>
+                <div class="step"><div class="step-circle">3</div><div class="step-label">Verifikasi</div></div>
+                <div class="step"><div class="step-circle">4</div><div class="step-label">Selesai</div></div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 1: INFORMASI DASAR -->
+        <div class="form-section-white">
+            <h4><i class="fas fa-map-marker-alt"></i> I. Informasi Dasar & Alamat Lahan</h4>
+            <div class="grid-3-kolom">
+                <div class="form-group-lahan"><label>Nama Lahan</label><input type="text" id="det-nama" class="input-premium"></div>
+                <div class="form-group-lahan"><label>Luas Lahan (Ha)</label><input type="number" id="det-luas" class="input-premium"></div>
+                <div class="form-group-lahan"><label>Koordinat GPS</label><input type="text" id="det-gps" class="input-premium" readonly></div>
+            </div>
+            <div class="grid-3-kolom" style="margin-top: 15px;">
+                <div class="form-group-lahan"><label>Desa / Kelurahan</label><input type="text" id="det-desa" class="input-premium" placeholder="Lokasi lahan"></div>
+                <div class="form-group-lahan"><label>Kecamatan</label><input type="text" id="det-kec" class="input-premium"></div>
+                <div class="form-group-lahan"><label>Nama Blok / Sawah</label><input type="text" id="det-blok" class="input-premium" placeholder="Contoh: Blok Sawah Tengah"></div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 2: PILIHAN JASA -->
+        <div class="form-section-white">
+            <h4><i class="fas fa-hand-holding-heart"></i> II. Pilihan Jasa Lingkungan</h4>
+            <div class="checkbox-card-group">
+                <label class="checkbox-card"><input type="checkbox" id="det-c-pohon" onchange="window.toggleDataTeknis()"> Tutupan Lahan (Pohon)</label>
+                <label class="checkbox-card"><input type="checkbox" id="det-c-rorak" onchange="window.toggleDataTeknis()"> Konservasi Air (Rorak)</label>
+                <label class="checkbox-card"><input type="checkbox" id="det-c-sumur" onchange="window.toggleDataTeknis()"> Sumur Resapan</label>
+            </div>
+        </div>
+
+        <!-- BAGIAN 3: DATA TEKNIS (Pohon) -->
+        <div id="sect-pohon" class="form-section-white hidden">
+            <h4><i class="fas fa-tree"></i> III. Detail Aset Pohon</h4>
+            <table class="input-table">
+                <thead><tr><th>Jenis Pohon</th><th>Jumlah</th><th>Lilit Batang (cm)</th></tr></thead>
+                <tbody id="det-pohon-body"></tbody>
+            </table>
+            <button class="btn-add-row" onclick="window.addRowDetailPohon()">+ Tambah Jenis Pohon</button>
+        </div>
+
+        <!-- BAGIAN 4: DOKUMEN -->
+        <div class="form-section-white">
+            <h4><i class="fas fa-file-upload"></i> IV. Unggah Dokumen Pendukung</h4>
+            <div class="grid-3-kolom">
+                <div class="form-group-lahan"><label>Foto SPPT (Pajak Lahan)</label><input type="file"></div>
+                <div class="form-group-lahan"><label>Foto KTP Pemilik</label><input type="file"></div>
+                <div class="form-group-lahan"><label>Foto Hamparan Lahan</label><input type="file"></div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 5: AKSI -->
+        <div class="form-section-white" style="text-align: right; background: #fafafa;">
+            <button class="btn-premium-cancel" onclick="window.saveLahanIntegrated('draft')" style="width: auto; padding: 15px 30px;">SIMPAN DRAFT</button>
+            <button id="btn-final-submit" class="btn-premium-submit" onclick="window.saveLahanIntegrated('submit')" style="width: auto; padding: 15px 50px;">SUBMIT PENGAJUAN</button>
+        </div>
+    </div>
+</div>
 
     <!-- 2. AREA PENGISIAN INDIKATOR (Muncul setelah Lahan Dibuat) -->
     <div id="form-indikator-lahan" class="hidden">
@@ -997,6 +1090,67 @@ input[type="file"]::file-selector-button {
     document.getElementById('btnLogout').addEventListener('click', () => {
         signOut(auth).then(() => { window.location.href = "index.html"; });
     });
+
+        // --- FUNGSI BUKA DETAIL LAHAN (FORM MELEKAT) ---
+    window.modalLegal = async (id) => { // Kita ganti fungsi Kelola (modalLegal) menjadi buka Detail
+        window.currentLahanId = id;
+        document.getElementById('list-lahan-saya').classList.add('hidden'); // Sembunyikan daftar
+        document.getElementById('view-detail-lahan').classList.remove('hidden'); // Munculkan Form
+        
+        document.getElementById('loader').style.display = 'flex';
+        try {
+            const docSnap = await getDoc(doc(db, "pengajuan", id));
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                // Isi data Dasar
+                document.getElementById('det-nama-header').innerText = "Kelola Lahan: " + data.namaLahan;
+                document.getElementById('det-nama').value = data.namaLahan;
+                document.getElementById('det-luas').value = data.luasHa;
+                document.getElementById('det-gps').value = `${data.koordinat.lat}, ${data.koordinat.lng}`;
+                document.getElementById('det-desa').value = data.alamatLahan?.desa || "";
+                document.getElementById('det-kec').value = data.alamatLahan?.kecamatan || "";
+                document.getElementById('det-blok').value = data.alamatLahan?.blok || "";
+
+                // Isi data Jasa
+                document.getElementById('det-c-pohon').checked = data.jenisJasa?.includes('pohon');
+                document.getElementById('det-c-rorak').checked = data.jenisJasa?.includes('rorak');
+                
+                window.toggleDataTeknis(); // Update tampilan pohon/rorak
+            }
+        } catch (e) { console.error(e); }
+        document.getElementById('loader').style.display = 'none';
+    };
+
+    window.closeDetailLahan = () => {
+        document.getElementById('view-detail-lahan').classList.add('hidden');
+        document.getElementById('list-lahan-saya').classList.remove('hidden');
+    };
+
+    window.toggleDataTeknis = () => {
+        const isPohon = document.getElementById('det-c-pohon').checked;
+        document.getElementById('sect-pohon').classList.toggle('hidden', !isPohon);
+    };
+
+    window.saveLahanIntegrated = async (tipe) => {
+        document.getElementById('loader').style.display = 'flex';
+        try {
+            const docRef = doc(db, "pengajuan", window.currentLahanId);
+            await updateDoc(docRef, {
+                namaLahan: document.getElementById('det-nama').value,
+                luasHa: parseFloat(document.getElementById('det-luas').value),
+                alamatLahan: {
+                    desa: document.getElementById('det-desa').value,
+                    kecamatan: document.getElementById('det-kec').value,
+                    blok: document.getElementById('det-blok').value
+                },
+                statusAdmin: tipe === 'submit' ? 'Submitted' : 'Draft',
+                updatedAt: new Date()
+            });
+            alert(tipe === 'submit' ? "Berhasil dikirim ke Admin!" : "Draft berhasil disimpan!");
+            location.reload();
+        } catch (e) { alert("Gagal simpan."); }
+        document.getElementById('loader').style.display = 'none';
+    };
     </script>
 </body>
 </html>
