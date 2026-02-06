@@ -515,6 +515,36 @@ input[type="file"]::file-selector-button {
             <button class="btn-add-row" onclick="window.addRowDetailPohon()">+ Tambah Jenis Pohon</button>
         </div>
 
+        <!-- BAGIAN 3.1: DATA TEKNIS (Pohon) -->
+<div id="sect-pohon" class="form-section-white hidden">
+    <h4><i class="fas fa-tree"></i> III. Detail Aset Pohon</h4>
+    <table class="input-table">
+        <thead><tr><th>Jenis Pohon</th><th>Jumlah (Btg)</th><th>Lilit Batang (cm)</th><th style="width:50px"></th></tr></thead>
+        <tbody id="det-pohon-body"></tbody>
+    </table>
+    <button type="button" class="btn-add-row" onclick="window.addRowDetailPohon()">+ Tambah Jenis Pohon</button>
+</div>
+
+<!-- BAGIAN 3.2: DATA TEKNIS (Rorak) -->
+<div id="sect-rorak" class="form-section-white hidden">
+    <h4><i class="fas fa-water"></i> III. Detail Konstruksi Rorak</h4>
+    <table class="input-table">
+        <thead><tr><th>Jumlah Unit</th><th>Panjang (m)</th><th>Lebar (m)</th><th>Dalam (m)</th><th style="width:50px"></th></tr></thead>
+        <tbody id="det-rorak-body"></tbody>
+    </table>
+    <button type="button" class="btn-add-row" onclick="window.addRowDetailRorak()">+ Tambah Baris Rorak</button>
+</div>
+
+<!-- BAGIAN 3.3: DATA TEKNIS (Sumur Resapan) -->
+<div id="sect-sumur" class="form-section-white hidden">
+    <h4><i class="fas fa-faucet"></i> III. Detail Sumur Resapan</h4>
+    <table class="input-table">
+        <thead><tr><th>Jumlah Unit</th><th>Kedalaman (m)</th><th>Keterangan</th><th style="width:50px"></th></tr></thead>
+        <tbody id="det-sumur-body"></tbody>
+    </table>
+    <button type="button" class="btn-add-row" onclick="window.addRowDetailSumur()">+ Tambah Baris Sumur</button>
+</div>
+
         <!-- BAGIAN 4: DOKUMEN -->
         <div class="form-section-white">
             <h4><i class="fas fa-file-upload"></i> IV. Unggah Dokumen Pendukung</h4>
@@ -656,6 +686,57 @@ input[type="file"]::file-selector-button {
         </div>
     </div>
 </div>
+
+// --- 1. LOGIKA TAMPILKAN SEKSI (TOGGLE) ---
+    window.toggleDataTeknis = () => {
+        const isPohon = document.getElementById('det-c-pohon').checked;
+        const isRorak = document.getElementById('det-c-rorak').checked;
+        const isSumur = document.getElementById('det-c-sumur').checked;
+
+        document.getElementById('sect-pohon').classList.toggle('hidden', !isPohon);
+        document.getElementById('sect-rorak').classList.toggle('hidden', !isRorak);
+        document.getElementById('sect-sumur').classList.toggle('hidden', !isSumur);
+    };
+
+    // --- 2. FUNGSI TAMBAH BARIS POHON ---
+    window.addRowDetailPohon = (data = {}) => {
+        const tbody = document.getElementById('det-pohon-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="text" class="in-det-p-jenis" value="${data.jenis || ''}" placeholder="Sengon/Jati.."></td>
+            <td><input type="number" class="in-det-p-jumlah" value="${data.jumlah || ''}"></td>
+            <td><input type="number" class="in-det-p-lilit" value="${data.lilit || ''}"></td>
+            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    };
+
+    // --- 3. FUNGSI TAMBAH BARIS RORAK ---
+    window.addRowDetailRorak = (data = {}) => {
+        const tbody = document.getElementById('det-rorak-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="number" class="in-det-r-unit" value="${data.unit || ''}"></td>
+            <td><input type="number" class="in-det-r-p" value="${data.p || ''}"></td>
+            <td><input type="number" class="in-det-r-l" value="${data.l || ''}"></td>
+            <td><input type="number" class="in-det-r-d" value="${data.d || ''}"></td>
+            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    };
+
+    // --- 4. FUNGSI TAMBAH BARIS SUMUR ---
+    window.addRowDetailSumur = (data = {}) => {
+        const tbody = document.getElementById('det-sumur-body');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="number" class="in-det-s-unit" value="${data.unit || ''}"></td>
+            <td><input type="number" class="in-det-s-dalam" value="${data.dalam || ''}"></td>
+            <td><input type="text" class="in-det-s-ket" value="${data.ket || ''}"></td>
+            <td><button class="btn-remove-row" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    };
         
         <!-- VIEW 4: INFO REKENING (Sesuai SS1) -->
 <section id="view-rekening" class="view-content hidden">
@@ -719,7 +800,6 @@ input[type="file"]::file-selector-button {
         </div>
     </div>
 </section>
-
 
 
 <!-- MODAL KELOLA LEGALITAS (DESAIN BARU) -->
@@ -1092,65 +1172,46 @@ input[type="file"]::file-selector-button {
     });
 
         // --- FUNGSI BUKA DETAIL LAHAN (FORM MELEKAT) ---
-    window.modalLegal = async (id) => { // Kita ganti fungsi Kelola (modalLegal) menjadi buka Detail
+    window.modalLegal = async (id) => {
         window.currentLahanId = id;
-        document.getElementById('list-lahan-saya').classList.add('hidden'); // Sembunyikan daftar
-        document.getElementById('view-detail-lahan').classList.remove('hidden'); // Munculkan Form
+        document.getElementById('list-lahan-saya').classList.add('hidden');
+        document.getElementById('view-detail-lahan').classList.remove('hidden');
         
+        // Bersihkan tabel dulu sebelum diisi data baru
+        document.getElementById('det-pohon-body').innerHTML = '';
+        document.getElementById('det-rorak-body').innerHTML = '';
+        document.getElementById('det-sumur-body').innerHTML = '';
+
         document.getElementById('loader').style.display = 'flex';
         try {
             const docSnap = await getDoc(doc(db, "pengajuan", id));
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                // Isi data Dasar
-                document.getElementById('det-nama-header').innerText = "Kelola Lahan: " + data.namaLahan;
-                document.getElementById('det-nama').value = data.namaLahan;
-                document.getElementById('det-luas').value = data.luasHa;
-                document.getElementById('det-gps').value = `${data.koordinat.lat}, ${data.koordinat.lng}`;
+                
+                // Isi Data Dasar
+                document.getElementById('det-nama').value = data.namaLahan || "";
+                document.getElementById('det-luas').value = data.luasHa || 0;
+                document.getElementById('det-gps').value = `${data.koordinat?.lat || ''}, ${data.koordinat?.lng || ''}`;
                 document.getElementById('det-desa').value = data.alamatLahan?.desa || "";
                 document.getElementById('det-kec').value = data.alamatLahan?.kecamatan || "";
                 document.getElementById('det-blok').value = data.alamatLahan?.blok || "";
 
-                // Isi data Jasa
+                // Isi Data Jasa (Centang)
                 document.getElementById('det-c-pohon').checked = data.jenisJasa?.includes('pohon');
                 document.getElementById('det-c-rorak').checked = data.jenisJasa?.includes('rorak');
-                
-                window.toggleDataTeknis(); // Update tampilan pohon/rorak
+                document.getElementById('det-c-sumur').checked = data.jenisJasa?.includes('sumur');
+
+                // Panggil Data Teknis yang sudah tersimpan (Jika ada)
+                if(data.dataPohon) data.dataPohon.forEach(p => window.addRowDetailPohon(p));
+                if(data.dataRorak) data.dataRorak.forEach(r => window.addRowDetailRorak(r));
+                if(data.dataSumur) data.dataSumur.forEach(s => window.addRowDetailSumur(s));
+
+                window.toggleDataTeknis();
             }
         } catch (e) { console.error(e); }
         document.getElementById('loader').style.display = 'none';
     };
-
-    window.closeDetailLahan = () => {
-        document.getElementById('view-detail-lahan').classList.add('hidden');
-        document.getElementById('list-lahan-saya').classList.remove('hidden');
-    };
-
-    window.toggleDataTeknis = () => {
-        const isPohon = document.getElementById('det-c-pohon').checked;
-        document.getElementById('sect-pohon').classList.toggle('hidden', !isPohon);
-    };
-
-    window.saveLahanIntegrated = async (tipe) => {
-        document.getElementById('loader').style.display = 'flex';
-        try {
-            const docRef = doc(db, "pengajuan", window.currentLahanId);
-            await updateDoc(docRef, {
-                namaLahan: document.getElementById('det-nama').value,
-                luasHa: parseFloat(document.getElementById('det-luas').value),
-                alamatLahan: {
-                    desa: document.getElementById('det-desa').value,
-                    kecamatan: document.getElementById('det-kec').value,
-                    blok: document.getElementById('det-blok').value
-                },
-                statusAdmin: tipe === 'submit' ? 'Submitted' : 'Draft',
-                updatedAt: new Date()
-            });
-            alert(tipe === 'submit' ? "Berhasil dikirim ke Admin!" : "Draft berhasil disimpan!");
-            location.reload();
-        } catch (e) { alert("Gagal simpan."); }
-        document.getElementById('loader').style.display = 'none';
-    };
+        
     </script>
 </body>
 </html>
