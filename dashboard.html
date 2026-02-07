@@ -1187,28 +1187,82 @@ input[type="file"]::file-selector-button {
 
     // --- 7. EDIT PROFIL & LOGOUT ---
     window.toggleEdit = () => {
-        const isEditing = document.getElementById('btnSaveProfile').style.display === 'block';
-        if (!isEditing) {
-            document.querySelectorAll('.edit-text').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.edit-input').forEach(el => el.classList.remove('hidden'));
-            document.getElementById('btnSaveProfile').style.display = 'block';
-            document.getElementById('btnEditProfile').innerText = 'Batal';
-        } else {
-            location.reload();
+    const isEditing = document.getElementById('btnSaveProfile').style.display === 'block';
+    
+    if (!isEditing) {
+        // Pindah ke Mode Input
+        document.querySelectorAll('.edit-text').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.edit-input').forEach(el => el.classList.remove('hidden'));
+        document.getElementById('btnSaveProfile').style.display = 'block';
+        document.getElementById('btnEditProfile').innerText = 'Batal';
+        
+        const map = {
+            'i-name': 'p-name', 'i-ktp': 'p-ktp', 'i-keahlian': 'p-keahlian',
+            'i-kk': 'p-kk', 'i-npwp': 'p-npwp', 'i-nip': 'p-nip',
+            'i-tmpt-lahir': 'p-tmpt-lahir', 'i-tgl-lahir': 'p-tgl-lahir',
+            'i-phone': 'p-phone', 'i-lembaga': 'p-lembaga', 'i-alamat': 'p-alamat',
+            'i-prov': 'p-prov', 'i-kota': 'p-kota', 'i-kec': 'p-kec',
+            'i-desa': 'p-desa', 'i-kodepos': 'p-kodepos', 'i-domisili': 'p-domisili'
+        };
+
+        for (const [inputId, labelId] of Object.entries(map)) {
+            const labelEl = document.getElementById(labelId);
+            const inputEl = document.getElementById(inputId);
+            if (labelEl && inputEl) {
+                const currentVal = labelEl.innerText;
+                // Jika isinya cuma tanda strip, kosongkan inputnya
+                inputEl.value = (currentVal === "-") ? "" : currentVal;
+            }
         }
-    };
-
-    window.saveProfile = async () => {
-        const user = auth.currentUser;
-        if (!user) return;
-
-        const newName = document.getElementById('i-name').value;
-
-         if (!newName || newName.trim() === "") {
-        alert("Nama Lengkap tidak boleh kosong!");
-        return;
+    } else {
+        // Keluar Mode Input (Batal)
+        document.querySelectorAll('.edit-text').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.edit-input').forEach(el => el.classList.add('hidden'));
+        document.getElementById('btnSaveProfile').style.display = 'none';
+        document.getElementById('btnEditProfile').innerText = 'Ubah Profil';
     }
+};
 
+   window.saveProfile = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const newName = document.getElementById('i-name').value;
+    if (!newName || newName.trim() === "") { alert("Nama tidak boleh kosong!"); return; }
+
+    document.getElementById('loader').style.display = 'flex';
+
+    try {
+        const userRef = doc(db, "users", user.uid);
+        await updateDoc(userRef, {
+            fullName: newName,
+            ktp: document.getElementById('i-ktp').value || "-",
+            bidangKeahlian: document.getElementById('i-keahlian').value || "-",
+            kk: document.getElementById('i-kk').value || "-",
+            npwp: document.getElementById('i-npwp').value || "-",
+            nip: document.getElementById('i-nip').value || "-",
+            tempatLahir: document.getElementById('i-tmpt-lahir').value || "-",
+            tanggalLahir: document.getElementById('i-tgl-lahir').value || "",
+            jenisKelamin: document.getElementById('i-gender').value || "-",
+            phone: document.getElementById('i-phone').value || "-",
+            lembaga: document.getElementById('i-lembaga').value || "-",
+            alamatKTP: document.getElementById('i-alamat').value || "-",
+            provinsi: document.getElementById('i-prov').value || "-",
+            kota: document.getElementById('i-kota').value || "-",
+            kecamatan: document.getElementById('i-kec').value || "-",
+            desa: document.getElementById('i-desa').value || "-",
+            kodePos: document.getElementById('i-kodepos').value || "-",
+            alamatDomisili: document.getElementById('i-domisili').value || "-"
+        });
+        alert("Profil Berhasil Diperbarui!");
+        location.reload();
+    } catch (e) {
+        console.error("Gagal simpan:", e);
+        alert("Gagal menyimpan ke Firebase.");
+    } finally {
+        document.getElementById('loader').style.display = 'none';
+    }
+};
         document.getElementById('loader').style.display = 'flex';
         
         try {
