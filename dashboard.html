@@ -821,7 +821,7 @@ input[type="file"]::file-selector-button {
         
     </main>
     <script type="module">
-       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc, updateDoc, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -865,11 +865,50 @@ input[type="file"]::file-selector-button {
 
     // --- 3. RENDER DATA PROFIL & MOU ---
     function renderDashboard(data) {
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('real-name').innerText = data.fullName || "User";
-        document.getElementById('profile-name').innerText = data.fullName || "User";
+    document.getElementById('loader').style.display = 'none';
+
+    // 1. Header & Badge
+    const name = data.fullName || "User";
+    document.getElementById('real-name').innerText = name;
+    document.getElementById('profile-name').innerText = name;
+        
         const badge = document.getElementById('role-badge');
         badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
+
+        // 2. Pemetaan Data (ID HTML : Field Firebase)
+    const profileMap = {
+        'p-name': data.fullName,
+        'p-ktp': data.ktp,
+        'p-keahlian': data.bidangKeahlian,
+        'p-kk': data.kk,
+        'p-npwp': data.npwp,
+        'p-nip': data.nip,
+        'p-tmpt-lahir': data.tempatLahir,
+        'p-tgl-lahir': data.tanggalLahir,
+        'p-gender': data.jenisKelamin,
+        'p-phone': data.phone,
+        'p-email': data.email,
+        'p-lembaga': data.lembaga,
+        'p-alamat': data.alamatKTP,
+        'p-prov': data.provinsi,
+        'p-kota': data.kota,
+        'p-kec': data.kecamatan,
+        'p-desa': data.desa,
+        'p-kodepos': data.kodePos,
+        'p-domisili': data.alamatDomisili
+    };
+
+        for (const [id, value] of Object.entries(profileMap)) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.innerText = (value && value !== "" && value !== "-") ? value : "-";
+        }
+    }
+
+    if (auth.currentUser) {
+        loadLahanSaya(auth.currentUser.uid);
+    }
+}
 
         // Isi Data Identitas
         const fields = ['p-name', 'p-ktp', 'p-keahlian', 'p-kk', 'p-npwp', 'p-nip', 'p-tmpt-lahir', 'p-tgl-lahir', 'p-gender', 'p-phone', 'p-email', 'p-lembaga', 'p-alamat', 'p-prov', 'p-kota', 'p-kec', 'p-desa', 'p-kodepos', 'p-domisili'];
