@@ -871,11 +871,11 @@ input[type="file"]::file-selector-button {
     const name = data.fullName || "User";
     document.getElementById('real-name').innerText = name;
     document.getElementById('profile-name').innerText = name;
-        
-        const badge = document.getElementById('role-badge');
-        badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
+    
+    const badge = document.getElementById('role-badge');
+    if(badge) badge.innerText = data.role === 'seller' ? 'ES SELLER' : 'ES BUYER';
 
-        // 2. Pemetaan Data (ID HTML : Field Firebase)
+    // 2. Pemetaan Data (ID HTML : Field Firebase)
     const profileMap = {
         'p-name': data.fullName,
         'p-ktp': data.ktp,
@@ -898,7 +898,8 @@ input[type="file"]::file-selector-button {
         'p-domisili': data.alamatDomisili
     };
 
-        for (const [id, value] of Object.entries(profileMap)) {
+    // Tampilkan data ke label teks
+    for (const [id, value] of Object.entries(profileMap)) {
         const el = document.getElementById(id);
         if (el) {
             el.innerText = (value && value !== "" && value !== "-") ? value : "-";
@@ -1186,7 +1187,7 @@ input[type="file"]::file-selector-button {
     };
 
     // --- 7. EDIT PROFIL & LOGOUT ---
-    window.toggleEdit = () => {
+   window.toggleEdit = () => {
     const isEditing = document.getElementById('btnSaveProfile').style.display === 'block';
     
     if (!isEditing) {
@@ -1263,41 +1264,6 @@ input[type="file"]::file-selector-button {
         document.getElementById('loader').style.display = 'none';
     }
 };
-        document.getElementById('loader').style.display = 'flex';
-        
-        try {
-        const userRef = doc(db, "users", user.uid);
-        await updateDoc(userRef, {
-            fullName: newName, // Nama baru yang sudah divalidasi
-            ktp: document.getElementById('i-ktp').value,
-            bidangKeahlian: document.getElementById('i-keahlian').value,
-            kk: document.getElementById('i-kk').value,
-            npwp: document.getElementById('i-npwp').value,
-            nip: document.getElementById('i-nip').value,
-            tempatLahir: document.getElementById('i-tmpt-lahir').value,
-            tanggalLahir: document.getElementById('i-tgl-lahir').value,
-            jenisKelamin: document.getElementById('i-gender').value,
-            phone: document.getElementById('i-phone').value,
-            lembaga: document.getElementById('i-lembaga').value,
-            alamatKTP: document.getElementById('i-alamat').value,
-            provinsi: document.getElementById('i-prov').value,
-            kota: document.getElementById('i-kota').value,
-            kecamatan: document.getElementById('i-kec').value,
-            desa: document.getElementById('i-desa').value,
-            kodePos: document.getElementById('i-kodepos').value,
-            alamatDomisili: document.getElementById('i-domisili').value
-        });
-
-    alert("Profil Berhasil Diperbarui!");
-        location.reload(); 
-    } catch (error) {
-        console.error("Gagal simpan profil: ", error);
-        alert("Gagal menyimpan data.");
-    } finally {
-        document.getElementById('loader').style.display = 'none';
-    }
-};
-
         // --- FUNGSI BUKA DETAIL LAHAN (FORM MELEKAT) ---
     window.modalLegal = async (id) => {
         window.currentLahanId = id;
